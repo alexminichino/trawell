@@ -2,7 +2,7 @@
 # Trawell Project
 
 ### todo descrizione progetto 
-@umbertoRussomando
+@umbertoRussomando 
 
 ### Come prima cosa modificare il file in /src/main/resources/application.properties
 
