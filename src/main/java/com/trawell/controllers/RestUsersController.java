@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * RestUsersController qui andranno mappate tutte le funzionalità relative all'utente per la municazione REST
+ * RestUsersController qui andranno mappate tutte le funzionalità relative all'utente per la comunicazione REST
  *
  */
 @RestController
