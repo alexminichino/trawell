@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Sign-Up</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p>Sign-Up</p>
+    
+    <form action = "/sign-up" method = "POST" id = "target">
+        <p>
+            Username: <input type = 'text' name = "username"><b>
+            Password: <input type = "password" name = "password"><b>
+            Verifica Password: <input type = "password" name = "verify"><b>
+            Nome: <input type = 'text' name = "name"><b>
+            Cognome: <input type = 'text' name = "surname"><b>
+            Data di Nascita: <input type = 'date' name = "birth"><b>
+            Contatto: <input type = 'phone' name = "phone"><b>
+            <input type = "submit">
+        </p>
+    </form>
+    
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
+  </footer> 
+  <script type = "text/javascript">
+    $(document).ready(function () {
+      $('#target').submit(function () {
+        var flag = $('this.input').each(function () {
+          if (this.value == NaN)
+            return false;
+        });
+
+        return flag == false ? false : true;
+      });
+      });
+  </script>
+</body>
+</html>
