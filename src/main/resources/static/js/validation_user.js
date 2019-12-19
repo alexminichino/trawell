@@ -1,31 +1,47 @@
-$.validator.addMethod('regex', function(value, element, param){
-    return this.optional(element) || value.match(typeof param == 'string'? new RegExp(param) : param);
-    }, message);
-
-$( document ).ready(function() {
-
-   $("#sign-up").validate({
-        rules: {
+$(document).ready(function(){
+    $("#target").validate({
+        rules:{
             name:{
-                required:true, regex: /^[A-Z a-z]{1,20}$/
+                required:true, minlenght:1, maxlenght:45
             }, 
             surname:{
-                required:true, regex: /^[A-Z a-z]{1,20}$/
+                required:true, minlenght:1, maxlenght:45
+            },
+            birthday:{
+                required:true, minlenght:1, maxlenght:45
             },
             email:{
-                required:true, regex: /^[a-zA-Z0-9]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+                required:true, 
             },
             password:{
-                required:true, regex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{8,45}$/
+                required:true, minlenght:1, maxlenght:45
             },
-            verifica_pss:{
+            verify_pss:{
                 required:true, function () {
                     return password == verificapss ? true : false;
                 }
             }, 
             username:{
-                required: true, regex: /^[a-zA-Z0-9]$/
+                required: true, minlenght:1, maxlenght:45
+            },
+            numbPhone:{
+                required:true
+            },
+            bio:{
+                requirde:true
+            },
+            nameAgency:{
+                required:true, minlenght:1, maxlenght:45
+            },
+            agencyPhone:{
+                required:true   
+            },
+            urlAgencyPhone:{
+                required:true
+            },
+            VATnumber:{
+                required:true
             }
         }
-   }
+   }); 
 });

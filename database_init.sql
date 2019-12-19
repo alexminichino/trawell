@@ -373,9 +373,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`User` ;
+DROP TABLE IF EXISTS `trawell`.`user` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`User` (
+CREATE TABLE IF NOT EXISTS `trawell`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `mail` VARCHAR(254) NOT NULL,
   `userName` VARCHAR(45) NOT NULL,
