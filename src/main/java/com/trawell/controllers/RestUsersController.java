@@ -1,6 +1,9 @@
 package com.trawell.controllers;
 
 import java.util.Collection;
+
+import javax.servlet.http.HttpSession;
+
 import com.trawell.models.User;
 import com.trawell.services.UserService;
 
@@ -16,56 +19,47 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * RestUsersController qui andranno mappate tutte le funzionalità relative all'utente per la comunicazione REST
+ * @author Milione Vincent
+ * RestUsersController andranno mappate tutte le funzionalità relative all'utente per la comunicazione REST
  *
  */
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/users")
 public class RestUsersController {
 
     @Autowired
     private UserService userService;
 
-    // GET [method = RequestMethod.GET] is a default method for any request. 
-    // So we do not need to mention explicitly
-
-    @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<User>> getUsers() {
-        Collection<User> users = userService.findAll();        
-        return new ResponseEntity<Collection<User>>(users, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        User user = userService.findOne(id);
-        if(user == null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }
-    
     @RequestMapping(value = "/users", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userService.create(user);
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
-        User updatedUser = null;
-        if (user != null && id == user.getId()) {
-            updatedUser = userService.update(user); 
-        }
-        if(updatedUser == null) {
-            return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
-    }
+    /**
+     * @author Milione Vincent
+     * executes an update on all of a user's data
+     * @param id user's id on the database
+     * @param user new user object containing all the new data
+     * @return a JSON object with Http Status 200 if update was successful, 500 otherwise
+     */
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) {
-        userService.delete(id);
-        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user, HttpSession session) {
+       
+        User u = (User) session.getAttribute("user");
+        if (u != null) {
+
+            User updatedUser = null;
+            if (user != null && id == user.getId()) {
+                updatedUser = userService.update(user); 
+            }
+            if(updatedUser == null) {
+                return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+             }
+            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
     }
-    
 }

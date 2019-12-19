@@ -8,19 +8,20 @@
   <section layout:fragment="content">
     <p>Sign-Up</p>
     
-    <form action = "/sign-up" method = "POST" id = "target">
+    <form action = "/users/signUp" method = "POST" id = "target">
         <p>
-            Username: <input type = 'text' name = "username"><b>
-            Password: <input type = "password" name = "password"><b>
-            Verifica Password: <input type = "password" name = "verify"><b>
-            Nome: <input type = 'text' name = "name"><b>
-            Cognome: <input type = 'text' name = "surname"><b>
-            Data di Nascita: <input type = 'date' name = "birth"><b>
-            Contatto: <input type = 'phone' name = "phone"><b>
+            Username: <input type = 'text' name = "username"><br>
+            Password: <input type = "password" name = "password"><br>
+            
+            Nome: <input type = 'text' name = "name"><br>
+            Cognome: <input type = 'text' name = "surname"><br>
+            E-mail: <input type = 'text' name = "mail"><br>
+            Data di Nascita: <input type = 'date' name = "birth"><br>
+            Contatto: <input type = 'phone' name = "Phone"><br>
             <input type = "submit">
         </p>
     </form>
-    
+
   </section>
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 

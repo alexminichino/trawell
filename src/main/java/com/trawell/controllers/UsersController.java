@@ -1,14 +1,12 @@
 package com.trawell.controllers;
 
-import static org.apache.tomcat.util.security.MD5Encoder.*;
-import java.text.DateFormat;
-import java.util.Locale;
-
 import javax.servlet.http.HttpSession;
 
+import com.trawell.models.Encoder;
 import com.trawell.models.User;
 import com.trawell.services.UserService;
-import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,72 +16,87 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
+ * @author Milione Vincent
  * UsersController qui andranno mappate tutte le funzionalità relative all'utente per la comunicazione MVC
  */
 @Controller
 @RequestMapping("users")
 public class UsersController {
-
+	@Autowired
 	private UserService dao;
 
-	private String generateSalt (User user) {
-		return user.getBirth().toString() + user.getUsername() + "superkalifragilistic";
+	/**
+	 * Method checks if the user is already logged
+	 * @param session
+	 * @return true if he is already logged, false otherwise
+	 */
+	private boolean isLogged (HttpSession session) {
+		return session.getAttribute("user") != null;
 	}
 
-	private String addSalt (String salt, String encodify) {
-		return encode (salt.getBytes()) + encode(encodify.getBytes());
-	}
-
-	private String encoding (String encodify, String salt, int nof) {
-		
-		int n = nof;
-
-		for (int i = 0; i < n; i++)
-			encodify = i % 2 == 0 ? encode(encodify.getBytes()) : encode(addSalt(salt, encodify).getBytes());
-
-		return null;
-	}
-
+	/**
+	 * @author Milione Vincent
+	 * The method maps user's get request to the login page
+	 * @param session
+	 * @return if the user isn't already logged in return the URL of the login page or else send him to home page 
+	 */
 	@GetMapping("/login.html")
-	public String loginPage () {
-		return "pages/user/login";
+	public String loginPage (HttpSession session) {
+		return isLogged(session) ? "pages/user/home" : "pages/user/login";
 	}
 
+	/**
+	 * @author Milione Vincent
+	 * The method maps user's get request to sign-up page
+	 * @param session
+	 * @return URL of the sign-up page if the user isn't already logged in
+	 */
 	@GetMapping("/sign-up.html")
-	public String signUpPage () {
-		return "pages/user/sign-Up";
+	public String signUpPage (HttpSession session) {
+		return isLogged(session) ? "pages/user/home" : "pages/user/sign-Up";
 	}
 
+	/**
+	 * @author Milione Vincent
+	 * The method allows the user to perform the login functionality
+	 * @param username user's username of the account he's trying to log in
+	 * @param password user's password of the account he's trying to log in
+	 * @param session
+	 * @param model
+	 * @return sends user to its home page
+	 */
 	@PostMapping("/login")
     public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
-		//filtrare
+		
+		if (isLogged(session)) return "pages/user/home"; 
+
 		User user = dao.findByUsername(username);
+		password = new Encoder(username).encoding(password, username.length());
 
 		if (user == null) {
 			model.addAttribute("notexist", true);
 			return "pages/user/login";
-		} else if (!password.equals(encoding(password, generateSalt(user), username.length()))) {
+		} else if (!password.equals(user.getPassword())) {
 			model.addAttribute("passmiss", true);
 			return "pages/user/login";
-		} 
+		} else 
 
-		session.setAttribute("username", username);
-		session.setAttribute("isUser", true);
+		session.setAttribute("user", user);
 		return "pages/user/home";
 	}
 
+	/**
+	 * @author Milione Vincent
+	 * The method allows user to create an account
+	 * @param user all user'data on the account
+	 * @param model
+	 * @return sends useer to login
+	 */
 	@PostMapping("/signUp")
-	public String signUp(@ModelAttribute User user, Model model) {
-		user.setPassword(encoding(user.getPassword(), generateSalt(user), user.getUsername().length()));
-		user.setName(encoding(user.getName(), generateSalt(user), user.getUsername().length()));
-		user.setSurname(encoding(user.getName(), generateSalt(user), user.getUsername().length()));
+	public String signUp(@ModelAttribute User user, HttpSession session, Model model) {
+		if (isLogged(session)) return "pages/user/home"; 
+		
 		dao.create(user);
-
 		return "pages/user/login";
-	}
-
-	@PostMapping("/modifyData")
-	public String modify (@ModelAttribute User user, Model model) {
-		return null;
 	}
 }
