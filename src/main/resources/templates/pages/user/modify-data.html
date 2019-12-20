@@ -3,22 +3,23 @@
   layout:decorate="~{layout}">
 <head>
   <title>Sign-Up</title>
+  <script src = "../js/modify_data.js"></script>
 </head>
 <body>
   <section layout:fragment="content">
     <p>Sign-Up</p>
     
-    <form action = "/sign-up" method = "POST" id = "target">
+    <form action = "/api/users/{user.id}" method = "POST" id = "target">
         <p>
-            Username: <input value = ${username} type = 'text' name = "username"><br>
-            Old Password: <input type = "password" name = "password"><br>
+            Username: <input th:value = "${user.username}" type = 'text' name = "username"><br>
+            Old Password: <input type = "password" name = "oldpassword"><br>
             New Password: <input type = "password" name = "password"><br>
-            Verifica New Password: <input value = ${} type = "password" name = "verify"><br>
-            Nome: <input value = ${nome} type = 'text' name = "name"><br>
-            Cognome: <input value = ${cognome} type = 'text' name = "surname"><br>
-            Data di Nascita: <input value = ${birth} type = 'date' name = "birth"><br>
-            Contatto: <input value = ${contact} type = 'phone' name = "phone"><br>
-            <input type = "submit">
+            Verifica New Password: <input type = "password" name = "verify"><br>
+            Nome: <input th:value = "${user.name}" type = 'text' name = "name"><br>
+            Cognome: <input th:value = "${user.surname}" type = 'text' name = "surname"><br>
+            Data di Nascita: <input th:value = "${user.birth}" type = 'date' name = "birth"><br>
+            Contatto: <input th:value = "${user.Phone}" type = 'phone' name = "Phone"><br>
+            <input type = "button" id = "btn">
         </p>
     </form>
     
@@ -26,17 +27,5 @@
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
   </footer> 
-  <script type = "text/javascript">
-    $(document).ready(function () {
-      $('#target').submit(function () {
-        var flag = $('this.input').each(function () {
-          if (this.value == NaN)
-            return false;
-        });
-
-        return flag == false ? false : true;
-      });
-      });
-  </script>
 </body>
 </html>

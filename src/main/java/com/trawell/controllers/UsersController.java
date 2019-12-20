@@ -115,10 +115,6 @@ public class UsersController {
 		else if (user.getPassword() == null || user.getUsername() == null) 
 			return "pages/user/error";
 		
-		System.out.println(user.getId());
-		System.out.println(user.getMail());
-		System.out.println(user.getName());
-		System.out.println(user.getPassword());
 		//encript password
 		user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
 		new AgencyService().create(user);
