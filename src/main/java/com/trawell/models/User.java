@@ -26,7 +26,7 @@ public class User {
     private boolean banned;
     private String bio;
     private int profilePhoto;
-    private String Phone;
+    private String phone;
     private boolean isAdmin;
     private boolean isBanned;
 
@@ -63,11 +63,11 @@ public class User {
     }
 
     public String getPhone() {
-        return this.Phone;
+        return this.phone;
     }
 
-    public void setPhone(String Phone) {
-        this.Phone = Phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public boolean getIsAdmin() {

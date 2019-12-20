@@ -387,7 +387,7 @@ CREATE TABLE IF NOT EXISTS `trawell`.`user` (
   `idAgency` INT default null,
   `bio` VARCHAR(5000) default null,
   `profilePhoto` INT DEFAULT 0,
-  `Phone` VARCHAR(20) default null,
+  `phone` VARCHAR(20) default null,
   `isAdmin` TINYINT DEFAULT 0,
   `isBanned` TINYINT DEFAULT 0,
   PRIMARY KEY (`id`, `mail`, `userName`),
