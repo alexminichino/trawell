@@ -2,8 +2,10 @@ package com.trawell.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import com.trawell.models.Agency;
 import com.trawell.models.Encoder;
 import com.trawell.models.User;
+import com.trawell.services.AgencyService;
 import com.trawell.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,9 +96,45 @@ public class UsersController {
 	 */
 	@PostMapping("/signUp")
 	public String signUp(@ModelAttribute User user, HttpSession session, Model model) {
-		if (isLogged(session)) return "pages/user/home"; 
+		if (isLogged(session)) 
+			return "pages/user/home"; 
+		else if (user.getPassword() == null || user.getUsername() == null) 
+			return "pages/user/error";
 		
+		//encript password
+		user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
 		dao.create(user);
+
+		return "pages/user/login";
+	}
+
+	@PostMapping("/signUpAgency")
+	public String signUp(@ModelAttribute Agency user, HttpSession session, Model model) {
+		if (isLogged(session)) 
+			return "pages/user/home"; 
+		else if (user.getPassword() == null || user.getUsername() == null) 
+			return "pages/user/error";
+		
+		System.out.println(user.getId());
+		System.out.println(user.getMail());
+		System.out.println(user.getName());
+		System.out.println(user.getPassword());
+		//encript password
+		user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
+		new AgencyService().create(user);
+
+		return "pages/user/login";
+	}
+
+	@GetMapping("/changeData.html")
+	public String changeData (HttpSession session, Model model) {
+		model.addAttribute("user", (User) session.getAttribute("user"));
+		return isLogged(session) ? "pages/user/modify-data" : "pages/user/login";
+	}
+
+	@PostMapping("/changeData")
+	public String changerData (HttpSession session, @ModelAttribute User user, @RequestParam(name="oldpassword", required=true) String oldpassword, Model model) {
+		//implementa
 		return "pages/user/login";
 	}
 }

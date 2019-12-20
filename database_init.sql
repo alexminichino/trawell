@@ -44,14 +44,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`AgencyData`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`AgencyData` ;
+DROP TABLE IF EXISTS `trawell`.`agency` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`AgencyData` (
+CREATE TABLE IF NOT EXISTS `trawell`.`agency` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `AgencyName` VARCHAR(100) NOT NULL,
-  `AgencyUrl` VARCHAR(2083) NULL,
-  `AgencyPhone` VARCHAR(20) NOT NULL,
-  `AgencyVat` VARCHAR(20) NOT NULL,
+  `agencyName` VARCHAR(100) default null,
+  `agencyUrl` VARCHAR(2083) default null,
+  `agencyPhone` VARCHAR(20) default null,
+  `agencyVat` VARCHAR(20) default null,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idAgencyData_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
@@ -385,9 +385,9 @@ CREATE TABLE IF NOT EXISTS `trawell`.`user` (
   `birth` DATETIME NOT NULL,
   `banned` TINYINT NOT NULL DEFAULT 0,
   `idAgency` INT default null,
-  `bio` VARCHAR(5000) NULL,
+  `bio` VARCHAR(5000) default null,
   `profilePhoto` INT DEFAULT 0,
-  `Phone` VARCHAR(20) NULL,
+  `Phone` VARCHAR(20) default null,
   `isAdmin` TINYINT DEFAULT 0,
   `isBanned` TINYINT DEFAULT 0,
   PRIMARY KEY (`id`, `mail`, `userName`),
