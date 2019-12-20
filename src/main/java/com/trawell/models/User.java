@@ -1,11 +1,14 @@
 package com.trawell.models;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Entity;
 import javax.persistence.Transient;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 /**
  * User
  * Questa classe è solo un esempio, dovrete definire bene field e metodi
@@ -14,23 +17,41 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
     private String mail;
+    private String username;
     private String password;
     private String name;
     private String surname;
     private java.sql.Date birth;
-    private int banned;
+    private boolean banned;
+    private String bio;
     private int profilePhoto;
     private String Phone;
-    private String bio;
+    private boolean isAdmin;
+    private boolean isBanned;
 
-    public String getSurname() {
-        return this.surname;
+    public java.sql.Date getBirth() {
+        return this.birth;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setBirth(java.sql.Date birth) {
+        this.birth = birth;
+    }
+
+    public boolean getBanned() {
+        return this.banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
+    }
+
+    public String getBio() {
+        return this.bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public int getProfilePhoto() {
@@ -49,16 +70,29 @@ public class User {
         this.Phone = Phone;
     }
 
-    public String getBio() {
-        return this.bio;
+    public boolean getIsAdmin() {
+        return this.isAdmin;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
-    private boolean idAgency;
-    private boolean isBanned;
+    public boolean getIsBanned() {
+        return this.isBanned;
+    }
+
+    public void setIsBanned(boolean isBanned) {
+        this.isBanned = isBanned;
+    }
+
+    public String getSurname() {
+        return this.surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
     public String getUsername() {
         return this.username;
@@ -90,38 +124,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public java.sql.Date getBirth() {
-        return this.birth;
-    }
-
-    public void setBirth(java.sql.Date birth) {
-        this.birth = birth;
-    }
-
-    public int getBanned() {
-        return this.banned;
-    }
-
-    public void setBanned(int banned) {
-        this.banned = banned;
-    }
-
-    public boolean getIdAgency() {
-        return this.idAgency;
-    }
-
-    public void setIdAgency(boolean idAgency) {
-        this.idAgency = idAgency;
-    }
-
-    public boolean getIsBanned() {
-        return this.isBanned;
-    }
-
-    public void setIsBanned(boolean isBanned) {
-        this.isBanned = isBanned;
     }
 
     @Transient

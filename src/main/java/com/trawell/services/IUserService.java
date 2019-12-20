@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import com.trawell.models.User;
 
-import org.springframework.stereotype.Service;
 
 /**
  * IUserService
