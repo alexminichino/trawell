@@ -1,0 +1,78 @@
+footer{
+    background-color: #03a1fc;
+}
+
+footer .row{
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+#collogofooter{
+    padding-top: 0%;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+#collogofooter h6{
+    text-align: center;
+    color: white;
+}
+
+#Address {
+    padding-top: 5%;
+    padding-left: 0%;
+    padding-right: 2%;
+    color: white;
+}
+
+#Address a{
+    color: white;
+}
+
+footer .col-md-1{
+    padding-top: 5%;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+footer .col-md-3{
+    padding-top: 5%;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.navbar navbar-expand-lg navbar-dark bg-primary rounded{
+    background-color: #03a1fc;
+}
+
+#logo{
+    width: 25%;
+}
+
+.nav-item a{
+    color:white;
+}
+
+#logofooter{
+    width: 100%;
+}
+
+.personale{
+    margin-right: 2%;
+}
+
+
+.col-md-1 a,p{
+    color: white;
+}
+
+#btnfooter{
+    background-color: white;
+    border-color: white;
+    color: #03a1fc;
+}
+
+#form-inline{
+    margin-left: 0%;
+    margin-right: 0%;
+}

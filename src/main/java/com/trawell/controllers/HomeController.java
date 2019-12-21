@@ -3,14 +3,15 @@ package com.trawell.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-/*
-controller: andranno mappate tutte le funzionalità relative ad i controller
-*/
+/**
+ * Homecontroller: andranno mappate tutte le funzionalità relative ad i controller
+ * 
+ */
 
 @Controller
-public class HomeController{
+public class HomeController {
     @GetMapping("/")
-    public String signup() {
+    public String landing() {
         return "pages/home/index";
     }
 }
