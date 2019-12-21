@@ -1,63 +1,48 @@
 package com.trawell.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Transient;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
+
 /**
  * User
  * Questa classe è solo un esempio, dovrete definire bene field e metodi
  */
 public class Agency extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String agencyName;
-    private String agencyUrl;
-    private String agencyPhone;
-    private String agencyVat;
+    private String name;
+    private String url;
+    private String vat;
 
-    public String getAgencyName() {
-        return this.agencyName;
+    public String getName() {
+        return this.name;
     }
 
-    public void setAgencyName(String agencyName) {
-        this.agencyName = agencyName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAgencyUrl() {
-        return this.agencyUrl;
+    public String getUrl() {
+        return this.url;
     }
 
-    public void setAgencyUrl(String agencyUrl) {
-        this.agencyUrl = agencyUrl;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getAgencyPhone() {
-        return this.agencyPhone;
+    public String getVat() {
+        return this.vat;
     }
 
-    public void setAgencyPhone(String agencyPhone) {
-        this.agencyPhone = agencyPhone;
+    public void setVat(String vat) {
+        this.vat = vat;
     }
 
-    public String getAgencyVat() {
-        return this.agencyVat;
-    }
-
-    public void setAgencyVat(String agencyVat) {
-        this.agencyVat = agencyVat;
-    }
-
+    
     @Transient
     private String transientVar;
-
-    public Long getId(){
-        return id;
-    }
 
     public Agency () {}
 

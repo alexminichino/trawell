@@ -40,23 +40,6 @@ CREATE TABLE IF NOT EXISTS `trawell`.`Ad` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `trawell`.`AgencyData`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`agency` ;
-
-CREATE TABLE IF NOT EXISTS `trawell`.`agency` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `agencyName` VARCHAR(100) default null,
-  `agencyUrl` VARCHAR(2083) default null,
-  `agencyPhone` VARCHAR(20) default null,
-  `agencyVat` VARCHAR(20) default null,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `idAgencyData_UNIQUE` (`id` ASC))
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `trawell`.`BanData`
 -- -----------------------------------------------------
@@ -384,7 +367,6 @@ CREATE TABLE IF NOT EXISTS `trawell`.`user` (
   `surname` VARCHAR(45) NOT NULL,
   `birth` DATETIME NOT NULL,
   `banned` TINYINT NOT NULL DEFAULT 0,
-  `idAgency` INT default null,
   `bio` VARCHAR(5000) default null,
   `profilePhoto` INT DEFAULT 0,
   `phone` VARCHAR(20) default null,
@@ -393,16 +375,27 @@ CREATE TABLE IF NOT EXISTS `trawell`.`user` (
   PRIMARY KEY (`id`, `mail`, `userName`),
   UNIQUE INDEX `idUser_UNIQUE` (`id` ASC),
   UNIQUE INDEX `mail_UNIQUE` (`mail` ASC),
-  UNIQUE INDEX `userName_UNIQUE` (`userName` ASC),
-  INDEX `fk_User_AgencyData_idx` (`idAgency` ASC),
-  UNIQUE INDEX `idAgency_UNIQUE` (`idAgency` ASC),
-  
-    FOREIGN KEY (`idAgency`)
-    REFERENCES `trawell`.`AgencyData` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `userName_UNIQUE` (`userName` ASC))
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `trawell`.`AgencyData`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `trawell`.`agency` ;
+
+CREATE TABLE IF NOT EXISTS `trawell`.`agency` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) default null,
+  `url` VARCHAR(2083) default null,
+  `vat` VARCHAR(20) default null,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id`)
+    REFERENCES `trawell`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `trawell`.`Wallet`

@@ -1,7 +1,9 @@
 package com.trawell.models;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 import javax.persistence.Inheritance;
@@ -34,7 +36,7 @@ public class User {
         return this.birth;
     }
 
-    public void setBirth(java.sql.Date birth) {
+    public void setBirth(final java.sql.Date birth) {
         this.birth = birth;
     }
 
@@ -42,7 +44,7 @@ public class User {
         return this.banned;
     }
 
-    public void setBanned(boolean banned) {
+    public void setBanned(final boolean banned) {
         this.banned = banned;
     }
 
@@ -50,7 +52,7 @@ public class User {
         return this.bio;
     }
 
-    public void setBio(String bio) {
+    public void setBio(final String bio) {
         this.bio = bio;
     }
 
@@ -58,7 +60,7 @@ public class User {
         return this.profilePhoto;
     }
 
-    public void setProfilePhoto(int profilePhoto) {
+    public void setProfilePhoto(final int profilePhoto) {
         this.profilePhoto = profilePhoto;
     }
 
@@ -66,7 +68,7 @@ public class User {
         return this.phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(final String phone) {
         this.phone = phone;
     }
 
@@ -74,7 +76,7 @@ public class User {
         return this.isAdmin;
     }
 
-    public void setIsAdmin(boolean isAdmin) {
+    public void setIsAdmin(final boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 
@@ -82,7 +84,7 @@ public class User {
         return this.isBanned;
     }
 
-    public void setIsBanned(boolean isBanned) {
+    public void setIsBanned(final boolean isBanned) {
         this.isBanned = isBanned;
     }
 
@@ -90,7 +92,7 @@ public class User {
         return this.surname;
     }
 
-    public void setSurname(String surname) {
+    public void setSurname(final String surname) {
         this.surname = surname;
     }
 
@@ -98,7 +100,7 @@ public class User {
         return this.username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(final String username) {
         this.username = username;
     }
 
@@ -106,7 +108,7 @@ public class User {
         return this.mail;
     }
 
-    public void setMail(String mail) {
+    public void setMail(final String mail) {
         this.mail = mail;
     }
 
@@ -114,7 +116,7 @@ public class User {
         return this.password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
@@ -122,7 +124,7 @@ public class User {
         return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -133,11 +135,15 @@ public class User {
         return id;
     }
 
+    public void setId(final Long id){
+        this.id = id;
+    }
+
     public User() {
         super();
     }
 
-    public User(String username) {
+    public User(final String username) {
         super();
         this.username = username;
     }
@@ -145,7 +151,7 @@ public class User {
     /**
      * @param transientVar the transientVar to set
      */
-    public void setTransientVar(String transientVar) {
+    public void setTransientVar(final String transientVar) {
         this.transientVar = transientVar;
     }
 }

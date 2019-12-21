@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import com.trawell.models.Agency;
 import com.trawell.models.Encoder;
 import com.trawell.models.User;
-import com.trawell.services.AgencyService;
 import com.trawell.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +80,8 @@ public class UsersController {
 		} else if (!password.equals(user.getPassword())) {
 			model.addAttribute("passmiss", true);
 			return "pages/user/login";
-		} else 
-
+		}
+		
 		session.setAttribute("user", user);
 		return "pages/user/home";
 	}
@@ -114,10 +113,10 @@ public class UsersController {
 			return "pages/user/home"; 
 		else if (user.getPassword() == null || user.getUsername() == null) 
 			return "pages/user/error";
-		
+
 		//encript password
 		user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
-		new AgencyService().create(user);
+		dao.create(user);
 
 		return "pages/user/login";
 	}
@@ -126,11 +125,5 @@ public class UsersController {
 	public String changeData (HttpSession session, Model model) {
 		model.addAttribute("user", (User) session.getAttribute("user"));
 		return isLogged(session) ? "pages/user/modify-data" : "pages/user/login";
-	}
-
-	@PostMapping("/changeData")
-	public String changerData (HttpSession session, @ModelAttribute User user, @RequestParam(name="oldpassword", required=true) String oldpassword, Model model) {
-		//implementa
-		return "pages/user/login";
 	}
 }

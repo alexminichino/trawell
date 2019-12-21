@@ -43,7 +43,7 @@ public class RestUsersController {
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user, HttpSession session) {
-        System.out.println("hello");
+        
         User u = (User) session.getAttribute("user");
         if (u == null) {
 
