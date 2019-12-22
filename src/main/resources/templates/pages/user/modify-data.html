@@ -21,6 +21,7 @@
             Cognome: <input th:value = "${user.surname}" type = 'text' name = "surname" id = "surname"><br>
             Data di Nascita: <input th:value = "${user.birth}" type = 'date' name = "birth" id = "birth"><br>
             Contatto: <input th:value = "${user.Phone}" type = 'phone' name = "phone" id = "phone"><br>
+            Bio: <textarea id = "bio" name = "bio" placeholder="insert description..."></textarea>
             <div th:if= "${isAgency}">
                 Agency Name: <input th:value = "${user.nameAgency}" type = 'text' name = "nameAgency" required><br>
                 Agency URL: <input th:value = "${user.url}" type = "text" name = "url" required><br>

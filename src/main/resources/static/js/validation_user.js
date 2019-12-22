@@ -62,7 +62,7 @@ $("#target").validate({
             regex:"Agency's name entered is not correct: special characters and numbers are not allowed. Retry!"
         },
         url:{
-            regex:"Agency's url entered non exists. Retry!"
+            regex:"Agency's url entered is malformed. Retry!"
         },
         vat:{
             regex:"VATnumber entered is not correct: format not allowed. Retry!"
