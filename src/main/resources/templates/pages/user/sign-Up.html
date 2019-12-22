@@ -13,23 +13,25 @@
     <p>Sign-Up</p>
     
     <form action = "/users/signUp" method = "POST" id = "target">
-        <p>
-            Username: <input type = 'text' name = "username"><br>
-            Password: <input type = "password" name = "password"><br>
-            Verifica Password: <input type = "password" name = "verify"><br>
-            Nome: <input type = 'text' name = "name"><br>
-            Cognome: <input type = 'text' name = "surname"><br>
-            E-mail: <input type = 'text' name = "mail"><br>
-            Data di Nascita: <input type = 'date' name = "birth"><br>
-            Contatto: <input type = 'phone' name = "phone"><br>
-            <input type = "button" id = "toggle" value = "Are you an Agency?">
-            <div id = "slider">
-              Agency Name: <input type = 'text' name = "nameAgency"><br>
-              Agency URL: <input type = 'text' name = "url"><br>
-              Agency VAT: <input type = 'text' name = "vat"><br>
+         <div class = "container"> 
+          <div>
+              Username: <input type = 'text' name = "username" id = "username"><br>
+              Password: <input type = "password" name = "password" id = "password"><br>
+              Verifica Password: <input type = "password" name = "verify" id = "verify"><br>
+              Nome: <input type = 'text' name = "name" id = "name"><br>
+              Cognome: <input type = 'text' name = "surname" id = "surname"><br>
+              E-mail: <input type = 'text' name = "mail" id = "mail"><br>
+              Data di Nascita: <input type = 'date' name = "birth" id = "birth"><br>
+              Contatto: <input type = 'phone' name = "phone" id = "phone"><br>
+              <input type = "button" id = "toggle" value = "Are you an Agency?">
+              <div id = "slider">
+                Agency Name: <input type = 'text' name = "nameAgency" id ="nameAgency"><br>
+                Agency URL: <input type = 'text' name = "url" id = "url"><br>
+                Agency VAT: <input type = 'text' name = "vat" id = "vat"><br>
+              </div>
+              <input type = "submit">
             </div>
-            <input type = "submit">
-        </p>
+        </div>
     </form>
 
   </section>

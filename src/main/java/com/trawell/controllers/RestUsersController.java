@@ -46,7 +46,7 @@ public class RestUsersController {
      * @param user new user object containing all the new data
      * @return a JSON object with Http Status 200 if update was successful, , 500 otherwise
      */
-    //sistema i campi che non possono essere vuoti
+    //sistema i campi che non possono essere vuoti 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @ModelAttribute User user, @RequestParam (name = "oldpassword", required = true) String old, HttpSession session) {
 

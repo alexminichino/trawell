@@ -7,9 +7,10 @@
 </head>
 <body>
   <section layout:fragment="content">
-    <p>Sign-Up</p>
+    <h2 style="color : black; text-align: center">Change Data</h2>
     <form th:action = "${path}" method = "POST" id = "target">
-        <div>
+        <div class = "container">
+          <div>
             Username: <input th:value = "${user.username}" type = 'text' name = "username" required><br>
             Old Password: <input type = "password" name = "oldpassword" required><br>
             New Password: <input type = "password" name = "password" required><br>
@@ -24,6 +25,7 @@
                 Agency VAT: <input th:value = "${user.vat}" type = "text" name = "vat" required><br>
             </div>
             <input type = "button" value = "Submit" id = "btn">
+          </div>
         </div>
     </form>
     

@@ -17,7 +17,7 @@ $("#target").validate({
             required:true, regex: /^[A-Z a-z]{1,45}$/
         },
         birth:{
-            required:true, regex:/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]|(?:Jan|Mar|May|Jul|Aug|Oct|Dec)))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2]|(?:Jan|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)(?:0?2|(?:Feb))\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9]|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep))|(?:1[0-2]|(?:Oct|Nov|Dec)))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/
+            required:true
         },
         mail:{
             required:true, regex: /^[a-zA-Z0-9]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
@@ -26,18 +26,17 @@ $("#target").validate({
             required:true,regex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{8,45}$/
         },
         verify:{
-            required:true, function () {
-                return $("input[name = 'password']").val() == $("input[name = 'verify']").val() ? true : false;
-            }
+            required:true,
+            equalTo :'#password'
         }, 
         username:{
-            required: true, regex: /^[a-zA-Z0-9]$/   
+            required: true, regex: /^[A-Z a-z 0-9]{1,45}$/  
         },
         phone:{
             required:true, regex:/^[+][(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]$/
         },
         bio:{
-            requirde:true, regex:/^[a-zA-Z0-9 .!#$%&'*+/=?^_`{|}~-]{1,5000}$/
+            required:true, regex:/^[a-zA-Z0-9 .!#$%&'*+/=?^_`{|}~-]{1,5000}$/
         },
         nameAgency:{
             required:true, regex:/^[A-Z a-z]{1,45}$/
@@ -59,17 +58,11 @@ $("#target").validate({
         surname:{
             regex:"Surname entered is not correct. Retry!"
         },
-        birth:{
-            regex:"Birth entered is not correct. Retry!"
-        },
         mail:{
             regex: "Mail entered is not correct. Retry!"
         },
         password:{
             regex: "Password entered is not correct. Retry!"
-        },
-        verify:{
-            regex:"Passwords are not equals. Retry!"
         }, 
         phone:{
             regex:"Numberphone entered is not correct. Retry!"
@@ -85,9 +78,7 @@ $("#target").validate({
         },
         vat:{
             regex:"VATnumber entered is not correct. Retry!"
-        },
-
-
+        }
 } 
 }); 
 });

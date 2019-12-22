@@ -15,12 +15,15 @@
     <div th:if="${passmiss}">
       <div>Password mismatch</div>
     </div>
-    <form action = "/users/login" method = "POST" id = "target">
-        <input type = 'text' name = "username" placeholder = "username" th:classappend="${notexist} ? error"><br>
-        <input type = "password" name = "password" placeholder = "password"><br>
-        <input type = "submit">
-    </form>
-    
+    <div class = "container">
+      <div>
+        <form action = "/users/login" method = "POST" id = "target">
+            Userame: <input type = 'text' name = "username" placeholder = "username" th:classappend="${notexist} ? error"><br>
+            Password: <input type = "password" name = "password" placeholder = "password"><br>
+            <input type = "submit">
+        </form>
+      </div>
+    </div>
   </section>
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
