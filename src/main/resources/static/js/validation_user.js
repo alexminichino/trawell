@@ -32,9 +32,6 @@ $("#target").validate({
         username:{
             required: true, regex: /^[A-Z a-z 0-9]{1,45}$/  
         },
-        bio:{
-            required:true, regex:/^[a-zA-Z0-9 .!#$%&'*+/=?^_`{|}~-]{1,5000}$/
-        },
         nameAgency:{
             required:true, regex:/^[A-Z a-z]{1,45}$/
         },
@@ -47,31 +44,28 @@ $("#target").validate({
     },
      messages:{
         username:{
-            regex: "Username entered is not correct. Retry!" 
+            regex: "Username entered is not correct: special characters not allowed. Retry!" 
         },    
         name:{
-            regex:"Name entered is not correct. Retry!"
+            regex:"Name entered is not correct: special characters and numbers are not allowed. Retry!"
         },
         surname:{
-            regex:"Surname entered is not correct. Retry!"
+            regex:"Surname entered is not correct: special characters and numbers are not allowed. Retry!"
         },
         mail:{
-            regex: "Mail entered is not correct. Retry!"
+            regex: "Mail entered is not correct: special characters not allowed. Retry!"
         },
         password:{
-            regex: "Password entered is not correct. Retry!"
+            regex: "Password entered is not correct: minimum number of characters 8. Retry!"
         }, 
-        bio:{
-            regex:"Bio entered is not correct. Retry!"
-        },
         nameAgency:{
-            regex:"Agency's name entered is not correct. Retry!"
+            regex:"Agency's name entered is not correct: special characters and numbers are not allowed. Retry!"
         },
         url:{
             regex:"Agency's url entered non exists. Retry!"
         },
         vat:{
-            regex:"VATnumber entered is not correct. Retry!"
+            regex:"VATnumber entered is not correct: format not allowed. Retry!"
         }
 } 
 }); 
