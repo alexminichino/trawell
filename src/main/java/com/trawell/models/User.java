@@ -3,7 +3,6 @@ package com.trawell.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 import javax.persistence.Inheritance;
@@ -12,8 +11,8 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 /**
- * User
- * Questa classe è solo un esempio, dovrete definire bene field e metodi
+ * @author Milione Vincent 
+ * class models a User that interacts with our platform
  */
 public class User {
     @Id

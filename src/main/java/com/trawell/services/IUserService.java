@@ -6,7 +6,7 @@ import com.trawell.models.User;
 
 
 /**
- * IUserService
+ * @author Alfieri Davide
  */
 
 public interface IUserService {

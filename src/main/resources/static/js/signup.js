@@ -1,3 +1,7 @@
+/**
+	 * @author Alfieri Davide
+	 */ 
+
 $(document).ready(function() {
     $('#slider').hide();
     $('#toggle').click(function () {

@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * UserService DAO IMPL
+ * @author Lamberti Vincenzo
+ * @author Milione Vincent
+ * provides users of the class the ability to interact with the database and model
+ * users.
  */
 @Service
 public class UserService implements IUserService {

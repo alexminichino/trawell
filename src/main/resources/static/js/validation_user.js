@@ -6,6 +6,11 @@ $.validator.addMethod(
     },
     "Please check your input."
 );
+/**
+	 * @author Alfieri Davide
+	 * the javascript is used to provide a client side validation of any data
+     * regarding users of our platform. It uses JQuery validation plugin.
+     *  */
 
 $(document).ready(function(){
 $("#target").validate({

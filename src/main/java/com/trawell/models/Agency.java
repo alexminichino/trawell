@@ -2,14 +2,13 @@ package com.trawell.models;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Transient;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 
 /**
- * User
- * Questa classe è solo un esempio, dovrete definire bene field e metodi
+ * @author Milione Vincent
+ * class models the user agency
  */
 public class Agency extends User {
     private String nameAgency;
@@ -38,18 +37,5 @@ public class Agency extends User {
 
     public void setVat(String vat) {
         this.vat = vat;
-    }
-
-    
-    @Transient
-    private String transientVar;
-
-    public Agency () {}
-
-    /**
-     * @param transientVar the transientVar to set
-     */
-    public void setTransientVar(String transientVar) {
-        this.transientVar = transientVar;
     }
 }

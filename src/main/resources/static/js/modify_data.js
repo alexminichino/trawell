@@ -1,4 +1,14 @@
+/**
+	 * @author Alfieri Davide
+	 * the javascript allows for the modify data functionality to be dealt asynchronously via 
+     * JSON.
+     *  */
+
 $(document).ready(function(){
+    /**
+	 * @author Alfieri Davide
+	 * the function automatically serializes form data to json object
+     *  */
     $.fn.serializeFormJSON = function () {
 
         var o = {headers: { 
@@ -23,6 +33,10 @@ $(document).ready(function(){
         return this.length !== 0;
     }
 
+    /**
+	 * @author Alfieri Davide
+     * the function makes the ajax call to server to modify the clients data in database
+     *  */
     $('#target').submit(function (e) {
         e.preventDefault();
         var data = $('form').serializeFormJSON();

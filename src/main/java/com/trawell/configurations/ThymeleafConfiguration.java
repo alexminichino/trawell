@@ -8,6 +8,7 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 
 
 /**
+ * @author alexminichino
  * ThymeleafConfiguration
  */
 @Configuration

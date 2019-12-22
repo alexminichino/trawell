@@ -46,6 +46,12 @@ public class UsersController {
 		return isLogged(session) ? "pages/user/home" : "pages/user/login";
 	}
 
+	/**
+	 * @author Milione Vincent
+	 * The method allows users to log out the platform
+	 * @param session
+	 * @return sends user to home page
+	 */
 	@GetMapping("/logout")
 	public String logout (HttpSession session) {
 		session.removeAttribute("user");
@@ -114,6 +120,7 @@ public class UsersController {
 	}
 
 	/**
+	 * @author Milione Vincent
 	 * The method allows agency to create an account
 	 * @param user all agency's data on the account
 	 * @param session
@@ -134,10 +141,12 @@ public class UsersController {
 	}
 	
 	/**
-	 * 
+	 * @author Lamberti Vincenzo
+	 * The method prepares the modify data html page, which allows users to change 
+	 * the user's data
 	 * @param session
 	 * @param model
-	 * @return
+	 * @return sends user to the modify HTML page if user is logged, otherwise user is sent to login
 	 */
 	@GetMapping("/changeData.html")
 	public String changeData (HttpSession session, Model model) {
@@ -148,13 +157,13 @@ public class UsersController {
 		if (obj instanceof Agency) {
 			Agency user = (Agency) obj;
 
-			model.addAttribute("path", "api/users/agency/"+user.getId());
+			model.addAttribute("path", "/api/users/agency/"+user.getId());
 			model.addAttribute("user", user);
 			model.addAttribute("isAgency", true);
 		} else if (obj instanceof User) {
 			User user = (User) obj;
 			
-			model.addAttribute("path", "api/users/"+user.getId());
+			model.addAttribute("path", "/api/users/"+user.getId());
 			model.addAttribute("user", user);
 			model.addAttribute("isAgency", false);
 		}

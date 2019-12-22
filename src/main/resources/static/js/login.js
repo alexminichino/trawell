@@ -1,3 +1,9 @@
+/**
+	 * @author Alfieri Davide
+	 * The javascript provides a client side validation of the login form
+   * which obbligates user to compile both username and password fields
+	 */
+
 $(document).ready(function() {
     $("form").validate({
       rules: {
@@ -8,8 +14,8 @@ $(document).ready(function() {
           required: true
         }
       }, messages: {
-        username: "Inserisci la login",
-        password:  "Inserisci una password password"    
+        username: "Please insert username",
+        password:  "Please insert password"    
     }
     });
   });

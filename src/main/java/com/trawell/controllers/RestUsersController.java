@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,16 +21,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Milione Vincent
+ * @author Lamberti Vincenzo
  * RestUsersController andranno mappate tutte le funzionalità relative all'utente per la comunicazione REST
  *
  */
 @RestController
-@RequestMapping(value = "/users/api")
+@RequestMapping(value = "/api")
 public class RestUsersController {
 
     @Autowired
     private UserService userService;
 
+    /**
+     * @author Milione Vincent
+     * The method sets unchangeable data into the new users data
+     * @param newUser contains user's new data
+     * @param oldUser contains user's old data
+     */
     public void setBean (User newUser, User oldUser) {
         newUser.setId(oldUser.getId());
         newUser.setMail(oldUser.getMail());
@@ -47,7 +53,7 @@ public class RestUsersController {
      * executes an update on all of a user's data
      * @param id user's id on the database
      * @param user new user object containing all the new data
-     * @return a JSON object with Http Status 200 if update was successful, , 500 otherwise
+     * @return a JSON object with Http Status 200 if update was successful, 500 otherwise
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @ModelAttribute User user, @RequestParam (name = "oldpassword", required = true) String oldPassword, HttpSession session) {
