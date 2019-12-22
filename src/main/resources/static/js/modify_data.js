@@ -19,17 +19,24 @@ $(document).ready(function(){
         return o;
     };
     
-    $('#btn').click(function () {
+    $.fn.exists = function () {
+        return this.length !== 0;
+    }
+
+    $('#target').submit(function (e) {
+        e.preventDefault();
         var data = $('form').serializeFormJSON();
         var URL = $('form').attr("action");
-
-        $.ajax({
-            type:"POST",
-            url:URL,
-            data: data,
-            success:function(data){
-                alert("successo");
-            }
-        });
+        
+        if (!$("#target .error").exists()) {
+            $.ajax({
+                type:"POST",
+                url:URL,
+                data: data,
+                success:function(data){
+                    alert("successo");
+                }
+            });
+        }
     });
 });

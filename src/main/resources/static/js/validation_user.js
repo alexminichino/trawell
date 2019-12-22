@@ -32,9 +32,6 @@ $("#target").validate({
         username:{
             required: true, regex: /^[A-Z a-z 0-9]{1,45}$/  
         },
-        phone:{
-            required:true, regex:/^[+][(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]$/
-        },
         bio:{
             required:true, regex:/^[a-zA-Z0-9 .!#$%&'*+/=?^_`{|}~-]{1,5000}$/
         },
@@ -64,9 +61,6 @@ $("#target").validate({
         password:{
             regex: "Password entered is not correct. Retry!"
         }, 
-        phone:{
-            regex:"Numberphone entered is not correct. Retry!"
-        },
         bio:{
             regex:"Bio entered is not correct. Retry!"
         },

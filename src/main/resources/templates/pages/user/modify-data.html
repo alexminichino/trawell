@@ -3,6 +3,8 @@
   layout:decorate="~{layout}">
 <head>
   <title>Change User Data</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src = "../js/validation_user.js"></script>
   <script src = "../js/modify_data.js"></script>
 </head>
 <body>
@@ -11,20 +13,20 @@
     <form th:action = "${path}" method = "POST" id = "target">
         <div class = "container">
           <div>
-            Username: <input th:value = "${user.username}" type = 'text' name = "username" required><br>
-            Old Password: <input type = "password" name = "oldpassword" required><br>
-            New Password: <input type = "password" name = "password" required><br>
-            Verifica New Password: <input type = "password" name = "verify" required><br>
-            Nome: <input th:value = "${user.name}" type = 'text' name = "name" required><br>
-            Cognome: <input th:value = "${user.surname}" type = 'text' name = "surname" required><br>
-            Data di Nascita: <input th:value = "${user.birth}" type = 'date' name = "birth" required><br>
-            Contatto: <input th:value = "${user.Phone}" type = 'phone' name = "phone" required><br>
+            Username: <input th:value = "${user.username}" type = 'text' name = "username" id = "username"><br>
+            Old Password: <input type = "password" name = "oldpassword"><br>
+            New Password: <input type = "password" name = "password" id = "password"><br>
+            Verifica New Password: <input type = "password" name = "verify" id = "verify"><br>
+            Nome: <input th:value = "${user.name}" type = 'text' name = "name" id = "name"><br>
+            Cognome: <input th:value = "${user.surname}" type = 'text' name = "surname" id = "surname"><br>
+            Data di Nascita: <input th:value = "${user.birth}" type = 'date' name = "birth" id = "birth"><br>
+            Contatto: <input th:value = "${user.Phone}" type = 'phone' name = "phone" id = "phone"><br>
             <div th:if= "${isAgency}">
                 Agency Name: <input th:value = "${user.nameAgency}" type = 'text' name = "nameAgency" required><br>
                 Agency URL: <input th:value = "${user.url}" type = "text" name = "url" required><br>
                 Agency VAT: <input th:value = "${user.vat}" type = "text" name = "vat" required><br>
             </div>
-            <input type = "button" value = "Submit" id = "btn">
+            <input type = "submit" value = "Submit">
           </div>
         </div>
     </form>
