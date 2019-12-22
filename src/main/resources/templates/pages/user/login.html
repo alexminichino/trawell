@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Login</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src = "../js/login.js"></script>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p>Login</p>
+    <div th:if="${notexist}">
+      <div>User doesn't exist</div>
+    </div>
+    <div th:if="${passmiss}">
+      <div>Password mismatch</div>
+    </div>
+    <div class = "container">
+      <div>
+        <form action = "/users/login" method = "POST" id = "target">
+            Userame: <input type = 'text' name = "username" placeholder = "username" th:classappend="${notexist} ? error"><br>
+            Password: <input type = "password" name = "password" placeholder = "password"><br>
+            <input type = "submit">
+        </form>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
+  </footer> 
+
+</body>
+</html>
