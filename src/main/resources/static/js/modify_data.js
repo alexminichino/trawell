@@ -19,11 +19,10 @@ $(document).ready(function(){
         return o;
     };
     
-    $('#target').click(function (e) {
-        e.preventDefault();
+    $('#btn').click(function () {
         var data = $('form').serializeFormJSON();
         var URL = $('form').attr("action");
-        console.log(URL);
+
         $.ajax({
             type:"POST",
             url:URL,

@@ -1,9 +1,8 @@
 package com.trawell.controllers;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
+import com.trawell.models.Agency;
 import com.trawell.models.Encoder;
 import com.trawell.models.User;
 import com.trawell.services.UserService;
@@ -33,10 +32,13 @@ public class RestUsersController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.create(user);
-        return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+    public void setBean (User newUser, User oldUser) {
+        newUser.setId(oldUser.getId());
+        newUser.setMail(oldUser.getMail());
+        newUser.setIsAdmin(oldUser.getIsAdmin());
+        newUser.setBanned(oldUser.getBanned());
+        newUser.setIsBanned(oldUser.getIsBanned());
+        newUser.setProfilePhoto(oldUser.getProfilePhoto());
     }
 
     /**
@@ -46,21 +48,47 @@ public class RestUsersController {
      * @param user new user object containing all the new data
      * @return a JSON object with Http Status 200 if update was successful, , 500 otherwise
      */
-    //sistema i campi che non possono essere vuoti 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @ModelAttribute User user, @RequestParam (name = "oldpassword", required = true) String old, HttpSession session) {
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @ModelAttribute User user, @RequestParam (name = "oldpassword", required = true) String oldPassword, HttpSession session) {
 
         User u = (User) session.getAttribute("user");
-        String oldPassword = old;
 
         User updatedUser = null;
         if (user != null && id == u.getId()) {
             
             oldPassword = new Encoder(u.getUsername()).encoding(oldPassword, u.getUsername().length());
             if (oldPassword.equals(u.getPassword())) {
-                user.setId(id);
+                setBean(user, u);
                 updatedUser = userService.update(user);
-                System.out.println(updatedUser);
+            }
+            else
+                return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        if(updatedUser == null) {
+            return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+         }
+            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+    }
+
+    /**
+     * @author Lamberti Vincenzo
+     * executes an update on all of a user's data
+     * @param id user's id on the database
+     * @param user new agnecy user object containing all the new data
+     * @return a JSON object with Http Status 200 if update was successful, , 500 otherwise
+     */
+    @RequestMapping(value = "/users/agency/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @ModelAttribute Agency user, @RequestParam (name = "oldpassword", required = true) String oldPassword, HttpSession session) {
+
+        Agency u = (Agency) session.getAttribute("user");
+
+        User updatedUser = null;
+        if (user != null && id == u.getId()) {
+            
+            oldPassword = new Encoder(u.getUsername()).encoding(oldPassword, u.getUsername().length());
+            if (oldPassword.equals(u.getPassword())) {
+                setBean(user, u);
+                updatedUser = userService.update(user);
             }
             else
                 return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);

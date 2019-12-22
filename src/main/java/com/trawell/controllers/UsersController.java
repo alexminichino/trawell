@@ -46,6 +46,12 @@ public class UsersController {
 		return isLogged(session) ? "pages/user/home" : "pages/user/login";
 	}
 
+	@GetMapping("/logout")
+	public String logout (HttpSession session) {
+		session.removeAttribute("user");
+		return "pages/home/index";
+	}
+
 	/**
 	 * @author Milione Vincent
 	 * The method maps user's get request to sign-up page
@@ -66,8 +72,8 @@ public class UsersController {
 	 * @param model
 	 * @return sends user to its home page
 	 */
-	@PostMapping("/login") //se scrivi sulla barra di ricerca localhost:8080/users/login contatta il metodo login
-    public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
+	@PostMapping("/login") 
+	public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
 		
 		if (isLogged(session)) return "pages/user/home"; 
 
@@ -142,7 +148,7 @@ public class UsersController {
 		if (obj instanceof Agency) {
 			Agency user = (Agency) obj;
 
-			model.addAttribute("path", "api/users/"+user.getId());
+			model.addAttribute("path", "api/users/agency/"+user.getId());
 			model.addAttribute("user", user);
 			model.addAttribute("isAgency", true);
 		} else if (obj instanceof User) {
