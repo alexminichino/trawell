@@ -143,10 +143,6 @@ public class User {
         super();
     }
 
-    public User(final String username) {
-        super();
-        this.username = username;
-    }
 
     /**
      * @param transientVar the transientVar to set

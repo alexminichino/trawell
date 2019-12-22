@@ -3,9 +3,12 @@
   layout:decorate="~{layout}">
 <head>
   <title>Sign-Up</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/validation_user.js"></script>
+  <script src = "../js/signup.js"></script>
 </head>
 <body>
+  <!--se stai cercando di mandare dati costruisci una form normale... continua in metodo signUp-->
   <section layout:fragment="content">
     <p>Sign-Up</p>
     
@@ -19,6 +22,12 @@
             E-mail: <input type = 'text' name = "mail"><br>
             Data di Nascita: <input type = 'date' name = "birth"><br>
             Contatto: <input type = 'phone' name = "phone"><br>
+            <input type = "button" id = "toggle" value = "Are you an Agency?">
+            <div id = "slider">
+              Agency Name: <input type = 'text' name = "nameAgency"><br>
+              Agency URL: <input type = 'text' name = "url"><br>
+              Agency VAT: <input type = 'text' name = "vat"><br>
+            </div>
             <input type = "submit">
         </p>
     </form>
@@ -27,17 +36,5 @@
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
   </footer> 
-  <script type = "text/javascript">
-    $(document).ready(function () {
-      $('#target').submit(function () {
-        var flag = $('this.input').each(function () {
-          if (this.value == NaN)
-            return false;
-        });
-
-        return flag == false ? false : true;
-      });
-      });
-  </script>
 </body>
 </html>

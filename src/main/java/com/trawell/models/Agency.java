@@ -12,16 +12,16 @@ import javax.persistence.Transient;
  * Questa classe è solo un esempio, dovrete definire bene field e metodi
  */
 public class Agency extends User {
-    private String name;
+    private String nameAgency;
     private String url;
     private String vat;
 
-    public String getName() {
-        return this.name;
+    public String getNameAgency() {
+        return this.nameAgency;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameAgency(String nameAgency) {
+        this.nameAgency = nameAgency;
     }
 
     public String getUrl() {

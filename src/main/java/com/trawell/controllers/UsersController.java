@@ -66,7 +66,7 @@ public class UsersController {
 	 * @param model
 	 * @return sends user to its home page
 	 */
-	@PostMapping("/login")
+	@PostMapping("/login") //se scrivi sulla barra di ricerca localhost:8080/users/login contatta il metodo login
     public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
 		
 		if (isLogged(session)) return "pages/user/home"; 
@@ -90,11 +90,11 @@ public class UsersController {
 	 * @author Milione Vincent
 	 * The method allows user to create an account
 	 * @param user all user'data on the account
-	 * @param model
-	 * @return sends useer to login
+	 * @param session
+	 * @return sends user to login
 	 */
 	@PostMapping("/signUp")
-	public String signUp(@ModelAttribute User user, HttpSession session, Model model) {
+	public String signUp(@ModelAttribute User user, HttpSession session) {
 		if (isLogged(session)) 
 			return "pages/user/home"; 
 		else if (user.getPassword() == null || user.getUsername() == null) 
@@ -107,8 +107,14 @@ public class UsersController {
 		return "pages/user/login";
 	}
 
+	/**
+	 * The method allows agency to create an account
+	 * @param user all agency's data on the account
+	 * @param session
+	 * @return sends user to login
+	 */
 	@PostMapping("/signUpAgency")
-	public String signUp(@ModelAttribute Agency user, HttpSession session, Model model) {
+	public String signUp(@ModelAttribute Agency user, HttpSession session) {
 		if (isLogged(session)) 
 			return "pages/user/home"; 
 		else if (user.getPassword() == null || user.getUsername() == null) 
@@ -120,10 +126,33 @@ public class UsersController {
 
 		return "pages/user/login";
 	}
-
+	
+	/**
+	 * 
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/changeData.html")
 	public String changeData (HttpSession session, Model model) {
-		model.addAttribute("user", (User) session.getAttribute("user"));
-		return isLogged(session) ? "pages/user/modify-data" : "pages/user/login";
+		if (!isLogged(session))
+			return "pages/user/login";
+		
+		Object obj = session.getAttribute("user");
+		if (obj instanceof Agency) {
+			Agency user = (Agency) obj;
+
+			model.addAttribute("path", "api/users/"+user.getId());
+			model.addAttribute("user", user);
+			model.addAttribute("isAgency", true);
+		} else if (obj instanceof User) {
+			User user = (User) obj;
+			
+			model.addAttribute("path", "api/users/"+user.getId());
+			model.addAttribute("user", user);
+			model.addAttribute("isAgency", false);
+		}
+		
+		return "pages/user/modify-data";
 	}
 }

@@ -1,28 +1,36 @@
 $(document).ready(function(){
-    $('#btn').on('click',function(){
-        var URL = $('form').val("action");
-        function dataCreator () {
-            var unindexed_array = $('form').serializeArray();
-            var indexed_array = {};
-    
-            $.map(unindexed_array, function(n, i){
-                indexed_array[n['name']] = n['value'];
-            });
-    
-            return indexed_array;
-        }
+    $.fn.serializeFormJSON = function () {
 
+        var o = {headers: { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json' 
+        }};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+    
+    $('#target').click(function (e) {
+        e.preventDefault();
+        var data = $('form').serializeFormJSON();
+        var URL = $('form').attr("action");
+        console.log(URL);
         $.ajax({
             type:"POST",
             url:URL,
-            dataType:"json",
-            data: dataCreator(),
+            data: data,
             success:function(data){
                 alert("successo");
             }
-        })
-
-        
-     });
-        
+        });
+    });
 });

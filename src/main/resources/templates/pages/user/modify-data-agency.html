@@ -2,29 +2,28 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>Change User Data</title>
+  <title>Change Agency Data</title>
   <script src = "../js/modify_data.js"></script>
 </head>
 <body>
   <section layout:fragment="content">
     <p>Sign-Up</p>
-    <form th:action = "${path}" method = "POST" id = "target">
-        <div>
+    <form th:action = "'api/users/' + ${user.id}" method = "POST" id = "target">
+        <p>
             Username: <input th:value = "${user.username}" type = 'text' name = "username" required><br>
             Old Password: <input type = "password" name = "oldpassword" required><br>
             New Password: <input type = "password" name = "password" required><br>
             Verifica New Password: <input type = "password" name = "verify" required><br>
             Nome: <input th:value = "${user.name}" type = 'text' name = "name" required><br>
             Cognome: <input th:value = "${user.surname}" type = 'text' name = "surname" required><br>
-            Data di Nascita: <input th:value = "${user.birth}" type = 'date' name = "birth" required><br>
+            Data di Nascita: <input th:value = "${user.birth}" type = 'date' name = "birth"required><br>
             Contatto: <input th:value = "${user.Phone}" type = 'phone' name = "phone" required><br>
-            <div th:if= "${isAgency}">
-                Agency Name: <input th:value = "${user.nameAgency}" type = 'text' name = "nameAgency" required><br>
-                Agency URL: <input th:value = "${user.url}" type = "text" name = "url" required><br>
-                Agency VAT: <input th:value = "${user.vat}" type = "text" name = "vat" required><br>
-            </div>
+            Agency Name: <input type = 'text' name = "nameAgency" required><br>
+            Agency URL: <input type = 'text' name = "url" required><br>
+            Agency VAT: <input type = 'text' name = "vat" required><br>
+
             <input type = "button" value = "Submit" id = "btn">
-        </div>
+        </p>
     </form>
     
   </section>

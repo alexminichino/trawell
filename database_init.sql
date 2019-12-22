@@ -386,7 +386,7 @@ DROP TABLE IF EXISTS `trawell`.`agency` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`agency` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(100) default null,
+  `name_agency` VARCHAR(100) default null,
   `url` VARCHAR(2083) default null,
   `vat` VARCHAR(20) default null,
   PRIMARY KEY (`id`),
