@@ -159,12 +159,14 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Complaint`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Complaint` ;
+DROP TABLE IF EXISTS `trawell`.`complaint` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Complaint` (
+CREATE TABLE IF NOT EXISTS `trawell`.`complaint` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idUser` INT NOT NULL,
+  'ComplaintObject' VARCHAR(45) NOT NULL,
   `ComplaintDescription` VARCHAR(500) NOT NULL,
+  'Complaint' VARCHAR (128) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `email_idx` (`idUser` ASC),
   

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Complaint</title>
+  <header>here goes the header</header>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p>Thank you for taking time to fill a complaint. </p>
+    <p>Please fill the following forms</p>
+    <p><ol type="1" name="instructionList">
+      <li>Select a complaint</li>
+      <li>Read the complaint</li>
+      <li>Answere the complaints</li>
+    </ol>
+
+    <ol type="1" name="complaintList">
+      <li>Complaint:</li>     
+    </ol>
+    
+    </p>
+    
+    
+    <p>Complaint title:<br> <input type="text" name="complaintTitle" autocomplete="off" disabled><br></p>
+    <p>Complaint:<br> <textarea rows="6" name="complaintText" cols="50" disabled></textarea></p>
+
+
+    <p>Complaint title:<br> <input type="text" name="complaintTitle" autocomplete="off" disabled><br></p>
+    <p>Complaint answere:<br> <textarea rows="6" name="complaintAnswere" cols="50" placeholder="Answere complaint here"></textarea></p>
+    <p><input name="answereComplaint" type="submit"  value="Submit Answere" onclick=""></p>   
+      
+    
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer">Here goes the footer</p> 
+  </footer> 
+</body>
+</html>
