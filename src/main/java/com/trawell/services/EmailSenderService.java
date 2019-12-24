@@ -14,21 +14,20 @@ import java.io.UnsupportedEncodingException;
 import static com.google.common.collect.Lists.newArrayList;
 
 @Service
-public class EmailTestService {
+public class EmailSenderService {
 
     @Autowired
     private EmailService emailService;
 
 
-    public void sendEmail() throws UnsupportedEncodingException {
+    public void sendSerialNumberByEmail(int serialNumber) throws UnsupportedEncodingException {
         final Email email = DefaultEmail.builder()
-                .from(new InternetAddress("u.russomando7@gmail.com",
+                .from(new InternetAddress("TraWell.customerservice@gmail.com",
                         "TraWell"))
                 .to(newArrayList(
-                        new InternetAddress("trawell@outlook.it",
-                        "Hi")))
-                .subject("Tesing the Email thing")
-                .body("Hello World!")
+                        new InternetAddress("umbertorussomando@gmail.com","Umberto")))
+                .subject("Serial Number")
+                .body("Hi Umberto, this is you serial number: "+ serialNumber)
                 .encoding("UTF-8").build();
 
         emailService.send(email);

@@ -7,12 +7,13 @@
 <body>
   <section layout:fragment="content">
     <p></p>
-    <p>We sent you an email with your serial number, please check it out </p>
-    <form action="">
+    <p>We will sent you an email with your serial number, please check out your emaill</p>
+    <form action="/admin/serialnumber">
         <div class="form-group">
             <label for="serialNumber">Serial Number</label>
-            <input type="number" class="form-control" id="serialNumber" aria-describedby="emailHelp" placeholder="Enter serial number">
+            <input type="text" class="form-control" id="serialNumber" aria-describedby="insertserialnumber" placeholder="Enter serial number">
         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </section>
   <footer>

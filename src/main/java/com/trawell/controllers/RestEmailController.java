@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.UnsupportedEncodingException;
 
-import com.trawell.services.*;
+import com.trawell.services.EmailSenderService;
 
 @EnableEmailTools
 @RestController
@@ -18,10 +18,10 @@ import com.trawell.services.*;
 public class RestEmailController {
 
     @Autowired
-    private EmailTestService testService;
+    private EmailSenderService emailService;
 
     @PostMapping("/testingemail")
     public void sendEmail() throws UnsupportedEncodingException, InterruptedException {
-        testService.sendEmail();
+        emailService.sendSerialNumberByEmail(5135113);
     }
 }
