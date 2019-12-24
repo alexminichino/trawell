@@ -1,6 +1,9 @@
 package com.trawell.controllers;
 
-import java.util.Collection;
+import javax.servlet.http.HttpSession;
+
+import com.trawell.models.Agency;
+import com.trawell.models.Encoder;
 import com.trawell.models.User;
 import com.trawell.services.UserService;
 
@@ -8,15 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * RestUsersController qui andranno mappate tutte le funzionalità relative all'utente per la comunicazione REST
+ * @author Milione Vincent
+ * @author Lamberti Vincenzo
+ * RestUsersController andranno mappate tutte le funzionalità relative all'utente per la comunicazione REST
  *
  */
 @RestController
@@ -26,46 +32,77 @@ public class RestUsersController {
     @Autowired
     private UserService userService;
 
-    // GET [method = RequestMethod.GET] is a default method for any request. 
-    // So we do not need to mention explicitly
-
-    @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<User>> getUsers() {
-        Collection<User> users = userService.findAll();        
-        return new ResponseEntity<Collection<User>>(users, HttpStatus.OK);
+    /**
+     * @author Milione Vincent
+     * The method sets unchangeable data into the new users data
+     * @param newUser contains user's new data
+     * @param oldUser contains user's old data
+     */
+    public void setBean (User newUser, User oldUser) {
+        newUser.setId(oldUser.getId());
+        newUser.setMail(oldUser.getMail());
+        newUser.setIsAdmin(oldUser.getIsAdmin());
+        newUser.setBanned(oldUser.getBanned());
+        newUser.setIsBanned(oldUser.getIsBanned());
+        newUser.setProfilePhoto(oldUser.getProfilePhoto());
+        newUser.setBio(newUser.getBio() == null ? oldUser.getBio() : newUser.getBio());
     }
 
-    @RequestMapping(value = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        User user = userService.findOne(id);
-        if(user == null) {
-            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<User>(user, HttpStatus.OK);
-    }
-    
-    @RequestMapping(value = "/users", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.create(user);
-        return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
-    }
+    /**
+     * @author Lamberti Vincenzo
+     * executes an update on all of a user's data
+     * @param id user's id on the database
+     * @param user new user object containing all the new data
+     * @return a JSON object with Http Status 200 if update was successful, 500 otherwise
+     */
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @ModelAttribute User user, @RequestParam (name = "oldpassword", required = true) String oldPassword, HttpSession session) {
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+        User u = (User) session.getAttribute("user");
+
         User updatedUser = null;
-        if (user != null && id == user.getId()) {
-            updatedUser = userService.update(user); 
+        if (user != null && id == u.getId()) {
+            
+            oldPassword = new Encoder(u.getUsername()).encoding(oldPassword, u.getUsername().length());
+            if (oldPassword.equals(u.getPassword())) {
+                setBean(user, u);
+                updatedUser = userService.update(user);
+            }
+            else
+                return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);
         }
         if(updatedUser == null) {
             return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+         }
+            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) {
-        userService.delete(id);
-        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+    /**
+     * @author Lamberti Vincenzo
+     * executes an update on all of a user's data
+     * @param id user's id on the database
+     * @param user new agnecy user object containing all the new data
+     * @return a JSON object with Http Status 200 if update was successful, , 500 otherwise
+     */
+    @RequestMapping(value = "/users/agency/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @ModelAttribute Agency user, @RequestParam (name = "oldpassword", required = true) String oldPassword, HttpSession session) {
+
+        Agency u = (Agency) session.getAttribute("user");
+
+        User updatedUser = null;
+        if (user != null && id == u.getId()) {
+            
+            oldPassword = new Encoder(u.getUsername()).encoding(oldPassword, u.getUsername().length());
+            if (oldPassword.equals(u.getPassword())) {
+                setBean(user, u);
+                updatedUser = userService.update(user);
+            }
+            else
+                return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        if(updatedUser == null) {
+            return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+         }
+            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
     }
-    
 }

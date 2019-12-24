@@ -4,15 +4,15 @@ import java.util.Collection;
 
 import com.trawell.models.User;
 
-import org.springframework.stereotype.Service;
 
 /**
- * IUserService
+ * @author Alfieri Davide
  */
 
 public interface IUserService {
     Collection<User> findAll();
     User findOne(Long id);
+    User findByUsername(String username);
     User create(User User);
     User update(User User);
     void delete(Long id);
