@@ -20,14 +20,14 @@ public class EmailSenderService {
     private EmailService emailService;
 
 
-    public void sendSerialNumberByEmail(int serialNumber) throws UnsupportedEncodingException {
+    public void sendSerialNumberByEmail(String serialNumber, String emailTo, String name) throws UnsupportedEncodingException {
         final Email email = DefaultEmail.builder()
                 .from(new InternetAddress("TraWell.customerservice@gmail.com",
                         "TraWell"))
                 .to(newArrayList(
-                        new InternetAddress("umbertorussomando@gmail.com","Umberto")))
+                        new InternetAddress(emailTo,name)))
                 .subject("Serial Number")
-                .body("Hi Umberto, this is you serial number: "+ serialNumber)
+                .body("Hi, " + name +" this is you serial number: "+ serialNumber)
                 .encoding("UTF-8").build();
 
         emailService.send(email);

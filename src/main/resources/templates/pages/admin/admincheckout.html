@@ -8,10 +8,10 @@
   <section layout:fragment="content">
     <p></p>
     <p>We will sent you an email with your serial number, please check out your emaill</p>
-    <form action="/admin/serialnumber">
+    <form action="/admin/checkSerialNumber" method="POST">
         <div class="form-group">
             <label for="serialNumber">Serial Number</label>
-            <input type="text" class="form-control" id="serialNumber" aria-describedby="insertserialnumber" placeholder="Enter serial number">
+            <input type="text" class="form-control" id="serialNumber" name="serialNumber" aria-describedby="insertserialnumber" placeholder="Enter serial number">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

@@ -356,29 +356,27 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`user` ;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(254) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `surname` varchar(45) NOT NULL,
+  `birth` datetime NOT NULL,
+  `banned` tinyint(4) NOT NULL DEFAULT '0',
+  `bio` varchar(5000) DEFAULT NULL,
+  `profile_photo` int(11) DEFAULT '0',
+  `phone` varchar(20) DEFAULT NULL,
+  `is_admin` tinyint(4) DEFAULT '0',
+  `is_banned` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`,`mail`,`username`),
+  UNIQUE KEY `idUser_UNIQUE` (`id`),
+  UNIQUE KEY `mail_UNIQUE` (`mail`),
+  UNIQUE KEY `userName_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `mail` VARCHAR(254) NOT NULL,
-  `userName` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `surname` VARCHAR(45) NOT NULL,
-  `birth` DATETIME NOT NULL,
-  `banned` TINYINT NOT NULL DEFAULT 0,
-  `bio` VARCHAR(5000) default null,
-  `profilePhoto` INT DEFAULT 0,
-  `phone` VARCHAR(20) default null,
-  `isAdmin` TINYINT DEFAULT 0,
-  `isBanned` TINYINT DEFAULT 0,
-  PRIMARY KEY (`id`, `mail`, `userName`),
-  UNIQUE INDEX `idUser_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `mail_UNIQUE` (`mail` ASC),
-  UNIQUE INDEX `userName_UNIQUE` (`userName` ASC))
-ENGINE = InnoDB;
-
-
+INSERT INTO user VALUES (1,'umbertorussomando@gmail.com','admin','09F43236BB5E2B75230E705C39EDBB71','Umberto','Russomando','1997-11-09 00:00:00',0,NULL,0,'3347877736',1,0);
 -- -----------------------------------------------------
 -- Table `trawell`.`AgencyData`
 -- -----------------------------------------------------
