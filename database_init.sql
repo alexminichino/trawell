@@ -71,7 +71,7 @@ DROP TABLE IF EXISTS `trawell`.`carsharing` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`carsharing` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `departureDate` DATETIME NOT NULL,
+  `departure_date` DATETIME NOT NULL,
   `destination` VARCHAR(500) NOT NULL,
   `departure` VARCHAR(45) NOT NULL,
   `arrival` VARCHAR(45) NOT NULL,
