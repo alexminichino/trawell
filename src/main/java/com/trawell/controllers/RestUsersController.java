@@ -63,10 +63,15 @@ public class RestUsersController {
         User updatedUser = null;
         if (user != null && id == u.getId()) {
             
-            oldPassword = new Encoder(u.getUsername()).encoding(oldPassword, u.getUsername().length());
+            Encoder encode = new Encoder((u.getUsername()));
+            oldPassword = encode.encoding(oldPassword, u.getUsername().length());
+
             if (oldPassword.equals(u.getPassword())) {
+
+                user.setPassword(encode.encoding(user.getPassword(), user.getUsername().length()));
                 setBean(user, u);
                 updatedUser = userService.update(user);
+
             }
             else
                 return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);
@@ -92,8 +97,11 @@ public class RestUsersController {
         User updatedUser = null;
         if (user != null && id == u.getId()) {
             
+            Encoder encode = new Encoder((u.getUsername()));
             oldPassword = new Encoder(u.getUsername()).encoding(oldPassword, u.getUsername().length());
+            
             if (oldPassword.equals(u.getPassword())) {
+                user.setPassword(encode.encoding(user.getPassword(), user.getUsername().length()));
                 setBean(user, u);
                 updatedUser = userService.update(user);
             }
