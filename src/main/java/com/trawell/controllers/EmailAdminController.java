@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
 @EnableEmailTools
 @Controller
 @RequestMapping("admin")
-public class AdminController {
+public class EmailAdminController {
 
     @Autowired
     private EmailSenderService emailService; 
