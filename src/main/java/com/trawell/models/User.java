@@ -3,16 +3,25 @@ package com.trawell.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Transient;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 /**
  * @author Milione Vincent 
- * class models a User that interacts with our platform
+ * class models a Carsharing add postable by any user on the platform
  */
 public class User {
     @Id
@@ -30,6 +39,19 @@ public class User {
     private String phone;
     private boolean isAdmin;
     private boolean isBanned;
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private List<Carsharing> userAdds;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "carspot", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "carsharing_id")})
+    private List<Carsharing> list;
+
+    public List<Carsharing> getUserAdds() {
+        return this.userAdds;
+    }
+
+    public void setUserAdds(List<Carsharing> userAdds) {
+        this.userAdds = userAdds;
+    }
 
     public java.sql.Date getBirth() {
         return this.birth;

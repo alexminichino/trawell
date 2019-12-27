@@ -76,7 +76,11 @@ CREATE TABLE IF NOT EXISTS `trawell`.`carsharing` (
   `departure` VARCHAR(45) NOT NULL,
   `arrival` VARCHAR(45) NOT NULL,
   `carsharingspot` INT NOT NULL,
-  `idOwner` INT NOT NULL,
+  `id_owner` INT NOT NULL,
+  FOREIGN KEY (`id_owner`)
+    REFERENCES `trawell`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -87,20 +91,16 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `trawell`.`carspot` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`carspot` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idCarSharing` INT NOT NULL,
-  `idUser` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `idSpot_UNIQUE` (`id` ASC),
-  INDEX `idUser_idx` (`idUser` ASC),
-  INDEX `idCarSharing_idx` (`idCarSharing` ASC),
+  `carsharing_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `carsharing_id`),
  
-    FOREIGN KEY (`idUser`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
  
-    FOREIGN KEY (`idCarSharing`)
+    FOREIGN KEY (`carsharing_id`)
     REFERENCES `trawell`.`carsharing` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
