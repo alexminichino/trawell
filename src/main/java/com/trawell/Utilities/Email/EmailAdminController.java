@@ -32,6 +32,7 @@ public class EmailAdminController {
 
     @Autowired
     private EmailSenderService emailService; 
+    
 
 
 /**
