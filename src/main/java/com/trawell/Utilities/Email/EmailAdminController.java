@@ -1,4 +1,4 @@
-package com.trawell.controllers;
+package com.trawell.Utilities.Email;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.trawell.models.User;
-import com.trawell.services.EmailSenderService;
+import com.trawell.Utilities.Email.EmailSenderService;
 
 import java.io.UnsupportedEncodingException;
 

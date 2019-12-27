@@ -1,4 +1,4 @@
-package com.trawell.services;
+package com.trawell.Utilities.Email;
 
 import org.springframework.stereotype.Service;
 
