@@ -29,17 +29,17 @@ public class ComplaintService implements IComplaintService {
     }
 
     @Override
-    public Complaint findOne(Long id) {
-        Optional<Complaint> complaint = ComplaintRepository.findById(id);
+    public Complaint findOne(Long i) {
+        Optional<Complaint> complaint = ComplaintRepository.findById(i);
         return complaint.get();
     }
 
     @Override
     public Complaint create(Complaint complaint) {
         if (complaint.getId() != null) {
-            //cannot create Complaint with specified Id value
+            //cannot create User with specified Id value
             return null;
-        }
+        }        
         Complaint savedComplaint = ComplaintRepository.save(complaint);
         return savedComplaint;
     }

@@ -3,6 +3,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -14,10 +15,13 @@ public class Complaint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	private int idUser;
+
+    //@ManyToOne
+    private Long idUser;
+    
     private String complaintObject;
     private String complaintDescription;
-    private String mail;
+    private String complaintMail;
 
     @Transient //variable that doesn't have to be saved in the DB
     private String transientVar;
@@ -27,19 +31,19 @@ public class Complaint {
         super();
     }
 
-    public Complaint(String ComplaintObject, String ComplaintDescription, int idUser, String mail) {
+    public Complaint(String ComplaintObject, String ComplaintDescription, Long idUser, String mail) {
         super();
         this.complaintDescription = ComplaintDescription;
         this.complaintObject = ComplaintObject;
         this.idUser = idUser;
-        this.mail = mail;
+        this.complaintMail = mail;
     }
 
-    public int getIdUser() {
+    public long getIdUser() {
         return this.idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(long idUser) {
         this.idUser = idUser;
     }
 
@@ -80,11 +84,11 @@ public class Complaint {
 
 
     public String getMail() {
-        return this.mail;
+        return this.complaintMail;
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
+        this.complaintMail = mail;
     }
     
 }

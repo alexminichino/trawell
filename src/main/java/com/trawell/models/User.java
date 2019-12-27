@@ -3,10 +3,15 @@ package com.trawell.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Transient;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -30,6 +35,9 @@ public class User {
     private String phone;
     private boolean isAdmin;
     private boolean isBanned;
+
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private List<Complaint> userAdds;
 
     public java.sql.Date getBirth() {
         return this.birth;

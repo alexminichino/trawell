@@ -5,7 +5,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE=`ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION`;
 
 -- -----------------------------------------------------
 -- Schema trawell
@@ -15,7 +15,7 @@ DROP SCHEMA IF EXISTS `trawell` ;
 -- -----------------------------------------------------
 -- Schema trawell
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `trawell` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `trawell` DEFAULT CHARACTER SET utf8;
 USE `trawell` ;
 
 -- -----------------------------------------------------
@@ -146,15 +146,13 @@ DROP TABLE IF EXISTS `trawell`.`complaint` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`complaint` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idUser` INT NOT NULL,
-  'ComplaintObject' VARCHAR(45) NOT NULL,
-  `ComplaintDescription` VARCHAR(500) NOT NULL,
-  'Complaint' VARCHAR (128) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `email_idx` (`idUser` ASC),
-  
-    FOREIGN KEY (`idUser`)
-    REFERENCES `trawell`.`User` (`id`)
+  `id_user` INT NOT NULL,
+  `complaint_object` VARCHAR(45) NOT NULL,
+  `complaint_description` VARCHAR(500) NOT NULL,
+  `complaint_mail` VARCHAR (128) NOT NULL,
+  PRIMARY KEY (`id`),  
+    FOREIGN KEY (`id_user`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -358,27 +356,29 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`user` ;
-
-CREATE TABLE IF NOT EXISTS `trawell`.`user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `mail` VARCHAR(254) NOT NULL,
-  `userName` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `surname` VARCHAR(45) NOT NULL,
-  `birth` DATETIME NOT NULL,
-  `banned` TINYINT NOT NULL DEFAULT 0,
-  `bio` VARCHAR(5000) default null,
-  `profilePhoto` INT DEFAULT 0,
-  `phone` VARCHAR(20) default null,
-  `isAdmin` TINYINT DEFAULT 0,
-  `isBanned` TINYINT DEFAULT 0,
-  PRIMARY KEY (`id`, `mail`, `userName`),
-  UNIQUE INDEX `idUser_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `mail_UNIQUE` (`mail` ASC),
-  UNIQUE INDEX `userName_UNIQUE` (`userName` ASC))
-ENGINE = InnoDB;
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(254) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `surname` varchar(45) NOT NULL,
+  `birth` datetime NOT NULL,
+  `banned` tinyint(4) NOT NULL DEFAULT '0',
+  `bio` varchar(5000) DEFAULT NULL,
+  `profile_photo` int(11) DEFAULT '0',
+  `phone` varchar(20) DEFAULT NULL,
+  `is_admin` tinyint(4) DEFAULT '0',
+  `is_banned` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`,`mail`,`username`),
+  UNIQUE KEY `idUser_UNIQUE` (`id`),
+  UNIQUE KEY `mail_UNIQUE` (`mail`),
+  UNIQUE KEY `userName_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 
 -- -----------------------------------------------------
