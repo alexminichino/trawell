@@ -1,4 +1,4 @@
-package com.trawell.Utilities.Email;
+package com.trawell.utilities.email;
 
 import org.springframework.stereotype.Service;
 
@@ -13,13 +13,26 @@ import java.io.UnsupportedEncodingException;
 
 import static com.google.common.collect.Lists.newArrayList;
 
+
+/**
+ * @author Umberto Russomando
+ * This service is the one responsible for creating and sending the email to the admin
+ */
+
 @Service
 public class EmailSenderService {
 
     @Autowired
     private EmailService emailService;
 
-
+/**
+ * This method create and send the email to the admin
+ * @author Umberto Russomando 
+ * @param serialNumber
+ * @param emailTo
+ * @param name
+ * @throws UnsupportedEncodingException
+ */
     public void sendSerialNumberByEmail(String serialNumber, String emailTo, String name) throws UnsupportedEncodingException {
         final Email email = DefaultEmail.builder()
                 .from(new InternetAddress("TraWell.customerservice@gmail.com",
