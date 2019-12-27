@@ -67,27 +67,26 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`CarSharing`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`CarSharing` ;
+DROP TABLE IF EXISTS `trawell`.`carsharing` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`CarSharing` (
+CREATE TABLE IF NOT EXISTS `trawell`.`carsharing` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `departureDate` DATETIME NOT NULL,
-  `CarSharingDestination` VARCHAR(500) NOT NULL,
-  `CarSharingDeparture` VARCHAR(45) NOT NULL,
-  `CarSharingArrival` VARCHAR(45) NOT NULL,
-  `CarSharingSpot` INT NOT NULL,
+  `departure_date` DATETIME NOT NULL,
+  `destination` VARCHAR(500) NOT NULL,
+  `departure` VARCHAR(45) NOT NULL,
+  `arrival` VARCHAR(45) NOT NULL,
+  `carsharingspot` INT NOT NULL,
   `idOwner` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `idCarSharing_UNIQUE` (`id` ASC))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `trawell`.`CarSpot`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`CarSpot` ;
+DROP TABLE IF EXISTS `trawell`.`carspot` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`CarSpot` (
+CREATE TABLE IF NOT EXISTS `trawell`.`carspot` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idCarSharing` INT NOT NULL,
   `idUser` INT NOT NULL,
@@ -97,12 +96,12 @@ CREATE TABLE IF NOT EXISTS `trawell`.`CarSpot` (
   INDEX `idCarSharing_idx` (`idCarSharing` ASC),
  
     FOREIGN KEY (`idUser`)
-    REFERENCES `trawell`.`User` (`id`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
  
     FOREIGN KEY (`idCarSharing`)
-    REFERENCES `trawell`.`CarSharing` (`id`)
+    REFERENCES `trawell`.`carsharing` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -361,17 +360,17 @@ DROP TABLE IF EXISTS `trawell`.`user` ;
 CREATE TABLE IF NOT EXISTS `trawell`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `mail` VARCHAR(254) NOT NULL,
-  `userName` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `surname` VARCHAR(45) NOT NULL,
   `birth` DATETIME NOT NULL,
   `banned` TINYINT NOT NULL DEFAULT 0,
   `bio` VARCHAR(5000) default null,
-  `profilePhoto` INT DEFAULT 0,
+  `profile_photo` INT DEFAULT 0,
   `phone` VARCHAR(20) default null,
-  `isAdmin` TINYINT DEFAULT 0,
-  `isBanned` TINYINT DEFAULT 0,
+  `is_admin` TINYINT DEFAULT 0,
+  `is_banned` TINYINT DEFAULT 0,
   PRIMARY KEY (`id`, `mail`, `userName`),
   UNIQUE INDEX `idUser_UNIQUE` (`id` ASC),
   UNIQUE INDEX `mail_UNIQUE` (`mail` ASC),
