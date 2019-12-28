@@ -91,16 +91,16 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `trawell`.`carspot` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`carspot` (
-  `carsharing_id` INT NOT NULL,
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`user_id`, `carsharing_id`),
+  `id_user` INT NOT NULL,
+  `id_carsharing` INT NOT NULL,
+  PRIMARY KEY (`id_user`, `id_carsharing`),
  
-    FOREIGN KEY (`user_id`)
+    FOREIGN KEY (`id_user`)
     REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
  
-    FOREIGN KEY (`carsharing_id`)
+    FOREIGN KEY (`id_carsharing`)
     REFERENCES `trawell`.`carsharing` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -262,21 +262,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Itinerary`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Itinerary` ;
+DROP TABLE IF EXISTS `trawell`.`itinerary` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Itinerary` (
+CREATE TABLE IF NOT EXISTS `trawell`.`itinerary` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idOwner` INT NOT NULL,
-  `idGroup` INT NULL,
-  `ItineraryName` VARCHAR(50) NOT NULL,
+  `id_owner` INT NOT NULL,
+  `name` VARCHAR(50) NOT NULL,
+
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `idItinerary_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `idOwner_UNIQUE` (`idOwner` ASC),
- 
-    FOREIGN KEY (`idOwner`)
-    REFERENCES `trawell`.`User` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  FOREIGN KEY (`id_owner`)
+  REFERENCES `trawell`.`user` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
