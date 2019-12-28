@@ -6,8 +6,7 @@ addons:
   apt:
     packages:
       - oracle-java9-installer
-before_install:
-  - chmod +x mvnw
+
 
 services:
   - docker
@@ -24,7 +23,7 @@ addons:
     organization: "notfalse"
 
 script:
-  - ./mvnw clean install -B
+  - mvn clean install -B
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=alexminichino_trawell -Dsonar.login=${SONAR_TOKEN}
 
