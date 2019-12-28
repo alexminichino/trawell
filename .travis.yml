@@ -7,6 +7,8 @@ addons:
     packages:
       - oracle-java9-installer
 
+before_install:
+  - chmod +x mvnw
 
 services:
   - docker
@@ -39,6 +41,7 @@ after_success:
   - docker build -t $IMAGE_NAME:$COMMIT .
   - docker tag $IMAGE_NAME:$COMMIT $IMAGE_NAME:$TAG
   - docker push $IMAGE_NAME
+  - git checkout mvnw
 
 deploy:
   provider: heroku
