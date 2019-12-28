@@ -10,6 +10,8 @@ Impostare le variabili d'ambiente
 - DATABASE
 - DB_USER
 - DB_PASSWORD
+- DB_HOST
+- DB_PORT
 
  (aggiungendo alla fine del file ~/.bashrc  `export NOME_VARIABILE=valore`)
 
