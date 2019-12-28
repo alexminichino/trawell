@@ -1,5 +1,16 @@
 
 # Trawell Project
+[![Build Status](https://travis-ci.com/alexminichino/trawell.svg?branch=master)](https://travis-ci.com/alexminichino/trawell)
+
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=alexminichino_trawell&metric=alert_status)](https://sonarcloud.io/dashboard?id=alexminichino_trawell) 
+
+ [![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=alexminichino_trawell&metric=coverage)](https://sonarcloud.io/component_measures/metric/coverage/list?id=alexminichino_trawell)
+
+ [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=alexminichino_trawell&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=alexminichino_trawell)
+
+ [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=alexminichino_trawell&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=alexminichino_trawell)
+
+ [![Maintainability](https://api.codeclimate.com/v1/badges/ef0e304631b60709a830/maintainability)](https://codeclimate.com/github/alexminichino/trawell/maintainability)
 
 ### todo descrizione progetto 
 @umbertoRussomando 
