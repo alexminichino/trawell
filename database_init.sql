@@ -43,22 +43,22 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`BanData`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`BanData` ;
+DROP TABLE IF EXISTS `trawell`.`ban_data` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`BanData` (
+CREATE TABLE IF NOT EXISTS `trawell`.`ban_data` (
   `id` INT NOT NULL UNIQUE AUTO_INCREMENT,
-  `idAdmin` INT NOT NULL,
-  `idUser` INT NOT NULL,
-  `banUntil` DATETIME NOT NULL,
-  `Motivation` VARCHAR(450) NOT NULL,
+  `id_admin` INT NOT NULL,
+  `id_user` INT NOT NULL,
+  `ban_until` DATETIME NOT NULL,
+  `motivation` VARCHAR(450) NOT NULL,
     PRIMARY KEY (`id`),
    
-    FOREIGN KEY (`idUser`)
-    REFERENCES `trawell`.`User` (`id`)
+    FOREIGN KEY (`id_user`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-    FOREIGN KEY (`idAdmin`)
-    REFERENCES `trawell`.`User` (`id`)
+    FOREIGN KEY (`id_admin`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -361,21 +361,21 @@ DROP TABLE IF EXISTS `trawell`.`user` ;
 CREATE TABLE IF NOT EXISTS `trawell`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `mail` VARCHAR(254) NOT NULL,
-  `userName` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `surname` VARCHAR(45) NOT NULL,
   `birth` DATETIME NOT NULL,
   `banned` TINYINT NOT NULL DEFAULT 0,
   `bio` VARCHAR(5000) default null,
-  `profilePhoto` INT DEFAULT 0,
+  `profile_photo` INT DEFAULT 0,
   `phone` VARCHAR(20) default null,
-  `isAdmin` TINYINT DEFAULT 0,
-  `isBanned` TINYINT DEFAULT 0,
-  PRIMARY KEY (`id`, `mail`, `userName`),
-  UNIQUE INDEX `idUser_UNIQUE` (`id` ASC),
+  `is_admin` TINYINT DEFAULT 0,
+  `is_banned` TINYINT DEFAULT 0,
+  PRIMARY KEY (`id`, `mail`, `username`),
+  UNIQUE INDEX `id:user_UNIQUE` (`id` ASC),
   UNIQUE INDEX `mail_UNIQUE` (`mail` ASC),
-  UNIQUE INDEX `userName_UNIQUE` (`userName` ASC))
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 
