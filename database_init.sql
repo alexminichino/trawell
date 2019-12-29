@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `trawell`.`complaint` (
   `complaint_object` VARCHAR(45) NOT NULL,
   `complaint_description` TEXT NOT NULL,
   `complaint_mail` VARCHAR (254) NOT NULL,
-  `id_answerer` INT,
+  `id_answerer` INT AUTO_INCREMENT,
   `complaint_answered` TINYINT NOT NULL DEFAULT 0,
   `complaint_answere` TEXT, 
   PRIMARY KEY (`id`),  
