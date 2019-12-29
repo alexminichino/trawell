@@ -16,4 +16,5 @@ public interface IComplaintService {
     Complaint create(Complaint complaint);
     Complaint update(Complaint User);
     void delete(Long id);
+    
 }

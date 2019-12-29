@@ -7,28 +7,37 @@
 </head>
 <body>
   <section layout:fragment="content">
-    <p>Thank you for taking time to fill a complaint. </p>
+
     <p>Please fill the following forms</p>
+
+    <p>
+    <form method="GET" action = "/Complaint/prevComplaint">
+    <input type="submit" name="prev"  value="Previous" onclick="">
+    </form>
+    <form method="GET" action = "/Complaint/nextComplaint">
+    <input type="submit" name="next"  value="Next" onclick=""> 
+    </form>
+    </p>
+    
+    
     <p><ol type="1" name="instructionList">
       <li>Select a complaint</li>
       <li>Read the complaint</li>
       <li>Answere the complaints</li>
     </ol>
 
-    <ol type="1" name="complaintList">
-      <li>Complaint:</li>     
-    </ol>
     
-    </p>
-    
-    
-    <p>Complaint title:<br> <input type="text" name="complaintTitle" autocomplete="off" disabled><br></p>
-    <p>Complaint:<br> <textarea rows="6" name="complaintText" cols="50" disabled></textarea></p>
 
-
-    <p>Complaint title:<br> <input type="text" name="complaintTitle" autocomplete="off" disabled><br></p>
-    <p>Complaint answere:<br> <textarea rows="6" name="complaintAnswere" cols="50" placeholder="Answere complaint here"></textarea></p>
-    <p><input name="answereComplaint" type="submit"  value="Submit Answere" onclick=""></p>   
+    <form method="POST" action = "/Complaint/answereComplaint">      
+                 
+      <p>Complaint title:<br><textarea rows="1" name="complaintObject" autocomplete="off" th:text="${complaint.complaintObject}" disabled></textarea></p>
+      <p>Complaint:<br> <textarea rows="6" name="complaintDescription" cols="50" th:text="${complaint.complaintDescription}" disabled></textarea></p>
+  
+  
+      <p>Complaint answere:<br> <textarea rows="6" name="complaintAnswere" cols="50" placeholder="Answere complaint here"></textarea></p>
+      <p><input name="answereComplaint" type="submit"  value="Submit Answere" onclick=""></p>   
+    </form>
+    
       
     
   </section>

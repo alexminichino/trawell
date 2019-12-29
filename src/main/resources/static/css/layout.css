@@ -62,8 +62,13 @@ footer .col-md-3{
 }
 
 
+<<<<<<< HEAD:src/main/resources/static/css/layout.css
 a.col-md-1, p.col-md-1{
     color: white;
+=======
+.col-md-1 a,p{
+    color: black;
+>>>>>>> paolofasano:src/main/resources/static/css/home.css
 }
 
 #btnfooter{
