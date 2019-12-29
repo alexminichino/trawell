@@ -95,7 +95,7 @@ public class UsersController {
 		}
 		
 		session.setAttribute("user", user);
-		return "pages/user/home";
+		return user.getIsAdmin() ? "redirect:/admin/serialnumber" : "pages/user/home";
 	}
 
 	/**
