@@ -356,12 +356,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
-<<<<<<< HEAD
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-=======
->>>>>>> ebf9b12b28fbe2e6ddbd7e987b656766c2add1c3
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(254) NOT NULL,
@@ -381,14 +375,8 @@ CREATE TABLE `user` (
   UNIQUE KEY `mail_UNIQUE` (`mail`),
   UNIQUE KEY `userName_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-<<<<<<< HEAD
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-
-=======
 
 INSERT INTO user VALUES (1,'umbertorussomando@gmail.com','admin','09F43236BB5E2B75230E705C39EDBB71','Umberto','Russomando','1997-11-09 00:00:00',0,NULL,0,'3347877736',1,0);
->>>>>>> ebf9b12b28fbe2e6ddbd7e987b656766c2add1c3
 -- -----------------------------------------------------
 -- Table `trawell`.`AgencyData`
 -- -----------------------------------------------------
