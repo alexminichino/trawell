@@ -1,7 +1,6 @@
 package com.trawell.controllers;
 
 import java.sql.Date;
-import java.util.Calendar;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
@@ -79,10 +78,13 @@ public class AdminController {
             bandata.setMotivation(motivation);
             bandataDao.create(bandata);
             return "pages/admin/banusers";
-        }else{
-            model.addAttribute("msg","L'username non è presente");
-            return "pages/user/home";
         }
+
+        return "pages/admin/banusers";
+        
+
+        
+        
 	}
 
 }

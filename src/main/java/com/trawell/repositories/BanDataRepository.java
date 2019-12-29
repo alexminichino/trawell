@@ -1,6 +1,6 @@
 package com.trawell.repositories;
 
-import java.util.List;
+
 
 import com.trawell.models.BanData;
 import org.springframework.data.repository.CrudRepository;

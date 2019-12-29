@@ -2,8 +2,7 @@ package com.trawell;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.sql.Date;
 import com.trawell.models.BanData;
 
