@@ -1,6 +1,5 @@
 package com.trawell.services;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -8,8 +7,8 @@ import java.util.Optional;
 import com.trawell.models.Complaint;
 import com.trawell.repositories.ComplaintRepository;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.stereotype.Service;
 
 /**
@@ -60,4 +59,5 @@ public class ComplaintService implements IComplaintService {
          ComplaintRepository.delete(findOne(id));
     }
     
+  
 }

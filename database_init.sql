@@ -148,8 +148,11 @@ CREATE TABLE IF NOT EXISTS `trawell`.`complaint` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_user` INT NOT NULL,
   `complaint_object` VARCHAR(45) NOT NULL,
-  `complaint_description` VARCHAR(500) NOT NULL,
-  `complaint_mail` VARCHAR (128) NOT NULL,
+  `complaint_description` TEXT NOT NULL,
+  `complaint_mail` VARCHAR (254) NOT NULL,
+  `id_answerer` INT,
+  `complaint_answered` TINYINT NOT NULL DEFAULT 0,
+  `complaint_answere` TEXT, 
   PRIMARY KEY (`id`),  
     FOREIGN KEY (`id_user`)
     REFERENCES `trawell`.`user` (`id`)
