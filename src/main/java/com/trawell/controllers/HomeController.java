@@ -3,6 +3,8 @@ package com.trawell.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
+
 /**
  * Homecontroller: andranno mappate tutte le funzionalità relative ad i controller
  * 
@@ -14,4 +16,6 @@ public class HomeController {
     public String landing() {
         return "pages/home/index";
     }
+
+    
 }
