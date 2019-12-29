@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import com.trawell.models.Complaint;
 
-import org.springframework.stereotype.Service;
 
 /**
  * IUserService

@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `trawell`.`complaint` (
   `complaint_object` VARCHAR(45) NOT NULL,
   `complaint_description` TEXT NOT NULL,
   `complaint_mail` VARCHAR (254) NOT NULL,
-  `id_answerer` INT,
+  `id_answerer` INT AUTO_INCREMENT,
   `complaint_answered` TINYINT NOT NULL DEFAULT 0,
   `complaint_answere` TEXT, 
   PRIMARY KEY (`id`),  
@@ -356,6 +356,15 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+=======
+>>>>>>> ebf9b12b28fbe2e6ddbd7e987b656766c2add1c3
+>>>>>>> paolofasano
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(254) NOT NULL,
@@ -375,8 +384,19 @@ CREATE TABLE `user` (
   UNIQUE KEY `mail_UNIQUE` (`mail`),
   UNIQUE KEY `userName_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+<<<<<<< HEAD
 
 INSERT INTO user VALUES (1,'umbertorussomando@gmail.com','admin','09F43236BB5E2B75230E705C39EDBB71','Umberto','Russomando','1997-11-09 00:00:00',0,NULL,0,'3347877736',1,0);
+=======
+<<<<<<< HEAD
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+=======
+
+INSERT INTO user VALUES (1,'umbertorussomando@gmail.com','admin','09F43236BB5E2B75230E705C39EDBB71','Umberto','Russomando','1997-11-09 00:00:00',0,NULL,0,'3347877736',1,0);
+>>>>>>> ebf9b12b28fbe2e6ddbd7e987b656766c2add1c3
+>>>>>>> paolofasano
 -- -----------------------------------------------------
 -- Table `trawell`.`AgencyData`
 -- -----------------------------------------------------

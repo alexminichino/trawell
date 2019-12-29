@@ -8,7 +8,6 @@ import com.trawell.models.Complaint;
 import com.trawell.repositories.ComplaintRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.stereotype.Service;
 
 /**
