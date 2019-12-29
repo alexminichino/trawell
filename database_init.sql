@@ -328,26 +328,23 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Post`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Post` ;
+DROP TABLE IF EXISTS `trawell`.`post` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Post` (
+CREATE TABLE IF NOT EXISTS `trawell`.`post` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idOwner` INT NOT NULL,
-  `idGroup` INT NOT NULL,
-  `idPhoto` INT NULL,
-  `PostDescription` VARCHAR(500) NOT NULL,
+  `id_owner` INT NOT NULL,
+  `id_group` INT NOT NULL,
+  `id_photo` INT NULL,
+  `post_description` VARCHAR(500) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `idPost_UNIQUE` (`id` ASC),
-  INDEX `idUser_idx` (`idOwner` ASC),
-  INDEX `idGroup_idx` (`idGroup` ASC),
   
-    FOREIGN KEY (`idOwner`)
-    REFERENCES `trawell`.`User` (`id`)
+    FOREIGN KEY (`id_owner`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
  
-    FOREIGN KEY (`idGroup`)
-    REFERENCES `trawell`.`Group` (`id`)
+    FOREIGN KEY (`id_group`)
+    REFERENCES `trawell`.`group` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -356,9 +353,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(254) NOT NULL,
@@ -378,9 +372,8 @@ CREATE TABLE `user` (
   UNIQUE KEY `mail_UNIQUE` (`mail`),
   UNIQUE KEY `userName_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
-
+INSERT INTO user VALUES (1,'umbertorussomando@gmail.com','admin','09F43236BB5E2B75230E705C39EDBB71','Umberto','Russomando','1997-11-09 00:00:00',0,NULL,0,'3347877736',1,0);
 -- -----------------------------------------------------
 -- Table `trawell`.`AgencyData`
 -- -----------------------------------------------------

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>TraWell</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p></p>
+    <p>We will sent you an email with your serial number, please check out your emaill</p>
+    <form action="/admin/checkSerialNumber" method="POST">
+        <div class="form-group">
+            <label for="serialNumber">Serial Number</label>
+            <input type="text" class="form-control" id="serialNumber" name="serialNumber" aria-describedby="insertserialnumber" placeholder="Enter serial number">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer"></p> 
+  </footer>
+</body>
+</html>
