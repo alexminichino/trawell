@@ -1,4 +1,3 @@
-/*Mario Paone*/
 package com.trawell.models;
 
 import java.sql.Date;
@@ -18,7 +17,7 @@ public class BanData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    private Long idUser;
     private Long idAdmin;
     private Date banUntil;
     private String motivation;
@@ -26,9 +25,9 @@ public class BanData {
     public BanData() {
     }
 
-    public BanData(Long id, String username, Long idAdmin, Date banUntil, String motivation) {
+    public BanData(Long id, Long idUser, Long idAdmin, Date banUntil, String motivation) {
         this.id = id;
-        this.username = username;
+        this.idUser = idUser;
         this.idAdmin = idAdmin;
         this.banUntil = banUntil;
         this.motivation = motivation;
@@ -42,12 +41,12 @@ public class BanData {
         this.id = id;
     }
 
-    public String getUsername() {
-        return this.username;
+    public Long getIdUser() {
+        return this.idUser;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     public Long getIdAdmin() {
@@ -79,8 +78,8 @@ public class BanData {
         return this;
     }
 
-    public BanData username(String username) {
-        this.username = username;
+    public BanData idUser(Long idUser) {
+        this.idUser = idUser;
         return this;
     }
 
@@ -107,19 +106,19 @@ public class BanData {
             return false;
         }
         BanData banData = (BanData) o;
-        return Objects.equals(id, banData.id) && Objects.equals(username, banData.username) && Objects.equals(idAdmin, banData.idAdmin) && Objects.equals(banUntil, banData.banUntil) && Objects.equals(motivation, banData.motivation);
+        return Objects.equals(id, banData.id) && Objects.equals(idUser, banData.idUser) && Objects.equals(idAdmin, banData.idAdmin) && Objects.equals(banUntil, banData.banUntil) && Objects.equals(motivation, banData.motivation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, idAdmin, banUntil, motivation);
+        return Objects.hash(id, idUser, idAdmin, banUntil, motivation);
     }
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", username='" + getUsername() + "'" +
+            ", username='" + getIdUser() + "'" +
             ", idAdmin='" + getIdAdmin() + "'" +
             ", banUntil='" + getBanUntil() + "'" +
             ", motivation='" + getMotivation() + "'" +
