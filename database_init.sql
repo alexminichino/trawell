@@ -160,24 +160,22 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Destination`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Destination` ;
+DROP TABLE IF EXISTS `trawell`.`destination` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Destination` (
+CREATE TABLE IF NOT EXISTS `trawell`.`destination` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idItinerary` INT NOT NULL,
-  `EventName` VARCHAR(50) NOT NULL,
-  `DestinationDescription` VARCHAR(450) NULL,
-  `DestinationDate` DATETIME NOT NULL,
-  `DestinationHour` TIME NOT NULL,
-  `isVisited` TINYINT NOT NULL,
+  `id_itinerary` INT NOT NULL,
+  `location` VARCHAR(50) NOT NULL,
+  `description` VARCHAR(450) NULL,
+  `date` DATE NOT NULL,
+  `hour` TIME NOT NULL,
+  `is_visited` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `idDestination_UNIQUE` (`id` ASC),
-  INDEX `idItinerary_idx` (`idItinerary` ASC),
  
-    FOREIGN KEY (`idItinerary`)
-    REFERENCES `trawell`.`Itinerary` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    FOREIGN KEY (`id_itinerary`)
+    REFERENCES `trawell`.`itinerary` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

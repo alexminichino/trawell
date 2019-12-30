@@ -3,7 +3,7 @@ package com.trawell.controllers;
 import javax.servlet.http.HttpSession;
 
 import com.trawell.models.Agency;
-import com.trawell.models.Encoder;
+import com.trawell.utilities.Encoder;
 import com.trawell.models.User;
 import com.trawell.services.UserService;
 
@@ -71,15 +71,16 @@ public class RestUsersController {
                 user.setPassword(encode.encoding(user.getPassword(), user.getUsername().length()));
                 setBean(user, u);
                 updatedUser = userService.update(user);
-
             }
             else
                 return new ResponseEntity<User>(HttpStatus.NOT_ACCEPTABLE);
         }
         if(updatedUser == null) {
             return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
-         }
-            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+         }else {
+             session.setAttribute("user", updatedUser);
+             return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+         }   
     }
 
     /**
@@ -110,7 +111,9 @@ public class RestUsersController {
         }
         if(updatedUser == null) {
             return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
-         }
-            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+         }else {
+             session.setAttribute("user", updatedUser);
+             return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+         }  
     }
 }

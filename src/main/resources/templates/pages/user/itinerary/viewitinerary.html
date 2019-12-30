@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p>Create Itinerary</p>
+    <div class = "container">
+        <div>
+            <p>
+                <input type = "text" th:value= "${name}">
+                <input type = "text" th:value= "${location}">
+                <input type = "text" th:value= "${date}">
+            </p>
+        </div>
+    </div>
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
+  </footer> 
+
+</body>
+</html>
