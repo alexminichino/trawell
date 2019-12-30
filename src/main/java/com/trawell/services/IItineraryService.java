@@ -12,7 +12,7 @@ import com.trawell.models.Itinerary;
 public interface IItineraryService {
     Collection<Itinerary> findAll();
     Itinerary findOne(Long id);
-    Itinerary create(Itinerary Itinerary);
-    Itinerary update(Itinerary Itinerary);
+    Itinerary create(Itinerary itinerary);
+    Itinerary update(Itinerary itinerary);
     void delete(Long id);
 }

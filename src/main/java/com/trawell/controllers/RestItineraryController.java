@@ -29,7 +29,7 @@ public class RestItineraryController {
     @Autowired
     ItineraryService dao;
 
-    @PostMapping(value = "/addItinerary", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/itinerary/add", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Itinerary> add (@ModelAttribute Itinerary itinerary, HttpSession session){
         User user = (User) session.getAttribute("user");
         Itinerary createdItinerary = null;
@@ -42,8 +42,8 @@ public class RestItineraryController {
         return createdItinerary == null ? new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<Itinerary>(createdItinerary, HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/modifyItinerary", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Itinerary> modify (@ModelAttribute Itinerary itinerary, HttpSession session) {
+    @RequestMapping(value = "/itinerary/modify", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Itinerary> modify (@ModelAttribute Itinerary itinerary,@PathVariable("id") Long id, HttpSession session) {
         User user = (User) session.getAttribute("user");
         Itinerary updatedItinerary = null;
 
@@ -55,7 +55,7 @@ public class RestItineraryController {
         return updatedItinerary == null ? new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<Itinerary>(updatedItinerary, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/eliminateItinerary/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/itinerary/eliminate/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Itinerary> delete (HttpSession session, @PathVariable("id") Long id) {
         User user = (User) session.getAttribute("user");
 

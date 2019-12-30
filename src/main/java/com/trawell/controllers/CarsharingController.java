@@ -33,9 +33,9 @@ public class CarsharingController {
 
         User user = (User) session.getAttribute("user");
 
-        if (user == null ? false : user.getUserAdds() == null ? false : user.getUserAdds().size() > 0) {
-            int index = user.getUserAdds().indexOf(new Carsharing(id));
-            model.addAttribute("carsharing", user.getUserAdds().get(index));
+        if (user == null ? false : user.getUserCreatedAdList() == null ? false : user.getUserCreatedAdList().size() > 0) {
+            int index = user.getUserCreatedAdList().indexOf(new Carsharing(id));
+            model.addAttribute("carsharing", user.getUserCreatedAdList().get(index));
         }
 
         return "pages/carsharing/modifycarsharing";
@@ -47,9 +47,9 @@ public class CarsharingController {
         User user = (User) session.getAttribute("user");
         Carsharing carsharing = new Carsharing(id);
 
-        if (user == null ? false : user.getUserAdds() == null ? false : user.getUserAdds().size() > 0) {
-            int index = user.getUserAdds().indexOf(carsharing);
-            model.addAttribute("carsharing", user.getUserAdds().get(index));
+        if (user == null ? false : user.getUserCreatedAdList() == null ? false : user.getUserCreatedAdList().size() > 0) {
+            int index = user.getUserCreatedAdList().indexOf(carsharing);
+            model.addAttribute("carsharing", user.getUserCreatedAdList().get(index));
         }
         
         return "pages/carsharing/viewcarsharing"; 
@@ -59,13 +59,13 @@ public class CarsharingController {
     public String list(HttpSession session, Model model) {
         
         User user = (User) session.getAttribute("user");
-        List<Carsharing> list = user.getUserAdds();
+        List<Carsharing> list = user.getUserCreatedAdList();
 
         if (list == null ? false : list.size() > 0) {
-            //accordati 
+            
             model.addAttribute("isEmpty", true);
         } else {
-            user.getUserAdds();
+            user.getUserCreatedAdList();
             model.addAttribute("isEmpty", true);
         }
 

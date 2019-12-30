@@ -44,8 +44,8 @@ public class User {
     private String phone;
     private boolean isAdmin;
     private boolean isBanned;
-    @OneToMany(mappedBy = "spots", fetch = FetchType.LAZY)
-    private List<Carsharing> userAdds;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Carsharing> userCreatedAdList;
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Itinerary> userItineraries; 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -73,12 +73,12 @@ public class User {
         this.list = list;
     }
 
-    public List<Carsharing> getUserAdds() {
-        return this.userAdds;
+    public List<Carsharing> getUserCreatedAdList() {
+        return this.userCreatedAdList;
     }
 
-    public void setUserAdds(List<Carsharing> userAdds) {
-        this.userAdds = userAdds;
+    public void setUserCreatedAdList(List<Carsharing> userCreatedAddList) {
+        this.userCreatedAdList = userCreatedAddList;
     }
 
     public java.sql.Date getBirth() {
@@ -214,12 +214,5 @@ public class User {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
-
-    /**
-     * @param transientVar the transientVar to set
-     */
-    public void setTransientVar(final String transientVar) {
-        this.transientVar = transientVar;
     }
 }

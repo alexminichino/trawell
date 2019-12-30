@@ -31,7 +31,15 @@ public class Carsharing {
     private List<User> user_list;
     @ManyToOne
     @JoinColumn(name="id_owner")
-    public User spots;
+    public User user;
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Carsharing(){}
 
@@ -110,4 +118,8 @@ public class Carsharing {
             return false;
         return true;
     }
+
+	public Long getId() {
+		return id;
+	}
 }

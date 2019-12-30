@@ -69,7 +69,7 @@ public class ItineraryController {
             //accordati 
             model.addAttribute("isEmpty", true);
         } else {
-            user.getUserItineraries();
+            model.addAttribute("itineraries", user.getUserItineraries());
             model.addAttribute("isEmpty", true);
         }
 

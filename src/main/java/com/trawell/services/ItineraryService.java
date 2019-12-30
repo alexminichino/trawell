@@ -1,6 +1,8 @@
 package com.trawell.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import com.trawell.models.Itinerary;
 import com.trawell.repositories.JPAItineraryRepository;
@@ -17,18 +19,19 @@ import org.springframework.stereotype.Service;
 public class ItineraryService implements IItineraryService {
 
     @Autowired
-    private JPAItineraryRepository itinerarRepository;
+    private JPAItineraryRepository itineraryRepository;
 
     @Override
     public Collection<Itinerary> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<Itinerary> itineraries = new ArrayList<Itinerary>();
+        itineraryRepository.findAll().forEach(itineraries::add);
+        return itineraries;
     }
 
     @Override
     public Itinerary findOne(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        Optional<Itinerary> ad = itineraryRepository.findById(id);
+        return ad.get();
     }
 
     @Override
@@ -37,19 +40,23 @@ public class ItineraryService implements IItineraryService {
             //cannot create User with specified Id value
             return null;
         }
-        return itinerarRepository.save(itinerary);
+        return itineraryRepository.save(itinerary);
     }
 
     @Override
-    public Itinerary update(Itinerary Itinerary) {
-        // TODO Auto-generated method stub
-        return null;
+    public Itinerary update(Itinerary itinerary) {
+        Itinerary itineraryPersisted = findOne(itinerary.getId());
+        if (itineraryPersisted == null) {
+            //cannot findcarsharing with specified Id value
+            return null;
+        }
+        
+        return itineraryRepository.save(itinerary);
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-
+        itineraryRepository.deleteById(id);
     }
 
 }

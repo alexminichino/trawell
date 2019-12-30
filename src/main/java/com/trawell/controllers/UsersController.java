@@ -41,7 +41,7 @@ public class UsersController {
 	 * @param session
 	 * @return if the user isn't already logged in return the URL of the login page or else send him to home page 
 	 */
-	@GetMapping("/login.html")
+	@GetMapping("/login-page")
 	public String loginPage (HttpSession session) {
 		return isLogged(session) ? "pages/user/home" : "pages/user/login";
 	}
@@ -64,7 +64,7 @@ public class UsersController {
 	 * @param session
 	 * @return URL of the sign-up page if the user isn't already logged in
 	 */
-	@GetMapping("/sign-up.html")
+	@GetMapping("/sign-up-page")
 	public String signUpPage (HttpSession session) {
 		return isLogged(session) ? "pages/user/home" : "pages/user/sign-Up";
 	}
