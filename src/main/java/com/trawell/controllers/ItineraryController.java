@@ -12,11 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -41,6 +38,19 @@ public class ItineraryController {
     @GetMapping("/create")
     public String create() {
         return "pages/user/itinerary/createitinerary";
+    }
+
+    @GetMapping("/modify/{id}")
+    public String modify (HttpSession session, @PathVariable ("id") Long id, Model model) {
+        User user = (User) session.getAttribute("user");
+        List <Itinerary> list = user.getUserItineraries();
+        
+        if (user == null ? false : list == null ? false : list.size() > 0) {
+            int index = list.indexOf(new Itinerary(id));
+            model.addAttribute("itinerary", list.get(index));
+            return "pages/user/itinerary/modifyitinerary";
+        }
+        return "";
     }
 
     @GetMapping("/view/{id}")
