@@ -11,6 +11,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Transient;
+
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -24,6 +27,7 @@ import javax.persistence.OneToMany;
  * @author Milione Vincent 
  * class a user on platform
  */
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
