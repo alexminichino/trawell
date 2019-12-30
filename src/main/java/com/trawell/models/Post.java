@@ -1,3 +1,4 @@
+/*
 package com.trawell.models;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.Entity;
  * @author Umberto Russomando
  * This class...
  */
+
+ /*
 public class Post {
 
     public Post() {
@@ -61,3 +64,5 @@ public class Post {
 
 
 }
+
+*/
