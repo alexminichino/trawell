@@ -26,50 +26,36 @@ public class ItineraryController {
     @Autowired
     ItineraryService dao;
 
-    /**
-	 * Method checks if the user is already logged
-	 * @param session
-	 * @return true if he is already logged, false otherwise
-	 */
-	private boolean isLogged (HttpSession session) {
-		return session.getAttribute("user") != null;
-	}
-
     @GetMapping("/create")
     public String create() {
-        return "pages/user/itinerary/createitinerary";
+        return "pages/user/createitinerary";
     }
 
     @GetMapping("/modify/{id}")
     public String modify (HttpSession session, @PathVariable ("id") Long id, Model model) {
         User user = (User) session.getAttribute("user");
-        List <Itinerary> list = user.getUserItineraries();
-        
-        if (user == null ? false : list == null ? false : list.size() > 0) {
-            int index = list.indexOf(new Itinerary(id));
-            model.addAttribute("itinerary", list.get(index));
-            return "pages/user/itinerary/modifyitinerary";
+
+        if (user == null ? false : user.getUserItineraries() == null ? false : user.getUserItineraries().size() > 0) {
+            int index = user.getUserItineraries().indexOf(new Itinerary(id));
+            model.addAttribute("itinerary", user.getUserItineraries().get(index));
         }
-        return "";
+
+        return "pages/user/modifyitinerary";
     }
 
     @GetMapping("/view/{id}")
     public String view(HttpSession session, @PathVariable("id") Long id, Model model) {
-        if (isLogged(session)) return "pages/home/index";
+        
         //visualizzi il contenuto dell'itinerario da visualizzare
         User user = (User) session.getAttribute("user");
         Itinerary itinerary = new Itinerary(id);
-        List<Itinerary> list = user.getUserItineraries();
 
-        if (list == null ? false : list.size() > 0) {
-
+        if (user == null ? false : user.getUserItineraries() == null ? false : user.getUserItineraries().size() > 0) {
             int index = user.getUserItineraries().indexOf(itinerary);
-            Itinerary viewedItinerary = user.getUserItineraries().get(index);
-
-            //accordati 
+            model.addAttribute("itinerary", user.getUserItineraries().get(index));
         }
         
-        return "pages/user/itinerary/viewitinerary";
+        return "pages/user/viewitinerary"; 
     }
 
     @GetMapping("/list-view")
@@ -83,10 +69,11 @@ public class ItineraryController {
             //accordati 
             model.addAttribute("isEmpty", true);
         } else {
+            user.getUserItineraries();
             model.addAttribute("isEmpty", true);
         }
 
-        return "pages/user/itinerary/listitinerary";
+        return "pages/user/listitinerary";
     }
     
 }
