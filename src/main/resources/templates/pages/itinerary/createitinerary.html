@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Itinerary</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	<script src = "../js/addDestination.js"></script>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p>Create Itinerary</p>
+    <div>
+      Name: <input type = 'text' name = "name" placeholder = "name"><br>
+      <div class = "destination">
+        <div>
+          Destinazione:<input type = "text" name = "location" placeholder= "location"><br>
+          Data:<input type = "date" name = "date"><br>
+          Descrizione:<input type = "text" name = "description" placeholder= "description"><br>
+        <button style = "background-color:green;" class = "add">Aggiungi una destinazione</button><br>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
+  </footer> 
+
+</body>
+</html>

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Milione Vincent
  */
 @Controller
-@RequestMapping("users/itinerary")
+@RequestMapping("itinerary")
 public class ItineraryController {
     @Autowired
     ItineraryService dao;
