@@ -27,15 +27,19 @@ public class Carsharing {
     private String departure;
     private String arrival;
     private int carsharingspot;
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "list")
+    @ManyToMany(mappedBy = "list")
     private List<User> user_list;
     @ManyToOne
     @JoinColumn(name="id_owner")
-    public User user;
+    public User spots;
 
     public Carsharing(){}
 
-    public List<User> getUser_list() {
+    public Carsharing(Long id) {
+        this.id = id;
+	}
+
+	public List<User> getUser_list() {
         return this.user_list;
     }
 

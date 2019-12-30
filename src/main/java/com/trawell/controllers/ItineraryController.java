@@ -27,8 +27,8 @@ public class ItineraryController {
     ItineraryService dao;
 
     @GetMapping("/create")
-    public String create() {
-        return "pages/user/createitinerary";
+    public String create(HttpSession session) {
+        return session.getAttribute("user") == null ? "error" : "pages/itinerary/createitinerary";
     }
 
     @GetMapping("/modify/{id}")
@@ -40,7 +40,7 @@ public class ItineraryController {
             model.addAttribute("itinerary", user.getUserItineraries().get(index));
         }
 
-        return "pages/user/modifyitinerary";
+        return "pages/itinerary/modifyitinerary";
     }
 
     @GetMapping("/view/{id}")
@@ -55,7 +55,7 @@ public class ItineraryController {
             model.addAttribute("itinerary", user.getUserItineraries().get(index));
         }
         
-        return "pages/user/viewitinerary"; 
+        return "pages/itinerary/viewitinerary"; 
     }
 
     @GetMapping("/list-view")
@@ -73,7 +73,7 @@ public class ItineraryController {
             model.addAttribute("isEmpty", true);
         }
 
-        return "pages/user/listitinerary";
+        return "pages/itinerary/listitinerary";
     }
     
 }

@@ -1,9 +1,16 @@
 package com.trawell.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import com.trawell.models.Carsharing;
+import com.trawell.models.User;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * @author Alfieri Davide
@@ -14,20 +21,54 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("carsharing")
 public class CarsharingController {
-    @GetMapping("/create.html")
-    public String ad() {
-        return "pages/user/publish_carsharing";
+    
+    @GetMapping("/create")
+    public String create() {
+
+        return "pages/carsharing/createcarsharing";
     }
 
-    @GetMapping("/change.html")
-    public String change(HttpSession session){
-        if (!isLogged(session))
-                return "pages/user/login";
-                return "pages/user/modify-carsharing";
+    @GetMapping("/change/{id}")
+    public String change(HttpSession session, @PathVariable ("id") Long id, Model model){
 
+        User user = (User) session.getAttribute("user");
+
+        if (user == null ? false : user.getUserAdds() == null ? false : user.getUserAdds().size() > 0) {
+            int index = user.getUserAdds().indexOf(new Carsharing(id));
+            model.addAttribute("carsharing", user.getUserAdds().get(index));
+        }
+
+        return "pages/carsharing/modifycarsharing";
     }
 
-    private boolean isLogged(HttpSession session) {
-        return false;
+    @GetMapping("/view/{id}")
+    public String view(HttpSession session, @PathVariable("id") Long id, Model model) {
+        
+        User user = (User) session.getAttribute("user");
+        Carsharing carsharing = new Carsharing(id);
+
+        if (user == null ? false : user.getUserAdds() == null ? false : user.getUserAdds().size() > 0) {
+            int index = user.getUserAdds().indexOf(carsharing);
+            model.addAttribute("carsharing", user.getUserAdds().get(index));
+        }
+        
+        return "pages/carsharing/viewcarsharing"; 
+    }
+
+    @GetMapping("/list-view")
+    public String list(HttpSession session, Model model) {
+        
+        User user = (User) session.getAttribute("user");
+        List<Carsharing> list = user.getUserAdds();
+
+        if (list == null ? false : list.size() > 0) {
+            //accordati 
+            model.addAttribute("isEmpty", true);
+        } else {
+            user.getUserAdds();
+            model.addAttribute("isEmpty", true);
+        }
+
+        return "pages/carsharing/listcarsharing";
     }
 }
