@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("carsharing")
-public class carsharingController {
+public class CarsharingController {
     @GetMapping("/create.html")
     public String ad() {
         return "pages/user/publish_carsharing";

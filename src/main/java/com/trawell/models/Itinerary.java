@@ -1,11 +1,16 @@
 package com.trawell.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
@@ -23,6 +28,16 @@ public class Itinerary {
     @ManyToOne
     @JoinColumn(name="id_owner")
     private User user;
+    @OneToMany(mappedBy = "itinerary", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Destination> destinations;
+
+    public List<Destination> getDestinations() {
+        return this.destinations;
+    }
+
+    public void setDestinations(List<Destination> destinations) {
+        this.destinations = destinations;
+    }
 
     public Long getId() {
         return this.id;
@@ -50,4 +65,23 @@ public class Itinerary {
 
     public Itinerary(){}
 
+    public Itinerary(Long id){
+        this.id = id;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Itinerary other = (Itinerary) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
 }
