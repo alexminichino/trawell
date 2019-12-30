@@ -5,7 +5,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE=`ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION`;
 
 -- -----------------------------------------------------
 -- Schema trawell
@@ -15,7 +15,7 @@ DROP SCHEMA IF EXISTS `trawell` ;
 -- -----------------------------------------------------
 -- Schema trawell
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `trawell` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `trawell` DEFAULT CHARACTER SET utf8;
 USE `trawell` ;
 
 -- -----------------------------------------------------
@@ -43,22 +43,22 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`BanData`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`BanData` ;
+DROP TABLE IF EXISTS `trawell`.`ban_data` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`BanData` (
+CREATE TABLE IF NOT EXISTS `trawell`.`ban_data` (
   `id` INT NOT NULL UNIQUE AUTO_INCREMENT,
-  `idAdmin` INT NOT NULL,
-  `idUser` INT NOT NULL,
-  `banUntil` DATETIME NOT NULL,
-  `Motivation` VARCHAR(450) NOT NULL,
+  `id_admin` INT NOT NULL,
+  `id_user` INT NOT NULL,
+  `ban_until` DATETIME NOT NULL,
+  `motivation` VARCHAR(450) NOT NULL,
     PRIMARY KEY (`id`),
    
-    FOREIGN KEY (`idUser`)
-    REFERENCES `trawell`.`User` (`id`)
+    FOREIGN KEY (`id_user`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-    FOREIGN KEY (`idAdmin`)
-    REFERENCES `trawell`.`User` (`id`)
+    FOREIGN KEY (`id_admin`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -67,27 +67,26 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`CarSharing`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`CarSharing` ;
+DROP TABLE IF EXISTS `trawell`.`carsharing` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`CarSharing` (
+CREATE TABLE IF NOT EXISTS `trawell`.`carsharing` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `departureDate` DATETIME NOT NULL,
-  `CarSharingDestination` VARCHAR(500) NOT NULL,
-  `CarSharingDeparture` VARCHAR(45) NOT NULL,
-  `CarSharingArrival` VARCHAR(45) NOT NULL,
-  `CarSharingSpot` INT NOT NULL,
+  `departure_date` DATETIME NOT NULL,
+  `destination` VARCHAR(500) NOT NULL,
+  `departure` VARCHAR(45) NOT NULL,
+  `arrival` VARCHAR(45) NOT NULL,
+  `carsharingspot` INT NOT NULL,
   `idOwner` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `idCarSharing_UNIQUE` (`id` ASC))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `trawell`.`CarSpot`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`CarSpot` ;
+DROP TABLE IF EXISTS `trawell`.`carspot` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`CarSpot` (
+CREATE TABLE IF NOT EXISTS `trawell`.`carspot` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idCarSharing` INT NOT NULL,
   `idUser` INT NOT NULL,
@@ -97,12 +96,12 @@ CREATE TABLE IF NOT EXISTS `trawell`.`CarSpot` (
   INDEX `idCarSharing_idx` (`idCarSharing` ASC),
  
     FOREIGN KEY (`idUser`)
-    REFERENCES `trawell`.`User` (`id`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
  
     FOREIGN KEY (`idCarSharing`)
-    REFERENCES `trawell`.`CarSharing` (`id`)
+    REFERENCES `trawell`.`carsharing` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -142,17 +141,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Complaint`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Complaint` ;
+DROP TABLE IF EXISTS `trawell`.`complaint` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Complaint` (
+CREATE TABLE IF NOT EXISTS `trawell`.`complaint` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idUser` INT NOT NULL,
-  `ComplaintDescription` VARCHAR(500) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `email_idx` (`idUser` ASC),
-  
-    FOREIGN KEY (`idUser`)
-    REFERENCES `trawell`.`User` (`id`)
+  `id_user` INT NOT NULL,
+  `complaint_object` VARCHAR(45) NOT NULL,
+  `complaint_description` TEXT NOT NULL,
+  `complaint_mail` VARCHAR (254) NOT NULL,
+  `id_answerer` INT AUTO_INCREMENT,
+  `complaint_answered` TINYINT NOT NULL DEFAULT 0,
+  `complaint_answere` TEXT, 
+  PRIMARY KEY (`id`),  
+    FOREIGN KEY (`id_user`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -284,9 +286,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Message`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Message` ;
+DROP TABLE IF EXISTS `trawell`.`message` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Message` (
+CREATE TABLE IF NOT EXISTS `trawell`.`message` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Message` VARCHAR(450) NOT NULL,
   `idPhoto` INT NOT NULL,
@@ -353,6 +355,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` varchar(254) NOT NULL,
@@ -373,7 +380,6 @@ CREATE TABLE `user` (
   UNIQUE KEY `userName_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-INSERT INTO user VALUES (1,'umbertorussomando@gmail.com','admin','09F43236BB5E2B75230E705C39EDBB71','Umberto','Russomando','1997-11-09 00:00:00',0,NULL,0,'3347877736',1,0);
 -- -----------------------------------------------------
 -- Table `trawell`.`AgencyData`
 -- -----------------------------------------------------

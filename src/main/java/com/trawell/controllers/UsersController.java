@@ -84,6 +84,7 @@ public class UsersController {
 		if (isLogged(session)) return "pages/user/home"; 
 
 		User user = dao.findByUsername(username);
+		if (user.getIsBanned()) return "pages/user/login";
 		password = new Encoder(username).encoding(password, username.length());
 
 		if (user == null) {
