@@ -11,7 +11,7 @@ import com.trawell.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 /**
  * @author Lamberti Vincenzo
  * @author Milione Vincent
@@ -48,12 +48,14 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional
     public User update(User user) {
         User userPersisted = findOne(user.getId());
         if (userPersisted == null) {
             //cannot find User with specified Id value
             return null;
         }
+        user.setUserAdds(userPersisted.getUserAdds());
         User updatedUser = userRepository.save(user);
         return updatedUser;
     }

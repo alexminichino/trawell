@@ -3,7 +3,7 @@ package com.trawell.controllers;
 import javax.servlet.http.HttpSession;
 
 import com.trawell.models.Agency;
-import com.trawell.models.Encoder;
+import com.trawell.utilities.Encoder;
 import com.trawell.models.User;
 import com.trawell.services.UserService;
 
