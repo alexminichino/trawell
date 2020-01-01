@@ -7,9 +7,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 @Entity
-/**
- * User
- * Questa classe è solo un esempio, dovrete definire bene field e metodi
+  /**
+ * This object keeps all the complaint values, is formed by basic getters and setters and a to string method 
+ * @author Paolo Fasano
+ *  @param id;
+    @param idUser;   
+    @param  complaintObject;
+    @param  complaintDescription;
+    @param complaintMail;
+    @param  Long idAnswerer;
+    @param  boolean complaintAnswered;
+    @param  String complaintAnswere;
  */
 public class Complaint {
     @Id
