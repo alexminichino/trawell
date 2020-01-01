@@ -66,10 +66,7 @@ public class ComplaintController {
         int i = 0;
         ArrayList<Complaint> allComplaints = (ArrayList<Complaint>) dao.findAll();
         ArrayList<Complaint> complaints = new ArrayList<Complaint>();
-
-        
-
-       
+      
             int n = 0;
             for (int x = 0; x < allComplaints.size(); x++) {
                 Complaint c = allComplaints.get(x);
@@ -81,16 +78,12 @@ public class ComplaintController {
     
             if(complaints.size() == 0)
             {
-                return "pages/complaint/adminComplaint";
+                return "pages/complaint/noComplaint";
             }
          
-
             model.addAttribute(complaints.get(i));
             session.setAttribute("complaintPos", i);
             session.setAttribute("Complaints", complaints);
-    
-        
-
        
         return "pages/complaint/adminComplaint";
     }

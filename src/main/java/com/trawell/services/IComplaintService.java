@@ -5,8 +5,10 @@ import java.util.Collection;
 import com.trawell.models.Complaint;
 
 
-/**
- * IUserService
+  /**
+ * 
+ * @author Paolo Fasano
+ *
  */
 
 public interface IComplaintService {
