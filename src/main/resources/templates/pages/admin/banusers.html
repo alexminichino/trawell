@@ -1,0 +1,27 @@
+<!--- @author MarioPaone --->
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Login</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src = "../js/login.js"></script>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p>Ban Utente</p>
+    <div class = "container">
+      <div>
+        <form action = "/admin/banuser" method = "POST" id = "banning">
+            Username utente: <input type = 'text' name = "username" placeholder = "username..."><br>
+            Motivazione : <textarea name="motivation" rows="10" cols="30">Inserire qui motivazioni del ban..</textarea> <br>
+            Data fine ban: <input type = "date" name = "bannedUntil">
+            <input type = "submit">
+        </form>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
