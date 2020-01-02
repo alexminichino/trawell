@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Change User Data</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src = "../js/validation_itinerary.js"></script>
+  <script src = "../js/modify_itinerary.js.js"></script>
+</head>
+<body>
+  <section layout:fragment="content">
+    <h2 style="color : black; text-align: center">Change Data</h2>
+    <form action = "" method = "POST" id = "target">
+        <div class = "container">
+          <div>
+            location:<input th:value = "${itinerary.location}" type = 'text' name = "location" id="location"><br>
+            date and hour:<input th:value = "${itinerary.date}" type = 'datetime-local' name = "date" id = "date"><br>
+            description:<input th:value = "${itinerary..description}" type = 'text' name = "description" id = "description"><br>
+            <input type = "submit" id = "clickme" value = "Modifica">
+          </div>
+        </div>
+    </form>
+    
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
+  </footer> 
+</body>
+</html>

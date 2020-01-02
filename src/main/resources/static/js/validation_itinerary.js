@@ -14,15 +14,13 @@ $.validator.addMethod(
 $(document).ready(function(){
     $("#target").validate({
         rules:{
-            departure_date:{required:true, regex:/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/},
-            description:{required:true},
-            arrival:{required:true},
-            carsharingspot:{required:true}
-         
+            location:{required:true, regex:/^[A-Z a-z]$/},
+            date:{required:true},
+            description:{required:true},       
         },
          messages:{
-            departure_date:{
-                regex: "Date entered doesn't respect the following format:dd/mm/yyyy. Please Retry!" 
+            location:{
+                regex:"Location entered doesn't respect the format: numbers and special characters not allowed. Retry!" 
             },    
         } 
     }); 

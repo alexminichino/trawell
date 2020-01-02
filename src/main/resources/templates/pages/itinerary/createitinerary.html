@@ -4,22 +4,26 @@
 <head>
   <title>Itinerary</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-	<script src = "../js/addDestination.js"></script>
+  <script src = "../js/validation_itinerary.js"></script>
+	<script src = "../js/add&removeDestination.js"></script>
 </head>
 <body>
   <section layout:fragment="content">
     <p>Create Itinerary</p>
-    <div>
-      Name: <input type = 'text' name = "name" placeholder = "name"><br>
-      <div class = "destination">
-        <div>
-          Destinazione:<input type = "text" name = "location" placeholder= "location"><br>
-          Data:<input type = "date" name = "date"><br>
-          Descrizione:<input type = "text" name = "description" placeholder= "description"><br>
-        <button style = "background-color:green;" class = "add">Aggiungi una destinazione</button><br>
-        </div>
+    <div id="divId">
+      <form action = "#" method = "POST" id = "target">
+        Name: <input type = 'text' name = "name" placeholder = "name"><br>
+        <div class = "destinations">
+          <div  class = "destination">
+            Destinazione:<input type = "text" name = "location" placeholder= "location"><br>
+            Data e ora:<input type = "datetime-local" name = "date"><br>
+            Descrizione:<textarea name = "description" placeholder= "description"></textarea><br> 
+            <button style = "background-color:green;" class = "add">Aggiungi una destinazione</button><br>
+          </div>
         
+          <input type="submit" id = "clickme" value = "Crea nuovo itinerario">
       </div>
+      </form>
     </div>
   </section>
   <footer>

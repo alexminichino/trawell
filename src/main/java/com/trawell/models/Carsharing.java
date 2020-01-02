@@ -26,7 +26,7 @@ public class Carsharing {
     private Long id;
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date departureDate;
-    private String destination;
+    private String description;
     private String departure;
     private String arrival;
     private int carsharingspot;
@@ -66,12 +66,12 @@ public class Carsharing {
         this.departureDate = departureDate;
     }
 
-    public String getDestination() {
-        return this.destination;
+    public void setDescription (String desc) {
+        this.description = desc;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public String getDescription () {
+        return description;
     }
 
     public String getDeparture() {

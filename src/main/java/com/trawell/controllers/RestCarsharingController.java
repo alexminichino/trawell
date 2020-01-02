@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +31,7 @@ public class RestCarsharingController {
     CarsharingService dao;
 
     @PostMapping(value = "/carsharing/add", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Carsharing> add (@ModelAttribute Carsharing carsharing, HttpSession session){
+    public ResponseEntity<Carsharing> add (@RequestBody Carsharing carsharing, HttpSession session){
         User user = (User) session.getAttribute("user");
         Carsharing createdCarsharing = null;
 
@@ -40,11 +41,11 @@ public class RestCarsharingController {
             createdCarsharing = dao.create(carsharing);
         }
 
-        return createdCarsharing == null ? new ResponseEntity<Carsharing>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<Carsharing>(createdCarsharing, HttpStatus.OK);
+        return createdCarsharing == null ? new ResponseEntity<Carsharing>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<Carsharing>(HttpStatus.OK);
     }
     
     @RequestMapping(value = "/carsharing/modify", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Carsharing> modify (@ModelAttribute Carsharing carsharing, HttpSession session) {
+    public ResponseEntity<Carsharing> modify (@RequestBody Carsharing carsharing, HttpSession session) {
         User user = (User) session.getAttribute("user");
         Carsharing updatedCarsharing = null;
 

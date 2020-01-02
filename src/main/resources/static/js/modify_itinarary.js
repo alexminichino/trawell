@@ -32,30 +32,27 @@
         $.fn.exists = function () {
             return this.length !== 0;
         }
-        
-         /**
+    
+        /**
          * @author Alfieri Davide
          * the function makes the ajax call to server to modify carsharing's data
-         */
-       
-        $("#target").submit(function (e) {
-            e.preventDefault();
+         *  */
+        $("#clickme").click(function (e) {
             var da = $("#target").serializeFormJSON();
-            console.log(da);
             $.ajax({
                 dataType: "json",
-                url:"/api/carsharing/modify",
+                url:"/api/itinerary/change",
                 headers:{
                  'Accept' : 'application/json',
                  'Content-Type' : 'application/json'
                 },
-                data:JSON.stringify(da),
+                data:da,
                 type:'POST',
                 success:function(data){
-                    alert("successo");
+                    self.displayResults(data);
                 },
                 error:function(jqXHR,textStatus,errorThrown){
-                    alert("failed");
+                    showPopupError('Error','error:' + textStatus,'ok');
                 }
             })
         });
