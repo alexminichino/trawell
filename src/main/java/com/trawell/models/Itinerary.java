@@ -69,6 +69,11 @@ public class Itinerary {
         this.id = id;
     }
 
+    public Itinerary (String name, List<Destination> list) {
+        setName(name);
+        setDestinations(list);
+    }
+
     public boolean equals(Object obj) {
         if (this == obj)
             return true;

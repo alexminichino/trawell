@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -22,7 +24,8 @@ public class Carsharing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private java.sql.Date departureDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date departureDate;
     private String destination;
     private String departure;
     private String arrival;
@@ -55,11 +58,11 @@ public class Carsharing {
         this.user_list = user_list;
     }
 
-    public java.sql.Date getDepartureDate() {
+    public java.util.Date getDepartureDate() {
         return this.departureDate;
     }
 
-    public void setDepartureDate(java.sql.Date departureDate) {
+    public void setDepartureDate(java.util.Date departureDate) {
         this.departureDate = departureDate;
     }
 

@@ -7,6 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -21,11 +25,21 @@ public class Destination {
     private Long id;
     private String location;
     private String description;
-    private java.sql.Date date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date date;
     private boolean isVisited;
     @ManyToOne
     @JoinColumn(name="id_itinerary")
     private Itinerary itinerary;
+
+	public Itinerary getItinerary() {
+		return this.itinerary;
+	}
+
+	public void setItinerary(Itinerary itinerary) {
+		this.itinerary = itinerary;
+	}
+
 
     public String getLocation() {
         return this.location;
@@ -43,11 +57,11 @@ public class Destination {
         this.description = description;
     }
 
-    public java.sql.Date getDate() {
+    public java.util.Date getDate() {
         return this.date;
     }
 
-    public void setDate(java.sql.Date date) {
+    public void setDate(java.util.Date date) {
         this.date = date;
     }
 

@@ -167,8 +167,7 @@ CREATE TABLE IF NOT EXISTS `trawell`.`destination` (
   `id_itinerary` INT NOT NULL,
   `location` VARCHAR(50) NOT NULL,
   `description` VARCHAR(450) NULL,
-  `date` DATE NOT NULL,
-  `hour` TIME NOT NULL,
+  `date` DATETIME NOT NULL,
   `is_visited` TINYINT NOT NULL,
   PRIMARY KEY (`id`),
  
