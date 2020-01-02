@@ -10,8 +10,8 @@ import com.trawell.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author Alfieri Davide
  * 
@@ -28,8 +28,8 @@ public class CarsharingController {
         return "pages/carsharing/createcarsharing";
     }
 
-    @GetMapping("/change/{id}")
-    public String change(HttpSession session, @PathVariable ("id") Long id, Model model){
+    @GetMapping("/change")
+    public String change(HttpSession session, @RequestParam("id") Long id, Model model){
 
         User user = (User) session.getAttribute("user");
 
@@ -41,14 +41,15 @@ public class CarsharingController {
         return "pages/carsharing/modifycarsharing";
     }
 
-    @GetMapping("/view/{id}")
-    public String view(HttpSession session, @PathVariable("id") Long id, Model model) {
+    @GetMapping("/view")
+    public String view(HttpSession session, @RequestParam("id") Long id, Model model) {
         
         User user = (User) session.getAttribute("user");
         Carsharing carsharing = new Carsharing(id);
 
         if (user == null ? false : user.getUserCreatedAdList() == null ? false : user.getUserCreatedAdList().size() > 0) {
             int index = user.getUserCreatedAdList().indexOf(carsharing);
+            carsharing.setDescription(carsharing.getDescription() == null ? "" : carsharing.getDescription());
             model.addAttribute("carsharing", user.getUserCreatedAdList().get(index));
         }
         

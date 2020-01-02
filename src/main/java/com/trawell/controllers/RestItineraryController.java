@@ -41,6 +41,7 @@ public class RestItineraryController {
 
         if (user != null) {
             user.addItinerary(itinerary);
+            System.out.println(itinerary.getDestinations());
             itinerary.getDestinations().parallelStream().forEach(d -> {d.setItinerary(itinerary);});
             createdItinerary = dao.create(itinerary);
         }

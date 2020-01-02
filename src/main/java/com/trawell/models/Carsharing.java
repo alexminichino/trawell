@@ -58,20 +58,20 @@ public class Carsharing {
         this.user_list = user_list;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public java.util.Date getDepartureDate() {
         return this.departureDate;
     }
 
     public void setDepartureDate(java.util.Date departureDate) {
         this.departureDate = departureDate;
-    }
-
-    public void setDescription (String desc) {
-        this.description = desc;
-    }
-
-    public String getDescription () {
-        return description;
     }
 
     public String getDeparture() {

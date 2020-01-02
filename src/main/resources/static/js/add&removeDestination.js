@@ -42,9 +42,22 @@
         return this.length !== 0;
     }
 
-    $("#clickme").click(function (e) {
-       var da = $(".destination :input").serialize();
-           
+    $("#target").submit(function (e) {
+        e.preventDefault();
+        var name = $("input[name='name']").val();
+        var da = {name: name, destinations : []}
+
+        $(".destination").each(function () {
+            var location = $("input[name='location']").val();
+            var date = $("input[name='date']").val();
+            var description = $("textarea").val();
+
+            var destination = {location: location, date: date, description: description}
+            da['destinations'].push(destination);
+        });
+        
+        console.log(da);
+
        $.ajax({
            dataType: "json",
            url:"/api/itinerary/add",
@@ -52,7 +65,7 @@
             'Accept' : 'application/json',
             'Content-Type' : 'application/json'
            },
-           data:da,
+           data:JSON.stringify(da),
            type:'POST',
            success:function(data){
                self.displayResults(data);
