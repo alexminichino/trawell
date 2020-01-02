@@ -49,28 +49,14 @@ public class RestItineraryController {
         return createdItinerary == null ? new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<Itinerary>(createdItinerary, HttpStatus.OK);
     }
     
-    @GetMapping(value = "/itinerary/prova", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Itinerary> prova (){
-        List<Destination> list = new java.util.ArrayList<Destination> ();
-        Destination d = new Destination();
-        
-        d.setDate(new java.util.Date());
-        d.setDescription("description");
-        d.setLocation("location");
-
-        list.add(d);
-        Itinerary itinerary = new Itinerary("owo", list);
-
-        return new ResponseEntity<Itinerary>(itinerary, HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/itinerary/modify", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Itinerary> modify (@RequestBody Itinerary itinerary,@PathVariable("id") Long id, HttpSession session) {
+    public ResponseEntity<Itinerary> modify (@RequestBody Itinerary itinerary, HttpSession session) {
         User user = (User) session.getAttribute("user");
         Itinerary updatedItinerary = null;
 
         if (user != null) {
             itinerary.setUser(user);
+            itinerary.getDestinations().parallelStream().forEach(d -> {d.setItinerary(itinerary);});
             updatedItinerary = dao.update(itinerary);
         }
 

@@ -4,8 +4,8 @@
 <head>
   <title>Change User Data</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-  <script src = "../js/validation_itinerary.js"></script>
-  <script src = "../js/modify_itinerary.js.js"></script>
+  <!--<script src = "../js/validation_itinerary.js"></script>-->
+  <script src = "../js/modify_itinerary.js"></script>
 </head>
 <body>
   <section layout:fragment="content">
@@ -13,9 +13,18 @@
     <form action = "" method = "POST" id = "target">
         <div class = "container">
           <div>
-            location:<input th:value = "${itinerary.location}" type = 'text' name = "location" id="location"><br>
-            date and hour:<input th:value = "${itinerary.date}" type = 'datetime-local' name = "date" id = "date"><br>
-            description:<input th:value = "${itinerary..description}" type = 'text' name = "description" id = "description"><br>
+            <input type = "hidden" name = "idItinerary" th:value="${itinerary.id}" /><br>
+            Name:<input th:value = "${itinerary.name}" type = 'text' name = "name" id="name"><br>
+            <div class = "destinations">
+              <div th:each="destination: ${itinerary.destinations}" class = "destination">
+                <button th:if = ${destinationStat.first} style="background-color:green;" class="add">Aggiungi una destinazione</button>
+                <input type = "hidden" name = "idDestination" th:value="${destination.id}" /><br>
+                <input type = "text" name = "location" placeholder= "location" th:value="${destination.location}" /><br>
+                <input type = "datetime-local" name = "date" th:value="${destination.date}" /><br>
+                <textarea th:text="${destination.description}"></textarea>
+                <button th:if = !${destinationStat.first} style="background-color:red;" class="remove">Rimuovi la destinazione</button>
+              </div>
+            </div>
             <input type = "submit" id = "clickme" value = "Modifica">
           </div>
         </div>

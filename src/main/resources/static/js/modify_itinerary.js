@@ -25,22 +25,25 @@
 
     $("#target").submit(function (e) {
         e.preventDefault();
+        var idItinerary = $("input[name='idItinerary']").val();
         var name = $("input[name='name']").val();
-        var da = {name: name, destinations : []}
+        var da = {id: idItinerary, name: name, destinations : []}
 
         $(".destination").each(function () {
             var div = $(this);
+            var id = div.find("input[name='idDestination']").val();
             var location = div.find("input[name='location']").val();
             var date = div.find("input[name='date']").val();
             var description = div.find("textarea").val();
 
-            var destination = {location: location, date: date, description: description}
+            var destination = {id: id, location: location, date: date, description: description}
             da['destinations'].push(destination);
         });
 
+        console.log(da);
        $.ajax({
            dataType: "json",
-           url:"/api/itinerary/add",
+           url:"/api/itinerary/modify",
            headers:{
             'Accept' : 'application/json',
             'Content-Type' : 'application/json'
@@ -50,8 +53,8 @@
            success:function(data){
                alert("success");
            },
-          error:function(request,textStatus,errorThrown){
-               alert("failed:");
+          error:function(jqXHR,textStatus,errorThrown){
+               alert("failed");
            }
        })
        

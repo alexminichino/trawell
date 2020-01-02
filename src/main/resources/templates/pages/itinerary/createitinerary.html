@@ -10,7 +10,6 @@
 <body>
   <section layout:fragment="content">
     <p>Create Itinerary</p>
-    <div id="divId">
       <form action = "#" method = "POST" id = "target">
         Name: <input type = 'text' name = "name" placeholder = "name"><br>
         <div class = "destinations">
@@ -20,11 +19,9 @@
             Descrizione:<textarea name = "description" placeholder= "description"></textarea><br> 
             <button style = "background-color:green;" class = "add">Aggiungi una destinazione</button><br>
           </div>
-        
-          <input type="submit" id = "clickme" value = "Crea nuovo itinerario">
       </div>
+      <input type="submit" id = "clickme" value = "Crea nuovo itinerario">
       </form>
-    </div>
   </section>
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 

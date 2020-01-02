@@ -35,7 +35,7 @@ public class ItineraryController {
     public String modify (HttpSession session, @RequestParam("id") Long id, Model model) {
         User user = (User) session.getAttribute("user");
 
-        if (user == null ? false : user.getUserItineraries() == null ? false : user.getUserItineraries().size() > 0) {
+        if (user == null & id == null ? false : user.getUserItineraries() == null ? false : user.getUserItineraries().size() > 0) {
             int index = user.getUserItineraries().indexOf(new Itinerary(id));
             model.addAttribute("itinerary", user.getUserItineraries().get(index));
         }
@@ -50,7 +50,7 @@ public class ItineraryController {
         User user = (User) session.getAttribute("user");
         Itinerary itinerary = new Itinerary(id);
 
-        if (user == null ? false : user.getUserItineraries() == null ? false : user.getUserItineraries().size() > 0) {
+        if (user == null && id == null ? false : user.getUserItineraries() == null ? false : user.getUserItineraries().size() > 0) {
             int index = user.getUserItineraries().indexOf(itinerary);
             model.addAttribute("itinerary", user.getUserItineraries().get(index));
         }
