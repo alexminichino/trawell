@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-  <link rel="stylesheet" href="../css/home.css">
+<head> 
+  <link rel="stylesheet" href="../css/layout.css">
   <title>Layout page</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -10,7 +10,7 @@
 </head>
 <body>
   
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+  <nav class="navbar navbar-expand-lg navbar-dark rounded">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <img src="../image/logo.png" id="logo" class="img-responsive" alt="LOGO">
@@ -21,8 +21,8 @@
       <li class="nav-item personale"><a href="#"><span class="fas fa-search"></span>Search</a></li>
       <li class="nav-item personale" ><a href="#"><span class="fas fa-car"></span>Find ride</a></li>
       <li class="nav-item personale" ><a href="#"><span class="fas fa-suitcase-rolling"></span>Share your experience</a></li>
-      <li class="nav-item personale" ><a href="#"><span class="far fa-user"></span>Sign Up</a></li>
-      <li class="nav-item personale" ><a href="#"><span class="fas fa-sign-in-alt"></span>Log in</a></li>
+      <li class="nav-item personale" ><a href="/users/sign-up.html"><span class="far fa-user"></span>Sign Up</a></li>
+      <li class="nav-item personale" ><a href="/users/login.html"><span class="fas fa-sign-in-alt"></span>Log in</a></li>
         
     </ul>
   </nav>
@@ -39,18 +39,18 @@
         <img src="../image/logo.png" class="img-responsive" id="logofooter" alt="LOGO">
         <h6><i class="fas fa-copyright"></i>TraWell</h6>
       </div>
-      <div class="col-md-1">
+      <div class="col-md-1 footcol">
         <p><a href="">About Us</a></p>
         <p><a href="">Terms & Conditions</a></p>
       </div>
       <div class="col-md-1"></div>
-      <div class="col-md-1">
+      <div class="col-md-1 footcol">
         <p><i class="fab fa-facebook-square fa-lg"></i><a href=""> Facebook</a></p>
         <p><i class="fab fa-twitter fa-lg"></i><a href=""> Twitter</a></p>
         <p><i class="fab fa-instagram fa-lg"></i><a href=""> Instagram</a></p>
       </div>
       <div class="col-md-1"></div>
-      <div class="col-md-3">
+      <div class="col-md-3 Subscribe">
         <p>Subscribe to our newsletter</p>
         <form class="form-inline">
           <div id="form-inline" class="form-group mx-sm-2 mb-1">
