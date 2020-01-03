@@ -5,7 +5,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE=`ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION`;
 
 -- -----------------------------------------------------
 -- Schema trawell
@@ -15,15 +15,15 @@ DROP SCHEMA IF EXISTS `trawell` ;
 -- -----------------------------------------------------
 -- Schema trawell
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `trawell` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `trawell` DEFAULT CHARACTER SET utf8;
 USE `trawell` ;
 
 -- -----------------------------------------------------
 -- Table `trawell`.`Ad`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Ad` ;
+DROP TABLE IF EXISTS `trawell`.`ad` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Ad` (
+CREATE TABLE IF NOT EXISTS `trawell`.`ad` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idOwner` INT NOT NULL,
   `AdPaymentMethod` VARCHAR(60) NOT NULL,
@@ -43,22 +43,22 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`BanData`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`BanData` ;
+DROP TABLE IF EXISTS `trawell`.`ban_data` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`BanData` (
+CREATE TABLE IF NOT EXISTS `trawell`.`ban_data` (
   `id` INT NOT NULL UNIQUE AUTO_INCREMENT,
-  `idAdmin` INT NOT NULL,
-  `idUser` INT NOT NULL,
-  `banUntil` DATETIME NOT NULL,
-  `Motivation` VARCHAR(450) NOT NULL,
+  `id_admin` INT NOT NULL,
+  `id_user` INT NOT NULL,
+  `ban_until` DATETIME NOT NULL,
+  `motivation` VARCHAR(450) NOT NULL,
     PRIMARY KEY (`id`),
    
-    FOREIGN KEY (`idUser`)
-    REFERENCES `trawell`.`User` (`id`)
+    FOREIGN KEY (`id_user`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-    FOREIGN KEY (`idAdmin`)
-    REFERENCES `trawell`.`User` (`id`)
+    FOREIGN KEY (`id_admin`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -110,9 +110,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Chat`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Chat` ;
+DROP TABLE IF EXISTS `trawell`.`chat` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Chat` (
+CREATE TABLE IF NOT EXISTS `trawell`.`chat` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idSender` INT NOT NULL,
   `idReciver` INT NOT NULL,
@@ -141,17 +141,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Complaint`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Complaint` ;
+DROP TABLE IF EXISTS `trawell`.`complaint` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Complaint` (
+CREATE TABLE IF NOT EXISTS `trawell`.`complaint` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idUser` INT NOT NULL,
-  `ComplaintDescription` VARCHAR(500) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `email_idx` (`idUser` ASC),
-  
-    FOREIGN KEY (`idUser`)
-    REFERENCES `trawell`.`User` (`id`)
+  `id_user` INT NOT NULL,
+  `complaint_object` VARCHAR(45) NOT NULL,
+  `complaint_description` TEXT NOT NULL,
+  `complaint_mail` VARCHAR (254) NOT NULL,
+  `id_answerer` INT,
+  `complaint_answered` TINYINT NOT NULL DEFAULT 0,
+  `complaint_answere` TEXT, 
+  PRIMARY KEY (`id`),  
+    FOREIGN KEY (`id_user`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -181,9 +184,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Document`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Document` ;
+DROP TABLE IF EXISTS `trawell`.`document` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Document` (
+CREATE TABLE IF NOT EXISTS `trawell`.`document` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idWallet` INT NOT NULL,
   `DocumentName` VARCHAR(50) NOT NULL,
@@ -205,9 +208,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Group`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Group` ;
+DROP TABLE IF EXISTS `trawell`.`group` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Group` (
+CREATE TABLE IF NOT EXISTS `trawell`.`group` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `GroupName` VARCHAR(50) NOT NULL,
   `GroupDescription` VARCHAR(500) NULL,
@@ -235,9 +238,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`GroupMember`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`GroupMember` ;
+DROP TABLE IF EXISTS `trawell`.`groupMember` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`GroupMember` (
+CREATE TABLE IF NOT EXISTS `trawell`.`groupMember` (
   `idUser` INT NOT NULL,
   `idGroup` INT NOT NULL,
   `isOwner` TINYINT NOT NULL DEFAULT 0,
@@ -277,9 +280,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Message`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Message` ;
+DROP TABLE IF EXISTS `trawell`.`message` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Message` (
+CREATE TABLE IF NOT EXISTS `trawell`.`message` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Message` VARCHAR(450) NOT NULL,
   `idPhoto` INT NOT NULL,
@@ -299,9 +302,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Photo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Photo` ;
+DROP TABLE IF EXISTS `trawell`.`photo` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Photo` (
+CREATE TABLE IF NOT EXISTS `trawell`.`photo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idOwner` INT NOT NULL,
   `PhotoName` VARCHAR(100) NOT NULL,
@@ -321,26 +324,23 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Post`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Post` ;
+DROP TABLE IF EXISTS `trawell`.`post` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Post` (
+CREATE TABLE IF NOT EXISTS `trawell`.`post` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idOwner` INT NOT NULL,
-  `idGroup` INT NOT NULL,
-  `idPhoto` INT NULL,
-  `PostDescription` VARCHAR(500) NOT NULL,
+  `id_owner` INT NOT NULL,
+  `id_group` INT NOT NULL,
+  `id_photo` INT NULL,
+  `post_description` VARCHAR(500) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `idPost_UNIQUE` (`id` ASC),
-  INDEX `idUser_idx` (`idOwner` ASC),
-  INDEX `idGroup_idx` (`idGroup` ASC),
   
-    FOREIGN KEY (`idOwner`)
-    REFERENCES `trawell`.`User` (`id`)
+    FOREIGN KEY (`id_owner`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
  
-    FOREIGN KEY (`idGroup`)
-    REFERENCES `trawell`.`Group` (`id`)
+    FOREIGN KEY (`id_group`)
+    REFERENCES `trawell`.`group` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -349,29 +349,27 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`user` ;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(254) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `surname` varchar(45) NOT NULL,
+  `birth` datetime NOT NULL,
+  `banned` tinyint(4) NOT NULL DEFAULT '0',
+  `bio` varchar(5000) DEFAULT NULL,
+  `profile_photo` int(11) DEFAULT '0',
+  `phone` varchar(20) DEFAULT NULL,
+  `is_admin` tinyint(4) DEFAULT '0',
+  `is_banned` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`,`mail`,`username`),
+  UNIQUE KEY `idUser_UNIQUE` (`id`),
+  UNIQUE KEY `mail_UNIQUE` (`mail`),
+  UNIQUE KEY `userName_UNIQUE` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `mail` VARCHAR(254) NOT NULL,
-  `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `surname` VARCHAR(45) NOT NULL,
-  `birth` DATETIME NOT NULL,
-  `banned` TINYINT NOT NULL DEFAULT 0,
-  `bio` VARCHAR(5000) default null,
-  `profile_photo` INT DEFAULT 0,
-  `phone` VARCHAR(20) default null,
-  `is_admin` TINYINT DEFAULT 0,
-  `is_banned` TINYINT DEFAULT 0,
-  PRIMARY KEY (`id`, `mail`, `userName`),
-  UNIQUE INDEX `idUser_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `mail_UNIQUE` (`mail` ASC),
-  UNIQUE INDEX `userName_UNIQUE` (`userName` ASC))
-ENGINE = InnoDB;
-
-
+INSERT INTO user VALUES (1,'umbertorussomando@gmail.com','admin','09F43236BB5E2B75230E705C39EDBB71','Umberto','Russomando','1997-11-09 00:00:00',0,NULL,0,'3347877736',1,0);
 -- -----------------------------------------------------
 -- Table `trawell`.`AgencyData`
 -- -----------------------------------------------------
@@ -393,9 +391,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`Wallet`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`Wallet` ;
+DROP TABLE IF EXISTS `trawell`.`wallet` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`Wallet` (
+CREATE TABLE IF NOT EXISTS `trawell`.`wallet` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idOwner` INT NOT NULL,
   `idGroup` INT NOT NULL,

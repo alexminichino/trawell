@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Transient;
@@ -80,6 +82,9 @@ public class User {
     public void setUserCreatedAdList(List<Carsharing> userCreatedAddList) {
         this.userCreatedAdList = userCreatedAddList;
     }
+
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
+    private List<Complaint> userAdds;
 
     public java.sql.Date getBirth() {
         return this.birth;
@@ -215,4 +220,41 @@ public class User {
             return false;
         return true;
     }
+    
+    public User(Long id, String mail, String username, String password, String name, String surname, java.sql.Date birth, boolean banned, String bio, int profilePhoto, String phone, boolean isAdmin, boolean isBanned, String transientVar) {
+        this.id = id;
+        this.mail = mail;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.birth = birth;
+        this.banned = banned;
+        this.bio = bio;
+        this.profilePhoto = profilePhoto;
+        this.phone = phone;
+        this.isAdmin = isAdmin;
+        this.isBanned = isBanned;
+        this.transientVar = transientVar;
+    }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", mail='" + getMail() + "'" +
+            ", username='" + getUsername() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", name='" + getName() + "'" +
+            ", surname='" + getSurname() + "'" +
+            ", birth='" + getBirth() + "'" +
+            ", bio='" + getBio() + "'" +
+            ", profilePhoto='" + getProfilePhoto() + "'" +
+            ", phone='" + getPhone() + "'" +
+            ", isAdmin='" + isAdmin + "'" +
+            ", isBanned='" + isBanned + "'" +
+            "}";
+    }
+
 }
