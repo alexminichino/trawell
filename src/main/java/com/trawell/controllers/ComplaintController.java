@@ -35,6 +35,20 @@ public class ComplaintController {
     // GET [method = RequestMethod.GET] is a default method for any request.
     // So we do not need to mention explicitly
 
+    /**
+ * This method allows a user (non-admin) to view the page to create a complaint and to send it to the admins
+ * @author Paolo Fasano
+ */
+    @GetMapping("/userViewComplaint")
+    public String viewUserComplaint() {       
+        return "pages/complaint/userComplaint";
+    }
+
+    @GetMapping("/test")
+    public String test() {       
+        return "pages/admin/admincheckout.html";
+    }
+
 /**
  * This method allows a user (non-admin) to create a complaint and to send it to the admins
  * @author Paolo Fasano
@@ -51,8 +65,12 @@ public class ComplaintController {
 
     }
 
+
 /**
- * This method allows a admin to view a complaint 
+ * if the user is not an admin it allows to
+ * to view the page to create a complaint and to send it to the admins
+ * else if is an admin
+ * This method allows to view a complaint and answere it
  * @author Paolo Fasano
  * @param complaints
  * @param allComplaint
@@ -63,6 +81,13 @@ public class ComplaintController {
 
     @GetMapping("/viewComplaint")
     public String viewComplaint(HttpSession session, Model model) {
+
+        /**User user = (User) session.getAttribute("user");
+        if(!(user.getIsAdmin()))
+        {
+            return "pages/complaint/userComplaint";
+        } */
+        
         int i = 0;
         ArrayList<Complaint> allComplaints = (ArrayList<Complaint>) dao.findAll();
         ArrayList<Complaint> complaints = new ArrayList<Complaint>();
