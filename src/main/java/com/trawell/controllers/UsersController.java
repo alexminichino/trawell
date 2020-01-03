@@ -76,7 +76,8 @@ public class UsersController {
 	 * @param password user's password of the account he's trying to log in
 	 * @param session
 	 * @param model
-	 * @return sends user to its home page
+	 * @return sends user to its home page if user credetials are correct. If user is banned are credetials are wrong
+	 * user is sent back to login page.
 	 */
 	@PostMapping("/login") 
 	public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
@@ -84,11 +85,12 @@ public class UsersController {
 		if (isLogged(session)) return "pages/user/home"; 
 
 		User user = dao.findByUsername(username);
-		if (user.getIsBanned()) return "pages/user/login";
 		password = new Encoder(username).encoding(password, username.length());
 
 		if (user == null) {
 			model.addAttribute("notexist", true);
+			return "pages/user/login";
+		} else if (user.getIsBanned()) {
 			return "pages/user/login";
 		} else if (!password.equals(user.getPassword())) {
 			model.addAttribute("passmiss", true);

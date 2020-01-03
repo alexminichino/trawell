@@ -8,13 +8,11 @@ import java.util.Set;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Transient;
 
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;

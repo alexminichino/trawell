@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 import com.trawell.models.Carsharing;
 import com.trawell.models.User;
 import com.trawell.services.CarsharingService;
-import com.trawell.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

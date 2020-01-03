@@ -2,12 +2,8 @@ package com.trawell.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
-
-import com.trawell.models.Destination;
 import com.trawell.models.Itinerary;
-import com.trawell.repositories.JPADestinationRepository;
 import com.trawell.repositories.JPAItineraryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
