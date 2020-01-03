@@ -11,7 +11,6 @@ import com.trawell.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 /**
  * @author Lamberti Vincenzo
  * @author Milione Vincent
@@ -54,6 +53,7 @@ public class UserService implements IUserService {
             //cannot find User with specified Id value
             return null;
         }
+        user.setList(user.getList());
         User updatedUser = userRepository.save(user);
         return updatedUser;
     }

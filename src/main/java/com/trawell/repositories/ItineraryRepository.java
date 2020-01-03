@@ -1,13 +1,12 @@
 package com.trawell.repositories;
 
-import com.trawell.models.User;
+import com.trawell.models.Itinerary;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  * @author Milione Vincent
  * repository 
  */
-public interface UserRepository extends CrudRepository<User, Long> {
-    User findByUsername(String username);
+public interface ItineraryRepository extends CrudRepository<Itinerary, Long> {
 
 }
