@@ -26,11 +26,28 @@ public class ItineraryController {
     @Autowired
     ItineraryService dao;
 
+   /**
+     * @author Milione Vincent
+     * The method handles "/itinerary/create" get request and maps it to the corresponding page.
+     * If user is not logged, unlogged user gets sent to error page
+     * @param session
+     * @return url of the page used to create an itinerary
+     */
     @GetMapping("/create")
     public String create(HttpSession session) {
         return session.getAttribute("user") == null ? "error" : "pages/itinerary/createitinerary";
     }
 
+    /**
+     * The method handles "/itinerary/change?id = {id}" get request and maps it to the corresponding page
+     * The url is invoked when user wants to change a specific itinerary that he owns.
+     * If user is not logged, unlogged user gets sent to error page
+     * @author Milione Vincent
+     * @param session
+     * @param id id of the corresponding car sharing that user wants to update
+     * @param model 
+     * @return url of the page used to modify the content of a itinerary
+     */
     @GetMapping("/modify")
     public String modify (HttpSession session, @RequestParam("id") Long id, Model model) {
         User user = (User) session.getAttribute("user");
@@ -43,6 +60,16 @@ public class ItineraryController {
         return "pages/itinerary/modifyitinerary";
     }
 
+    /**
+     * The method handles "/itinerary/view?id = {id}" get request and maps it to the corresponding page.
+     * The url is invoked when user wants to view the contents of a specific itinerary that he owns.
+     * If user is not logged, unlogged user gets sent to error page
+     * @author Milione Vincent
+     * @param session
+     * @param id id of the itinerary the user wants to view
+     * @param model
+     * @return url of the view used to view the content of a itinerary
+     */
     @GetMapping("/view")
     public String view(HttpSession session, @RequestParam("id") Long id, Model model) {
         
@@ -58,6 +85,15 @@ public class ItineraryController {
         return "pages/itinerary/viewitinerary"; 
     }
 
+    /**
+     * The method handles "/itinerary/list-view" get request and maps it to the corresponding page.
+     * The url is invoked when user wants to view a generic list of all the itinerary he owns.
+     * If user is not logged, unlogged user gets sent to error page.
+     * @author Milione Vincent
+     * @param session
+     * @param model
+     * @return url of the view used to view displaying the list
+     */
     @GetMapping("/list-view")
     public String list(HttpSession session, Model model) {
         //nella pagina html vengono outputtati tutti i nomi degli itinerari... se uno user preme
@@ -65,15 +101,15 @@ public class ItineraryController {
         User user = (User) session.getAttribute("user");
         List<Itinerary> list = user.getUserItineraries();
 
-        if (list == null ? false : list.size() > 0) {
+        if (list == null ? false : list.size() <= 0) {
             //accordati 
             model.addAttribute("isEmpty", true);
         } else {
             model.addAttribute("itineraries", user.getUserItineraries());
-            model.addAttribute("isEmpty", true);
+            model.addAttribute("isEmpty", false);
         }
 
-        return "pages/itinerary/listitinerary";
+        return "pages/itinerary/list-view";
     }
     
 }

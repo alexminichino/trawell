@@ -54,14 +54,15 @@ public class ItineraryService implements IItineraryService {
             return null;
         }
         itineraryPersisted.getDestinations().clear();
-        itinerary.getDestinations();
-        List<Destination> list;
      
         return itineraryRepository.save(itinerary);
     }
 
     @Override
     public void delete(Long id) {
+        Itinerary itinerary = findOne(id);
+        itinerary.setUser(null);
+        update(itinerary);
         itineraryRepository.deleteById(id);
     }
 

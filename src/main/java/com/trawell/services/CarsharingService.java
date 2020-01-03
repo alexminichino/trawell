@@ -57,6 +57,9 @@ public class CarsharingService implements ICarsharingService {
 
     @Override
     public void delete(Long id) {
+        Carsharing carsharingPersisted = findOne(id);
+        carsharingPersisted.setUser(null);
+        carsharingRepository.save(carsharingPersisted);
         carsharingRepository.delete(findOne(id));
     }
 

@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `trawell`.`carsharing` (
   `departure` VARCHAR(45) NOT NULL,
   `arrival` VARCHAR(45) NOT NULL,
   `carsharingspot` INT NOT NULL,
-  `id_owner` INT NOT NULL,
+  `id_owner` INT,
   FOREIGN KEY (`id_owner`)
     REFERENCES `trawell`.`user` (`id`)
     ON DELETE CASCADE
@@ -164,7 +164,7 @@ DROP TABLE IF EXISTS `trawell`.`destination` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`destination` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `id_itinerary` INT NOT NULL,
+  `id_itinerary` INT,
   `location` VARCHAR(50) NOT NULL,
   `description` VARCHAR(450) NULL,
   `date` DATETIME NOT NULL,
@@ -263,7 +263,7 @@ DROP TABLE IF EXISTS `trawell`.`itinerary` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`itinerary` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `id_owner` INT NOT NULL,
+  `id_owner` INT,
   `name` VARCHAR(50) NOT NULL,
 
   PRIMARY KEY (`id`),

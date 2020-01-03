@@ -28,7 +28,7 @@ public class Itinerary {
     @ManyToOne
     @JoinColumn(name="id_owner")
     private User user;
-    @OneToMany(orphanRemoval=true, mappedBy = "itinerary", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @OneToMany(orphanRemoval=true, mappedBy = "itinerary", fetch = FetchType.EAGER, cascade = {CascadeType.ALL, CascadeType.REMOVE})
     private List<Destination> destinations;
 
     public List<Destination> getDestinations() {

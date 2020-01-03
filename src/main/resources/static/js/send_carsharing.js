@@ -1,6 +1,6 @@
 /**
 	 * @author Alfieri Davide
-	 * the javascript allows for the modify data functionality to be dealt asynchronously via 
+	 * the javascript allows for the creation of car sharing to be dealt asynchronously via 
      * JSON.
      *  */
 

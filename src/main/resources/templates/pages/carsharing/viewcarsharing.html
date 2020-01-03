@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
-<head>
+<hecarsharing>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <title>View Itinerary</title>
-</head>
+</hecarsharing>
 <body>
   <section layout:fragment="content">
     <p>View Itinerary</p>
     <div class = "container">
         <div>
-          <p th:text=${ad.departureDate}></p>
-          <p th:text=${ad.departure}></p>
-          <p th:text=${ad.description}></p>
-          <p th:text=${ad.arrival}></p>
-          <p th:text=${ad.carsharingspot}></p>
+          <p th:text=${carsharing.departureDate}></p>
+          <p th:text=${carsharing.departure}></p>
+          <p th:text=${carsharing.description}></p>
+          <p th:text=${carsharing.arrival}></p>
+          <p th:text=${carsharing.carsharingspot}></p>
         </div>
     </div>
   </section>
