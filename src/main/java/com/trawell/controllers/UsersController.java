@@ -106,20 +106,31 @@ public class UsersController {
 	 * The method allows user to create an account
 	 * @param user all user'data on the account
 	 * @param session
+	 * @param model
 	 * @return sends user to login
 	 */
 	@PostMapping("/signUp")
-	public String signUp(@ModelAttribute User user, HttpSession session) {
+	public String signUp(@ModelAttribute User user, HttpSession session, Model model) {
 		if (isLogged(session)) 
-			return "pages/user/home"; 
-		else if (user.getPassword() == null || user.getUsername() == null) 
-			return "pages/user/error";
-		
-		//encript password
-		user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
-		dao.create(user);
+			return "pages/user/home";
 
-		return "pages/user/login";
+		boolean flagUsername = dao.doesUsernameExist(user.getUsername());
+		boolean flagEmail = dao.doesEmailExist(user.getMail());
+
+		if (!flagEmail && !flagUsername) {
+			//encript password
+			user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
+			session.setAttribute("user", dao.create(user));
+
+			return "pages/user/home";
+		} else {
+			model.addAttribute("flagUsername", flagUsername);
+			model.addAttribute("flagEmail", flagEmail);
+			model.addAttribute("hasAttempted", true);
+			model.addAttribute("user", user);
+
+			return "pages/user/sign-Up";
+		}
 	}
 
 	/**
@@ -127,20 +138,29 @@ public class UsersController {
 	 * The method allows agency to create an account
 	 * @param user all agency's data on the account
 	 * @param session
+	 * @param model
 	 * @return sends user to login
 	 */
 	@PostMapping("/signUpAgency")
-	public String signUp(@ModelAttribute Agency user, HttpSession session) {
+	public String signUp(@ModelAttribute Agency user, HttpSession session, Model model) {
 		if (isLogged(session)) 
-			return "pages/user/home"; 
-		else if (user.getPassword() == null || user.getUsername() == null) 
-			return "pages/user/error";
+			return "pages/user/home";
 
-		//encript password
-		user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
-		dao.create(user);
+		boolean flagUsername = dao.doesUsernameExist(user.getUsername());
+		boolean flagEmail = dao.doesEmailExist(user.getMail());
 
-		return "pages/user/login";
+		if (!flagEmail && !flagUsername) {
+			//encript password
+			user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
+			session.setAttribute("user", dao.create(user));
+
+			return "pages/user/home";
+		} else {
+			model.addAttribute("flagUsername", flagUsername);
+			model.addAttribute("flagEmail", flagEmail);
+
+			return "pages/user/sign-Up";
+		}
 	}
 	
 	/**
@@ -151,7 +171,7 @@ public class UsersController {
 	 * @param model
 	 * @return sends user to the modify HTML page if user is logged, otherwise user is sent to login
 	 */
-	@GetMapping("/changeData.html")
+	@GetMapping("/change-user-data")
 	public String changeData (HttpSession session, Model model) {
 		if (!isLogged(session))
 			return "pages/user/login";

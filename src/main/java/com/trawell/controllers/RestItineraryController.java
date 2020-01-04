@@ -1,5 +1,8 @@
 package com.trawell.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+
 import javax.servlet.http.HttpSession;
 import com.trawell.models.Itinerary;
 import com.trawell.models.User;
@@ -48,7 +51,7 @@ public class RestItineraryController {
             itinerary.getDestinations().parallelStream().forEach(d -> {d.setItinerary(itinerary);});
             createdItinerary = dao.create(itinerary);
         }
-
+     
         return createdItinerary == null ? new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<Itinerary>(createdItinerary, HttpStatus.OK);
     }
     

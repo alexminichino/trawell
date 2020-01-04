@@ -272,7 +272,7 @@ CREATE TABLE IF NOT EXISTS `trawell`.`itinerary` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_owner`)
   REFERENCES `trawell`.`user` (`id`)
-    ON DELETE CASCADE
+    ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -345,7 +345,7 @@ CREATE TABLE IF NOT EXISTS `trawell`.`post` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+DROP TABLE IF EXISTS `trawell`.`user`;
 -- -----------------------------------------------------
 -- Table `trawell`.`User`
 -- -----------------------------------------------------
@@ -363,7 +363,6 @@ CREATE TABLE `user` (
   `phone` varchar(20) DEFAULT NULL,
   `is_admin` tinyint(4) DEFAULT '0',
   `is_banned` tinyint(4) DEFAULT '0',
-  PRIMARY KEY (`id`,`mail`,`username`),
   UNIQUE KEY `idUser_UNIQUE` (`id`),
   UNIQUE KEY `mail_UNIQUE` (`mail`),
   UNIQUE KEY `userName_UNIQUE` (`username`)

@@ -39,7 +39,7 @@
         });
 
        $.ajax({
-           dataType: "json",
+           dataType: "text",
            url:"/api/itinerary/add",
            headers:{
             'Accept' : 'application/json',

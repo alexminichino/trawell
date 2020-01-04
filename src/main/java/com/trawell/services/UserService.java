@@ -66,5 +66,15 @@ public class UserService implements IUserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
-    }    
+    }
+
+    @Override
+	public boolean doesUsernameExist(String username) {
+        return userRepository.findByUsername(username) != null;
+	}
+
+    @Override
+	public boolean doesEmailExist(String email) {
+		return userRepository.findByMail(email) != null;
+	}    
 }

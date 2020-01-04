@@ -42,7 +42,7 @@
 
         console.log(da);
        $.ajax({
-           dataType: "json",
+           dataType: "text",
            url:"/api/itinerary/modify",
            headers:{
             'Accept' : 'application/json',

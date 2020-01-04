@@ -52,4 +52,18 @@ public interface IUserService {
      * @param id id of the user stored in the persistance layer
      */
     void delete(Long id);
+
+    /**
+     * 
+     * @param username
+     * @return
+     */
+    public boolean doesUsernameExist(String username);
+
+    /**
+     * 
+     * @param email
+     * @return
+     */
+    public boolean doesEmailExist(String email);
 }

@@ -1,11 +1,11 @@
 package com.trawell.controllers;
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import com.trawell.models.Itinerary;
 import com.trawell.models.User;
+import com.trawell.repositories.JPAItineraryRepository;
 import com.trawell.services.ItineraryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,8 @@ public class ItineraryController {
     @Autowired
     ItineraryService dao;
 
+    @Autowired
+    JPAItineraryRepository repo;
    /**
      * @author Milione Vincent
      * The method handles "/itinerary/create" get request and maps it to the corresponding page.
