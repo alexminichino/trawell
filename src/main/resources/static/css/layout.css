@@ -40,6 +40,9 @@ footer .col-md-3{
     padding-left: 0%;
     padding-right: 0%;
 }
+.Subscribe p{
+    color: white;
+}
 
 .navbar navbar-expand-lg navbar-dark bg-primary rounded{
     background-color: #03a1fc;
@@ -61,11 +64,6 @@ footer .col-md-3{
     margin-right: 2%;
 }
 
-
-a.col-md-1, p.col-md-1{
-    color: white;
-}
-
 #btnfooter{
     background-color: white;
     border-color: white;
@@ -75,4 +73,16 @@ a.col-md-1, p.col-md-1{
 #form-inline{
     margin-left: 0%;
     margin-right: 0%;
+}
+
+.footcol a{
+    color: white;
+}
+
+.footcol p{
+    color: white;
+}
+
+.navbar{
+    background-color: #03a1fc;
 }

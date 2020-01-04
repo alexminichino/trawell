@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Homecontroller: andranno mappate tutte le funzionalità relative ad i controller
- * 
+ * @author Umberto Russomando
  */
 
 @Controller
