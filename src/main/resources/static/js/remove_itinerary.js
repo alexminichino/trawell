@@ -10,7 +10,7 @@ $(document).ready(function(){
 
         alert("are you sure you want to eliminate this itinerary?")
         $.ajax({
-            dataType: "json",
+            dataType: "text",
             url:url,
             headers:{
              'Accept' : 'application/json',

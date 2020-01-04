@@ -7,7 +7,6 @@
 </head>
 <body>
   <section layout:fragment="content">
-    <p>Create Itinerary</p>
     <table>
         <tr th:each = "itinerary : ${itineraries}">
             <td th:text="${itinerary.name}"></td>

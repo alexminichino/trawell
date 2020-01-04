@@ -42,7 +42,7 @@
             var da = $("#target").serializeFormJSON();
             console.log(da);
             $.ajax({
-                dataType: "json",
+                dataType: "text",
                 url:"/api/carsharing/modify",
                 headers:{
                  'Accept' : 'application/json',

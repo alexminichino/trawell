@@ -10,7 +10,7 @@
 
         alert("are you sure you want to eliminate this carsharing ad?")
         $.ajax({
-            dataType: "json",
+            dataType: "text",
             url:url,
             headers:{
              'Accept' : 'application/json',
