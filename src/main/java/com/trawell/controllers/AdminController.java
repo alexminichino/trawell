@@ -1,6 +1,8 @@
 package com.trawell.controllers;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
@@ -64,6 +66,7 @@ public class AdminController {
         User adminUser = (User) session.getAttribute("user");
         
         User user = userDao.findByUsername(username);
+        System.out.println("\n\n" + user + "\n\n");
         if (user.getBanned()){
             bannedUntil = Date.valueOf("2050-01-01");
         }
@@ -81,10 +84,10 @@ public class AdminController {
         }
 
         return "pages/admin/banusers";
-        
 
         
-        
-	}
+    }
+    
+    
 
 }
