@@ -55,5 +55,14 @@ public class PostService implements IPostService {
     public void delete(Long id) {
         postRepository.delete(findOne(id));
     }
+    
+    
+    @Override
+    public Collection<Post> findByIdGroupIsNull()
+    {
+        return postRepository.findByIdGroupIsNull();
+    }
+    
 
+    
 }

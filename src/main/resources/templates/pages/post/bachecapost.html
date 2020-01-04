@@ -2,6 +2,8 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
+  <script src="../js/removePost.js"></script>
+  <script src="../js/reportPost.js"></script>
   <title>TraWell</title>
 </head>
 <body>
@@ -9,15 +11,14 @@
     <!-- This container wraps up everything in the page -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm">
-              One of three columns
+          <div class="col-sm posts">
+            <div th:each="post : ${posts}" class = "post">
+              <p th:text = '${post.user.name +" " +post.user.surname}'></p>
+              <p th:text = ${post.postDescription}></p>
+              <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
+              <button th:id = ${post.id} class="btn btn-primary report">Segnala Post</button>
             </div>
-            <div class="col-sm">
-              One of three columns
-            </div>
-            <div class="col-sm">
-              One of three columns
-            </div>
+          </div>
         </div>   
     </div>
   </section>

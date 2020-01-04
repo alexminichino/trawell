@@ -1,8 +1,12 @@
 package com.trawell.models;
 
+import com.trawell.models.User;
+
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 
 @Entity
@@ -17,12 +21,15 @@ public class Post
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long idOwner;
     private Long idGroup;
-    private Long idPhoto;
+    //private Long idPhoto;
     private String postDescription;
 
+    
+    @ManyToOne
+    @JoinColumn(name="id_owner")
+    private User user;
+    
     public Post() 
     {
         super();
@@ -31,9 +38,8 @@ public class Post
     public Post(Long id, Long idOwner, Long idGroup, Long idPhoto, String postDescription) 
     {
         this.id = id;
-        this.idOwner = idOwner;
-        this.idGroup = idGroup;
-        this.idPhoto = idPhoto;
+        //this.idGroup = idGroup;
+        //this.idPhoto = idPhoto;
         this.postDescription = postDescription;
     }
 
@@ -47,17 +53,7 @@ public class Post
         this.id = id;
     }
 
-
-    public Long getIdOwner() 
-    {
-        return this.idOwner;
-    }
-
-    public void setIdOwner(Long idOwner) 
-    {
-        this.idOwner = idOwner;
-    }
-
+    
     public Long getIdGroup() 
     {
         return this.idGroup;
@@ -67,7 +63,7 @@ public class Post
     {
         this.idGroup = idGroup;
     }
-
+    /*
     public Long getIdPhoto() 
     {
         return this.idPhoto;
@@ -77,7 +73,7 @@ public class Post
     {
         this.idPhoto = idPhoto;
     }
-
+    */
     public String getPostDescription() 
     {
         return this.postDescription;
@@ -88,16 +84,28 @@ public class Post
         this.postDescription = postDescription;
     }
 
-    
+    /*
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", idOwner='" + getIdOwner() + "'" +
             ", idGroup='" + getIdGroup() + "'" +
             ", idPhoto='" + getIdPhoto() + "'" +
             ", postDescription='" + getPostDescription() + "'" +
             "}";
     }
+    */
+    
+    
+    public User getUser()
+    {
+        return this.user;
+    }
 
+
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+    
 }

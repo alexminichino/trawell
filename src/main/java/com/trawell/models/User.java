@@ -37,8 +37,14 @@ public class User {
     private boolean isAdmin;
     private boolean isBanned;
 
+    
+   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Post> posts; 
+    
+    
+    /*
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
-    private List<Complaint> userAdds;
+    private List<Complaint> userAdds; */
 
     public java.sql.Date getBirth() {
         return this.birth;

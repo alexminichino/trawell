@@ -52,7 +52,7 @@ public class ComplaintController {
     }
 
 /**
- * This method allows a admin to view a complaint 
+ * This method allows an admin to view a complaint 
  * @author Paolo Fasano
  * @param complaints
  * @param allComplaint
@@ -96,7 +96,7 @@ public class ComplaintController {
     }
 
     /**
- * This method allows a admin to view the next complaint 
+ * This method allows an admin to view the next complaint 
  * @author Paolo Fasano
  * @param complaints
  * @param l
@@ -121,7 +121,7 @@ public class ComplaintController {
     }
 
        /**
- * This method allows a admin to view the previeus complaint 
+ * This method allows an admin to view the previeus complaint 
  * @author Paolo Fasano
  * @param complaints
  * @param l
@@ -145,7 +145,7 @@ public class ComplaintController {
     }
 
        /**
- * This method allows a admin to answere the complaint 
+ * This method allows an admin to answere the complaint 
  * @author Paolo Fasano
  * @param complaints
  * @param c

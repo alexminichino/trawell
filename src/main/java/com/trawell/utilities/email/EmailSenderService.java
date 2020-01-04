@@ -59,4 +59,17 @@ public class EmailSenderService {
         emailService.send(email);
     }
 
+    public void sendReportEmail(String text, String object, String emailFrom, String name) throws UnsupportedEncodingException {
+        final Email email = DefaultEmail.builder()
+                .from(new InternetAddress(emailFrom,
+                name))
+                .to(newArrayList(
+                        new InternetAddress("TraWell.customerservice@gmail.com","TraWell")))
+                .subject(object)
+                .body(text)
+                .encoding("UTF-8").build();
+
+        emailService.send(email);
+    }
+
 }

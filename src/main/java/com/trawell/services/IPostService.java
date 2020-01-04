@@ -1,6 +1,7 @@
 package com.trawell.services;
 
 import java.util.Collection;
+import java.util.List;
 
 import com.trawell.models.Post;
 
@@ -15,5 +16,5 @@ public interface IPostService {
     Post create(Post User);
     Post update(Post User);
     void delete(Long id);
-    
+    Collection<Post> findByIdGroupIsNull();
 }
