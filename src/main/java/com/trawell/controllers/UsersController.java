@@ -3,7 +3,7 @@ package com.trawell.controllers;
 import javax.servlet.http.HttpSession;
 
 import com.trawell.models.Agency;
-import com.trawell.models.Encoder;
+import com.trawell.utilities.Encoder;
 import com.trawell.models.User;
 import com.trawell.services.UserService;
 
@@ -41,7 +41,7 @@ public class UsersController {
 	 * @param session
 	 * @return if the user isn't already logged in return the URL of the login page or else send him to home page 
 	 */
-	@GetMapping("/login.html")
+	@GetMapping("/login-page")
 	public String loginPage (HttpSession session) {
 		return isLogged(session) ? "pages/user/home" : "pages/user/login";
 	}
@@ -64,7 +64,7 @@ public class UsersController {
 	 * @param session
 	 * @return URL of the sign-up page if the user isn't already logged in
 	 */
-	@GetMapping("/sign-up.html")
+	@GetMapping("/sign-up-page")
 	public String signUpPage (HttpSession session) {
 		return isLogged(session) ? "pages/user/home" : "pages/user/sign-Up";
 	}
@@ -76,7 +76,8 @@ public class UsersController {
 	 * @param password user's password of the account he's trying to log in
 	 * @param session
 	 * @param model
-	 * @return sends user to its home page
+	 * @return sends user to its home page if user credetials are correct. If user is banned are credetials are wrong
+	 * user is sent back to login page.
 	 */
 	@PostMapping("/login") 
 	public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
@@ -84,11 +85,12 @@ public class UsersController {
 		if (isLogged(session)) return "pages/user/home"; 
 
 		User user = dao.findByUsername(username);
-		if (user.getIsBanned()) return "pages/user/login";
 		password = new Encoder(username).encoding(password, username.length());
 
 		if (user == null) {
 			model.addAttribute("notexist", true);
+			return "pages/user/login";
+		} else if (user.getIsBanned()) {
 			return "pages/user/login";
 		} else if (!password.equals(user.getPassword())) {
 			model.addAttribute("passmiss", true);
@@ -104,20 +106,31 @@ public class UsersController {
 	 * The method allows user to create an account
 	 * @param user all user'data on the account
 	 * @param session
+	 * @param model
 	 * @return sends user to login
 	 */
 	@PostMapping("/signUp")
-	public String signUp(@ModelAttribute User user, HttpSession session) {
+	public String signUp(@ModelAttribute User user, HttpSession session, Model model) {
 		if (isLogged(session)) 
-			return "pages/user/home"; 
-		else if (user.getPassword() == null || user.getUsername() == null) 
-			return "pages/user/error";
-		
-		//encript password
-		user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
-		dao.create(user);
+			return "pages/user/home";
 
-		return "pages/user/login";
+		boolean flagUsername = dao.doesUsernameExist(user.getUsername());
+		boolean flagEmail = dao.doesEmailExist(user.getMail());
+
+		if (!flagEmail && !flagUsername) {
+			//encript password
+			user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
+			session.setAttribute("user", dao.create(user));
+
+			return "pages/user/home";
+		} else {
+			model.addAttribute("flagUsername", flagUsername);
+			model.addAttribute("flagEmail", flagEmail);
+			model.addAttribute("hasAttempted", true);
+			model.addAttribute("user", user);
+
+			return "pages/user/sign-Up";
+		}
 	}
 
 	/**
@@ -125,20 +138,29 @@ public class UsersController {
 	 * The method allows agency to create an account
 	 * @param user all agency's data on the account
 	 * @param session
+	 * @param model
 	 * @return sends user to login
 	 */
 	@PostMapping("/signUpAgency")
-	public String signUp(@ModelAttribute Agency user, HttpSession session) {
+	public String signUp(@ModelAttribute Agency user, HttpSession session, Model model) {
 		if (isLogged(session)) 
-			return "pages/user/home"; 
-		else if (user.getPassword() == null || user.getUsername() == null) 
-			return "pages/user/error";
+			return "pages/user/home";
 
-		//encript password
-		user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
-		dao.create(user);
+		boolean flagUsername = dao.doesUsernameExist(user.getUsername());
+		boolean flagEmail = dao.doesEmailExist(user.getMail());
 
-		return "pages/user/login";
+		if (!flagEmail && !flagUsername) {
+			//encript password
+			user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
+			session.setAttribute("user", dao.create(user));
+
+			return "pages/user/home";
+		} else {
+			model.addAttribute("flagUsername", flagUsername);
+			model.addAttribute("flagEmail", flagEmail);
+
+			return "pages/user/sign-Up";
+		}
 	}
 	
 	/**
@@ -149,7 +171,7 @@ public class UsersController {
 	 * @param model
 	 * @return sends user to the modify HTML page if user is logged, otherwise user is sent to login
 	 */
-	@GetMapping("/changeData.html")
+	@GetMapping("/change-user-data")
 	public String changeData (HttpSession session, Model model) {
 		if (!isLogged(session))
 			return "pages/user/login";

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Change User Data</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <!--<script src = "../js/validation_itinerary.js"></script>-->
+  <script src = "../js/modify_itinerary.js"></script>
+</head>
+<body>
+  <section layout:fragment="content">
+    <h2 style="color : black; text-align: center">Change Data</h2>
+    <form action = "" method = "POST" id = "target">
+        <div class = "container">
+          <div>
+            <input type = "hidden" name = "idItinerary" th:value="${itinerary.id}" /><br>
+            Name:<input th:value = "${itinerary.name}" type = 'text' name = "name" id="name"><br>
+            <div class = "destinations">
+              <div th:each="destination: ${itinerary.destinations}" class = "destination">
+                <button th:if = ${destinationStat.first} style="background-color:green;" class="add">Aggiungi una destinazione</button>
+                <input type = "hidden" name = "idDestination" th:value="${destination.id}" /><br>
+                <input type = "text" name = "location" placeholder= "location" th:value="${destination.location}" /><br>
+                <input type = "datetime-local" name = "date" th:value="${destination.date}" /><br>
+                <textarea th:text="${destination.description}"></textarea>
+                <button th:if = !${destinationStat.first} style="background-color:red;" class="remove">Rimuovi la destinazione</button>
+              </div>
+            </div>
+            <input type = "submit" id = "clickme" value = "Modifica">
+          </div>
+        </div>
+    </form>
+    
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
+  </footer> 
+</body>
+</html>
