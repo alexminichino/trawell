@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head> 
+
+<head>
   <link rel="stylesheet" href="../css/layout.css">
   <title>Layout page</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
 </head>
+
 <body>
-  
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <img src="../image/logo.png" id="logo" class="img-responsive" alt="LOGO">
       </li>
     </ul>
-    
+
     <ul class="navbar-nav ml-auto">
       <li class="nav-item personale"><a href="#"><span class="fas fa-search"></span>Search</a></li>
-      <li class="nav-item personale" ><a href="#"><span class="fas fa-car"></span>Find ride</a></li>
-      <li class="nav-item personale" ><a href="#"><span class="fas fa-suitcase-rolling"></span>Share your experience</a></li>
-      <li class="nav-item personale" ><a href="/users/sign-up.html"><span class="far fa-user"></span>Sign Up</a></li>
-      <li class="nav-item personale" ><a href="/users/login.html"><span class="fas fa-sign-in-alt"></span>Log in</a></li>
-        
+      <li class="nav-item personale"><a href="#"><span class="fas fa-car"></span>Find ride</a></li>
+      <li class="nav-item personale"><a href="#"><span class="fas fa-suitcase-rolling"></span>Share your experience</a>
+      </li>
+      <li class="nav-item personale"><a href="/users/sign-up.html"><span class="far fa-user"></span>Sign Up</a></li>
+      <li class="nav-item personale"><a href="/users/login.html"><span class="fas fa-sign-in-alt"></span>Log in</a></li>
+
     </ul>
   </nav>
-  
+
   <section layout:fragment="content">
     <div class="container">
       <p>Le pagine andranno qui</p>
@@ -54,19 +60,23 @@
         <p>Subscribe to our newsletter</p>
         <form class="form-inline">
           <div id="form-inline" class="form-group mx-sm-2 mb-1">
-          <input type="text" class="form-control" id="email" placeholder="Email Address">
+            <input type="text" class="form-control" id="email" placeholder="Email Address">
           </div>
           <button type="submit" id="btnfooter" class="btn btn-primary mb-1">OK</button>
         </form>
       </div>
-      
+
       <div class="col-md-2" id="Address">
-        497 Evergreen Rd. Roseville, CA 95673<br>
-        +44 345 678903<br>
+        Are you having any troubles with TraWell<br>
+        <form method="POST" action="/Complaint/viewComplaint">
+        please <input name="complint" type="submit" value="Submit Complaint" onclick="" class="btn btn-primary">
+      </form>
+        <br> do you what to contact us directly: <br>
         <a href="">TraWell@outlook.it</a>
       </div>
     </div>
   </footer>
 
 </body>
+
 </html>
