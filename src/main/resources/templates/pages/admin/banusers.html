@@ -1,27 +1,58 @@
 <!--- @author MarioPaone --->
 
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
 <head>
   <title>Login</title>
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-  <script src = "../js/login.js"></script>
+  <link rel="stylesheet" href="../css/complaint.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src="../js/login.js"></script>
 </head>
-<body>
+
+<body style="background-color:rgb(229, 229, 229)">
   <section layout:fragment="content">
-    <p>Ban Utente</p>
-    <div class = "container">
-      <div>
-        <form action = "/admin/banuser" method = "POST" id = "banning">
-            Username utente: <input type = 'text' name = "username" placeholder = "username..."><br>
-            Motivazione : <textarea name="motivation" rows="10" cols="30">Inserire qui motivazioni del ban..</textarea> <br>
-            Data fine ban: <input type = "date" name = "bannedUntil">
-            <input type = "submit">
-        </form>
+    <img src="../image/3.jpg" id="picInit" class="img-responsive" alt="I Swear this is a beautiful image">
+    <div class="container h-100">
+
+      <div class="row">
+        <div class="col-1"></div>
+        <p>Ban Utente</p>
       </div>
+
+      <div class="row">
+        <form action="/admin/banuser" method="POST" id="banning">
+          Username utente: <input type='text' name="username" placeholder="Username" class="form-control"><br>
+      </div>
+      <div class="row">
+        Motivazione : <textarea name="motivation" rows="10" cols="30"
+          class="form-control">Inserire qui motivazioni del ban..</textarea> <br>
+      </div>
+      <div class="row">
+        Data fine ban: <input type="date" name="bannedUntil" class="form-control">
+      </div>
+
+      <div class="row"></div>
+
+      <div class="row">
+        <div class="col-11"></div>
+        <input type="submit" class="btn btn-primary">
+      </div>
+      </form>
+
+    </div>
+
+
     </div>
   </section>
 
 </body>
+
 </html>

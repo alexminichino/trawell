@@ -18,18 +18,30 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <img src="../image/logo.png" id="logo" class="img-responsive" alt="LOGO">
+        <img src="../image/logo.png" id="logo" href="/" class="img-responsive" alt="LOGO">
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item personale"><a href="#"><span class="fas fa-search"></span>Search</a></li>
-      <li class="nav-item personale"><a href="#"><span class="fas fa-car"></span>Find ride</a></li>
-      <li class="nav-item personale"><a href="#"><span class="fas fa-suitcase-rolling"></span>Share your experience</a>
+      <li class="nav-item personale" ><a href="#"><span class="fas fa-car"></span>Find ride</a></li>
+      <li class="nav-item personale" ><a href="#"><span class="fas fa-suitcase-rolling"></span>Share your experience</a></li>
+      <li th:if ="not ${session.user}" class="nav-item personale" ><a href="/users/sign-up-page"><span class="far fa-user"></span>Sign Up</a></li>
+      <li th:if ="not ${session.user}" class="nav-item personale" ><a href="/users/login-page"><span class="fas fa-sign-in-alt"></span>Log in</a></li>
+      <li th:if = "${session.user}" class = "nav-item personale"><a href="/users/logout"><span class = "fas fa-sign-out-alt"></span>Log out</a></li>
+      <li th:if ="${session.user}" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/users/change-user-data">Update Credentials</a>
+          <div th:if= "not ${session.user.isAdmin}" class="dropdown-divider"></div>
+          <a th:if= "${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/admin/banusers">Ban a User</a>
+          <a th:if= "${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/Complaint/viewComplaint">List of Complaints</a>
+          <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/itinerary/list-view">My Itineraries</a>
+          <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/carsharing/list-view">My Carsharing Ads</a>
+        </div>
       </li>
-      <li class="nav-item personale"><a href="/users/sign-up.html"><span class="far fa-user"></span>Sign Up</a></li>
-      <li class="nav-item personale"><a href="/users/login.html"><span class="fas fa-sign-in-alt"></span>Log in</a></li>
-
     </ul>
   </nav>
 

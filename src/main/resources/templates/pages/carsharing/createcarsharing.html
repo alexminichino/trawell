@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>CarSharing Ad</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <!--<script src = "../js/validation_carsharing.js"></script>-->
+  <script src = "../js/send_carsharing.js"></script>
+</head>
+<body>
+  <!--se stai cercando di mandare dati costruisci una form normale... continua in metodo signUp-->
+  <section layout:fragment="content">
+    <p>CarSharing Ad</p>
+    
+    <form action = "#" id = "target">
+         <div class = "container"> 
+          <div>
+              data e ora: <input type = "datetime-local" name = "departureDate" id = "departureDate"><br>
+              departure:<input type = "text" name = "departure" id = "departure"> <br>
+              description: <textarea name = "description" id = "description"></textarea><br>
+              arrival: <input type = 'text' name = "arrival" id = "arrival"><br>
+              carsharingspot: <input type = 'number' name = "carsharingspot" id = "carsharingspot" min="1"><br>
+              <input type = "submit" value="Public">
+            </div>
+        </div>
+    </form>
+
+  </section>
+  <footer>
+    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
+  </footer> 
+</body>
+</html>
