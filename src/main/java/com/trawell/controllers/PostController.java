@@ -31,7 +31,10 @@ public class PostController{
     private PostService dao;
 
 
-    //Questo metodo permette di raggiungere la pagina per creare i post
+    /**
+     * @author Umberto Russomando
+     * Questo metodo TEMPORANEO permette di raggiungere la pagina per creare i post
+    */
     @GetMapping("/landing")
     public String landing() {
         return "pages/post/addPost";
@@ -39,9 +42,11 @@ public class PostController{
 
     /**
      * @author Umberto Russomando
-     * This method create a new post
-     * 
-     * @return
+     * This method let you create a post and save it into the db
+     * @param postDescription
+     * @param post
+     * @param session
+     * @return redirects the user to the page that shows you all the posts
      */
     @PostMapping("/addPost")
     public String createPost(@RequestParam(name="postDescription", required=true) final String postDescription,
@@ -56,6 +61,12 @@ public class PostController{
         return "redirect:/post/viewPost";
     }
 
+    /**
+     * @author Umberto Russomando
+     * @param session
+     * @param model
+     * @return redirects the user to the page that shows you all the posts
+     */
     @GetMapping("/viewPost")
     public String viewPost(final HttpSession session, final Model model) {
 

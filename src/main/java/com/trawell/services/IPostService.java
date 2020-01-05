@@ -1,13 +1,13 @@
 package com.trawell.services;
 
 import java.util.Collection;
-import java.util.List;
+
 
 import com.trawell.models.Post;
 
 
 /**
- * IUserService
+ * @author Umberto Russomando
  */
 
 public interface IPostService {

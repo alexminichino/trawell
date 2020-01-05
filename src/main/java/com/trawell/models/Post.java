@@ -12,7 +12,7 @@ import javax.persistence.GeneratedValue;
 @Entity
 /**
  * @author Umberto Russomando
- * This class...
+ * This class models a post
  */
 
 public class Post 

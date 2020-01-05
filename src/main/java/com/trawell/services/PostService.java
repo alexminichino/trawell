@@ -10,6 +10,10 @@ import com.trawell.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Umberto Russomando
+ */
+
 @Service
 public class PostService implements IPostService {
 

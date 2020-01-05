@@ -23,8 +23,8 @@ import com.trawell.utilities.email.EmailSenderService;
 import it.ozimov.springboot.mail.configuration.EnableEmailTools;
 
 /**
- * @author Umberto Russomando In questo controller andranno mappate tutte le
- *         funzionalità relative al post per la comunicazione REST
+ * @author Umberto Russomando 
+ * In questo controller andranno mappate tutte le funzionalità relative al post per la comunicazione REST
  * 
  */
 
@@ -42,6 +42,12 @@ public class RestPostController {
     @Autowired
     private EmailSenderService emailService;
 
+    /**
+     * @author Umberto Russomando
+     * @param session
+     * @param id
+     * @return an HttpStatus
+     */
     @RequestMapping(value = "/post/delete/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Post> deletePost(HttpSession session, @PathVariable("id") Long id) {
         User user = (User) session.getAttribute("user");
@@ -54,6 +60,12 @@ public class RestPostController {
         return new ResponseEntity<Post>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * @author Umberto Russomando
+     * @param session
+     * @param id
+     * @return an HttpStatus
+     */
     @RequestMapping(value = "/post/report/{id}", method = RequestMethod.POST,  consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Post> reportPost(HttpSession session, @PathVariable("id") Long id) {
 
