@@ -52,9 +52,16 @@ public class RestPostController {
     public ResponseEntity<Post> deletePost(HttpSession session, @PathVariable("id") Long id) {
         User user = (User) session.getAttribute("user");
 
-        if (user != null) {
+        if (user != null ? (user.getId() == dao.findOne(id).getUser().getId() || user.getIsAdmin()) :false ) 
+        {
             dao.delete(id);
             return new ResponseEntity<Post>(HttpStatus.OK);
+            /*
+            if(user.getId() == dao.findOne(id).getUser().getId() || user.getIsAdmin())
+            {
+               
+            }  
+            */
         }
 
         return new ResponseEntity<Post>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -74,18 +81,20 @@ public class RestPostController {
         if (user != null) {
             // crea il complaint
             Complaint reportComplaint = new Complaint();
-            reportComplaint.setId(user.getId());
+            reportComplaint.setIdUser(user.getId());
             reportComplaint.setMail(user.getMail());
             reportComplaint.setComplaintObject("report Post");
-            reportComplaint.setComplaintDescription("The user wants to repot a post");
+            reportComplaint.setComplaintDescription("The user wants to repot a post with the following characteristics: " +
+            "id: " + id);
 
             // salva il complaint nel db
             complaintDao.create(reportComplaint);
 
             // crea ed invia la mail
             String text = "The user: " + user.getName() + " " + user.getSurname()
-                    + " has reported the post with the following id: " + id;
-            String name = user.getName() + " " + user.getSurname();
+                    + " has reported the post with the following id: " + id + ". Click the following link to see the post: "+ "localhost:8080/post/viewPost?id=" + id;
+            
+                    String name = user.getName() + " " + user.getSurname();
 
             try {
                 emailService.sendReportEmail(text, "report Post", user.getMail(), name);

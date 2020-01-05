@@ -67,8 +67,8 @@ public class PostController{
      * @param model
      * @return redirects the user to the page that shows you all the posts
      */
-    @GetMapping("/viewPost")
-    public String viewPost(final HttpSession session, final Model model) {
+    @GetMapping("/viewPosts")
+    public String viewPosts(final HttpSession session, final Model model) {
 
         final Collection<Post> posts =  dao.findByIdGroupIsNull();
 
@@ -79,4 +79,15 @@ public class PostController{
 
         return "pages/post/bachecapost";
     }
+
+    @GetMapping("viewPost")
+    public String viewPost(HttpSession session, Model model, @RequestParam(required = true, name="id") Long idPost)
+    {
+        Post post = dao.findOne(idPost);
+
+        model.addAttribute("post", post);
+
+        return "pages/post/postView";
+    }
+
 }
