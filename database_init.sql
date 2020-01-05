@@ -25,17 +25,17 @@ DROP TABLE IF EXISTS `trawell`.`ad` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`ad` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idOwner` INT NOT NULL,
-  `AdPaymentMethod` VARCHAR(60) NOT NULL,
-  `AdCost` INT NOT NULL,
-  `AdStartingDate` DATETIME NOT NULL,
-  `AdDueDate` DATETIME NOT NULL,
-  `idPhoto` VARCHAR(268) NOT NULL,
+  `id_owner` INT NOT NULL,
+  `ad_payment_method` VARCHAR(60) NOT NULL,
+  `ad_cost` INT NOT NULL,
+  `ad_starting_date` DATETIME NOT NULL,
+  `ad_due_date` DATETIME NOT NULL,
+  `id_photo` VARCHAR(268) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idAd_UNIQUE` (`id` ASC),
-  INDEX `idUser_idx` (`idOwner` ASC),
-    FOREIGN KEY (`idOwner`)
-    REFERENCES `trawell`.`User` (`id`)
+  INDEX `idUser_idx` (`id_owner` ASC),
+    FOREIGN KEY (`id_owner`)
+    REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

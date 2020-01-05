@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Optional;
 
 import com.trawell.models.BanData;
-import com.trawell.models.User;
 import com.trawell.repositories.BanDataRepository;
 
 

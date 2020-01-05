@@ -3,7 +3,7 @@ package com.trawell.models;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import java.sql.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ import javax.persistence.InheritanceType;
 @Entity
 /**
  * @author Mario Pane 
- * class models a Ad 
+ * class models an Ad 
  */
 public class Ad {
     @Id
@@ -22,15 +22,15 @@ public class Ad {
     private Long idOwner; 
     private String adPaymentMethod;
     private Long adCost;
-    private java.sql.Date adStartingDate;
-    private java.sql.Date adDueDate;
+    private Date adStartingDate;
+    private Date adDueDate;
     private String idPhoto;
 
     public Ad() {
     }
 
 
-    public Ad(Long id, Long idOwner, String adPaymentMethod, Long adCost, java.sql.Date adStartingDate, java.sql.Date adDueDate, String idPhoto) {
+    public Ad(Long id, Long idOwner, String adPaymentMethod, Long adCost, Date adStartingDate, Date adDueDate, String idPhoto) {
         this.id = id;
         this.idOwner = idOwner;
         this.adPaymentMethod = adPaymentMethod;
@@ -72,19 +72,19 @@ public class Ad {
         this.adCost = adCost;
     }
 
-    public java.sql.Date getAdStartingDate() {
+    public Date getAdStartingDate() {
         return this.adStartingDate;
     }
 
-    public void setAdStartingDate(java.sql.Date adStartingDate) {
+    public void setAdStartingDate(Date adStartingDate) {
         this.adStartingDate = adStartingDate;
     }
 
-    public java.sql.Date getAdDueDate() {
+    public Date getAdDueDate() {
         return this.adDueDate;
     }
 
-    public void setAdDueDate(java.sql.Date adDueDate) {
+    public void setAdDueDate(Date adDueDate) {
         this.adDueDate = adDueDate;
     }
 
