@@ -58,7 +58,7 @@ public class PostController{
 
         dao.create(post);
 
-        return "redirect:/post/viewPost";
+        return "redirect:/post/viewPosts";
     }
 
     /**
