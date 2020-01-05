@@ -81,8 +81,14 @@ public class User {
         this.userCreatedAdList = userCreatedAddList;
     }
 
+    
+   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Post> posts; 
+    
+    
+    /*
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
-    private List<Complaint> userAdds;
+    private List<Complaint> userAdds; */
 
     public java.sql.Date getBirth() {
         return this.birth;

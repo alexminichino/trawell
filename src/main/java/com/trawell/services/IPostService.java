@@ -2,11 +2,12 @@ package com.trawell.services;
 
 import java.util.Collection;
 
+
 import com.trawell.models.Post;
 
 
 /**
- * IUserService
+ * @author Umberto Russomando
  */
 
 public interface IPostService {
@@ -15,5 +16,5 @@ public interface IPostService {
     Post create(Post User);
     Post update(Post User);
     void delete(Long id);
-    
+    Collection<Post> findByIdGroupIsNull();
 }

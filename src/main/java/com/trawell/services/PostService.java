@@ -10,6 +10,10 @@ import com.trawell.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Umberto Russomando
+ */
+
 @Service
 public class PostService implements IPostService {
 
@@ -55,5 +59,14 @@ public class PostService implements IPostService {
     public void delete(Long id) {
         postRepository.delete(findOne(id));
     }
+    
+    
+    @Override
+    public Collection<Post> findByIdGroupIsNull()
+    {
+        return postRepository.findByIdGroupIsNull();
+    }
+    
 
+    
 }
