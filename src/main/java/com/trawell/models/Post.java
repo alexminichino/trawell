@@ -1,4 +1,4 @@
-/*
+
 package com.trawell.models;
 
 import com.trawell.models.User;
@@ -16,8 +16,8 @@ import javax.persistence.GeneratedValue;
  * This class models a post
  */
 
- /*
-public class Post {
+ 
+
 
 public class Post 
 {
@@ -113,8 +113,3 @@ public class Post
     }
     
 }
-<<<<<<< HEAD
-
-*/
-=======
->>>>>>> UmbertoRussomando
