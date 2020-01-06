@@ -183,6 +183,14 @@ public class UsersController {
 		return "pages/user/modify-data";
 	}
 
+
+	/**
+	 * @author Mario Paone
+	 * Checks if the ban period is over
+	 * @param user the user being checked
+	 * 
+	 * 
+	 * */
 	public void checkBan(User user){
         ArrayList<BanData> data = (ArrayList<BanData>) bandataDao.findAllByIdUser(user.getId());
         if (data.isEmpty())

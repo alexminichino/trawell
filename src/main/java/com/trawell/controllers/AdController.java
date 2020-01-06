@@ -9,8 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
 import com.trawell.models.Ad;
+import com.trawell.models.Agency;
 import com.trawell.models.User;
 import com.trawell.services.AdService;
+import com.trawell.services.AgencyService;
 import com.trawell.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
+ * @author Mario Paone
  * AdController: andranno mappate tutte le funzionalità relative agli annunci ed
  * i relativi controller
  * 
@@ -35,19 +38,29 @@ public class AdController {
     @Autowired
     private UserService userDao;
 
+    @Autowired
+    private AgencyService agencyDao;
+
     /**
+     * @author Mario Paone
      * Method checks if the user is already logged
      * 
      * @param session
      * @return true if he is already logged, false otherwise
      */
     private boolean isAgency(HttpSession session) {
-        return session.getAttribute("user") != null;
+        User user =  (User) session.getAttribute("user");
+        try{
+        Agency agency = agencyDao.findById(user.getId());
+        return true;
+        }catch(Exception e){
+        return false;
+        }
     }
 
     @GetMapping("/home")
     public String landing(HttpSession session) {
-        return isAgency(session) ? "pages/agency/home" : "pages/user/login";
+        return isAgency(session) ? "pages/agency/home" : "pages/user/home";
     }
 
     @GetMapping("/createadvertisement")
@@ -102,6 +115,7 @@ public class AdController {
         ad.setAdDueDate(finaldate);
         ad.setIdPhoto("");
         adDao.create(ad);
+        
         
         return "pages/agency/home";
     }
