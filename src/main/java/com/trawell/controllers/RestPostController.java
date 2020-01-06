@@ -91,10 +91,11 @@ public class RestPostController {
             complaintDao.create(reportComplaint);
 
             // crea ed invia la mail
-            String text = "The user: " + user.getName() + " " + user.getSurname()
-                    + " has reported the post with the following id: " + id + ". Click the following link to see the post: "+ "localhost:8080/post/viewPost?id=" + id;
+            String link = "localhost:8080/post/viewPost?id=" + id;
+            String text = "The user: " + user.getName() + " " + user.getSurname() + " has reported the post with the following id: " + id + ". Click the following link to see the post: "+ "<a href=" + link +"> Click here</a>";
             
-                    String name = user.getName() + " " + user.getSurname();
+            
+            String name = user.getName() + " " + user.getSurname();
 
             try {
                 emailService.sendReportEmail(text, "report Post", user.getMail(), name);
