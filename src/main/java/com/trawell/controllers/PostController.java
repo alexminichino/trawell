@@ -62,6 +62,7 @@ public class PostController{
     }
 
     /**
+     * This method lets you see all the public posts
      * @author Umberto Russomando
      * @param session
      * @param model
@@ -70,24 +71,69 @@ public class PostController{
     @GetMapping("/viewPosts")
     public String viewPosts(final HttpSession session, final Model model) {
 
-        final Collection<Post> posts =  dao.findByIdGroupIsNull();
+        User user = (User) session.getAttribute("user");
 
-        posts.parallelStream().forEach(p->{p.getUser();});
+        if(user != null)
+        {
+            final Collection<Post> posts =  dao.findByIdGroupIsNull();
 
-        model.addAttribute("posts", posts);
+            posts.parallelStream().forEach(p->{p.getUser();});
 
+            model.addAttribute("posts", posts);
 
-        return "pages/post/bachecapost";
+            return "pages/post/bachecapost";
+        }
+        else
+        {
+            return "pages/error";
+        }
+
+        
     }
 
-    @GetMapping("viewPost")
+    /**
+     * This method let you see a single reported post
+     * @author Umberto Russomando
+     * @param session
+     * @param model
+     * @param idPost
+     * @return the url of the view used to view displaying the post
+     */
+    @GetMapping("/viewPost")
     public String viewPost(HttpSession session, Model model, @RequestParam(required = true, name="id") Long idPost)
     {
+        User user = (User) session.getAttribute("user");
+
+        if(user == null)
+        {
+            return "pages/error";
+        }
+
         Post post = dao.findOne(idPost);
 
         model.addAttribute("post", post);
 
         return "pages/post/postView";
     }
+
+    @GetMapping("/listReportedPosts")
+    public String listReportedPosts(HttpSession session, Model model) {
+
+        User user = (User) session.getAttribute("user");
+
+        if(user == null)
+        {
+            return "pages/error";
+        }
+
+        Collection<Post> posts =  dao.findReportedPosts(); 
+        
+        posts.parallelStream().forEach(p->{p.getUser();});
+
+        model.addAttribute("posts", posts);
+
+        return "pages/post/listReportedPosts";
+    }
+    
 
 }

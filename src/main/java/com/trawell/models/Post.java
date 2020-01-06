@@ -25,7 +25,8 @@ public class Post
     //private Long idPhoto;
     private String postDescription;
 
-    
+    private boolean isReported;
+   
     @ManyToOne
     @JoinColumn(name="id_owner")
     private User user;
@@ -108,4 +109,14 @@ public class Post
         this.user = user;
     }
     
+
+    public boolean isReported()
+    {
+        return this.isReported;
+    }
+
+    public void setIsReported(boolean isReported)
+    {
+        this.isReported = isReported;
+    }
 }

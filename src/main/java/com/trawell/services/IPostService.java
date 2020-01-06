@@ -17,4 +17,5 @@ public interface IPostService {
     Post update(Post User);
     void delete(Long id);
     Collection<Post> findByIdGroupIsNull();
+    Collection<Post> findReportedPosts();
 }

@@ -332,6 +332,7 @@ CREATE TABLE IF NOT EXISTS `trawell`.`post` (
   `id_group` INT ,
   `id_photo` INT NULL,
   `post_description` VARCHAR(500) NOT NULL,
+  `is_reported` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`),
   
     FOREIGN KEY (`id_owner`)
