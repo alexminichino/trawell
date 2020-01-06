@@ -1,7 +1,5 @@
 package com.trawell.controllers;
 
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 
 import javax.servlet.http.HttpSession;
 import com.trawell.models.Itinerary;
