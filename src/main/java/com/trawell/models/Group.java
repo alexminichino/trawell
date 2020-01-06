@@ -1,6 +1,5 @@
 package com.trawell.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,15 +22,17 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    //@ManyToOne
+    private Long id_owner;
     private String name;
     private String description;
-    //@OneToOne()
+    // @OneToOne()
     private Long id_itinerary;
     @OneToOne
     @JoinColumn(name = "id_wallet")
-    private Wallet wallet;
+    private Wallet publicWallet;
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
-    private List <Wallet> allWallets;
+    private List<Wallet> allWallets;
 
     public Long getId() {
         return id;
@@ -101,17 +102,24 @@ public class Group {
     public Group() {
     }
 
-	public Group(Long id) {
-        this.id=id;
-	}
-
-    public Wallet getWallet() {
-        return wallet;
+    public Group(Long id) {
+        this.id = id;
     }
 
-    public void setWallet(Wallet wallet) {
-        this.wallet = wallet;
+    public Long getId_owner() {
+        return id_owner;
     }
 
-    
+    public void setId_owner(Long id_owner) {
+        this.id_owner = id_owner;
+    }
+
+    public Wallet getPublicWallet() {
+        return publicWallet;
+    }
+
+    public void setPublicWallet(Wallet publicWallet) {
+        this.publicWallet = publicWallet;
+    }
+
 }

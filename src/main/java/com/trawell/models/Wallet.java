@@ -10,11 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 
 /**
  * @author Ruggiero Gaetano class models the user Wallet Document
@@ -24,8 +21,6 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long idOwner;
-    @OneToOne(mappedBy = "wallet")
-    Group public_wallet;
     @ManyToOne
     @JoinColumn(name = "id_group")
     private Group group;
@@ -71,14 +66,6 @@ public class Wallet {
 
     public void setGroup(Group group) {
         this.group = group;
-    }
-
-    public Group getPublic_wallet() {
-        return public_wallet;
-    }
-
-    public void setPublic_wallet(Group public_wallet) {
-        this.public_wallet = public_wallet;
     }
 
     public Wallet() {

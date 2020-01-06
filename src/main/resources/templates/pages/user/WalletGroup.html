@@ -2,6 +2,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 
 <head>
+  <script src="./path/to/dropzone.js"></script>
   <script src="../js/changeVisibilityDocument.js"></script>
   <script src="../js/removeDocument.js"></script>
   <link rel="stylesheet" href="../css/Wallet.css">
@@ -29,7 +30,8 @@
                 <td th:text='${d.dueDate}'>
 
                   <button th:id=${d.id} class="btn btn-primary remove"> <span class="fas fa-times"></span></button>
-                  <button th:id=${d.id} class="btn btn-primary changeVis"> <span class="fas fa-globe-europe"></span></button>
+                  <button th:id=${d.id} class="btn btn-primary changeVis"> <span
+                      class="fas fa-globe-europe"></span></button>
                 </td>
               </tr>
             </tbody>
@@ -49,7 +51,8 @@
                 <td th:text='${d.dueDate}'>
 
                   <button th:id=${d.id} class="btn btn-primary remove"> <span class="fas fa-times"></span></button>
-                  <button th:id=${d.id} class="btn btn-primary changeVis"> <span class="fas fa-globe-europe"></span></button>
+                  <button th:id=${d.id} class="btn btn-primary changeVis"> <span
+                      class="fas fa-globe-europe"></span></button>
                 </td>
               </tr>
             </tbody>
@@ -57,6 +60,8 @@
 
         </div>
         <div class="col-md-2">
+          <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+          <input type="file" name="file" />
           Drag and drop
         </div>
 

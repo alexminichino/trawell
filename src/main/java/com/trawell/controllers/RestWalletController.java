@@ -1,5 +1,7 @@
 package com.trawell.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.trawell.models.Document;
@@ -46,22 +48,29 @@ public class RestWalletController {
      *         have the permission and 500 otherwise
      */
     @RequestMapping(value = "/document/changeVisibility/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Document> modify (HttpSession session, @PathVariable("id") Long id) {
-       /* User user = (User) session.getAttribute("user");
-        Wallet wallet = (Wallet) session.getAttribute("walletGroup");
-
-        if (user != null) {
-            Document d = daoD.findOne(id);
-            if (user.getId() == d.getIdUser() || user.getId() == wallet.getIdOwner()) {
-                boolean b = d.getDocumentIsPrivate();
-                d.setDocumentIsPrivate(!b);
-                daoD.update(d);
-                return new ResponseEntity<Document>(HttpStatus.OK);
-            } else
-                return new ResponseEntity<Document>(HttpStatus.FORBIDDEN);
-        }*/
-
-        return new ResponseEntity<Document>(HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<Document> modify(HttpSession session, @PathVariable("id") Long id) {
+        User user = (User) session.getAttribute("user");
+        Document d = daoD.findOne(id);
+        Document updateDocument = null;
+        boolean b = d.getWallet().isPrivate();
+        if (user.getId() == d.getIdUser()) {
+            if (b == true) {
+                Wallet w = d.getWallet().getGroup().getPublicWallet();
+                d.setWallet(w);
+                updateDocument = daoD.update(d);
+            } else {
+                List<Wallet> list = d.getWallet().getGroup().getAllWallets();
+                Wallet w = list.stream().filter(x -> x.getIdOwner().equals(user.getId())).findFirst().orElse(null);
+                if (w != null) {
+                    d.setWallet(w);
+                    updateDocument = daoD.update(d);
+                } else
+                    return new ResponseEntity<Document>(HttpStatus.FORBIDDEN);
+            }
+            return updateDocument == null ? new ResponseEntity<Document>(HttpStatus.INTERNAL_SERVER_ERROR)
+                    : new ResponseEntity<Document>(HttpStatus.OK);
+        }
+        return new ResponseEntity<Document>(HttpStatus.FORBIDDEN);
     }
 
     /**
@@ -77,13 +86,13 @@ public class RestWalletController {
      *         have the permission and 500 otherwise
      */
     @RequestMapping(value = "/document/eliminate/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Document> delete (HttpSession session, @PathVariable("id") Long id) {
+    public ResponseEntity<Document> delete(HttpSession session, @PathVariable("id") Long id) {
         User user = (User) session.getAttribute("user");
-        Wallet wallet = (Wallet) session.getAttribute("walletGroup");
 
         if (user != null) {
             Document d = daoD.findOne(id);
-            if (user.getId() == d.getIdUser() || user.getId() == wallet.getIdOwner()) {
+            if (user.getId() == d.getIdUser() || user.getId() == d.getWallet().getIdOwner()) {
+                d.getPath();// bisogna cancellare anche nella cartella
                 daoD.delete(id);
                 return new ResponseEntity<Document>(HttpStatus.OK);
             } else

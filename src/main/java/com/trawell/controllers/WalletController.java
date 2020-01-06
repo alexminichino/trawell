@@ -46,7 +46,7 @@ public class WalletController {
         User user = (User) session.getAttribute("user");
         long idUser = user.getId();
         Group group = groupService.findOne(id);
-        Wallet publicWallet = group.getWallet();
+        Wallet publicWallet = group.getPublicWallet();
         Wallet userWallet = wallet.findUserWalletofGroup(id, idUser);
         /*
          * int n = 0; for (int x = 0; x < walletGroup.size(); x++) { Document d =

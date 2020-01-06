@@ -190,10 +190,10 @@ CREATE TABLE IF NOT EXISTS `trawell`.`document` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_wallet` INT NOT NULL,
   `id_user` INT NOT NULL,
-  `document_name` VARCHAR(50) NOT NULL,
-  `document_path` VARCHAR(268) NOT NULL,
-  `document_due_date` DATETIME NULL,
-  `document_note` VARCHAR(500) NULL,
+  `name` VARCHAR(50) NOT NULL,
+  `path` VARCHAR(268) NOT NULL,
+  `due_date` DATETIME NULL,
+  `note` VARCHAR(500) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_document_UNIQUE` (`id` ASC),
   INDEX `id_wallet_idx` (`id_wallet` ASC),
@@ -217,7 +217,7 @@ DROP TABLE IF EXISTS `trawell`.`group` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`group` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `id_owner` TINYINT NOT NULL,
+  `id_owner` INT NOT NULL,
   `name` VARCHAR(50) NOT NULL,
   `description` VARCHAR(500) NULL,
   `id_itinerary` INT NOT NULL,
@@ -366,10 +366,11 @@ CREATE TABLE `user` (
   `phone` varchar(20) DEFAULT NULL,
   `is_admin` tinyint(4) DEFAULT '0',
   `is_banned` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `idUser_UNIQUE` (`id`),
   UNIQUE KEY `mail_UNIQUE` (`mail`),
   UNIQUE KEY `userName_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 INSERT INTO user VALUES (1,'umbertorussomando@gmail.com','admin','09F43236BB5E2B75230E705C39EDBB71','Umberto','Russomando','1997-11-09 00:00:00',0,NULL,0,'3347877736',1,0);
 -- -----------------------------------------------------

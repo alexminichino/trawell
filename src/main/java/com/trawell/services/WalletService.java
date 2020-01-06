@@ -73,7 +73,7 @@ public class WalletService implements IWalletService {
 
     @Override
     public Wallet findUserWalletofGroup(Long idGroup, Long idUser) {
-        // TODO Auto-generated method stub
+        
         Group group = groupRepository.findById(idGroup).get();
         if (group == null)
             return null;
