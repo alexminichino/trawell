@@ -43,6 +43,7 @@ public class RestPostController {
     private EmailSenderService emailService;
 
     /**
+     *  This method allows an user to delete a post
      * @author Umberto Russomando
      * @param session
      * @param id
@@ -54,8 +55,17 @@ public class RestPostController {
 
         User postOwner = dao.findOne(id).getUser();
 
-        if (user != null && (user.getId() == postOwner.getId() || user.getIsAdmin()) ) 
+        if (user != null) 
         {
+            if(user.getId() == postOwner.getId())
+            {
+                System.out.println(user.getId());
+                System.out.println(postOwner.getId());
+                dao.delete(id);
+
+                return new ResponseEntity<Post>(HttpStatus.OK);
+            }
+            
             if(user.getIsAdmin())
             {
 
@@ -71,15 +81,18 @@ public class RestPostController {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-            }
 
-            return new ResponseEntity<Post>(HttpStatus.OK);
+                return new ResponseEntity<Post>(HttpStatus.OK);
+            }
         }
 
         return new ResponseEntity<Post>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        
     }
 
     /**
+     * This method allows an user to report a post
      * @author Umberto Russomando
      * @param session
      * @param id

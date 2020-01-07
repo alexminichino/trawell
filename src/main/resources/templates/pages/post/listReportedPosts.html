@@ -9,7 +9,7 @@
     <p>Reported Post</p>
     <table>
         <tr th:each = "post : ${posts}">
-            <td th:text='${post.user.name +" " +post.user.surname +"-" + .post.postDescription}'></td>
+            <td th:text='${post.user.name +" " +post.user.surname +"-" + post.postDescription}'></td>
             <td>
                 <span><a th:href="${'/post/viewPost?id=' +post.id}">View Post</a></span>
             </td>

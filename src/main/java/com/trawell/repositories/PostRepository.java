@@ -16,7 +16,6 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     @Query("select * from post p where p.id_group = NULL")
     Collection<Post> findByIdGroupIsNull();
 
-    @Query("select * from post p where p.is_reported = 1")
-    Collection<Post> findReportedPosts();
-    
+    //@Query("select * from post p where p.is_reported = 1")
+    Collection<Post> findByIsReported(Boolean isReported );
 }

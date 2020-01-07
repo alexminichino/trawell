@@ -49,10 +49,10 @@ public class PostController{
      * @return redirects the user to the page that shows you all the posts
      */
     @PostMapping("/addPost")
-    public String createPost(@RequestParam(name="postDescription", required=true) final String postDescription,
-            @ModelAttribute final Post post, final HttpSession session)
+    public String createPost(@RequestParam(name="postDescription", required=true)  String postDescription,
+            @ModelAttribute  Post post,  HttpSession session)
     {
-        final User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         post.setUser(user);
         post.setPostDescription(postDescription);
 
@@ -69,13 +69,13 @@ public class PostController{
      * @return redirects the user to the page that shows you all the posts
      */
     @GetMapping("/viewPosts")
-    public String viewPosts(final HttpSession session, final Model model) {
+    public String viewPosts(HttpSession session, Model model) {
 
         User user = (User) session.getAttribute("user");
 
         if(user != null)
         {
-            final Collection<Post> posts =  dao.findByIdGroupIsNull();
+            Collection<Post> posts =  dao.findByIdGroupIsNull();
 
             posts.parallelStream().forEach(p->{p.getUser();});
 
@@ -116,6 +116,13 @@ public class PostController{
         return "pages/post/postView";
     }
 
+    /**
+     * This method lists all the reported post in a table
+     * @author Umberto Russomando
+     * @param session
+     * @param model
+     * @return
+     */
     @GetMapping("/listReportedPosts")
     public String listReportedPosts(HttpSession session, Model model) {
 

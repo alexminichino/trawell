@@ -70,7 +70,7 @@ public class PostService implements IPostService {
     @Override
     public Collection<Post> findReportedPosts()
     {
-        return postRepository.findReportedPosts();
+        return postRepository.findByIsReported(true);
     }
     
 
