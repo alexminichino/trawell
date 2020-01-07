@@ -11,10 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.validation.constraints.Pattern;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id")
 
 /**
  * @author Milione Vincent
@@ -24,6 +23,7 @@ public class Itinerary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Pattern(regexp = "/^[A-Z a-z]$/")
     private String name;
     @ManyToOne
     @JoinColumn(name="id_owner")

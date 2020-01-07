@@ -2,64 +2,78 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
-<html lang="en">
-
-<head>
-	<title>Login</title>
-	<link rel="stylesheet" href="../css/login.css">
-	<script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-	<script src = "../js/login.js"></script>
-	<meta charset="utf-8">
-</head>
-
-<body>
-		<section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
-						<img src="../image/logo.png" class="brand_logo" alt="Logo">
-					</div>
+  <html lang="en">
+  
+  <head>
+	  <title>Login</title>
+	  <link rel="stylesheet" href="../css/login.css">
+	  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	  <script src = "../js/login.js"></script>
+	  <meta charset="utf-8">
+  </head>
+  
+  <body>
+	  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+	  <div class="container h-100">
+		  <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-12 offset-6">
+				<div th:if="${notexist}" class = "alert alert-danger" style= "max-width: 50%;"role = "alert">
+					<div><i class="material-icons" style="font-size:20px;">warning</i> User doesn't exist</div>
 				</div>
-				<div class="d-flex justify-content-center form_container">
-					<div th:if="${notexist}">
-						<div>User doesn't exist</div>
-					</div>
-					<div th:if="${passmiss}">
-						<div>Password mismatch</div>
-					</div>
-					<form action="/users/login" method="POST" id='target'>
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" name="username" class="form-control input_user" value="" placeholder="username">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
-						</div>
-						<div class="form-group">
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="customControlInline">
-								<label class="custom-control-label" for="customControlInline">Remember me</label>
-							</div>
-						</div>
-							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<input type = "submit" value = "Login"class="btn login_btn">
-				   			</div>
-					</form>
-				</div>		
-				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="../user/sign-Up.html" class="ml-2">Sign Up</a>
-					</div>
+				<div th:if="${passmiss}" class = "alert alert-danger" style= "max-width: 50%;" role = "alert">
+					<div><span class="material-icons">warning</span> Password mismatch</div>
 				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+				  <div class = "user_card">
+				  	<div class = "container">
+						<div class = "row justify-content-center">
+							<div class = "col-6">
+									<img src="../image/logo.png" style ="height: auto;max-width: 100%;"class = "img-fluid"alt="Logo">
+							</div>
+						</div>
+						<form action="/users/login" method="POST" id='target'>
+							<div class = "row">
+								<div class="col-12">
+									<div class="input-group mb-3">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-user"></i></span>
+										</div>
+										<input type="text" name="username" class="form-control input_user" value="" placeholder="username">
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-key"></i></span>
+										</div>
+										<input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
+									</div>
+									<div class="form-group">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="customControlInline">
+											<label class="custom-control-label" for="customControlInline">Remember me</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class = "row">
+								<div class = "col-12">
+									<div class="d-flex justify-content-center mt-3 login_container">
+										<input type = "submit" value = "Login"class="btn login_btn">
+								  </div>
+								</div>
+							</div>
+					  </form>
+				  </div>		
+				  <div class="row" style = "margin-top: 3%;">
+					  <div class = "col">
+						<div class="float-right">
+							Don't have an account? <a href="../user/sign-Up.html" class="ml-2">Sign Up</a>
+						</div>
+					  </div>
+				  </div>
+				</div>
+				</div>
+			  </div>
+		  </div>
+	  </div>
+	  </section>
+  </body>
+  </html>
