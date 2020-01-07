@@ -1,42 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
+<html lang="en">
 <head>
   <title>Sign-Up</title>
+  <link rel="stylesheet" href="../css/sign-up.css">
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/validation_user.js"></script>
   <script src = "../js/signup.js"></script>
+  <meta charset="utf-8">
 </head>
 <body>
-  <!--se stai cercando di mandare dati costruisci una form normale... continua in metodo signUp-->
-  <section layout:fragment="content">
-    <p>Sign-Up</p>
-    
-    <form action = "/users/signUp" method = "POST" id = "target">
-         <div class = "container"> 
-          <div>
-              Username: <input type = 'text' name = "username" id = "username"><br>
-              Password: <input type = "password" name = "password" id = "password"><br>
-              Verifica Password: <input type = "password" name = "verify" id = "verify"><br>
-              Nome: <input type = 'text' name = "name" id = "name"><br>
-              Cognome: <input type = 'text' name = "surname" id = "surname"><br>
-              E-mail: <input type = 'text' name = "mail" id = "mail"><br>
-              Data di Nascita: <input type = 'date' name = "birth" id = "birth"><br>
-              Contatto: <input type = 'phone' name = "phone" id = "phone"><br>
-              <input type = "button" id = "toggle" value = "Are you an Agency?">
-              <div id = "slider">
-                Agency Name: <input type = 'text' name = "nameAgency" id ="nameAgency"><br>
-                Agency URL: <input type = 'text' name = "url" id = "url"><br>
-                Agency VAT: <input type = 'text' name = "vat" id = "vat"><br>
-              </div>
-              <input type = "submit">
+    <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/548084/pexels-photo-548084.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+        <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="user_card">
+                    <div class="d-flex justify-content-center">
+                        <div class="brand_logo_container">
+                            <img src="../image/logo.png" class="brand_logo" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center form_container">
+                        <div th:if="${flagEmail} and ${flagUsername}">
+                            <div>Another account already uses the specified email and username</div>
+                        </div>
+                        <div th:if="not ${flagEmail} and ${flagUsername}">
+                            <div>Another account already uses the specified username</div>
+                        </div>
+                        <div th:if="not ${flagUsername} and ${flagEmail}">
+                            <div>Another account already uses the specified email</div>
+                        </div>
+                        </div>
+                        <form action="/users/signUp" method="POST" id='target'>
+                            <div class="input-group mb-2">
+                                <input type="text" name="username" th:value= "${hasAttempted} ? ${user.username}"class="form-control input_user" placeholder="Username" id="username">
+                            </div>
+                            <div class="input-group mb-2">
+                                <input type="password" name="password" class="form-control input_pass" placeholder="Password" id="password">
+                            </div>
+                            <div class="input-group mb-2">
+                                <input type="password" name="verify" class="form-control input_pass" placeholder="Verify password" id="verify">
+                                </div>
+                            <div class="input-group mb-2">
+                                    <input type="text" name="name" th:value= "${hasAttempted} ? ${user.name}" class="form-control input_pass" placeholder="Name" id="name">
+                                </div>
+                            <div class="input-group mb-2">
+                                    <input type="text" name="surname" th:value= "${hasAttempted} ? ${user.surname}" class="form-control input_pass" placeholder="Surname" id="surname">
+                                </div>
+                            <div class="input-group mb-2">
+                                    <input type="text" name="mail" th:value= "${hasAttempted} ? ${user.mail}" class="form-control input_pass" placeholder="E-mail" id="mail">
+                                </div>
+                            <div class="input-group mb-2">
+                                    <input type="date" name="birth" class="form-control input_pass" id="birth">
+                                </div>
+                            <div class="input-group mb-2">
+                                   <input type="text" name="phone" th:value= "${hasAttempted} ? ${user.phone}" class="form-control input_pass" placeholder="Phone" id="phone">
+                                </div>
+                            <div id="slider">
+                            <div class="input-group mb-2" >
+                                    <input type="text" name="nameAgency" class="form-control input_pass" placeholder="Name Agency" id="nameAgency">
+                                </div>
+                            <div class="input-group mb-2" >
+                                    <input type="text" name="url" class="form-control input_pass" placeholder="URL Agency" id="url">
+                                </div>
+                            <div class="input-group mb-2" >
+                                    <input type="text" name="vat" class="form-control input_pass" placeholder="VAT Agency" id="vat">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customControlInline">
+                                    <label class="custom-control-label" id="toggle" for="customControlInline">Are you an Agency?</label>
+                                </div>
+                            </div>
+                                <div class="d-flex justify-content-center mt-3 login_container">
+                                    <input type = "submit" value = "Sign Up"class="btn login_btn">
+                                   
+                                </div>
+                        </form>
+                    </div>		
+                    <div class="mt-4">
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
-
-  </section>
-  <footer>
-    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
-  </footer> 
 </body>
 </html>
