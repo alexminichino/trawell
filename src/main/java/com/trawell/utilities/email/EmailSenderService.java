@@ -48,7 +48,7 @@ public class EmailSenderService {
 
     /**
      * This method create and send the email to an user
-     * @author Umberto Russomando 
+     * @author Paolo Fasano
      * @param text
      * @param object
      * @param emailTo
@@ -61,28 +61,6 @@ public class EmailSenderService {
                         "TraWell"))
                 .to(newArrayList(
                         new InternetAddress(emailTo,name)))
-                .subject(object)
-                .body(text)
-                .encoding("UTF-8").build();
-
-        emailService.send(email);
-    }
-
-    /**
-     * This method create and send a report email from an user
-     * @author Umberto Russomando
-     * @param text
-     * @param object
-     * @param emailFrom
-     * @param name
-     * @throws UnsupportedEncodingException
-     */
-    public void sendReportEmail(String text, String object, String emailFrom, String name) throws UnsupportedEncodingException {
-        final Email email = DefaultEmail.builder()
-                .from(new InternetAddress(emailFrom,
-                name))
-                .to(newArrayList(
-                        new InternetAddress("TraWell.customerservice@gmail.com","TraWell")))
                 .subject(object)
                 .body(text)
                 .encoding("UTF-8").build();

@@ -121,7 +121,7 @@ public class PostController{
      * @author Umberto Russomando
      * @param session
      * @param model
-     * @return
+     * @return the url of the view used to view displaying the posts
      */
     @GetMapping("/listReportedPosts")
     public String listReportedPosts(HttpSession session, Model model) {
