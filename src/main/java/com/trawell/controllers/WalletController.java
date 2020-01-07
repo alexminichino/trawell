@@ -47,7 +47,7 @@ public class WalletController {
         long idUser = user.getId();
         Group group = groupService.findOne(id);
         Wallet publicWallet = group.getPublicWallet();
-        Wallet userWallet = wallet.findUserWalletofGroup(id, idUser);
+        Wallet userWallet = group.getAllWallets().stream().filter(x -> x.getIdOwner().equals(idUser)).findFirst().orElse(null);
         /*
          * int n = 0; for (int x = 0; x < walletGroup.size(); x++) { Document d =
          * allDocuments.get(x); if ((d.isDocumentIsPrivate() && idUser == d.getIdUser())

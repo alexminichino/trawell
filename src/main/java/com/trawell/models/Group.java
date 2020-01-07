@@ -24,7 +24,7 @@ public class Group {
     private Long id;
     //@ManyToOne
     private Long id_owner;
-    private String name;
+    private String nome;
     private String description;
     // @OneToOne()
     private Long id_itinerary;
@@ -42,12 +42,12 @@ public class Group {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String nome) {
+        this.nome = nome;
     }
 
     public String getDescription() {
