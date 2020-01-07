@@ -20,14 +20,17 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th scope="col col-11">DOCUMENT NAME</th>
+                <th scope="col col-10">DOCUMENT NAME</th>
                 <th scope="col col-1">Date to use</th>
+                <th scope="col col-1"></th>
+
               </tr>
             </thead>
-            <tbody>
+            <tbody th:if=${publicWallet}>
               <tr th:each="d : ${publicWallet.documents}">
                 <td th:text='${d.name}'></td>
-                <td th:text='${d.dueDate}'>
+                <td th:text='${d.dueDate}'></td>
+                <td>
 
                   <button th:id=${d.id} class="btn btn-primary remove"> <span class="fas fa-times"></span></button>
                   <button th:id=${d.id} class="btn btn-primary changeVis"> <span
@@ -35,26 +38,36 @@
                 </td>
               </tr>
             </tbody>
+            <tbody th:if="not ${publicWallet}">
+              <td colspan="2">WALLLET EMPTY</td>
+            </tbody>
           </table>
+
 
           <h5>User Wallet</h5>
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th scope="col col-11">DOCUMENT NAME</th>
+                <th scope="col col-10">DOCUMENT NAME</th>
                 <th scope="col col-1">Date to use</th>
+                <th scope="col col-1"></th>
+
               </tr>
             </thead>
-            <tbody>
+            <tbody th:if=${userWallet}>
               <tr th:each="d : ${userWallet.documents}">
                 <td th:text='${d.name}'></td>
-                <td th:text='${d.dueDate}'>
-
+                <td th:text='${d.dueDate}'></td>
+                <td>
                   <button th:id=${d.id} class="btn btn-primary remove"> <span class="fas fa-times"></span></button>
                   <button th:id=${d.id} class="btn btn-primary changeVis"> <span
                       class="fas fa-globe-europe"></span></button>
                 </td>
               </tr>
+            </tbody>
+            </tbody>
+            <tbody th:if="not ${userWallet}">
+              <td colspan="2">WALLLET EMPTY</td>
             </tbody>
           </table>
 

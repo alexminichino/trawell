@@ -2,7 +2,7 @@ package com.trawell.repositories;
 
 import java.util.List;
 
-import com.trawell.models.Group;
+import com.trawell.models.TrawellGroup;
 import com.trawell.models.Wallet;
 
 import org.springframework.data.repository.CrudRepository;
@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
  * WalletRepository
  */
 public interface WalletRepository extends CrudRepository<Wallet, Long> {
-    List<Wallet> findByGroup(Group group);
+    List<Wallet> findByTrawellGroup(TrawellGroup trawellGroup);
 
     Wallet findByIdOwner(Long idOwner);
 }

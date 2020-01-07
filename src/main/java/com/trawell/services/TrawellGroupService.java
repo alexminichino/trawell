@@ -3,8 +3,8 @@ package com.trawell.services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-import com.trawell.models.Group;
-import com.trawell.repositories.JPAGroupRepository;
+import com.trawell.models.TrawellGroup;
+import com.trawell.repositories.GroupRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,40 +15,40 @@ import org.springframework.stereotype.Service;
  *         with the database and model users.
  */
 @Service
-public class GroupService implements IGroupService {
+public class TrawellGroupService implements ITrawellGroupService {
 
     @Autowired
-    private JPAGroupRepository groupRepository;
+    private GroupRepository groupRepository;
 
     @Override
-    public Collection<Group> findAll() {
-        ArrayList<Group> groups = new ArrayList<Group>();
+    public Collection<TrawellGroup> findAll() {
+        ArrayList<TrawellGroup> groups = new ArrayList<TrawellGroup>();
         groupRepository.findAll().forEach(groups::add);
         return groups;
     }
 
     @Override
-    public Group findOne(Long id) {
-        Optional<Group> group = groupRepository.findById(id);
-        return group.get();
+    public TrawellGroup findOne(Long id) {
+        Optional<TrawellGroup> trawellGroup = groupRepository.findById(id);
+        return trawellGroup.get();
     }
 
     @Override
-    public Group create(Group group) {
-        if (group.getId() != null) {
+    public TrawellGroup create(TrawellGroup trawellGroup) {
+        if (trawellGroup.getId() != null) {
             //cannot create User with specified Id value
             return null;
         }
-        return groupRepository.save(group);
+        return groupRepository.save(trawellGroup);
     }
 
     @Override
-    public Group update(Group group) {
-        if (group.getId() == null) {
+    public TrawellGroup update(TrawellGroup trawellGroup) {
+        if (trawellGroup.getId() == null) {
             //cannot create User with specified Id value
             return null;
         }
-        return groupRepository.save(group);
+        return groupRepository.save(trawellGroup);
     }
 
     @Override

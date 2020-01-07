@@ -7,10 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-//import javax.persistence.OneToOne;
-import javax.persistence.OneToOne;
 
 /**
  * @author
@@ -18,20 +15,18 @@ import javax.persistence.OneToOne;
  */
 
 @Entity
-public class Group {
+public class TrawellGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //@ManyToOne
+    // @ManyToOne
     private Long id_owner;
-    private String nome;
+    private String name;
     private String description;
     // @OneToOne()
     private Long id_itinerary;
-    @OneToOne
-    @JoinColumn(name = "id_wallet")
-    private Wallet publicWallet;
-    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
+
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "trawellGroup")
     private List<Wallet> allWallets;
 
     public Long getId() {
@@ -42,12 +37,12 @@ public class Group {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
     public void setName(String nome) {
-        this.nome = nome;
+        this.name = nome;
     }
 
     public String getDescription() {
@@ -90,7 +85,7 @@ public class Group {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Group other = (Group) obj;
+        TrawellGroup other = (TrawellGroup) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -99,10 +94,10 @@ public class Group {
         return true;
     }
 
-    public Group() {
+    public TrawellGroup() {
     }
 
-    public Group(Long id) {
+    public TrawellGroup(Long id) {
         this.id = id;
     }
 
@@ -115,11 +110,8 @@ public class Group {
     }
 
     public Wallet getPublicWallet() {
-        return publicWallet;
-    }
-
-    public void setPublicWallet(Wallet publicWallet) {
-        this.publicWallet = publicWallet;
+        Wallet w = allWallets.stream().filter(x -> x.getIdOwner() == null).findFirst().orElse(null);
+        return w;
     }
 
 }

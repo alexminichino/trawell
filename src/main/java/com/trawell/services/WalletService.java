@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import com.trawell.models.Group;
+import com.trawell.models.TrawellGroup;
 import com.trawell.models.Wallet;
 import com.trawell.repositories.JPAGroupRepository;
 import com.trawell.repositories.WalletRepository;
@@ -68,16 +68,16 @@ public class WalletService implements IWalletService {
     @Override
     public List<Wallet> findByIdGroup(Long idGroup) {
         
-        return walletRepository.findByGroup(new Group(idGroup));
+        return walletRepository.findByTrawellGroup(new TrawellGroup(idGroup));
     }
 
     @Override
     public Wallet findUserWalletofGroup(Long idGroup, Long idUser) {
         
-        Group group = groupRepository.findById(idGroup).get();
-        if (group == null)
+        TrawellGroup trawellGroup = groupRepository.findById(idGroup).get();
+        if (trawellGroup == null)
             return null;
-        List<Wallet> list = group.getAllWallets();
+        List<Wallet> list = trawellGroup.getAllWallets();
 
         for (Wallet wallet : list) {
             if (wallet.getIdOwner() == idUser) {

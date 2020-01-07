@@ -56,13 +56,8 @@ public class DocumentService implements IDocumentService {
 
     @Override
     public void delete(Long id) {
-        Document d = findOne(id);
-        if (d != null) {
-            d.setWallet(null);
-            DocumentRepository.save(d);
-            DocumentRepository.delete(d);
 
-        }
+        DocumentRepository.deleteById(id);
 
     }
 }

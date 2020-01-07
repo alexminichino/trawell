@@ -21,9 +21,11 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long idOwner;
-    @ManyToOne
-    @JoinColumn(name = "id_group")
-    private Group group;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_group", nullable = false)
+    private TrawellGroup trawellGroup;
+
     private boolean isPrivate;
     @OneToMany(mappedBy = "wallet", fetch = FetchType.EAGER)
     private List<Document> documents;
@@ -60,12 +62,12 @@ public class Wallet {
         this.isPrivate = isPrivate;
     }
 
-    public Group getGroup() {
-        return group;
+    public TrawellGroup getGroup() {
+        return trawellGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroup(TrawellGroup trawellGroup) {
+        this.trawellGroup = trawellGroup;
     }
 
     public Wallet() {
