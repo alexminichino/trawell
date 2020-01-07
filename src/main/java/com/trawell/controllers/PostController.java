@@ -99,8 +99,8 @@ public class PostController{
      * @param idPost
      * @return the url of the view used to view displaying the post
      */
-    @GetMapping("/viewPost")
-    public String viewPost(HttpSession session, Model model, @RequestParam(required = true, name="id") Long idPost)
+    @GetMapping("/viewReportedPost")
+    public String viewReportedPost(HttpSession session, Model model, @RequestParam(required = true, name="id") Long idPost)
     {
         User user = (User) session.getAttribute("user");
 
@@ -111,7 +111,14 @@ public class PostController{
 
         Post post = dao.findOne(idPost);
 
-        model.addAttribute("post", post);
+        if(post.isReported())
+        {
+            model.addAttribute("post", post);
+        }
+        else
+        {
+            model.addAttribute("post", null);
+        }
 
         return "pages/post/postView";
     }
@@ -128,7 +135,7 @@ public class PostController{
 
         User user = (User) session.getAttribute("user");
 
-        if(user == null)
+        if(user == null || !user.getIsAdmin())
         {
             return "pages/error";
         }

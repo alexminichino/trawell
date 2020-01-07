@@ -3,6 +3,7 @@
   layout:decorate="~{layout}">
 <head>
   <script src="../js/removePost.js"></script>
+  <script src="../js/discardPost.js"></script>
   <title>TraWell</title>
 </head>
 <body>
@@ -15,6 +16,7 @@
               <p th:text = '${post.user.name +" " +post.user.surname}'></p>
               <p th:text = ${post.postDescription}></p>
               <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
+              <button th:id = ${post.id} class="btn btn-primary discard">Discard post</button>
             </div>
           </div>
         </div>   

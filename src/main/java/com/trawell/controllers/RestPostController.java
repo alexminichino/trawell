@@ -114,4 +114,29 @@ public class RestPostController {
         
         return new ResponseEntity<Post>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
+        /**
+     * This method allows an user to report a post
+     * @author Umberto Russomando
+     * @param session
+     * @param id
+     * @return an HttpStatus
+     */
+    @RequestMapping(value = "/post/discard/{id}", method = RequestMethod.POST,  consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Post> discardPost(HttpSession session, @PathVariable("id") Long id) {
+
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+
+            Post post = dao.findOne(id);
+            post.setIsReported(false);
+            dao.update(post);
+
+            return new ResponseEntity<Post>(HttpStatus.OK);
+        }
+        
+        return new ResponseEntity<Post>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
