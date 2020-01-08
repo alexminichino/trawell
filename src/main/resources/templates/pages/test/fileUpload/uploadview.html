@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>TraWell</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p>Upload a file</p>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="files" multiple>
+        <input type="submit" value="Upload Files"></input>
+    </form>
+  </section>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.trawell.controllers;
 
 import com.trawell.services.PostService;
+import com.trawell.models.Photo;
 import com.trawell.models.Post;
 import com.trawell.models.User;
 
@@ -13,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
-
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.servlet.http.HttpSession;
+
+import com.trawell.utilities.uploader.UploadUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Umberto Russomando
@@ -50,12 +54,36 @@ public class PostController{
      */
     @PostMapping("/addPost")
     public String createPost(@RequestParam(name="postDescription", required=true)  String postDescription,
+    @RequestParam(name = "files", required = true) MultipartFile[] files,
             @ModelAttribute  Post post,  HttpSession session)
     {
         User user = (User) session.getAttribute("user");
+        ArrayList<Photo> photos = new ArrayList<Photo>();
+
+        int i = 0;
+
+        //Carica i file
+        for (MultipartFile file : files) {
+
+            Photo photo = new Photo();
+
+            String uploadDir = user.getName()+user.getSurname();
+            String fileName = UploadUtils.getCurrentTimeUsingDate()+i;
+            photo.setPath(UploadUtils.uploadPhoto(file,uploadDir,fileName));
+
+            photos.add(photo);
+
+            i++;
+        }
+
+
+
+        //Setta il post
         post.setUser(user);
         post.setPostDescription(postDescription);
+        post.setPhotos(photos);
 
+        //Crea il post nel db
         dao.create(post);
 
         return "redirect:/post/viewPosts";
