@@ -1,34 +1,73 @@
-<!--- @author Alfieri Davide --->
+<!--- @author Vincenzo Lamberti --->
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
-<head>
-  <title>CarSharing Ad</title>
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-  <!--<script src = "../js/validation_carsharing.js"></script>-->
-  <script src = "../js/send_carsharing.js"></script>
-</head>
-<body>
-  <!--se stai cercando di mandare dati costruisci una form normale... continua in metodo signUp-->
-  <section layout:fragment="content">
-    <p>CarSharing Ad</p>
-    
-    <form action = "#" id = "target">
-         <div class = "container"> 
-          <div>
-              data e ora: <input type = "datetime-local" name = "departureDate" id = "departureDate"><br>
-              departure:<input type = "text" name = "departure" id = "departure"> <br>
-              description: <textarea name = "description" id = "description"></textarea><br>
-              arrival: <input type = 'text' name = "arrival" id = "arrival"><br>
-              carsharingspot: <input type = 'number' name = "carsharingspot" id = "carsharingspot" min="1"><br>
-              <input type = "submit" value="Public">
-            </div>
-        </div>
-    </form>
-
-  </section>
-  <footer>
-    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
-  </footer> 
-</body>
-</html>
+  <html lang="en">
+  <head>
+	  <title>Carsharing Ad</title>
+	  <link rel="stylesheet" href="../css/carsharing.css">
+	  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	  <!--<script src = "../js/validation_carsharing.js"></script>-->
+      <script src = "../js/send_carsharing.js"></script>
+	  <meta charset="utf-8">
+  </head>
+  <body>
+	  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+		<div class="container h-100">
+		  <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-12 offset-6">
+				  <div class = "mycard">
+				  	<div class = "container">
+						<p class="text-primary">CarSharing Ad</p>
+						<form action="#" id='target'>
+							<div class = "row">
+								<div class="col-12">
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-clock"></i></span>
+										</div>
+										<input type = "datetime-local" name = "departureDate" class="form-control input_user" id = "departureDate" placeholder="Date e Ora">
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-city"></i></span>
+										</div>
+										<input type = "text" name = "departure" class="form-control input_user" id = "departure" placeholder="Departure">
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-city"></i></span>
+										</div>
+										<input type = 'text' name = "arrival" class="form-control input_user" id = "arrival" placeholder="Arrival">
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-pen"></i></span>
+										</div>
+										<textarea name = "description" class="form-control input_user" id = "description" placeholder="Description"></textarea>
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-car"></i></span>
+										</div>
+										<input type = 'number' name = "carsharingspot" class="form-control input_user" id = "carsharingspot" min="1" placeholder="0">
+									</div>
+								</div>
+							</div>
+							<div class = "row">
+								<div class = "col-12">
+									<div class="d-flex justify-content-center mt-3 login_container">
+										<input type = "submit" value = "Crea annuncio" class="btn my_btn">
+								  </div>
+								</div>
+							</div>
+					    </form>
+				    </div>		
+				</div>
+				</div>
+			  </div>
+		  </div>
+	  </div>
+	  </section>
+  </body>
+  </html>
