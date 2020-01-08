@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -28,6 +29,8 @@ public class TrawellGroup {
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "trawellGroup")
     private List<Wallet> allWallets;
+    @ManyToMany(mappedBy = "list")
+    private List<User> participants;
 
     public Long getId() {
         return id;
