@@ -18,19 +18,16 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class UploadUtils {
 
-    public static String basePath = System.getProperty("user.dir") + "/uploads";
+    private static String savedrelPath = "/uploads";
+    private static String relPath = "/src/main/resources/static/uploads";
+    private static String basePath = System.getProperty("user.dir") + relPath;
 
     public static String uploadFile(MultipartFile file, String uploadDir, String fileName){
         
         File pathToSave = new File(basePath+File.separator+uploadDir);
         pathToSave.mkdirs();   
-      
-        System.out.println(fileName);
 
         fileName = fileName + "." + getExtensionByStringHandling(file.getOriginalFilename()).get();
-
-
-        System.out.println(fileName);
 
         Path fileNameAndPath = Paths.get(pathToSave.toString(),fileName);
        
@@ -41,11 +38,12 @@ public class UploadUtils {
             e.printStackTrace();
         }
 
-        return fileNameAndPath.toString();
+        return savedrelPath +uploadDir +fileName;
     }
 
     public static String uploadPhoto(MultipartFile file, String uploadDir, String fileName){
-        return uploadFile(file, Paths.get("photos",uploadDir).toString(), fileName);
+        String folder = uploadDir.replace("/", "") + "/";
+        return uploadFile(file, Paths.get("/photos",folder).toString(), fileName);
     }
     
 
