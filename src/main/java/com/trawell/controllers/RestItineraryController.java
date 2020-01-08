@@ -31,10 +31,10 @@ public class RestItineraryController {
     ItineraryService dao;
 
     /**
-     * The method maps "/api/carsharing/add" post request that allows to add a new carsharing ad
-     * to the logged user's carsharing ad list.
+     * The method maps "/api/itinerary/add" post request that allows to add a new itinerary ad
+     * to the logged user's itinerary list.
      * @author Milione Vincent
-     * @param carsharing object containing the ad's data
+     * @param itinerary object containing the itinerary's data
      * @param session
      * @return a 200 HttpResponse if insertion was successful, 500 otherwise
      */
@@ -54,10 +54,10 @@ public class RestItineraryController {
     }
     
     /**
-     * The method maps "/api/carsharing/modify" post request that allows to update a carsharing ad
-     * from the logged user's carsharing ad list.
+     * The method maps "/api/itinerary/modify" post request that allows to update a itinerary 
+     * from the logged user's itinerary list.
      * @author Milione Vincent
-     * @param carsharing object containing the ad's data
+     * @param itinerary object containing the itinerary's data
      * @param session
      * @return a 200 HttpResponse if update was successful, 500 otherwise
      */
@@ -76,8 +76,8 @@ public class RestItineraryController {
     }
 
     /**
-     * The method maps "/api/carsharing/eliminate/{id}" post request that allows to delte a carsharing ad
-     * from the logged user's carsharing ad list.
+     * The method maps "/api/itinerary/eliminate/{id}" post request that allows to delete an itinerary
+     * from the logged user's itinerary list.
      * @param session
      * @param id
      * @return a 200 HttpResponse if deletion was successful, 500 otherwise
@@ -93,4 +93,47 @@ public class RestItineraryController {
         
         return new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    /**
+     * The method maps "/api/itinerary/import/{id}" post request that allows to import a public itinerary
+     * @param session
+     * @param id
+     * @return a 200 HttpResponse if publicizing was successful, 500 otherwise
+     */
+    @RequestMapping(value = "/itinerary/import/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Itinerary> importItinerary (HttpSession session, @PathVariable("id") Long id) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            Itinerary itinerary = dao.findOne(id);
+            itinerary.setUser(user);
+            itinerary.setId(null);
+
+            return dao.create(itinerary) == null ? new ResponseEntity<Itinerary>(HttpStatus.OK) : new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+        return new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    /**
+     * The method maps "/api/itinerary/publicize/{id}" post request that allows to publicize an itinerary
+     * from the logged user's itinerary list.
+     * @param session
+     * @param id
+     * @return a 200 HttpResponse if publicizing was successful, 500 otherwise
+     */
+    @RequestMapping(value = "/itinerary/publicize/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Itinerary> publicize (HttpSession session, @PathVariable("id") Long id) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            Itinerary itinerary = dao.findOne(id);
+            itinerary.setUser(null);
+            itinerary.setId(null);
+
+            return dao.create(itinerary) == null ? new ResponseEntity<Itinerary>(HttpStatus.OK) : new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+        return new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }

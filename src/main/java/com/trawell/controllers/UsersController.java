@@ -1,6 +1,7 @@
 package com.trawell.controllers;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import com.trawell.models.Agency;
 import com.trawell.utilities.Encoder;
@@ -117,7 +118,7 @@ public class UsersController {
 	 * @return sends user to login
 	 */
 	@PostMapping("/signUp")
-	public String signUp(@ModelAttribute User user, HttpSession session, Model model) {
+	public String signUp(@Valid @ModelAttribute User user, HttpSession session, Model model) {
 		if (isLogged(session)) 
 			return "pages/user/home";
 

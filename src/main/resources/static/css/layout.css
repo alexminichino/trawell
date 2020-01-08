@@ -1,5 +1,6 @@
 footer{
     background-color: #03a1fc;
+    
 }
 
 footer .row{
@@ -85,4 +86,8 @@ footer .col-md-3{
 
 .navbar{
     background-color: #03a1fc;
+}
+
+section{
+    height:70%;
 }
