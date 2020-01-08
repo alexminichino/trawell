@@ -1,3 +1,4 @@
+
 package com.trawell.models;
 
 import com.trawell.models.User;

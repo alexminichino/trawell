@@ -10,8 +10,8 @@ import com.trawell.repositories.ComplaintRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * ComplaintService DAO IMPL
+  /**
+ * @author Paolo Fasano
  */
 @Service
 public class ComplaintService implements IComplaintService {

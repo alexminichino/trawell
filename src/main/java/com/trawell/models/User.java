@@ -4,22 +4,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import java.util.Set;
 import java.util.List;
-import java.util.Objects;
+
+import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Transient;
+
+
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 /**
  * @author Milione Vincent 
- * class models a User that interacts with our platform
+ * class a user on platform
  */
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +44,42 @@ public class User {
     private String phone;
     private boolean isAdmin;
     private boolean isBanned;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Carsharing> userCreatedAdList;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<Itinerary> userItineraries; 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "carspot", joinColumns = {@JoinColumn(name = "id_user")}, inverseJoinColumns = {@JoinColumn(name = "id_carsharing")})
+    private Set<Carsharing> list;
+
+    public List<Itinerary> getUserItineraries() {
+        return this.userItineraries;
+    }
+
+    public void addItinerary(Itinerary itinerary) {
+        itinerary.setUser(this);
+        this.userItineraries.add(itinerary);
+    }
+
+    public void setUserItineraries(List<Itinerary> userItineraries) {
+        this.userItineraries = userItineraries;
+    }
+
+    public Set<Carsharing> getList() {
+        return this.list;
+    }
+
+    public void setList(Set<Carsharing> list) {
+        this.list = list;
+    }
+
+    public List<Carsharing> getUserCreatedAdList() {
+        return this.userCreatedAdList;
+    }
+
+    public void setUserCreatedAdList(List<Carsharing> userCreatedAddList) {
+        this.userCreatedAdList = userCreatedAddList;
+    }
 
     
    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
@@ -157,6 +201,30 @@ public class User {
         super();
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        User other = (User) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        return true;
+    }
+    
     public User(Long id, String mail, String username, String password, String name, String surname, java.sql.Date birth, boolean banned, String bio, int profilePhoto, String phone, boolean isAdmin, boolean isBanned, String transientVar) {
         this.id = id;
         this.mail = mail;
@@ -174,105 +242,6 @@ public class User {
         this.transientVar = transientVar;
     }
 
-    public boolean isBanned() {
-        return this.banned;
-    }
-
-    public boolean isIsAdmin() {
-        return this.isAdmin;
-    }
-
-    public boolean isIsBanned() {
-        return this.isBanned;
-    }
-
-    public String getTransientVar() {
-        return this.transientVar;
-    }
-
-
-    public User id(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public User mail(String mail) {
-        this.mail = mail;
-        return this;
-    }
-
-    public User username(String username) {
-        this.username = username;
-        return this;
-    }
-
-    public User password(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public User name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public User surname(String surname) {
-        this.surname = surname;
-        return this;
-    }
-
-    public User birth(java.sql.Date birth) {
-        this.birth = birth;
-        return this;
-    }
-
-    public User banned(boolean banned) {
-        this.banned = banned;
-        return this;
-    }
-
-    public User bio(String bio) {
-        this.bio = bio;
-        return this;
-    }
-
-    public User profilePhoto(int profilePhoto) {
-        this.profilePhoto = profilePhoto;
-        return this;
-    }
-
-    public User phone(String phone) {
-        this.phone = phone;
-        return this;
-    }
-
-    public User isAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-        return this;
-    }
-
-    public User isBanned(boolean isBanned) {
-        this.isBanned = isBanned;
-        return this;
-    }
-
-    public User transientVar(String transientVar) {
-        this.transientVar = transientVar;
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof User)) {
-            return false;
-        }
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(mail, user.mail) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(birth, user.birth) && banned == user.banned && Objects.equals(bio, user.bio) && profilePhoto == user.profilePhoto && Objects.equals(phone, user.phone) && isAdmin == user.isAdmin && isBanned == user.isBanned && Objects.equals(transientVar, user.transientVar);
-    }
-
-    
 
     @Override
     public String toString() {
@@ -284,21 +253,12 @@ public class User {
             ", name='" + getName() + "'" +
             ", surname='" + getSurname() + "'" +
             ", birth='" + getBirth() + "'" +
-            ", banned='" + isBanned() + "'" +
             ", bio='" + getBio() + "'" +
             ", profilePhoto='" + getProfilePhoto() + "'" +
             ", phone='" + getPhone() + "'" +
-            ", isAdmin='" + isIsAdmin() + "'" +
-            ", isBanned='" + isIsBanned() + "'" +
-            ", transientVar='" + getTransientVar() + "'" +
+            ", isAdmin='" + isAdmin + "'" +
+            ", isBanned='" + isBanned + "'" +
             "}";
     }
 
-
-    /**
-     * @param transientVar the transientVar to set
-     */
-    public void setTransientVar(final String transientVar) {
-        this.transientVar = transientVar;
-    }
 }
