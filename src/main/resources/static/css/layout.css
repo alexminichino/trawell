@@ -61,6 +61,16 @@ footer .col-md-3{
     background-color: #03a1fc;
 }
 
+.personal-card {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background: white;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    border-radius: 5% !important;
+}
+
 #logo{
     width: 25%;
 }
