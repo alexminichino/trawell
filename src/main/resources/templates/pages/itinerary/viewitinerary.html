@@ -4,9 +4,10 @@
   layout:decorate="~{layout}">
 <head>
   <title>Change User Data</title>
+  <link rel="stylesheet" href="../css/viewitinerary.css">
 </head>
 <body>
-  <section layout:fragment="content">
+  <section layout:fragment="content" id = "view">
     <h2 style="color : black; text-align: center">View Itinerary</h2>
         <div class = "container">
             <p style="color : black; text-align: center" th:text = "${itinerary.name}"></p>

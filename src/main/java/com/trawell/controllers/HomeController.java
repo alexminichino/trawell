@@ -26,7 +26,6 @@ public class HomeController {
     private ItineraryService daoitinerary;
     @GetMapping("/home-page")
     public String landing(Model model) {
-        
         model.addAttribute("carsharingAds", daocarsharing.findAll());
         model.addAttribute("itineraries", daoitinerary.findAll());
         return "pages/home/index";

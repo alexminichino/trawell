@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 import com.trawell.models.Agency;
 import com.trawell.utilities.Encoder;
 import com.trawell.models.User;
+import com.trawell.services.CarsharingService;
+import com.trawell.services.ItineraryService;
 import com.trawell.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UsersController {
 	@Autowired
 	private UserService dao;
+	@Autowired 
+	private CarsharingService daocarsharing;
+    @Autowired
+    private ItineraryService daoitinerary;
 
 	/**
 	 * Method checks if the user is already logged
@@ -81,7 +87,8 @@ public class UsersController {
 	 */
 	@PostMapping("/login") 
 	public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
-		
+		model.addAttribute("carsharingAds", daocarsharing.findAll());
+        model.addAttribute("itineraries", daoitinerary.findAll());
 		if (isLogged(session)) return "pages/user/home"; 
 
 		User user = dao.findByUsername(username);

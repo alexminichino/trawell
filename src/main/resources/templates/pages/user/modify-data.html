@@ -1,41 +1,97 @@
-<!--- @author Vincenzo Lamberti --->
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>Change User Data</title>
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-  <script src = "../js/validation_user.js"></script>
-  <script src = "../js/modify_data.js"></script>
+    <title>Change Data Profile</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="../css/modify_data.css">
+    <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
-  <section layout:fragment="content">
-    <h2 style="color : black; text-align: center">Change Data</h2>
-    <form th:action = "${path}" method = "POST" id = "target">
-        <div class = "container">
-          <div>
-            Username: <input th:value = "${user.username}" type = 'text' name = "username" id = "username"><br>
-            Old Password: <input type = "password" name = "oldpassword"><br>
-            New Password: <input type = "password" name = "password" id = "password"><br>
-            Verifica New Password: <input type = "password" name = "verify" id = "verify"><br>
-            Nome: <input th:value = "${user.name}" type = 'text' name = "name" id = "name"><br>
-            Cognome: <input th:value = "${user.surname}" type = 'text' name = "surname" id = "surname"><br>
-            Data di Nascita: <input th:value = "${user.birth}" type = 'date' name = "birth" id = "birth"><br>
-            Contatto: <input th:value = "${user.Phone}" type = 'phone' name = "phone" id = "phone"><br>
-            Bio: <textarea id = "bio" name = "bio" placeholder="insert description..."></textarea>
-            <div th:if= "${isAgency}">
-                Agency Name: <input th:value = "${user.nameAgency}" type = 'text' name = "nameAgency" required><br>
-                Agency URL: <input th:value = "${user.url}" type = "text" name = "url" required><br>
-                Agency VAT: <input th:value = "${user.vat}" type = "text" name = "vat" required><br>
+<section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+
+    <div class="container">
+        <form class="form-horizontal" role="form">
+            <h4>Modifica i tuoi data</h4>
+            <div class="form-group">
+                <label for="username" class="col-sm-3 control-label">Username</label>
+                <div class="col-sm-9">
+                    <input th:value = "${user.username}" type = 'text' name = "username" id = "username" placeholder="Username" class="form-control" autofocus>
+                </div>
             </div>
-            <input type = "submit" value = "Submit">
-          </div>
-        </div>
-    </form>
-    
-  </section>
-  <footer>
-    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
-  </footer> 
+            <div class="form-group">
+                <label for="oldpassword" class="col-sm-3 control-label">Oldpassword</label>
+                <div class="col-sm-9">
+                    <input type = "password" name = "oldpassword" placeholder="Oldpassword" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Newpassword" class="col-sm-3 control-label">New Password</label>
+                <div class="col-sm-9">
+                    <input type = "password" name = "password" id = "password" placeholder="New Password" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Verify new password" class="col-sm-3 control-label">Verifica New Password</label>
+                <div class="col-sm-9">
+                    <input type = "password" name = "verify" id = "verify" class = "form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Nome" class="col-sm-3 control-label">Nome</label>
+                <div class="col-sm-9">
+                    <input th:value = "${user.name}" type = 'text' name = "name" id = "name" class = "form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Cognome" class="col-sm-3 control-label">Cognome</label>
+                <div class="col-sm-9">
+                    <input th:value = "${user.surname}" type = 'text' name = "surname" id = "surname" class = "form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Data di nascita" class="col-sm-3 control-label">Data di nascita</label>
+                <div class="col-sm-9">
+                    <input th:value = "${user.birth}" type = 'date' name = "birth" id = "birth" class = "form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Contatto" class="col-sm-3 control-label">Contatto</label>
+                <div class="col-sm-9">
+                    <input th:value = "${user.Phone}" type = 'phone' name = "phone" id = "phone" class = "form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Bio" class="col-sm-3 control-label">Biografia</label>
+                <div class="col-sm-9">
+                    <textarea id = "bio" name = "bio" placeholder="Descrizione..." class = "form-control"></textarea>
+                </div>
+            </div>
+            <div th:if= "${isAgency}">
+                <div class="form-group">
+                    <label for="Agency Name" class="col-sm-3 control-label">Agency Name</label>
+                    <div class="col-sm-9">
+                        <input th:value = "${user.nameAgency}" type = 'text' name = "nameAgency" required class = "form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Agency Url" class="col-sm-3 control-label">Agency Url</label>
+                    <div class="col-sm-9">
+                        <input th:value = "${user.url}" type = "text" name = "url" required class = "form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Agency VAT" class="col-sm-3 control-label">Agency VAT</label>
+                    <div class="col-sm-9">
+                        <input th:value = "${user.vat}" type = "text" name = "vat" required class = "form-control">
+                    </div>
+                </div>
+            </div>
+            <input type = "submit" value = "Submit" >
+        </form> <!-- /form -->
+    </div> <!-- ./container -->
+</section>
 </body>
 </html>
