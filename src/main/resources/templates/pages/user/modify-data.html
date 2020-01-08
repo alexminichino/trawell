@@ -3,17 +3,16 @@
   layout:decorate="~{layout}">
 <head>
     <title>Change Data Profile</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="../css/modify_data.css">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src = "../js/validation_user"></script>
+    <script src = "../js/modify_data"></script>
     <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
 <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
-
-    <div class="container">
-        <form class="form-horizontal" role="form">
+    <div class="container h-100">
+        <form class="form-horizontal" role="form" id="target">
             <h4>Modifica i tuoi data</h4>
             <div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Username</label>
@@ -89,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <input type = "submit" value = "Submit" >
+            <input type = "submit" value = "Submit" id="btn">
         </form> <!-- /form -->
     </div> <!-- ./container -->
 </section>

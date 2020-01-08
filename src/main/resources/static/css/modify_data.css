@@ -1,5 +1,6 @@
 body {
     background-color: #eee;
+    padding-top: 50px;
 }
 
 *[role="form"] {
@@ -14,3 +15,13 @@ body {
     margin-left: 5em;
     margin-bottom: 1em;
 }
+
+h4{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#btn{
+    text-align: center;
+}
+
