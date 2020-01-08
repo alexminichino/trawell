@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>TraWell</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <!-- This container wraps up everything in the page -->
+    <div class="container-fluid">
+      <form action="/post/addPost" method="POST">
+        <div class="form-group">
+          <label for="postdescription">Enter your post's description</label>
+          <input type="text" class="form-control" id="postdescription" name="postDescription" aria-describedby="postDescriptionHelp" placeholder="Enter description">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </section>
+</body>
+</html>

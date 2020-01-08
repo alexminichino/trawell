@@ -1,9 +1,9 @@
 package com.trawell;
 
+//import com.trawell.storage.configuration.FileStorageProperties;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-
 @SpringBootApplication
 public class TraWellApplication {
 

@@ -1,4 +1,4 @@
-package com.trawell.models;
+package com.trawell.utilities;
 
 import static org.apache.commons.codec.digest.DigestUtils.*; 
 

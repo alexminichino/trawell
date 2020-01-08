@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+  <script src="./path/to/dropzone.js"></script>
+  <script src="../js/changeVisibilityDocument.js"></script>
+  <script src="../js/removeDocument.js"></script>
+  <link rel="stylesheet" href="../css/Wallet.css">
+  <title>TraWell</title>
+</head>
+
+<body>
+  <section layout:fragment="content">
+    <!-- This container wraps up everything in the page -->
+    <h3>Wallet</h3>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <h5>Public Wallet</h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col col-10">DOCUMENT NAME</th>
+                <th scope="col col-1">Date to use</th>
+                <th scope="col col-1"></th>
+
+              </tr>
+            </thead>
+            <tbody th:if=${publicWallet}>
+              <tr th:each="d : ${publicWallet.documents}">
+                <td th:text='${d.name}'></td>
+                <td th:text='${d.dueDate}'></td>
+                <td>
+
+                  <button th:id=${d.id} class="btn btn-primary remove"> <span class="fas fa-times"></span></button>
+                  <button th:id=${d.id} class="btn btn-primary changeVis"> <span
+                      class="fas fa-globe-europe"></span></button>
+                </td>
+              </tr>
+            </tbody>
+            <tbody th:if="not ${publicWallet}">
+              <td colspan="2">WALLLET EMPTY</td>
+            </tbody>
+          </table>
+
+
+          <h5>User Wallet</h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col col-10">DOCUMENT NAME</th>
+                <th scope="col col-1">Date to use</th>
+                <th scope="col col-1"></th>
+
+              </tr>
+            </thead>
+            <tbody th:if=${userWallet}>
+              <tr th:each="d : ${userWallet.documents}">
+                <td th:text='${d.name}'></td>
+                <td th:text='${d.dueDate}'></td>
+                <td>
+                  <button th:id=${d.id} class="btn btn-primary remove"> <span class="fas fa-times"></span></button>
+                  <button th:id=${d.id} class="btn btn-primary changeVis"> <span
+                      class="fas fa-globe-europe"></span></button>
+                </td>
+              </tr>
+            </tbody>
+            </tbody>
+            <tbody th:if="not ${userWallet}">
+              <td colspan="2">WALLLET EMPTY</td>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="col-md-2">
+          <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
+          <input type="file" name="file" />
+          Drag and drop
+        </div>
+
+        <div class="col-md-1">
+          Itineraries for you
+        </div>
+        <div class="col-md-1">
+          Google ad.
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
