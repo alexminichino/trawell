@@ -18,6 +18,14 @@ public class Photo
     @ManyToOne
     @JoinColumn(name = "id_post")
     private Post post;
+
+    public Post getPost() {
+        return this.post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
     
     //private String name;
     private String path;

@@ -3,9 +3,9 @@ package com.trawell.models;
 
 import com.trawell.models.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GenerationType;
@@ -39,7 +39,7 @@ public class Post
     @JoinColumn(name="id_owner")
     private User user;
     
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Photo> photos; 
 
     public List<Photo> getPhotos() {

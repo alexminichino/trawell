@@ -19,8 +19,10 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpSession;
 
+import com.trawell.utilities.Encoder;
 import com.trawell.utilities.uploader.UploadUtils;
 import org.springframework.web.multipart.MultipartFile;
+
 
 /**
  * @author Umberto Russomando
@@ -33,7 +35,6 @@ public class PostController{
 
     @Autowired
     private PostService dao;
-
 
     /**
      * @author Umberto Russomando
@@ -67,10 +68,13 @@ public class PostController{
 
             Photo photo = new Photo();
 
-            String uploadDir = user.getName()+user.getSurname();
+            Encoder encoder = new Encoder();
+
+            String uploadDir = encoder.encoding(user.getMail(), 3);
             String fileName = UploadUtils.getCurrentTimeUsingDate()+i;
             photo.setPath(UploadUtils.uploadPhoto(file,uploadDir,fileName));
-
+            photo.setPost(post);
+            
             photos.add(photo);
 
             i++;
@@ -108,6 +112,7 @@ public class PostController{
             posts.parallelStream().forEach(p->{p.getUser();});
 
             model.addAttribute("posts", posts);
+
 
             return "pages/post/bachecapost";
         }

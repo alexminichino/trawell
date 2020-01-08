@@ -13,8 +13,12 @@
         <div class="row">
           <div class="col-sm posts">
             <div th:each="post : ${posts}" class = "post">
-              <!--<img th:src="${post.photos}" class="rounded float-left" alt="an img">
-              <img th:src="@{/images/test.png}"/> -->
+
+              <img src="/uploads/photos/E4D3451BDAD9B06D71F2F361902A4CA6/prova.png" class="rounded float-left" alt="an img">
+              <div th:each ="photo : ${post.photos}">
+                 
+              </div>
+              <!-- <img th:src="@{/images/test.png}"/>  <img th:src="@{${src}}"/>  th:src="@{${photo.path}}"-->
               <p th:text = '${post.user.name +" " +post.user.surname}'></p>
               <p th:text = ${post.postDescription}></p>
               <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
