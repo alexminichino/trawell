@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <script src="../js/removePost.js"></script>
+  <script src="../js/reportPost.js"></script>
+  <title>TraWell</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <!-- This container wraps up everything in the page -->
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm posts">
+            <div th:each="post : ${posts}" class = "post">
+              <div th:each ="photo : ${post.photos}">
+                <img th:src="@{${photo.path}}" class="rounded float-left" alt="an img">   
+              </div>
+              <!-- <img th:src="@{/images/test.png}"/>  <img th:src="@{${src}}"/>  "-->
+              <p th:text = '${post.user.name +" " +post.user.surname}'></p>
+              <p th:text = ${post.postDescription}></p>
+              <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
+              <button th:id = ${post.id} class="btn btn-primary report">Segnala Post</button>
+            </div>
+          </div>
+        </div>   
+    </div>
+  </section>
+</body>
+</html>
