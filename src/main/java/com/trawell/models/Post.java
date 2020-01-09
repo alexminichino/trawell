@@ -59,7 +59,6 @@ public class Post
     {
         this.id = id;
         //this.idGroup = idGroup;
-        //this.idPhoto = idPhoto;
         this.postDescription = postDescription;
     }
 
@@ -83,17 +82,7 @@ public class Post
     {
         this.idGroup = idGroup;
     }
-    /*
-    public Long getIdPhoto() 
-    {
-        return this.idPhoto;
-    }
 
-    public void setIdPhoto(Long idPhoto) 
-    {
-        this.idPhoto = idPhoto;
-    }
-    */
     public String getPostDescription() 
     {
         return this.postDescription;

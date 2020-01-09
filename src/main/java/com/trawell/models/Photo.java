@@ -7,6 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/**
+ * @author Umberto Russomando
+ * This class models a photo
+ */
+
 @Entity
 public class Photo
 {
@@ -27,7 +32,6 @@ public class Photo
         this.post = post;
     }
     
-    //private String name;
     private String path;
 
 
@@ -43,15 +47,6 @@ public class Photo
         this.id = id;
     }
 
-    /*
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    */
     public String getPath() {
         return this.path;
     }
