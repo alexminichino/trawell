@@ -46,7 +46,7 @@ public class User {
     private boolean isBanned;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Carsharing> userCreatedAdList;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) // LAZY -> EAGER
     private List<Itinerary> userItineraries; 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "carspot", joinColumns = {@JoinColumn(name = "id_user")}, inverseJoinColumns = {@JoinColumn(name = "id_carsharing")})

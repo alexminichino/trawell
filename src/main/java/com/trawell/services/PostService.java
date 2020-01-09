@@ -66,6 +66,12 @@ public class PostService implements IPostService {
     {
         return postRepository.findByIdGroupIsNull();
     }
+
+    @Override
+    public Collection<Post> findReportedPosts()
+    {
+        return postRepository.findByIsReported(true);
+    }
     
 
     

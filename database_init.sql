@@ -303,16 +303,13 @@ DROP TABLE IF EXISTS `trawell`.`photo` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`photo` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `idOwner` INT NOT NULL,
-  `PhotoName` VARCHAR(100) NOT NULL,
-  `PhotoPath` VARCHAR(268) NOT NULL,
+  `id_post` INT NOT NULL,
+  `path` VARCHAR(268) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `idPhoto_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `PhotoPhat_UNIQUE` (`PhotoPath` ASC),
-  INDEX `idOwner_idx` (`idOwner` ASC),
+
  
-    FOREIGN KEY (`idOwner`)
-    REFERENCES `trawell`.`Post` (`id`)
+    FOREIGN KEY (`id_post`)
+    REFERENCES `trawell`.`post` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -327,8 +324,8 @@ CREATE TABLE IF NOT EXISTS `trawell`.`post` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_owner` INT NOT NULL,
   `id_group` INT ,
-  `id_photo` INT NULL,
   `post_description` VARCHAR(500) NOT NULL,
+  `is_reported` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`),
   
     FOREIGN KEY (`id_owner`)
