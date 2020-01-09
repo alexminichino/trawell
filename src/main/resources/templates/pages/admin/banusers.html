@@ -13,14 +13,38 @@
     <p>Ban Utente</p>
     <div class = "container">
       <div>
-        <form action = "/admin/banuser" method = "POST" id = "banning">
-            Username utente: <input type = 'text' name = "username" placeholder = "username..."><br>
-            Motivazione : <textarea name="motivation" rows="10" cols="30">Inserire qui motivazioni del ban..</textarea> <br>
+        <form  action = "/admin/banUser" method = "POST" id = "banning">
+            Username utente: 
+            <select name="username" id="username">
+              <option value=""> Seleziona utente </option>
+              <option th:each="user : ${listaUser}"
+                 th:value="${user.username}"
+                 th:utext="${user.username}"/>
+            </select>
+             <br>
+            Motivazione : <textarea name="motivation" rows="10" cols="30" placeholder="Inserire motivazione qui..."></textarea> <br>
             Data fine ban: <input type = "date" name = "bannedUntil">
             <input type = "submit">
         </form>
       </div>
     </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col col-10">UTENTI BANNATI</th>
+        </tr>
+      </thead>
+      <tbody th:if=${listaUser}>
+        <tr th:each="user : ${listaUser}">
+          <td th:text='${user.username}' th:if= "${user.isBanned}"
+          ></td>
+          
+        </tr>
+      </tbody>
+      <tbody th:if="not ${listaUser}">
+        <td colspan="2">NESSUN UTENTE BANNATO</td>
+      </tbody>
+    </table>
   </section>
 
 </body>

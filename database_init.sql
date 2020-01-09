@@ -32,13 +32,8 @@ CREATE TABLE IF NOT EXISTS `trawell`.`ad` (
   `ad_due_date` DATETIME NOT NULL,
   `id_photo` VARCHAR(268) NOT NULL,
   PRIMARY KEY (`id`),
-<<<<<<< HEAD
-  UNIQUE INDEX `idAd_UNIQUE` (`id` ASC),
-  INDEX `idUser_idx` (`id_owner` ASC),
-=======
   UNIQUE INDEX `id_ad_UNIQUE` (`id` ASC),
   INDEX `id_user_idx` (`id_owner` ASC),
->>>>>>> master
     FOREIGN KEY (`id_owner`)
     REFERENCES `trawell`.`user` (`id`)
     ON DELETE NO ACTION
