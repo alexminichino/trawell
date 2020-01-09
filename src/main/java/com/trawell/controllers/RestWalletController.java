@@ -38,7 +38,7 @@ public class RestWalletController {
      * update the visibility of a document.
      * 
      * @author Ruggiero Gaetano
-     * @param user    object containing the ad's data
+     * @param user    
      * @param session
      * @param id
      * @param wallet
