@@ -313,8 +313,8 @@ CREATE TABLE IF NOT EXISTS `trawell`.`photo` (
  
     FOREIGN KEY (`id_post`)
     REFERENCES `trawell`.`post` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

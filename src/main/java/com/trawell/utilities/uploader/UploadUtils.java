@@ -23,14 +23,14 @@ public class UploadUtils {
     private static String basePath = System.getProperty("user.dir") + relPath;
 
     public static String uploadFile(MultipartFile file, String uploadDir, String fileName){
-        
+
         File pathToSave = new File(basePath+File.separator+uploadDir);
-        pathToSave.mkdirs();   
+        pathToSave.mkdirs();
 
         fileName = fileName + "." + getExtensionByStringHandling(file.getOriginalFilename()).get();
 
         Path fileNameAndPath = Paths.get(pathToSave.toString(),fileName);
-       
+
         try {
             Files.write(fileNameAndPath, file.getBytes());
         } 
@@ -38,14 +38,14 @@ public class UploadUtils {
             e.printStackTrace();
         }
 
-        return savedrelPath +uploadDir +fileName;
+        return savedrelPath +uploadDir+"/" +fileName;
     }
 
     public static String uploadPhoto(MultipartFile file, String uploadDir, String fileName){
         String folder = uploadDir.replace("/", "") + "/";
         return uploadFile(file, Paths.get("/photos",folder).toString(), fileName);
     }
-    
+
 
     public static Optional<String> getExtensionByStringHandling(String filename) {
         return Optional.ofNullable(filename)
