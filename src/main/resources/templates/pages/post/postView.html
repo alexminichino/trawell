@@ -3,6 +3,7 @@
   layout:decorate="~{layout}">
 <head>
   <script src="../js/removePost.js"></script>
+  <script src="../js/discardPost.js"></script>
   <title>TraWell</title>
 </head>
 <body>
@@ -12,9 +13,13 @@
         <div class="row">
           <div class="col-sm posts">
             <div class = "post">
+              <div th:each ="photo : ${post.photos}">
+                <img th:src="@{${photo.path}}" class="rounded float-left" alt="an img">   
+              </div>
               <p th:text = '${post.user.name +" " +post.user.surname}'></p>
               <p th:text = ${post.postDescription}></p>
               <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
+              <button th:id = ${post.id} class="btn btn-primary discard">Discard post</button>
             </div>
           </div>
         </div>   
