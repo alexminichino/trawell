@@ -51,6 +51,16 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "carspot", joinColumns = {@JoinColumn(name = "id_user")}, inverseJoinColumns = {@JoinColumn(name = "id_carsharing")})
     private Set<Carsharing> list;
+    @ManyToMany(mappedBy = "participants")
+    private Set<TrawellGroup> userGroups;
+
+    public Set<TrawellGroup> getUserGroups() {
+        return this.userGroups;
+    }
+
+    public void setUserGroups(Set<TrawellGroup> userGroups) {
+        this.userGroups = userGroups;
+    }
 
     public List<Itinerary> getUserItineraries() {
         return this.userItineraries;
