@@ -28,9 +28,9 @@ public class Post
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@OneToOne
-    //@JoinColumn(name="")
-    private Long idGroup;
+    @ManyToOne
+    @JoinColumn(name="id_group")
+    private TrawellGroup group;
     private String postDescription;
 
     private boolean isReported;
@@ -74,15 +74,6 @@ public class Post
     }
 
     
-    public Long getIdGroup() 
-    {
-        return this.idGroup;
-    }
-
-    public void setIdGroup(Long idGroup) 
-    {
-        this.idGroup = idGroup;
-    }
     /*
     public Long getIdPhoto() 
     {

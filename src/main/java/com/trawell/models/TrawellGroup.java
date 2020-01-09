@@ -1,6 +1,7 @@
 package com.trawell.models;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -27,19 +28,19 @@ public class TrawellGroup {
     private String name;
     private String description;
     private Long idItinerary;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> posts;
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "trawellGroup")
     private List<Wallet> allWallets;
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "groupMember", joinColumns = {@JoinColumn(name = "id_group")}, inverseJoinColumns = {@JoinColumn(name = "id_user")})
-    private List<User> participants;
+    @JoinTable(name = "groupmember", joinColumns = {@JoinColumn(name = "id_group")}, inverseJoinColumns = {@JoinColumn(name = "id_user")})
+    private Set<User> participants;
 
-    public List<User> getParticipants() {
+    public Set<User> getParticipants() {
         return this.participants;
     }
 
-    public void setParticipants(List<User> participants) {
+    public void setParticipants(Set<User> participants) {
         this.participants = participants;
     }
 

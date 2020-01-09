@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping(value = "/api")
 public class RestGroupController {
-    @Autowired
+  /*  @Autowired
     TrawellGroupService daoGroup;
     @Autowired
     UserService daoUser;
@@ -100,5 +100,5 @@ public class RestGroupController {
         }
 
         return updatedGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
-    }
+    }*/
 }

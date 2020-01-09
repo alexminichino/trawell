@@ -238,9 +238,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`GroupMember`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`groupMember` ;
+DROP TABLE IF EXISTS `trawell`.`groupmember` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`groupMember` (
+CREATE TABLE IF NOT EXISTS `trawell`.`groupmember` (
   `id_user` INT NOT NULL,
   `id_group` INT NOT NULL,
   
@@ -302,7 +302,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `trawell`.`photo` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`photo` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` IwqNT NOT NULL AUTO_INCREMENT,
   `id_post` INT NOT NULL,
   `path` VARCHAR(268) NOT NULL,
   PRIMARY KEY (`id`),
@@ -310,8 +310,8 @@ CREATE TABLE IF NOT EXISTS `trawell`.`photo` (
  
     FOREIGN KEY (`id_post`)
     REFERENCES `trawell`.`post` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
