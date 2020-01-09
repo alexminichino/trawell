@@ -38,7 +38,7 @@ public class RestWalletController {
      * update the visibility of a document.
      * 
      * @author Ruggiero Gaetano
-     * @param user    object containing the ad's data
+     * @param user    
      * @param session
      * @param id
      * @param wallet
@@ -48,9 +48,10 @@ public class RestWalletController {
      *         have the permission and 500 otherwise
      */
     @RequestMapping(value = "/document/changeVisibility/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Document> modify(HttpSession session, @PathVariable("id") Long id) {
+    public ResponseEntity<Document> modify(HttpSession session, @PathVariable("id") String id) {
+        Long id1= Long.valueOf(id);
         User user = (User) session.getAttribute("user");
-        Document d = daoD.findOne(id);
+        Document d = daoD.findOne(id1);
         Document updateDocument = null;
         boolean b = d.getWallet().isPrivate();
         if (user.getId() == d.getIdUser()) {

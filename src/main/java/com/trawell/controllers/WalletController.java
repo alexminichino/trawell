@@ -43,15 +43,19 @@ public class WalletController {
         User user = (User) session.getAttribute("user");
         long idUser = user.getId();
         TrawellGroup trawellGroup = groupService.findOne(id);
-        Wallet publicWallet = trawellGroup.getPublicWallet();
-        Wallet userWallet = trawellGroup.getAllWallets().stream()
-                .filter(x -> x.getIdOwner() == null ? false : x.getIdOwner() == idUser).findFirst().orElse(null);
+        if (trawellGroup != null) {
+            Wallet publicWallet = trawellGroup.getPublicWallet();
+            Wallet userWallet = trawellGroup.getAllWallets().stream()
+                    .filter(x -> x.getIdOwner() == null ? false : x.getIdOwner() == idUser).findFirst().orElse(null);
 
-        model.addAttribute("publicWallet", publicWallet);
+            model.addAttribute("publicWallet", publicWallet);
 
-        model.addAttribute("userWallet", userWallet);
+            model.addAttribute("userWallet", userWallet);
 
-        return "pages/user/walletGroup";
+            return "pages/user/walletGroup";
+        } else {
+            return "pages/error";
+        }
     }
 
 }
