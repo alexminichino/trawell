@@ -12,8 +12,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Transient;
-
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -32,10 +35,23 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Email
     private String mail;
+    @NotEmpty(message = "Username can not be empty")
+    @Size(min = 1, max = 20,message = "Username must be between 1 and 20 characters long")
+    @NotNull(message = "Username can not be empty")
+    @NotBlank(message = "Username can not be empty")
     private String username;
     private String password;
+    @NotBlank(message = "Name can not be empty")
+    @NotNull(message = "Name can not be empty")
+    @NotEmpty(message = "Name can not be empty")
+    @Size(min = 1,max = 20,message ="Name must be between 1 and 20 characters long" )
     private String name;
+    @NotBlank(message = "Surname can not be empty")
+    @NotNull(message = "Surname can not be empty")
+    @NotEmpty(message = "Surname can not be empty")
+    @Size(min = 1,max = 20,message ="Surname must be between 1 and 20 characters long" )
     private String surname;
     private java.sql.Date birth;
     private boolean banned;

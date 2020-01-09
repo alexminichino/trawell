@@ -1,6 +1,7 @@
 package com.trawell.controllers;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import com.trawell.models.Agency;
 import com.trawell.utilities.Encoder;
@@ -56,7 +57,7 @@ public class RestUsersController {
      * @return a JSON object with Http Status 200 if update was successful, 500 otherwise
      */
     @RequestMapping(value = "/users/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @ModelAttribute User user, @RequestParam (name = "oldpassword", required = true) String oldPassword, HttpSession session) {
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id,@Valid @ModelAttribute User user, @RequestParam (name = "oldpassword", required = true) String oldPassword, HttpSession session) {
 
         User u = (User) session.getAttribute("user");
 

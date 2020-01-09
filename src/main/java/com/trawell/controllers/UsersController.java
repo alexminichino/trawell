@@ -143,7 +143,7 @@ public class UsersController {
 	 * @return sends user to login
 	 */
 	@PostMapping("/signUpAgency")
-	public String signUp(@ModelAttribute Agency user, HttpSession session, Model model) {
+	public String signUp(@Valid @ModelAttribute Agency user, HttpSession session, Model model) {
 		if (isLogged(session)) 
 			return "pages/user/home";
 
