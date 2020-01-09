@@ -3,10 +3,34 @@
   layout:decorate="~{layout}">
 <head>
   <title>Trawell</title>
+  <script src = "../js/home_click.js"></script>
+  <link rel="stylesheet" href="../css/home.css"> 
 </head>
 <body>
   <section layout:fragment="content">
-    Welcome to Trawell!
+    <div id = "container">
+      <div class = "card" style="width: 18rem;" id = "block1">
+        <img class = "card-img-top" src = "https://cdn-media.italiani.it/site-catania/2019/04/Car-sharing-2-1000x600.jpg" height="180" width="286">
+        <h5>Carsharings Available</h5>
+        <div class = "carsharingAds">
+          <div th:each = "ad : ${carsharingAds}" class = "carsharing">
+              <p th:text="${ad.arrival}"/>
+              <p th:text="${ad.departure}"/>
+          </div>
+        </div>    
+      </div><br>
+      <div class = "card" style="width: 18rem;" id = "block2">
+        <img class = "card-img-top" src = "https://cdn4.iconfinder.com/data/icons/summer-travel-wildberry-volume-2/256/Travel_Itinerary-512.png" height="200" width="286">
+        <h5>Itineraries Available</h5>
+        <div class = "itineraries">
+          <div th:each = "itinerary : ${itineraries}" class = "itinerary">
+              <p th:text="${itinerary.name}"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </section>
+ 
 </body>
 </html>

@@ -10,7 +10,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 
