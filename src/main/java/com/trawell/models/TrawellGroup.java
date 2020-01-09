@@ -19,12 +19,10 @@ public class TrawellGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // @ManyToOne
     private Long id_owner;
     private String name;
     private String description;
-    // @OneToOne()
-    private Long id_itinerary;
+    private Long idItinerary;
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "trawellGroup")
     private List<Wallet> allWallets;
@@ -53,12 +51,12 @@ public class TrawellGroup {
         this.description = description;
     }
 
-    public Long getId_itinerary() {
-        return id_itinerary;
+    public Long getIdItinerary() {
+        return idItinerary;
     }
 
     public void setId_itinerary(Long id_itinerary) {
-        this.id_itinerary = id_itinerary;
+        this.idItinerary = id_itinerary;
     }
 
     public List<Wallet> getAllWallets() {
