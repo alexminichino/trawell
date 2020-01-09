@@ -4,17 +4,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
-import com.trawell.models.Ad;
 import com.trawell.models.Agency;
-import com.trawell.repositories.AdRepository;
 import com.trawell.repositories.AgencyRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Mario Paone
- * AgencyService DAO IMPL
+ * @author Mario Paone AgencyService DAO IMPL
  */
 @Service
 public class AgencyService implements IAgencyService {
@@ -48,7 +45,7 @@ public class AgencyService implements IAgencyService {
     public Agency update(Agency agency) {
         Agency dataPersisted = findOne(agency.getId());
         if (dataPersisted == null) {
-            //cannot find Agency with specified Id value
+            // cannot find Agency with specified Id value
             return null;
         }
         Agency updatedData = agencyRepository.save(agency);
@@ -57,12 +54,12 @@ public class AgencyService implements IAgencyService {
 
     @Override
     public void delete(Long id) {
-         agencyRepository.delete(findOne(id));
+        agencyRepository.delete(findOne(id));
     }
 
     @Override
     public Agency findById(Long id) {
         return agencyRepository.findById(id).get();
-    } 
-    
+    }
+
 }

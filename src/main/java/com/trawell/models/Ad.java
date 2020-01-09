@@ -1,25 +1,22 @@
 package com.trawell.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.sql.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 /**
- * @author Mario Pane 
- * class models an Ad 
+ * @author Mario Pane class models an Ad
  */
 public class Ad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long idOwner; 
+    private Long idOwner;
     private String adPaymentMethod;
     private Long adCost;
     private Date adStartingDate;
@@ -29,8 +26,8 @@ public class Ad {
     public Ad() {
     }
 
-
-    public Ad(Long id, Long idOwner, String adPaymentMethod, Long adCost, Date adStartingDate, Date adDueDate, String idPhoto) {
+    public Ad(Long id, Long idOwner, String adPaymentMethod, Long adCost, Date adStartingDate, Date adDueDate,
+            String idPhoto) {
         this.id = id;
         this.idOwner = idOwner;
         this.adPaymentMethod = adPaymentMethod;
@@ -96,7 +93,6 @@ public class Ad {
         this.idPhoto = idPhoto;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -105,7 +101,10 @@ public class Ad {
             return false;
         }
         Ad ad = (Ad) o;
-        return Objects.equals(id, ad.id) && Objects.equals(idOwner, ad.idOwner) && Objects.equals(adPaymentMethod, ad.adPaymentMethod) && Objects.equals(adCost, ad.adCost) && Objects.equals(adStartingDate, ad.adStartingDate) && Objects.equals(adDueDate, ad.adDueDate) && Objects.equals(idPhoto, ad.idPhoto);
+        return Objects.equals(id, ad.id) && Objects.equals(idOwner, ad.idOwner)
+                && Objects.equals(adPaymentMethod, ad.adPaymentMethod) && Objects.equals(adCost, ad.adCost)
+                && Objects.equals(adStartingDate, ad.adStartingDate) && Objects.equals(adDueDate, ad.adDueDate)
+                && Objects.equals(idPhoto, ad.idPhoto);
     }
 
     @Override
@@ -115,22 +114,10 @@ public class Ad {
 
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", idOwner='" + getIdOwner() + "'" +
-            ", adPaymentMethod='" + getAdPaymentMethod() + "'" +
-            ", adCost='" + getAdCost() + "'" +
-            ", adStartingDate='" + getAdStartingDate() + "'" +
-            ", adDueDate='" + getAdDueDate() + "'" +
-            ", idPhoto='" + getIdPhoto() + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", idOwner='" + getIdOwner() + "'" + ", adPaymentMethod='"
+                + getAdPaymentMethod() + "'" + ", adCost='" + getAdCost() + "'" + ", adStartingDate='"
+                + getAdStartingDate() + "'" + ", adDueDate='" + getAdDueDate() + "'" + ", idPhoto='" + getIdPhoto()
+                + "'" + "}";
     }
 
-    
-
-
-
-
-
-   
 }

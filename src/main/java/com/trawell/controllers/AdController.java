@@ -6,26 +6,24 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpSession;
-import org.springframework.ui.Model;
 
 import com.trawell.models.Ad;
 import com.trawell.models.Agency;
 import com.trawell.models.User;
 import com.trawell.services.AdService;
 import com.trawell.services.AgencyService;
-import com.trawell.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @author Mario Paone
- * AdController: andranno mappate tutte le funzionalità relative agli annunci ed
- * i relativi controller
+ * @author Mario Paone AdController: andranno mappate tutte le funzionalità
+ *         relative agli annunci ed i relativi controller
  * 
  */
 
@@ -36,25 +34,21 @@ public class AdController {
     private AdService adDao;
 
     @Autowired
-    private UserService userDao;
-
-    @Autowired
     private AgencyService agencyDao;
 
     /**
-     * @author Mario Paone
-     * Method checks if the user is already logged
+     * @author Mario Paone Method checks if the user is already logged
      * 
      * @param session
      * @return true if he is already logged, false otherwise
      */
     private boolean isAgency(HttpSession session) {
-        User user =  (User) session.getAttribute("user");
-        try{
-        Agency agency = agencyDao.findById(user.getId());
-        return true;
-        }catch(Exception e){
-        return false;
+        User user = (User) session.getAttribute("user");
+        try {
+            Agency agency = agencyDao.findById(user.getId());
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 
@@ -83,19 +77,21 @@ public class AdController {
             @RequestParam(name = "ad_time", required = true) String time_choosed,
             @RequestParam(name = "starting_time", required = true) Date starting_time, HttpSession session, Model model)
             throws ParseException {
-        
+
         long costo = 0;
         int mesi = 0;
-        if(time_choosed.equals("1mesi")){
+        if (time_choosed.equals("1mesi")) {
             costo = 90;
             mesi = 1;
-        }else if(time_choosed.equals("3mesi")){
+        } else if (time_choosed.equals("3mesi")) {
             costo = 250;
             mesi = 3;
-        }if(time_choosed.equals("6mesi")){
+        }
+        if (time_choosed.equals("6mesi")) {
             costo = 460;
             mesi = 6;
-        }if(time_choosed.equals("12mesi")){
+        }
+        if (time_choosed.equals("12mesi")) {
             costo = 860;
             mesi = 12;
         }
@@ -104,7 +100,7 @@ public class AdController {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         cal.setTime(sdf.parse(starting_time.toString()));
-        cal.add(Calendar.MONTH,mesi);
+        cal.add(Calendar.MONTH, mesi);
         Date finaldate = new Date(cal.getTimeInMillis());
 
         Ad ad = new Ad();
@@ -115,8 +111,7 @@ public class AdController {
         ad.setAdDueDate(finaldate);
         ad.setIdPhoto("");
         adDao.create(ad);
-        
-        
+
         return "pages/agency/home";
     }
 

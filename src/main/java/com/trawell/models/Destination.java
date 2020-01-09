@@ -10,14 +10,12 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 
 /**
- * @author Milione Vincent
- * class models an itinerary. An itinerary is a user's travel plan.
+ * @author Milione Vincent class models an itinerary. An itinerary is a user's
+ *         travel plan.
  */
 public class Destination {
     @Id
@@ -29,16 +27,16 @@ public class Destination {
     private java.util.Date date;
     private boolean isVisited;
     @ManyToOne
-    @JoinColumn(name="id_itinerary")
+    @JoinColumn(name = "id_itinerary")
     private Itinerary itinerary;
 
-	public Itinerary getItinerary() {
-		return this.itinerary;
-	}
+    public Itinerary getItinerary() {
+        return this.itinerary;
+    }
 
-	public void setItinerary(Itinerary itinerary) {
-		this.itinerary = itinerary;
-	}
+    public void setItinerary(Itinerary itinerary) {
+        this.itinerary = itinerary;
+    }
 
     public Long getId() {
         return this.id;
@@ -80,4 +78,4 @@ public class Destination {
         this.isVisited = isVisited;
     }
 
-}   
+}
