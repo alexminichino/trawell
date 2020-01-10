@@ -2,9 +2,12 @@ package com.trawell.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import com.trawell.models.TrawellGroup;
+import com.trawell.models.User;
 import com.trawell.repositories.GroupRepository;
+import com.trawell.repositories.JPAGroupRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class TrawellGroupService implements ITrawellGroupService {
 
     @Autowired
-    private GroupRepository groupRepository;
+    private JPAGroupRepository groupRepository;
 
     @Override
     public Collection<TrawellGroup> findAll() {
@@ -36,7 +39,7 @@ public class TrawellGroupService implements ITrawellGroupService {
     @Override
     public TrawellGroup create(TrawellGroup trawellGroup) {
         if (trawellGroup.getId() != null) {
-            //cannot create User with specified Id value
+            // cannot create User with specified Id value
             return null;
         }
         return groupRepository.save(trawellGroup);
@@ -45,7 +48,7 @@ public class TrawellGroupService implements ITrawellGroupService {
     @Override
     public TrawellGroup update(TrawellGroup trawellGroup) {
         if (trawellGroup.getId() == null) {
-            //cannot create User with specified Id value
+            // cannot create User with specified Id value
             return null;
         }
         return groupRepository.save(trawellGroup);
@@ -53,8 +56,15 @@ public class TrawellGroupService implements ITrawellGroupService {
 
     @Override
     public void delete(Long id) {
-        
 
+    }
+
+    @Override
+    public List<TrawellGroup> findGroupCreatedByUser(User user) {
+        if (user == null) {
+            return null;
+        }
+        return groupRepository.findByIdOwner(user.getId());
     }
 
     
