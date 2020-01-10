@@ -7,12 +7,12 @@
 $(document).ready(function(){
     $(".remove").click(function () {
         var wrapper = $(".groupMemb").filter($(this).parents());
-        var idGroup = $(".list-group").filter($(this).parents()).attr("id");
+        var idGroup = $("tbody").filter($(this).parents()).attr("id");
         var idUser = $(this).attr("id");
 
         var url = "/api/group/removeMember/"+idGroup+"/"+idUser;
 
-        alert("are you sure you want to eliminate thi member from this group?");
+        alert("are you sure you want to eliminate this member from this group?");
         $.ajax({
             dataType: "text",
             url:url,
