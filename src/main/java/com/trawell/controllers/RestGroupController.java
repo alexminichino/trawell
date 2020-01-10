@@ -93,12 +93,12 @@ public class RestGroupController {
     @PostMapping(value="/group/eliminate/{id}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TrawellGroup> eliminateGroup(@PathVariable(name = "id") Long id, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        TrawellGroup updatedGroup = null;
 
         if (user != null) {
             daoGroup.delete(id);
+            return new ResponseEntity<TrawellGroup>(HttpStatus.OK);
         }
 
-        return updatedGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
+        return  new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

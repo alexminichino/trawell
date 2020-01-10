@@ -2,6 +2,7 @@ package com.trawell.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Wallet {
     private TrawellGroup trawellGroup;
 
     private boolean isPrivate;
-    @OneToMany(mappedBy = "wallet", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "wallet", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Document> documents;
 
     public Long getId() {

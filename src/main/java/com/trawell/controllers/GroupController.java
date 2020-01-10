@@ -30,8 +30,8 @@ public class GroupController {
     public String listView(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         if (user == null ? false : !user.getIsAdmin()) {
-            model.addAttribute("createdGroups", dao.findGroupCreatedByUser(user));
-            model.addAttribute("participatingGroups", user.getUserGroups().parallelStream().filter(x -> x.getIdOwner() != user.getId()));
+            
+            model.addAttribute("Groups", user.getUserGroups());
             
             return "pages/group/list-view";
         }

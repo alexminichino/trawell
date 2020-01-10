@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
 import com.trawell.models.TrawellGroup;
 import com.trawell.models.User;
-import com.trawell.repositories.GroupRepository;
 import com.trawell.repositories.JPAGroupRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +56,8 @@ public class TrawellGroupService implements ITrawellGroupService {
 
     @Override
     public void delete(Long id) {
+
+        groupRepository.deleteById(id);
 
     }
 
