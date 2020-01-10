@@ -12,6 +12,8 @@
 
  [![Maintainability](https://api.codeclimate.com/v1/badges/ef0e304631b60709a830/maintainability)](https://codeclimate.com/github/alexminichino/trawell/maintainability)
 
+ [![codecov](https://codecov.io/gh/alexminichino/trawell/branch/master/graph/badge.svg)](https://codecov.io/gh/alexminichino/trawell)
+
 ### todo descrizione progetto 
 @umbertoRussomando 
 
