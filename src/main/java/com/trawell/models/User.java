@@ -5,6 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import java.util.Set;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -35,12 +37,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Email
+    @NotNull
+    @Pattern(regexp=".+@.+\\.[a-z]+", message="Invalid email address!")
     private String mail;
     @NotEmpty(message = "Username can not be empty")
     @Size(min = 1, max = 20,message = "Username must be between 1 and 20 characters long")
     @NotNull(message = "Username can not be empty")
     @NotBlank(message = "Username can not be empty")
+    @Pattern(regexp="^[a-zA-Z0-9]+$", message="Invalid username!")
     private String username;
     private String password;
     @NotBlank(message = "Name can not be empty")
@@ -53,7 +57,7 @@ public class User {
     @NotEmpty(message = "Surname can not be empty")
     @Size(min = 1,max = 20,message ="Surname must be between 1 and 20 characters long" )
     private String surname;
-    private java.sql.Date birth;
+    private Date birth;
     private boolean banned;
     private String bio;
     private int profilePhoto;
@@ -106,11 +110,11 @@ public class User {
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Complaint> userAdds; */
 
-    public java.sql.Date getBirth() {
+    public Date getBirth() {
         return this.birth;
     }
 
-    public void setBirth(final java.sql.Date birth) {
+    public void setBirth(final Date birth) {
         this.birth = birth;
     }
 
