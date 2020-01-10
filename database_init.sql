@@ -302,7 +302,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `trawell`.`photo` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`photo` (
-  `id` IwqNT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `id_post` INT NOT NULL,
   `path` VARCHAR(268) NOT NULL,
   PRIMARY KEY (`id`),
