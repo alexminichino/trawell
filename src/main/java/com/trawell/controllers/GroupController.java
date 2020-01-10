@@ -27,9 +27,11 @@ public class GroupController {
     TrawellGroupService dao;
 
     @GetMapping("/list-view")
-    public String listView(HttpSession session) {
+    public String listView(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         if (user == null ? false : !user.getIsAdmin()) {
+            model.addAttribute("createdGroups", dao.findGroupCreatedByUser(user));
+            model.addAttribute("participatingGroups", user.getUserGroups().parallelStream().filter(x -> x.getIdOwner() != user.getId()));
             
             return "pages/group/list-view";
         }
@@ -41,7 +43,9 @@ public class GroupController {
         User user = (User) session.getAttribute("user");
         if (user == null ? false : !user.getIsAdmin()) {
             TrawellGroup group = dao.findOne(id);
-            //model.addAttribute("posts", group.getPosts());
+
+            model.addAttribute("posts", group.getPosts());
+            model.addAttribute("participants", group.getParticipants());
             model.addAttribute("group", group);
             return "pages/group/view-group";
         }
