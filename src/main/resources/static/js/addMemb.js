@@ -5,12 +5,12 @@
 */
 
 $(document).ready(function(){
-    $(".remove").click(function () {
-        var wrapper = $(".groupMemb").filter($(this).parents());
-        var idGroup = $(".list-group").filter($(this).parents()).attr("id");
-        var idUser = $(this).attr("id");
+    $(".addMemb").click(function () {
+        //var wrapper = $(".groupMemb").filter($(this).parents());
+        //var username = $(form input [name = username]);    //$(".").filter($(this).parents()).attr("id");
+        var idGroup = $(this).attr("id");
 
-        var url = "/api/group/removeMember/"+idGroup+"/"+idUser;
+        var url = "/api/group/addMember/"+idGroup+"/"+username;
 
         alert("are you sure you want to eliminate thi member from this group?");
         $.ajax({
@@ -23,7 +23,7 @@ $(document).ready(function(){
             type:'POST',
             success:function(data){
                 alert("success");
-                wrapper.remove();
+                //wrapper.remove();
             },
            error:function(request,textStatus,errorThrown){
                 alert("failed:");
