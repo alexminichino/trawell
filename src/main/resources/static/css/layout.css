@@ -10,9 +10,8 @@
     border-radius: 5%;
 }
 
-footer{
+.extension {
     background-color: #03a1fc;
-    
 }
 
 footer .row{
@@ -42,8 +41,8 @@ footer .row{
     color: white;
 }
 
-footer .col-md-1{
-    padding-top: 5%;
+footer .col-3{
+    margin-top: 5%;
     padding-left: 0%;
     padding-right: 0%;
 }
@@ -57,7 +56,7 @@ footer .col-md-3{
     color: white;
 }
 
-.navbar navbar-expand-lg navbar-dark bg-primary rounded{
+.rounded{
     background-color: #03a1fc;
 }
 
@@ -72,7 +71,7 @@ footer .col-md-3{
 }
 
 #logo{
-    width: 25%;
+    width: 100%;
 }
 
 .nav-item a{
@@ -108,8 +107,4 @@ footer .col-md-3{
 
 .navbar{
     background-color: #03a1fc;
-}
-
-section{
-    height:70%;
 }

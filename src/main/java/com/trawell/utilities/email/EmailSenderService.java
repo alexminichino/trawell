@@ -15,7 +15,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 
 /**
- * @author Umberto Russomando
+ * @author Umberto Russomando, Paolo Fasano
  * This service is the one responsible for creating and sending the email to the admin
  */
 
@@ -46,6 +46,15 @@ public class EmailSenderService {
         emailService.send(email);
     }
 
+    /**
+     * This method create and send the email to an user
+     * @author Paolo Fasano
+     * @param text
+     * @param object
+     * @param emailTo
+     * @param name
+     * @throws UnsupportedEncodingException
+     */
     public void sendEmail(String text, String object, String emailTo, String name) throws UnsupportedEncodingException {
         final Email email = DefaultEmail.builder()
                 .from(new InternetAddress("TraWell.customerservice@gmail.com",

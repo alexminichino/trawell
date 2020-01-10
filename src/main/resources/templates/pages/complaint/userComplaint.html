@@ -1,25 +1,72 @@
-
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
 <head>
+  <link rel="stylesheet" href="../css/complaint.css">
   <title>Complaint</title>
   <header>here goes the header</header>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
 </head>
+
 <body>
   <section layout:fragment="content">
-  <form method="POST" action = "/Complaint/addComplaint">
-        
-      <p>Thank you for taking time to fill a complaint. </p>
-      <p>Please fill the following forms</p>
-      <p>Enter a mail where you what to be answered:<br> <input type="email" name="mail" minlength="5" maxlength="256" autocomplete="on" placeholder="exemple@mailprovider.Trawell"><br></p>
-      <p>Enter a title for your complaint:          <br> <input type="text" name="complaintObject" minlength="3" maxlength="45" autocomplete="on" placeholder="Comlaint Title"><br></p>
-      <p>Enter your complaint:                      <br> <textarea rows="6" cols="50" name="complaintDescription" placeholder="Write your complaint here"></textarea></p>
-      <p><button type="submit">submit complaint</button></p>                            
-  </form>
-</section>
+
+    <img src="../image/603820.jpg" id="picInit" class="img-responsive" alt="I Swear this is a beautiful image">
+
+    <div class="container h-100">
+      <form method="POST" action="/Complaint/addComplaint">
+        <div class="row">
+          <div class="col-3"></div>
+          <h3>
+            <p>Thank you for taking time to fill a complaint.
+              <br>
+              Please fill the following forms</p>
+          </h3>
+        </div>
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-5">
+             <p>Enter a mail where you what to be answered:<br> <input type="email" name="mail" minlength="5"
+            maxlength="256" autocomplete="on" placeholder="exemple@mailprovider.Trawell" class="form-control"><br></p>
+          </div>
+         
+          <div class="col-1"></div>
+          <div class="col-4">
+            <p>Enter a title for your complaint: <br> <input type="text" name="complaintObject" minlength="3"
+              maxlength="45" autocomplete="on" placeholder="Comlaint Title" class="form-control"><br></p>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10">
+            <p>Enter your complaint: <br> <textarea rows="6" cols="50" name="complaintDescription"
+                placeholder="Write your complaint here" class="form-control"></textarea></p>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-10"></div>
+          <p><button type="submit" class="btn btn-primary">Submit complaint</button></p>
+          </p>
+        </div>
+    </div>
+
+
+    </form>
+    </div>
+  </section>
   <footer>
-    <p layout:fragment="custom-footer">Here goes the footer</p> 
-  </footer> 
+    <p layout:fragment="custom-footer">Here goes the footer</p>
+  </footer>
 </body>
+
 </html>
