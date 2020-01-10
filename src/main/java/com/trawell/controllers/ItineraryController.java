@@ -1,5 +1,4 @@
 package com.trawell.controllers;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -54,7 +53,7 @@ public class ItineraryController {
     public String modify (HttpSession session, @RequestParam("id") Long id, Model model) {
         User user = (User) session.getAttribute("user");
 
-        if (user == null & id == null ? false : user.getUserItineraries() == null ? false : user.getUserItineraries().size() > 0) {
+        if (user == null || id == null ? false : user.getUserItineraries() == null ? false : !user.getUserItineraries().isEmpty()) {
             int index = user.getUserItineraries().indexOf(new Itinerary(id));
             model.addAttribute("itinerary", user.getUserItineraries().get(index));
         }
@@ -79,7 +78,7 @@ public class ItineraryController {
         User user = (User) session.getAttribute("user");
         Itinerary itinerary = new Itinerary(id);
 
-        if (user == null && id == null ? false : user.getUserItineraries() == null ? false : user.getUserItineraries().size() > 0) {
+        if (user == null || id == null ? false : user.getUserItineraries() == null ? false : !user.getUserItineraries().isEmpty()) {
             int index = user.getUserItineraries().indexOf(itinerary);
             model.addAttribute("itinerary", user.getUserItineraries().get(index));
         }
@@ -98,18 +97,9 @@ public class ItineraryController {
      */
     @GetMapping("/list-view")
     public String list(HttpSession session, Model model) {
-        //nella pagina html vengono outputtati tutti i nomi degli itinerari... se uno user preme
-        //su uno dei nomi allora visualizza il suo contenuto
+    
         User user = (User) session.getAttribute("user");
-        List<Itinerary> list = user.getUserItineraries();
-
-        if (list == null ? false : list.size() <= 0) {
-            //accordati 
-            model.addAttribute("isEmpty", true);
-        } else {
-            model.addAttribute("itineraries", user.getUserItineraries());
-            model.addAttribute("isEmpty", false);
-        }
+        model.addAttribute("itineraries", user.getUserItineraries());
 
         return "pages/itinerary/list-view";
     }
