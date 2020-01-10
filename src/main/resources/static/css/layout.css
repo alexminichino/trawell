@@ -1,4 +1,16 @@
-footer{
+.mycard {
+    width:50%;
+    height: 70% ;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background: white;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    border-radius: 5%;
+}
+
+.extension {
     background-color: #03a1fc;
 }
 
@@ -29,8 +41,8 @@ footer .row{
     color: white;
 }
 
-footer .col-md-1{
-    padding-top: 5%;
+footer .col-3{
+    margin-top: 5%;
     padding-left: 0%;
     padding-right: 0%;
 }
@@ -44,12 +56,22 @@ footer .col-md-3{
     color: white;
 }
 
-.navbar navbar-expand-lg navbar-dark bg-primary rounded{
+.rounded{
     background-color: #03a1fc;
 }
 
+.personal-card {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background: white;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    border-radius: 5% !important;
+}
+
 #logo{
-    width: 25%;
+    width: 100%;
 }
 
 .nav-item a{

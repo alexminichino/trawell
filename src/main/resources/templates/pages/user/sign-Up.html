@@ -1,3 +1,4 @@
+<!--- @author Vincenzo Lamberti --->
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
@@ -13,76 +14,89 @@
 <body>
     <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/548084/pexels-photo-548084.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
         <div class="container h-100">
-            <div class="d-flex justify-content-center h-100">
-                <div class="user_card">
-                    <div class="d-flex justify-content-center">
-                        <div class="brand_logo_container">
-                            <img src="../image/logo.png" class="brand_logo" alt="Logo">
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center form_container">
-                        <div th:if="${flagEmail} and ${flagUsername}">
-                            <div>Another account already uses the specified email and username</div>
-                        </div>
-                        <div th:if="not ${flagEmail} and ${flagUsername}">
-                            <div>Another account already uses the specified username</div>
-                        </div>
-                        <div th:if="not ${flagUsername} and ${flagEmail}">
-                            <div>Another account already uses the specified email</div>
-                        </div>
-                        </div>
-                        <form action="/users/signUp" method="POST" id='target'>
-                            <div class="input-group mb-2">
-                                <input type="text" name="username" th:value= "${hasAttempted} ? ${user.username}"class="form-control input_user" placeholder="Username" id="username">
-                            </div>
-                            <div class="input-group mb-2">
-                                <input type="password" name="password" class="form-control input_pass" placeholder="Password" id="password">
-                            </div>
-                            <div class="input-group mb-2">
-                                <input type="password" name="verify" class="form-control input_pass" placeholder="Verify password" id="verify">
-                                </div>
-                            <div class="input-group mb-2">
-                                    <input type="text" name="name" th:value= "${hasAttempted} ? ${user.name}" class="form-control input_pass" placeholder="Name" id="name">
-                                </div>
-                            <div class="input-group mb-2">
-                                    <input type="text" name="surname" th:value= "${hasAttempted} ? ${user.surname}" class="form-control input_pass" placeholder="Surname" id="surname">
-                                </div>
-                            <div class="input-group mb-2">
-                                    <input type="text" name="mail" th:value= "${hasAttempted} ? ${user.mail}" class="form-control input_pass" placeholder="E-mail" id="mail">
-                                </div>
-                            <div class="input-group mb-2">
-                                    <input type="date" name="birth" class="form-control input_pass" id="birth">
-                                </div>
-                            <div class="input-group mb-2">
-                                   <input type="text" name="phone" th:value= "${hasAttempted} ? ${user.phone}" class="form-control input_pass" placeholder="Phone" id="phone">
-                                </div>
-                            <div id="slider">
-                            <div class="input-group mb-2" >
-                                    <input type="text" name="nameAgency" class="form-control input_pass" placeholder="Name Agency" id="nameAgency">
-                                </div>
-                            <div class="input-group mb-2" >
-                                    <input type="text" name="url" class="form-control input_pass" placeholder="URL Agency" id="url">
-                                </div>
-                            <div class="input-group mb-2" >
-                                    <input type="text" name="vat" class="form-control input_pass" placeholder="VAT Agency" id="vat">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-7 align-self-center">
+                    <div class="card card-block personal-card">
+                        <div class = "container">
+                            <div class = "row justify-content-center">
+                                <div class = "col-10 col-lg-7">
+                                    <img src="../image/logo.png" style ="height: auto;max-width: 100%;"class = "img-fluid" alt="Logo">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                    <label class="custom-control-label" id="toggle" for="customControlInline">Are you an Agency?</label>
+                            <form action="/users/signUp" method="POST" id='target'>
+                                <div class = "row">
+                                    <div class = "col-lg-6 col-md-12">
+                                        <div class="input-group mb-2">
+                                            <input type="text" name="username" th:value= "${hasAttempted} ? ${user.username}"class="form-control input_user" placeholder="Username" id="username">
+                                        </div>
+                                        <div class="input-group mb-2">
+                                            <input type="password" name="password" class="form-control input_pass" placeholder="Password" id="password">
+                                        </div>
+                                        <div class="input-group mb-2">
+                                            <input type="password" name="verify" class="form-control input_pass" placeholder="Verify password" id="verify">
+                                            </div>
+                                        <div class="input-group mb-2">
+                                                <input type="text" name="name" th:value= "${hasAttempted} ? ${user.name}" class="form-control input_pass" placeholder="Name" id="name">
+                                            </div>
+                                    </div>
+                                    <div class = "col-lg-6 col-md-12">
+                                        <div class="input-group mb-2">
+                                                <input type="text" name="surname" th:value= "${hasAttempted} ? ${user.surname}" class="form-control input_pass" placeholder="Surname" id="surname">
+                                            </div>
+                                        <div class="input-group mb-2">
+                                                <input type="text" name="mail" th:value= "${hasAttempted} ? ${user.mail}" class="form-control input_pass" placeholder="E-mail" id="mail">
+                                            </div>
+                                        <div class="input-group mb-2">
+                                                <input type="date" name="birth" class="form-control input_pass" id="birth">
+                                            </div>
+                                        <div class="input-group mb-2">
+                                            <input type="text" name="phone" th:value= "${hasAttempted} ? ${user.phone}" class="form-control input_pass" placeholder="Phone" id="phone">
+                                            </div>
+                                        <div id="slider">
+                                            <div class="input-group mb-2" >
+                                                    <input type="text" name="nameAgency" class="form-control input_pass" placeholder="Name Agency" id="nameAgency">
+                                                </div>
+                                            <div class="input-group mb-2" >
+                                                    <input type="text" name="url" class="form-control input_pass" placeholder="URL Agency" id="url">
+                                                </div>
+                                            <div class="input-group mb-2" >
+                                                    <input type="text" name="vat" class="form-control input_pass" placeholder="VAT Agency" id="vat">
+                                                </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                                <div class="d-flex justify-content-center mt-3 login_container">
-                                    <input type = "submit" value = "Sign Up"class="btn login_btn">
-                                   
+                                <div class = "row">
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                                            <label class="custom-control-label" id="toggle" for="customControlInline">Are you an Agency?</label>
+                                        </div>
+                                    </div>
+                                        <div class="d-flex justify-content-center mt-3 login_container">
+                                            <input type = "submit" value = "Sign Up"class="btn login_btn">
+                                        
+                                        </div>
                                 </div>
                         </form>
-                    </div>		
-                    <div class="mt-4">
+                    
+                        <div class="d-flex justify-content-center form_container">
+                            <div th:if="${flagEmail} and ${flagUsername}">
+                                <div>Another account already uses the specified email and username</div>
+                            </div>
+                            <div th:if="not ${flagEmail} and ${flagUsername}">
+                                <div>Another account already uses the specified username</div>
+                            </div>
+                            <div th:if="not ${flagUsername} and ${flagEmail}">
+                                <div>Another account already uses the specified email</div>
+                            </div>
+                            </div>
+                            
+                                
+                                
+                        </div>		
                     </div>
-                </div>
             </div>
         </div>
+    </section>
 </body>
 </html>

@@ -1,32 +1,6 @@
     /**@author Vincenzo Lamberti
     */
-    body,
-    html {
-        margin: 20;
-        padding: 20;
-        height: 100%;
-        ;
-    }
-    .user_card {
-        height: 400px;
-        width: 350px;
-        margin-top: auto;
-        margin-bottom: auto;
-        background: white;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        padding: 10px;
-    }
-   .brand_logo_container {
-        position: absolute;
-        width: 100%;
-        text-align: center;
-    }
-    .brand_logo {
-        width: 70%;
-    }
+
     .form_container {
         margin-top: 100px;
     }
