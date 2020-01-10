@@ -1,0 +1,29 @@
+/** author Alfieri Davide
+*/
+
+    .form_container {
+        margin-top: 100px;
+    }
+    .my_btn {
+        width: 100%;
+        background: #03a1fc !important;
+        color: white !important;
+    }
+    .my_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+    .login_container {
+        padding: 0 2rem;
+    }
+    .input-group-text {
+        background: #03a1fc !important;
+        color: white !important;
+        border: 0 !important;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+  
+    p{
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }

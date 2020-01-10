@@ -23,7 +23,6 @@ public class Itinerary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Pattern(regexp = "/^[A-Z a-z]$/")
     private String name;
     @ManyToOne
     @JoinColumn(name="id_owner")

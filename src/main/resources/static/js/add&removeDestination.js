@@ -4,16 +4,16 @@
 
    $(document).ready(function(){
     var wrapper = $(".destinations");
-    var add_button = $(".add");
+    var add_button = $("#add");
     var x = 1;
     $(add_button).click(function(e){
         e.preventDefault();
         x++;
-        $(wrapper).append('<div class = "destination"> Destinazione:<input type = "text" name = "location" placeholder= "location"><br> Data e Ora:<input type = "datetime-local" name = "date"><br> Desccrizione:<textarea name = "description" placeholder= "description"></textarea><br> <button style = "background-color:red;" class = "remove">Rimuovi la destinazione</button>' );
+        $(wrapper).append('<div  class = "destination"> <div class="input-group mb-2"> <div class="input-group-append"> <span class="input-group-text"><i class="fas fa-city"></i></span> </div> <input type = "text" name = "location" placeholder= "Destinazione" class="form-control input_user"> </div> <div class="input-group mb-2"> <div class="input-group-append"> <span class="input-group-text"><i class="fas fa-clock"></i></span> </div> <input type = "datetime-local" name = "date" placeholder= "Data e ora" class="form-control input_user">  </div> <div class="input-group mb-2"> <div class="input-group-append"> <span class="input-group-text"><i class="fas fa-pen"></i></span> </div> <textarea name="description" placeholder="Descrizione" class = "form-control input_user"></textarea> </div><br> <input type = "button" value = "Rimuovi la destinazione" id="remove" class="btn my_btn"><br>');
                      
-    })
+    });
 
-    $(wrapper).on("click",".remove",function(e){
+    $(wrapper).on("click","#remove",function(e){
         e.preventDefault();
         $(this).parent('div').remove();
         x--;
@@ -33,7 +33,6 @@
             var location = div.find("input[name='location']").val();
             var date = div.find("input[name='date']").val();
             var description = div.find("textarea").val();
-
             var destination = {location: location, date: date, description: description}
             da['destinations'].push(destination);
         });
