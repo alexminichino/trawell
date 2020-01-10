@@ -30,12 +30,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping(value = "/api")
 public class RestGroupController {
-  /*  @Autowired
+    @Autowired
     TrawellGroupService daoGroup;
     @Autowired
     UserService daoUser;
 
-    @PostMapping(value="/group/addMember", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/group/newGroup", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TrawellGroup> addGroup (@RequestBody TrawellGroup group, HttpSession session) {
         User user = (User) session.getAttribute("user");
         TrawellGroup createdGroup = null;
@@ -100,5 +100,5 @@ public class RestGroupController {
         }
 
         return updatedGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
-    }*/
+    }
 }
