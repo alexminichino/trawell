@@ -62,7 +62,7 @@ public class UsersController {
 	@GetMapping("/logout")
 	public String logout (HttpSession session) {
 		session.removeAttribute("user");
-		return "pages/home/index";
+		return "redirect:/";
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class UsersController {
 		}
 		
 		session.setAttribute("user", user);
-		return user.getIsAdmin() ? "redirect:/admin/serialnumber" : "pages/user/home";
+		return user.getIsAdmin() ? "redirect:/admin/serialnumber" : "redirect:/";
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class UsersController {
 	@PostMapping("/signUp")
 	public String signUp(@Valid @ModelAttribute User user, HttpSession session, Model model) {
 		if (isLogged(session)) 
-			return "pages/user/home";
+			return "redirect:/";
 
 		boolean flagUsername = dao.doesUsernameExist(user.getUsername());
 		boolean flagEmail = dao.doesEmailExist(user.getMail());
@@ -130,7 +130,7 @@ public class UsersController {
 			user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
 			session.setAttribute("user", dao.create(user));
 
-			return "pages/user/home";
+			return "redirect:/";
 		} else {
 			model.addAttribute("flagUsername", flagUsername);
 			model.addAttribute("flagEmail", flagEmail);
@@ -162,12 +162,12 @@ public class UsersController {
 			user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
 			session.setAttribute("user", dao.create(user));
 
-			return "pages/user/home";
+			return "redirect:/";
 		} else {
 			model.addAttribute("flagUsername", flagUsername);
 			model.addAttribute("flagEmail", flagEmail);
 
-			return "pages/user/sign-Up";
+			return "redirect:/";
 		}
 	}
 	
