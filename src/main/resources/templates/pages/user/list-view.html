@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+
+  <head>
+      <title>List View Group</title>
+      <meta charset="utf-8">
+  </head>
+
+  <body>
+      <section layout:fragment="content">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+
+                <div class = "col-12">
+                    <!-- Tabella gruppi creati dall'utente-->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Group Name</th>
+                            </tr>
+                        </thead>
+                        <tbody th:if=${createdGroups}>
+                            <tr th:each = "group : ${createdGroups}">
+                                <td th:text = "${group.name}"></td>
+                            </tr>
+                        </tbody>
+                        <tbody th:if="not ${createdGroups}">
+                            <tr>
+                                <td> No groups Created</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Tabella gruppi in cui l'utente partecipa-->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Group Name</th>
+                            </tr>
+                        </thead>
+                        <tbody th:if=${participatingGroups}>
+                            <tr th:each = "group : ${participatingGroups}">
+                                <td th:text = "${group.name}"></td>
+                            </tr>
+                        </tbody>
+                        <tbody th:if="not ${participating}">
+                            <tr>
+                                <td> No groups Created</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class = "col-3">
+                    <!-- Bottone inserisci nuovo gruppo-->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Create new group
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <!--caselle di input vengono messe qui-->
+                            <form>
+                                <div class="modal-body">
+                                <input type = "text" name = "name" placeholder="group name">
+                                <textarea name = "description" placeholder="Group description..."></textarea>
+                                <!--molto problematico il for per inserire gli id dell'itinerario-->
+                                <select name = "idItinerary">
+                                    <option th:each="itinerary : ${}"></option>
+                                </select>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+      </section>
+  </body>
+</html>

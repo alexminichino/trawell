@@ -2,11 +2,16 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
+  <link rel="stylesheet" href="../css/adminhome.css">
   <title>TraWell</title>
 </head>
 <body>
   <section layout:fragment="content">
-    <p>Benvenuto nella tua area personale.</p>
+    <p th:if="${msg}"> <h6 class="msgR" th:text='${msg}'> </h6>
+    </p>
+    <p>Benvenuto nella tua area admin.</p>
+    <p> Quale operazione vuoi effettuare? </p>
+    <a href="/admin/banUsersLand"> Bannare un utente </a>
   </section>
   <footer>
     <p layout:fragment="custom-footer"></p> 

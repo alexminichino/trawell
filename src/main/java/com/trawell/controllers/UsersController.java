@@ -1,11 +1,17 @@
 package com.trawell.controllers;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpSession;
 
 import com.trawell.models.Agency;
-import com.trawell.utilities.Encoder;
+import com.trawell.models.BanData;
 import com.trawell.models.User;
+import com.trawell.services.BanDataService;
 import com.trawell.services.UserService;
+import com.trawell.utilities.Encoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +32,8 @@ public class UsersController {
 	@Autowired
 	private UserService dao;
 
+	@Autowired
+    private BanDataService bandataDao;
 	/**
 	 * Method checks if the user is already logged
 	 * @param session
@@ -84,7 +92,11 @@ public class UsersController {
 		
 		if (isLogged(session)) return "pages/user/home"; 
 
+
 		User user = dao.findByUsername(username);
+		checkBan(user);
+
+		if (user.getIsBanned()) return "pages/user/login";
 		password = new Encoder(username).encoding(password, username.length());
 
 		if (user == null) {
@@ -193,4 +205,29 @@ public class UsersController {
 		
 		return "pages/user/modify-data";
 	}
+
+
+	/**
+	 * @author Mario Paone
+	 * Checks if the ban period is over
+	 * @param user the user being checked
+	 * 
+	 * 
+	 * */
+	public void checkBan(User user){
+        ArrayList<BanData> data = (ArrayList<BanData>) bandataDao.findAllByIdUser(user.getId());
+        if (data.isEmpty())
+            return ;
+        Boolean isFinished = false;
+        Date now = new Date(Calendar.getInstance().getTimeInMillis());
+            if (data.get(data.size() - 1).getBanUntil().before(now)){
+                isFinished = true;
+            }
+
+
+        if (isFinished){
+            user.setIsBanned(false);
+            dao.update(user);
+        }
+    }
 }

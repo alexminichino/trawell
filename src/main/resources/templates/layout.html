@@ -36,7 +36,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/users/change-user-data">Update Credentials</a>
           <div th:if= "not ${session.user.isAdmin}" class="dropdown-divider"></div>
-          <a th:if= "${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/admin/banusers">Ban a User</a>
+          <a th:if= "${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/admin/banUsersLand">Ban a User</a>
           <a th:if= "${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/Complaint/viewComplaint">List of Complaints</a>
           <a th:if= "${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/post/listReportedPosts">Reported Posts</a>
           <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/itinerary/list-view">My Itineraries</a>

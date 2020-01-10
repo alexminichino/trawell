@@ -1,6 +1,7 @@
 package com.trawell.controllers;
 
 import javax.servlet.http.HttpSession;
+
 import com.trawell.models.Itinerary;
 import com.trawell.models.User;
 import com.trawell.services.ItineraryService;
