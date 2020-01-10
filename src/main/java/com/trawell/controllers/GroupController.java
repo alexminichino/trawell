@@ -26,14 +26,6 @@ public class GroupController {
     @Autowired
     TrawellGroupService dao;
 
-    @GetMapping("/new-group")
-    public String newGroup(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null ? false : !user.getIsAdmin())
-            return "pages/group/create";
-        return "redirect:/users/login";
-    }
-
     @GetMapping("/list-view")
     public String listView(HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -51,7 +43,7 @@ public class GroupController {
             TrawellGroup group = dao.findOne(id);
             //model.addAttribute("posts", group.getPosts());
             model.addAttribute("group", group);
-            return "pages/group/groupView";
+            return "pages/group/view-group";
         }
         return "redirect:/users/login";
     }
