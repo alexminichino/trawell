@@ -67,8 +67,6 @@ public class Test_ServiceUser {
         created.setPhone("3664422514");
         created.setPassword("92908C781853A92BE9A963319F18A3C5");
 
-        when(repo.save(any(User.class))).thenReturn(created);
-
         assertEquals(null ,dao.create(user));
 
     }
