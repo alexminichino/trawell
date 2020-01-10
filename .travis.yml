@@ -29,8 +29,7 @@ addons:
 
 script:
   - mvn clean install -B
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then mvn clean install'  
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis 
   - echo "TRAVIS_SECURE_ENV_VARS=${TRAVIS_SECURE_ENV_VARS}";
   - >
     if [ "${TRAVIS_SECURE_ENV_VARS}" == "true" ]; then
