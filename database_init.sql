@@ -238,9 +238,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `trawell`.`GroupMember`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trawell`.`groupMember` ;
+DROP TABLE IF EXISTS `trawell`.`groupmember` ;
 
-CREATE TABLE IF NOT EXISTS `trawell`.`groupMember` (
+CREATE TABLE IF NOT EXISTS `trawell`.`groupmember` (
   `id_user` INT NOT NULL,
   `id_group` INT NOT NULL,
   

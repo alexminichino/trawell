@@ -1,12 +1,17 @@
 package com.trawell.models;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -19,13 +24,25 @@ public class TrawellGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long id_owner;
+    private Long idOwner;
     private String name;
     private String description;
     private Long idItinerary;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    private List<Post> posts;
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "trawellGroup")
     private List<Wallet> allWallets;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "groupmember", joinColumns = {@JoinColumn(name = "id_group")}, inverseJoinColumns = {@JoinColumn(name = "id_user")})
+    private Set<User> participants;
+
+    public Set<User> getParticipants() {
+        return this.participants;
+    }
+
+    public void setParticipants(Set<User> participants) {
+        this.participants = participants;
+    }
 
     public Long getId() {
         return id;
@@ -55,7 +72,7 @@ public class TrawellGroup {
         return idItinerary;
     }
 
-    public void setId_itinerary(Long id_itinerary) {
+    public void setIdItinerary(Long id_itinerary) {
         this.idItinerary = id_itinerary;
     }
 
@@ -65,6 +82,14 @@ public class TrawellGroup {
 
     public void setAllWallets(List<Wallet> allWallets) {
         this.allWallets = allWallets;
+    }
+
+    public List<Post> getPosts() {
+        return this.posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
     @Override
@@ -99,12 +124,12 @@ public class TrawellGroup {
         this.id = id;
     }
 
-    public Long getId_owner() {
-        return id_owner;
+    public Long getIdOwner() {
+        return idOwner;
     }
 
-    public void setId_owner(Long id_owner) {
-        this.id_owner = id_owner;
+    public void setIdOwner(Long id_owner) {
+        this.idOwner = id_owner;
     }
 
     public Wallet getPublicWallet() {

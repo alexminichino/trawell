@@ -64,7 +64,7 @@ public class PostService implements IPostService {
     @Override
     public Collection<Post> findByIdGroupIsNull()
     {
-        return postRepository.findByIdGroupIsNull();
+        return postRepository.findByGroupIsNull();
     }
 
     @Override
