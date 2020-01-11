@@ -14,6 +14,8 @@
 
  [![codecov](https://codecov.io/gh/alexminichino/trawell/branch/master/graph/badge.svg)](https://codecov.io/gh/alexminichino/trawell)
 
+ [![Coverage Status](https://coveralls.io/repos/github/alexminichino/trawell/badge.svg?branch=master)](https://coveralls.io/github/alexminichino/trawell?branch=master)
+
 [![Contributors](https://img.shields.io/github/contributors/alexminichino/trawell)](https://github.com/alexminichino/trawell/graphs/contributors)
 
 
