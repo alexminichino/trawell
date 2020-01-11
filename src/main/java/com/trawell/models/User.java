@@ -13,10 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Transient;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.persistence.Inheritance;
@@ -37,23 +35,19 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
     @Pattern(regexp=".+@.+\\.[a-z]+", message="Invalid email address!")
     private String mail;
     @NotEmpty(message = "Username can not be empty")
     @Size(min = 1, max = 20,message = "Username must be between 1 and 20 characters long")
-    @NotNull(message = "Username can not be empty")
     @NotBlank(message = "Username can not be empty")
     @Pattern(regexp="^[a-zA-Z0-9]+$", message="Invalid username!")
     private String username;
     private String password;
     @NotBlank(message = "Name can not be empty")
-    @NotNull(message = "Name can not be empty")
     @NotEmpty(message = "Name can not be empty")
     @Size(min = 1,max = 20,message ="Name must be between 1 and 20 characters long" )
     private String name;
     @NotBlank(message = "Surname can not be empty")
-    @NotNull(message = "Surname can not be empty")
     @NotEmpty(message = "Surname can not be empty")
     @Size(min = 1,max = 20,message ="Surname must be between 1 and 20 characters long" )
     private String surname;
@@ -71,6 +65,8 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "carspot", joinColumns = {@JoinColumn(name = "id_user")}, inverseJoinColumns = {@JoinColumn(name = "id_carsharing")})
     private Set<Carsharing> list;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Post> posts; 
 
     public List<Itinerary> getUserItineraries() {
         return this.userItineraries;
@@ -100,15 +96,6 @@ public class User {
     public void setUserCreatedAdList(List<Carsharing> userCreatedAddList) {
         this.userCreatedAdList = userCreatedAddList;
     }
-
-    
-   @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Post> posts; 
-    
-    
-    /*
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
-    private List<Complaint> userAdds; */
 
     public Date getBirth() {
         return this.birth;
@@ -243,23 +230,6 @@ public class User {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
-    
-    public User(Long id, String mail, String username, String password, String name, String surname, java.sql.Date birth, boolean banned, String bio, int profilePhoto, String phone, boolean isAdmin, boolean isBanned, String transientVar) {
-        this.id = id;
-        this.mail = mail;
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.birth = birth;
-        this.banned = banned;
-        this.bio = bio;
-        this.profilePhoto = profilePhoto;
-        this.phone = phone;
-        this.isAdmin = isAdmin;
-        this.isBanned = isBanned;
-        this.transientVar = transientVar;
     }
 
 

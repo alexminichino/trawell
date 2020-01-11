@@ -33,7 +33,7 @@ public class UserService implements IUserService {
     @Override
     public User findOne(Long id) {
         Optional<User> user = userRepository.findById(id);
-        return user.get();
+        return user.isPresent() ? user.get() : null;
     }
 
     @Override
@@ -42,8 +42,8 @@ public class UserService implements IUserService {
             //cannot create User with specified Id value
             return null;
         }
-        User savedUser = userRepository.save(user);
-        return savedUser;
+ 
+        return userRepository.save(user);
     }
 
     @Override
@@ -54,8 +54,7 @@ public class UserService implements IUserService {
             return null;
         }
         user.setList(user.getList());
-        User updatedUser = userRepository.save(user);
-        return updatedUser;
+        return userRepository.save(user);
     }
 
     @Override
