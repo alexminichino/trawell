@@ -11,4 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface JPAGroupRepository extends JpaRepository<TrawellGroup, Long> {
     public List<TrawellGroup> findByIdOwner(Long idOwner);
+    TrawellGroup findByName(String name);
 }

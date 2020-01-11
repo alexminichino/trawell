@@ -13,4 +13,5 @@ public interface ITrawellGroupService{
     TrawellGroup create(TrawellGroup trawellGroup);
     TrawellGroup update(TrawellGroup trawellGroup);
     void delete(Long id);
+    TrawellGroup findByName(String name);
 }

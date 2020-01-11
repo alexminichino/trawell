@@ -116,4 +116,14 @@ public class Post
     {
         this.isReported = isReported;
     }
+
+
+    public TrawellGroup getGroup() {
+        return this.group;
+    }
+
+    public void setGroup(TrawellGroup group) {
+        this.group = group;
+    }
+
 }

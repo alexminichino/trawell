@@ -67,5 +67,8 @@ public class TrawellGroupService implements ITrawellGroupService {
         return groupRepository.findByIdOwner(user.getId());
     }
 
-    
+    @Override
+    public TrawellGroup findByName(String name) {
+        return groupRepository.findByName(name);
+    }
 }
