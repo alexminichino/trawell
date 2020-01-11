@@ -22,7 +22,7 @@ $(document).ready(function(){
             success:function(data){
                 $('#exampleModalCenter').modal('hide');
                 location.reload()
-                //$(".groupMembList").load( "/group/view?id="+idGroup+" .groupMemb");
+                //$(".groupMembList").load( "/group/view?id="+idGroup+" .groupMembL");
             },
            error:function(request,textStatus,errorThrown){
             }
