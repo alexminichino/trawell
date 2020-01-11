@@ -24,12 +24,12 @@
                             <th th:text = ${group.name}></th>
                         </tr>
                      </thead>
-                     <tbody th:id=${group.id}>
+                     <tbody th:id=${group.id} class="groupMembList">
                          <tr th:each = "u : ${participants}" th:if ="${session.user.id != u.id}" class="groupMemb">
-                             <td><p th:text = ${u.username}></p></td>
-                             <td>
+                            <td><p th:text = ${u.username}></p></td>
+                            <td>
                                 <button th:if = "${session.user.id == group.idOwner}" th:id = ${u.id} class="btn btn-primary remove"><span class="fas fa-user-minus"></span></button>
-                             </td>
+                            </td>
                          </tr>
                      </tbody>
                  </table>

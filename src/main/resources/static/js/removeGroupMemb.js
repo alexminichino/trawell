@@ -22,11 +22,9 @@ $(document).ready(function(){
             },
             type:'POST',
             success:function(data){
-                alert("success");
                 wrapper.remove();
             },
            error:function(request,textStatus,errorThrown){
-                alert("failed:");
             }
         });
         

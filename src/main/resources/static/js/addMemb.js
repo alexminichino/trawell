@@ -6,12 +6,9 @@
 
 $(document).ready(function(){
     $(".addMemb").click(function () {
-        var wrapper = $(".groupMemb").filter($(this).parents());
         var username = $("#nametoget").val();
-        var idGroup = $(this).attr("id");
-        alert(username);
-        alert(idGroup);
-        var url = "/api/group/addMember/"+idGroup+"/"+username;
+        var idGroup = $(".addMemb").attr("id");
+        var url = "/api/group/addMember/"+username+"/"+idGroup;
 
         alert("are you sure you want to add this member in this group?");
         $.ajax({
@@ -23,11 +20,11 @@ $(document).ready(function(){
             },
             type:'POST',
             success:function(data){
-                alert("success");
-                //wrapper.remove();
+                $('#exampleModalCenter').modal('hide');
+                location.reload()
+                //$(".groupMembList").load( "/group/view?id="+idGroup+" .groupMemb");
             },
            error:function(request,textStatus,errorThrown){
-                alert("failed:");
             }
         });
         

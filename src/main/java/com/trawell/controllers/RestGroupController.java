@@ -51,18 +51,19 @@ public class RestGroupController {
         return createdGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
     }
     
-    @PostMapping(value="/group/addMember", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TrawellGroup> addMember(@PathVariable (required = true, name = "idUser") Long idUser, @PathVariable (required = true, name = "idGroup") Long idGroup, HttpSession session) {
+    @PostMapping(value="/group/addMember/{username}/{idGroup}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TrawellGroup> addMember(@PathVariable (required = true, name = "username") String username, @PathVariable (required = true, name = "idGroup") Long idGroup, HttpSession session) {
         User user = (User) session.getAttribute("user");
         TrawellGroup updatedGroup = null;
 
         if (user != null) {
-            User userToAdd = daoUser.findOne(idUser);
+            User userToAdd = daoUser.findByUsername(username);
+            Long idUser = userToAdd.getId();
             TrawellGroup group = daoGroup.findOne(idGroup);
 
             if (group != null && userToAdd != null ? group.getIdOwner() == user.getId() && user.getId() != idUser && !user.getIsAdmin() : false) {
                 user.getUserGroups().add(group);
-                group.getParticipants().add(user);
+                group.getParticipants().add(userToAdd);
 
                 updatedGroup = daoGroup.update(group);
             }
@@ -77,12 +78,12 @@ public class RestGroupController {
         TrawellGroup updatedGroup = null;
 
         if (user != null) {
-            User userToAdd = daoUser.findOne(idUser);
+            User userToRemove = daoUser.findOne(idUser);
             TrawellGroup group = daoGroup.findOne(idGroup);
 
-            if (group != null && userToAdd != null ? group.getIdOwner() == user.getId() && user.getId() != idUser && !user.getIsAdmin() : false) {
+            if (group != null && userToRemove != null ? group.getIdOwner() == user.getId() && user.getId() != idUser && !user.getIsAdmin() : false) {
                 user.getUserGroups().remove(group);
-                group.getParticipants().remove(user);
+                group.getParticipants().remove(userToRemove);
 
                 updatedGroup = daoGroup.update(group);
             }
