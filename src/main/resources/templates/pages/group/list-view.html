@@ -4,6 +4,8 @@
 <head>
     <link rel="stylesheet" href="../css/list-view-group.css">
     <script src="../js/removeGroup.js"></script>
+    <script src="../js/addGroup.js"></script>
+    <script src="../js/serializeForm.js"></script>
     <title>List View Group</title>
     <meta charset="utf-8">
 </head>
@@ -15,7 +17,7 @@
 
                 <div class="col-8">
                     <h5>Your Groups</h5>
-                    <table class="table table-responsive-md">
+                    <table id="List" class="table table-responsive-md">
                         <thead>
                             <tr>
                                 <th>Group Name</th>
@@ -23,7 +25,8 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody th:if=${Groups}>
+                        
+                        <tbody th:unless="${#arrays.length(Groups)==0}">
                             <tr th:each="group : ${Groups}">
                                 <td><a th:text="${group.name}" th:href="${'/group/view?id=' +group.id}"></a></td>
 
@@ -41,9 +44,9 @@
                                 <td th:unless="${group.idOwner==session.user.id}"></td>
                             </tr>
                         </tbody>
-                        <tbody th:if="not ${Groups}">
+                        <tbody th:if="${#arrays.length(Groups)==0}">
 
-                            <td colspan="2"> No groups Created</td>
+                            <td colspan="2"> You have no groups</td>
 
                         </tbody>
                     </table>
@@ -70,7 +73,7 @@
                             </button>
                         </div>
                         <!--caselle di input vengono messe qui-->
-                        <form action="/api/group/newGroup" method="POST">
+                        <form id="addGroup" action="/api/group/newGroup" method="POST">
                             <div class="modal-body">
                                 Insert Group Name:
                                 <br>
@@ -83,15 +86,15 @@
                                 <br>
                                 Seleziona Itinerario:
                                 <br>
-                                <select name="id" class="itinerary">
+                                <select name="idItinerary" class="itinerary">
                                     <option value="">---</option>
                                     <option th:each="itinerary : ${session.user.userItineraries}"
-                                        th:value="${itinerary.id}" th:utext="${itinerary.name}"></option>
+                                        th:value="${itinerary.id}" th:text="${itinerary.name}"></option>
                                 </select>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
 
                         </form>

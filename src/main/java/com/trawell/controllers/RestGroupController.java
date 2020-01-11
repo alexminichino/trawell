@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 /**
  * @author Milione Vincent
- * @author Lamberti Vincenzo
- * RestUsersController andranno mappate tutte le funzionalità relative all'itinerario per la comunicazione REST
+ * @author Lamberti Vincenzo RestUsersController andranno mappate tutte le
+ *         funzionalità relative all'itinerario per la comunicazione REST
  *
  */
 @RestController
@@ -35,23 +33,28 @@ public class RestGroupController {
     @Autowired
     UserService daoUser;
 
-    @PostMapping(value="/group/newGroup", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TrawellGroup> addGroup (@RequestBody TrawellGroup group, HttpSession session) {
+    @PostMapping(value = "/group/newGroup", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TrawellGroup> addGroup(@RequestBody TrawellGroup group, HttpSession session) {
         User user = (User) session.getAttribute("user");
         TrawellGroup createdGroup = null;
 
-        if (user != null ? user.getId() == group.getIdOwner() && !user.getIsAdmin() : false) {
-            user.getUserGroups().add(group);
-            group.getParticipants().add(user);
-
+        if (user != null ? !user.getIsAdmin() : false) {
+            group.setIdOwner(user.getId());
+            
             createdGroup = daoGroup.create(group);
+            //user.getUserGroups().add(createdGroup);
+            createdGroup.getParticipants().add(user);
+            daoGroup.update(createdGroup);
+            daoUser.update(user);
         }
 
-        return createdGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
+        return createdGroup == null ? new ResponseEntity<TrawellGroup>( HttpStatus.INTERNAL_SERVER_ERROR)
+                : new ResponseEntity<TrawellGroup>(createdGroup, HttpStatus.OK);
     }
-    
-    @PostMapping(value="/group/addMember", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TrawellGroup> addMember(@RequestParam (required = true, name = "idUser") Long idUser, @RequestParam (required = true, name = "idGroup") Long idGroup, HttpSession session) {
+
+    @PostMapping(value = "/group/addMember", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TrawellGroup> addMember(@RequestParam(required = true, name = "idUser") Long idUser,
+            @RequestParam(required = true, name = "idGroup") Long idGroup, HttpSession session) {
         User user = (User) session.getAttribute("user");
         TrawellGroup updatedGroup = null;
 
@@ -59,19 +62,23 @@ public class RestGroupController {
             User userToAdd = daoUser.findOne(idUser);
             TrawellGroup group = daoGroup.findOne(idGroup);
 
-            if (group != null && userToAdd != null ? group.getIdOwner() == user.getId() && user.getId() != idUser && !user.getIsAdmin() : false) {
+            if (group != null && userToAdd != null
+                    ? group.getIdOwner() == user.getId() && user.getId() != idUser && !user.getIsAdmin()
+                    : false) {
                 user.getUserGroups().add(group);
                 group.getParticipants().add(user);
 
                 updatedGroup = daoGroup.update(group);
             }
         }
-
-        return updatedGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
+         
+        return updatedGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR)
+                : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
     }
-    
-    @PostMapping(value="/group/removeMember", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TrawellGroup> removeMember(@RequestParam (required = true, name = "idUser") Long idUser, @RequestParam (required = true, name = "idGroup") Long idGroup, HttpSession session) {
+
+    @PostMapping(value = "/group/removeMember", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TrawellGroup> removeMember(@RequestParam(required = true, name = "idUser") Long idUser,
+            @RequestParam(required = true, name = "idGroup") Long idGroup, HttpSession session) {
         User user = (User) session.getAttribute("user");
         TrawellGroup updatedGroup = null;
 
@@ -79,7 +86,9 @@ public class RestGroupController {
             User userToAdd = daoUser.findOne(idUser);
             TrawellGroup group = daoGroup.findOne(idGroup);
 
-            if (group != null && userToAdd != null ? group.getIdOwner() == user.getId() && user.getId() != idUser && !user.getIsAdmin() : false) {
+            if (group != null && userToAdd != null
+                    ? group.getIdOwner() == user.getId() && user.getId() != idUser && !user.getIsAdmin()
+                    : false) {
                 user.getUserGroups().remove(group);
                 group.getParticipants().remove(user);
 
@@ -87,10 +96,11 @@ public class RestGroupController {
             }
         }
 
-        return updatedGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
+        return updatedGroup == null ? new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR)
+                : new ResponseEntity<TrawellGroup>(HttpStatus.OK);
     }
 
-    @PostMapping(value="/group/eliminate/{id}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/group/eliminate/{id}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TrawellGroup> eliminateGroup(@PathVariable(name = "id") Long id, HttpSession session) {
         User user = (User) session.getAttribute("user");
 
@@ -99,6 +109,6 @@ public class RestGroupController {
             return new ResponseEntity<TrawellGroup>(HttpStatus.OK);
         }
 
-        return  new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<TrawellGroup>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
