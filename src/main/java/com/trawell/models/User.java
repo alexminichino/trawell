@@ -5,6 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import java.util.Set;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -31,7 +32,11 @@ import javax.persistence.OneToMany;
  * class a user on platform
  */
 
-public class User {
+public class User implements Serializable{
+
+    private static final long serialVersionUID = -7462642235973996991L;
+
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

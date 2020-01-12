@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
  * Homecontroller: andranno mappate tutte le funzionalità relative ad i controller
  * @author Umberto Russomando
  */
-import org.springframework.web.bind.annotation.RequestMapping;
 
  /**
   * @author Alfieri Davide
   */
-@RequestMapping("/home")
 @Controller
 public class HomeController {
     @Autowired
@@ -28,7 +26,7 @@ public class HomeController {
     private ItineraryService daoitinerary;
     @Autowired
     private PostService daopost;
-    @GetMapping("/home-page")
+    @GetMapping("/")
     public String landing(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
 

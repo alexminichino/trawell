@@ -91,8 +91,7 @@ public class UsersController {
 	@PostMapping("/login") 
 	public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
 	
-		if (isLogged(session)) return "pages/user/home"; 
-
+		if (isLogged(session)) return "redirect:/"; 
 
 		User user = dao.findByUsername(username);
 		password = new Encoder(username).encoding(password, username.length());
