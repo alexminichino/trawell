@@ -18,7 +18,7 @@
               <p th:text="${ad.departure}"/>
           </div>
         </div>    
-      </div><br>
+      </div><br><!--fine card carsharing-->
       <div class = "card" style="width: 18rem;" id = "block2">
         <img class = "card-img-top" src = "https://cdn4.iconfinder.com/data/icons/summer-travel-wildberry-volume-2/256/Travel_Itinerary-512.png" height="200" width="286">
         <h5>Itineraries Available</h5>
@@ -27,10 +27,17 @@
               <p th:text="${itinerary.name}"/>
           </div>
         </div>
-      </div>
+      </div><br><!--fine card itinerari-->
+      <div class = "card" style="width: 18rem;" id = "block3">
+        <img class = "card-img-top" src = "https://cdn4.iconfinder.com/data/icons/summer-travel-wildberry-volume-2/256/Travel_Itinerary-512.png" height="200" width="286">
+        <h5>Post Available</h5>
+        <div class = "posts">
+          <div th:each = "post : ${posts}" class = "posts">
+              <p th:text="${post.name}"/>
+          </div>
+        </div>
+      </div><!--fine card post-->
     </div>
-    
   </section>
- 
 </body>
 </html>

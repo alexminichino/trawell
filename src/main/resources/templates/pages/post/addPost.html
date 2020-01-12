@@ -3,23 +3,61 @@
   layout:decorate="~{layout}">
 <head>
   <title>TraWell</title>
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
 </head>
 <body>
-  <section layout:fragment="content">
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
     <!-- This container wraps up everything in the page -->
-    <div class="container-fluid">
-      <form action="/post/addPost" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="postdescription">Enter your post's description</label>
-          <input type="text" class="form-control" id="postdescription" name="postDescription" aria-describedby="postDescriptionHelp" placeholder="Enter description">
-          <div>
-            <p>Upload a photo</p>
-            <input type="file" name="files" multiple>
+  
+      <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+          <div class="col-6 align-self-center">
+            <div class = "card card-block personal-card">
+              <form action="/post/addPost" method="POST" enctype="multipart/form-data">
+                <div class = "row" style="margin-top: 1em;">
+                  <div class="col-12">
+                    <div class="input-group mb-3" >
+                      <div class="input-group-append" >
+                        <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                      </div>
+                      <input type="text" id="postdescription" name="postDescription" aria-describedby="postDescriptionHelp" placeholder="Enter post's description" class="form-control input_user">
+                    </div><!--fine descrizione-->
+                    <div class="input-group mb-2">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-image"></i></span>
+                      </div>
+                      <input type="file" name="files" multiple class="form-control input_user" style="text-align: center;">
+                    </div><!--fine upload foto-->
+                    <div class = "row">
+                      <div class = "col-12">
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                          <input type = "submit" value = "Carica post" class="btn my_btn">
+                        </div>
+                      </div>
+                    </div><!--fine button-->
+                </form>
+            </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+      </div>
+    <!--Fine container-fluid-->
   </section>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     

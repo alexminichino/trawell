@@ -14,7 +14,7 @@
     <div class="container h-100">
       <div class="row h-100 justify-content-center align-items-center">
 			  <div class="col-6 align-self-center">
-				  <div class = "card card-block personal-card">
+				  <div class = "card card-block personal-card">  
 				  	<div class = "container">
               <p class="text-primary">Create new Itinerary</p>
               <form action = "#" method = "POST" id = "target">
@@ -25,7 +25,7 @@
                         <span class="input-group-text"><i class="fas fa-pen"></i></span>
                       </div>
                       <input type = 'text' name = "name" placeholder = "Nome Itinerario" class="form-control input_user">
-                    </div>
+                    </div><!--Nome itinerario-->
                     <div class="destinations">
                       <div class="destination">
                         <div class="input-group mb-2">
@@ -33,7 +33,7 @@
                             <span class="input-group-text"><i class="fas fa-city"></i></span>
                           </div>
                           <input type = "text" name = "location" placeholder= "Destinazione" class="form-control input_user">
-                        </div>
+                        </div><!--Destinazione-->
                         <div class="input-group mb-2">
                           <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-clock"></i></span>
@@ -45,31 +45,31 @@
                             <span class="input-group-text"><i class="fas fa-pen"></i></span>
                           </div>
                           <textarea name="description" placeholder="Descrizione" class = "form-control input_user"></textarea>
-                        </div>
+                        </div><!--Descrizione-->
                         <div class = "row">
                           <div class = "col-12">
                             <div class="d-flex justify-content-center mt-3 login_container">
                               <input type = "submit" value = "Crea un nuovo itinerario" id="clickme" class="btn my_btn">
                             </div>
                           </div>
-                        </div>
+                        </div><!--crea nuovo itinerario-->
                         <div class = "row">
                           <div class = "col-12">
                             <div class="d-flex justify-content-center mt-3 login_container">
                               <input type = "button" value = "Aggiungi una destinazione" id="add" class="btn my_btn">
                             </div>
                           </div>
-                        </div><br>
-                      </div>
-                    </div>  
-                  </div>
-                </div>      
+                        </div><br><!--Bottone Add destination-->
+                      </div><!--fine destination-->
+                    </div><!--fine destinations-->  
+                  </div><!--fine col-12-->
+                </div><!--fine row--> 
               </form>
-            </div>
-          </div>
-        </div> 
-      </div>       
-    </div>
+            </div><!--fine container-->
+          </div><!--fine card personal-->
+        </div> <!--fine col-->
+      </div><!--fine row-->
+    </div><!--fine container 100h-->
   </section>
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 

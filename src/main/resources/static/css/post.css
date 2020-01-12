@@ -1,0 +1,14 @@
+/* author: Alfieri Davide*/
+p{
+    display: inline;
+}
+
+#container{
+    text-align: center;
+}
+
+#block1{
+    display: flex;
+    justify-content: right;
+    font-family: 'Times New Roman', Times, serif;
+}

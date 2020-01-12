@@ -4,27 +4,26 @@
 <head>
   <script src="../js/removePost.js"></script>
   <script src="../js/reportPost.js"></script>
+  <link rel="stylesheet" href="../css/post.css"> 
   <title>TraWell</title>
 </head>
 <body>
-  <section layout:fragment="content">
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
     <!-- This container wraps up everything in the page -->
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm posts">
-            <div th:each="post : ${posts}" class = "post">
-              <div th:each ="photo : ${post.photos}">
-                <img th:src="@{${photo.path}}" class="rounded float-left" alt="an img">   
-              </div>
-              <!-- <img th:src="@{/images/test.png}"/>  <img th:src="@{${src}}"/>  "-->
-              <p th:text = '${post.user.name +" " +post.user.surname}'></p>
-              <p th:text = ${post.postDescription}></p>
-              <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
-              <button th:id = ${post.id} class="btn btn-primary report">Segnala Post</button>
-            </div>
-          </div>
-        </div>   
-    </div>
+          <div id="container">
+            <div class="card"  style="width: 18rem; background-color:#3399ff;" id="block1"><br>
+                <div th:each="post : ${posts}" class = "post">
+                    <div th:each ="photo : ${post.photos}">
+                      <img th:src="@{${photo.path}}" class="card-img-top" alt="an img">   
+                    </div>
+                    <!-- <img th:src="@{/images/test.png}"/>  <img th:src="@{${src}}"/>  "-->
+                    <p th:text = '${post.user.name +" " +post.user.surname}'></p><br>
+                    <p th:text = ${post.postDescription}></p><br>
+                    <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
+                    <button th:id = ${post.id} class="btn btn-primary report">Segnala Post</button>
+                </div>
+            </div><br><!--fine card-->
+          </div><br><!--fine container-->
   </section>
 </body>
 </html>
