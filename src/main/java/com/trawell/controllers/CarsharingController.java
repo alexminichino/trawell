@@ -1,6 +1,5 @@
 package com.trawell.controllers;
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -93,18 +92,8 @@ public class CarsharingController {
      */
     @GetMapping("/list-view")
     public String list(HttpSession session, Model model) {
-        
         User user = (User) session.getAttribute("user");
-        List<Carsharing> list = user.getUserCreatedAdList();
-
-        if (list == null ? false : list.size() < 0) {
-            
-            model.addAttribute("isEmpty", true);
-        } else {
-            model.addAttribute("carsharingAds", user.getUserCreatedAdList());
-            model.addAttribute("isEmpty", false);
-        }
-
+        model.addAttribute("carsharingAds", user.getUserCreatedAdList());
         return "pages/carsharing/list-view";
     }
 }

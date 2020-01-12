@@ -95,15 +95,13 @@ public class UsersController {
 
 
 		User user = dao.findByUsername(username);
-		checkBan(user);
-
-		if (user.getIsBanned()) return "pages/user/login";
 		password = new Encoder(username).encoding(password, username.length());
 
 		if (user == null) {
 			model.addAttribute("notexist", true);
 			return "pages/user/login";
-		} else if (user.getIsBanned()) {
+		} else if (checkBan(user)) {
+			model.addAttribute("banned", true);
 			return "pages/user/login";
 		} else if (!password.equals(user.getPassword())) {
 			model.addAttribute("passmiss", true);
@@ -215,10 +213,10 @@ public class UsersController {
 	 * 
 	 * 
 	 * */
-	public void checkBan(User user){
+	public boolean checkBan(User user){
         ArrayList<BanData> data = (ArrayList<BanData>) bandataDao.findAllByIdUser(user.getId());
         if (data.isEmpty())
-            return ;
+            return false;
         Boolean isFinished = false;
         Date now = new Date(Calendar.getInstance().getTimeInMillis());
             if (data.get(data.size() - 1).getBanUntil().before(now)){
@@ -229,6 +227,8 @@ public class UsersController {
         if (isFinished){
             user.setIsBanned(false);
             dao.update(user);
-        }
+		}
+		
+		return user.getIsBanned();
     }
 }

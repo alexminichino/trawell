@@ -29,7 +29,7 @@ public class AgencyService implements IAgencyService {
     @Override
     public Agency findOne(Long id) {
         Optional<Agency> agencyData = agencyRepository.findById(id);
-        return agencyData.get();
+        return agencyData.isPresent() ? agencyData.get() : null;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class AgencyService implements IAgencyService {
         if (agency.getId() != null) {
             return null;
         }
-        Agency savedData = agencyRepository.save(agency);
-        return savedData;
+    
+        return agencyRepository.save(agency);
     }
 
     @Override
@@ -48,8 +48,8 @@ public class AgencyService implements IAgencyService {
             // cannot find Agency with specified Id value
             return null;
         }
-        Agency updatedData = agencyRepository.save(agency);
-        return updatedData;
+   
+        return agencyRepository.save(agency);
     }
 
     @Override
@@ -57,9 +57,5 @@ public class AgencyService implements IAgencyService {
         agencyRepository.delete(findOne(id));
     }
 
-    @Override
-    public Agency findById(Long id) {
-        return agencyRepository.findById(id).get();
-    }
-
+  
 }
