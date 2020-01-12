@@ -28,16 +28,16 @@ $(document).ready(function () {
                    },
                 data:JSON.stringify(data),
                 success: function (data) {
-                    savedData= JSON.Parse(data);
+                    savedData= JSON.parse(data);
                     console.log(savedData);
-                    $( "input[name*='name']" ).val( "" );
-                    $( "input[name*='description']" ).val( "" );
-                    $( "input[name*='idItinerary']" ).val( "" );
                     alert("Gruppo aggiunto con successo, Complimenti!");
+                    $( "input[name*='name']" ).val( "" );
+                    $( "textarea[name*='description']" ).val("");
+                    $( "select[name*='idItinerary']" ).val( "" );
                     $('#exampleModalCenter').modal('hide');
-                    $("#List tbody").append("<tr><td><a href=\"/group/view?id="+data.id+"\">"+data.name+"</a></td>"+
+                    $("#List tbody").append("<tr><td><a href=\"/group/view?id="+savedData.id+"\">"+savedData.name+"</a></td>"+
                     "<td><span>Owner</span></td>"+
-                    "<td><button id=\""+data.id+"\" onclick=\""+"remove(this)\" class=\"btn btn-primary remove\">"+
+                    "<td><button id=\""+savedData.id+"\" onclick=\""+"remove(this)\" class=\"btn btn-primary remove\">"+
                     "<span class=\"fas fa-trash-alt\"></span></button></td></tr>");                           
 
                 }

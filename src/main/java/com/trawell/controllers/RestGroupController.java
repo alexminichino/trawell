@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
+//import com.google.gson.JsonObject;
 import com.trawell.models.TrawellGroup;
 import com.trawell.models.User;
 import com.trawell.services.TrawellGroupService;
@@ -37,6 +38,7 @@ public class RestGroupController {
     public ResponseEntity<TrawellGroup> addGroup(@RequestBody TrawellGroup group, HttpSession session) {
         User user = (User) session.getAttribute("user");
         TrawellGroup createdGroup = null;
+        //JsonObject groupJ = new JsonObject();
 
         if (user != null ? !user.getIsAdmin() : false) {
             group.setIdOwner(user.getId());
@@ -46,6 +48,9 @@ public class RestGroupController {
             createdGroup.getParticipants().add(user);
             daoGroup.update(createdGroup);
             daoUser.update(user);
+
+            //groupJ.addProperty("id", createdGroup.getId());
+            //groupJ.addProperty("name", group.getName());
         }
 
         return createdGroup == null ? new ResponseEntity<TrawellGroup>( HttpStatus.INTERNAL_SERVER_ERROR)

@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author
  * 
@@ -41,8 +43,9 @@ public class TrawellGroup {
     @JoinTable(name = "groupmember",
             joinColumns = { @JoinColumn(name = "id_group") },
             inverseJoinColumns = { @JoinColumn(name = "id_user") })
-    private Set<User> participants = new HashSet<>();
+    public Set<User> participants = new HashSet<>();
 
+    @JsonIgnore
     public Set<User> getParticipants() {
         return this.participants;
     }
@@ -139,6 +142,7 @@ public class TrawellGroup {
         this.idOwner = id_owner;
     }
 
+    @JsonIgnore
     public Wallet getPublicWallet() {
         Wallet w = allWallets.stream().filter(x -> x.getIdOwner() == null).findFirst().orElse(null);
         return w;
