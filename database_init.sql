@@ -200,13 +200,13 @@ CREATE TABLE IF NOT EXISTS `trawell`.`document` (
  
     FOREIGN KEY (`id_wallet`)
     REFERENCES `trawell`.`wallet` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION, 
 
     FOREIGN KEY (`id_user`)
     REFERENCES `trawell`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -226,12 +226,12 @@ CREATE TABLE IF NOT EXISTS `trawell`.`trawell_group` (
     FOREIGN KEY (`id_itinerary`)
     REFERENCES `trawell`.`itinerary` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON UPDATE CASCADE,
     
     FOREIGN KEY (`id_owner`)
     REFERENCES `trawell`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -247,13 +247,13 @@ CREATE TABLE IF NOT EXISTS `trawell`.`groupmember` (
 
     FOREIGN KEY (`id_group`)
     REFERENCES `trawell`.`trawell_group` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   
     FOREIGN KEY (`id_user`)
     REFERENCES `trawell`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -304,7 +304,7 @@ DROP TABLE IF EXISTS `trawell`.`photo` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`photo` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `id_post` INT NOT NULL,
+  `id_post` INT,
   `path` VARCHAR(268) NOT NULL,
   PRIMARY KEY (`id`),
 
@@ -395,12 +395,11 @@ CREATE TABLE IF NOT EXISTS `trawell`.`wallet` (
   `is_private` TINYINT DEFAULT 1,
   PRIMARY KEY (`id`),
     FOREIGN KEY (`id_owner`) REFERENCES `trawell`.`user` (`id`)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION,
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
     FOREIGN KEY (`id_group`) REFERENCES `trawell`.`trawell_group` (`id`)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION
-
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
   )
   
 ENGINE = InnoDB;

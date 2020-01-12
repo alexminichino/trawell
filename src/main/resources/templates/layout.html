@@ -43,7 +43,10 @@
           <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/carsharing/list-view">My Carsharing Ads</a>
           <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/post/viewPosts">My Posts</a>
           <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/post/landing">Create a post</a>
+          <a th:if= " ${session.isAgency}" class="dropdown-item" style = "color: black" href="/agency/home">Agency home</a>
+          <a th:if= "not ${session.user.isAdmin}" class="dropdown-item" style = "color: black" href="/group/list-view">My Group</a>
         </div>
+        
       </li>
     </ul>
   </nav>
