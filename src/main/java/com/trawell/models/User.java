@@ -16,8 +16,6 @@ import javax.persistence.Transient;
 
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -47,11 +45,8 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Carsharing> userCreatedAdList;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) // LAZY -> EAGER
-    private List<Itinerary> userItineraries; 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "carspot", joinColumns = {@JoinColumn(name = "id_user")}, inverseJoinColumns = {@JoinColumn(name = "id_carsharing")})
-    private Set<Carsharing> list;
-    @ManyToMany(mappedBy = "participants")
+    private List<Itinerary> userItineraries;
+    @ManyToMany(mappedBy = "participants", cascade = CascadeType.ALL )
     private Set<TrawellGroup> userGroups;
 
     public Set<TrawellGroup> getUserGroups() {
@@ -73,14 +68,6 @@ public class User {
 
     public void setUserItineraries(List<Itinerary> userItineraries) {
         this.userItineraries = userItineraries;
-    }
-
-    public Set<Carsharing> getList() {
-        return this.list;
-    }
-
-    public void setList(Set<Carsharing> list) {
-        this.list = list;
     }
 
     public List<Carsharing> getUserCreatedAdList() {

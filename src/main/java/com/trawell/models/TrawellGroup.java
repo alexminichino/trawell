@@ -1,5 +1,6 @@
 package com.trawell.models;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author
@@ -32,10 +35,17 @@ public class TrawellGroup {
     private List<Post> posts;
     @OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "trawellGroup")
     private List<Wallet> allWallets;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "groupmember", joinColumns = {@JoinColumn(name = "id_group")}, inverseJoinColumns = {@JoinColumn(name = "id_user")})
-    private Set<User> participants;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "groupmember",
+            joinColumns = { @JoinColumn(name = "id_group") },
+            inverseJoinColumns = { @JoinColumn(name = "id_user") })
+    public Set<User> participants = new HashSet<>();
 
+    @JsonIgnore
     public Set<User> getParticipants() {
         return this.participants;
     }
@@ -132,6 +142,7 @@ public class TrawellGroup {
         this.idOwner = id_owner;
     }
 
+    @JsonIgnore
     public Wallet getPublicWallet() {
         Wallet w = allWallets.stream().filter(x -> x.getIdOwner() == null).findFirst().orElse(null);
         return w;

@@ -53,7 +53,6 @@ public class UserService implements IUserService {
             //cannot find User with specified Id value
             return null;
         }
-        user.setList(user.getList());
         User updatedUser = userRepository.save(user);
         return updatedUser;
     }
