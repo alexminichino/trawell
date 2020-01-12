@@ -3,7 +3,9 @@ package com.trawell.controllers;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 import javax.servlet.http.HttpSession;
 
@@ -46,8 +48,8 @@ public class AdController {
     private PhotoService photoDao;
 
     /**
-     * @author Mario Paone Method checks if the user is already logged
-     * and if he is an agency
+     * @author Mario Paone Method checks if the user is already logged and if he is
+     *         an agency
      * 
      * @param session
      * @return true if he is an agency, false otherwise
@@ -89,7 +91,7 @@ public class AdController {
             @RequestParam(name = "file", required = true) MultipartFile file, HttpSession session, Model model)
             throws ParseException {
 
-        //Imposta la durata dell'ad e il costo
+        // Imposta la durata dell'ad e il costo
         long costo = 0;
         int mesi = 0;
         if (time_choosed.equals("1mesi")) {
@@ -109,24 +111,24 @@ public class AdController {
         }
         User user = (User) session.getAttribute("user");
 
-        //Calcola la data di fine dell'ad
+        // Calcola la data di fine dell'ad
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         cal.setTime(sdf.parse(starting_time.toString()));
         cal.add(Calendar.MONTH, mesi);
         Date finaldate = new Date(cal.getTimeInMillis());
 
-        //Calcola il path dell'immagine
+        // Calcola il path dell'immagine
         Photo photo = new Photo();
 
         Encoder encoder = new Encoder();
 
         String uploadDir = encoder.encoding(user.getMail(), 3);
         String fileName = UploadUtils.getCurrentTimeUsingDate();
-        photo.setPath(UploadUtils.uploadPhoto(file,uploadDir,fileName));
+        photo.setPath(UploadUtils.uploadPhoto(file, uploadDir, fileName));
         photo.setPost(null);
 
-        Photo savedPhoto = photoDao.create(photo); 
+        Photo savedPhoto = photoDao.create(photo);
 
         Ad ad = new Ad();
         ad.setAdPaymentMethod(payment_method);
@@ -141,4 +143,39 @@ public class AdController {
 
     }
 
+    @GetMapping("/deleteAdsLandAg")
+    public String deleteadsag(HttpSession session, Model model) {
+
+        User user = (User) session.getAttribute("user");
+
+        if (isAgency(session)) {
+            Collection<Ad> listaAd = adDao.findAll();
+            ArrayList<Ad> listaMyAds = new ArrayList<Ad>();
+            if (listaAd.size() > 0) {
+                for (Ad ad : listaAd) {
+                    if (ad.getIdOwner() == user.getId()) {
+                        listaMyAds.add(ad);
+                    }
+                }
+                model.addAttribute("listaAds", listaMyAds);
+            }
+            return "pages/agency/deletemyad";
+        }
+
+        return "pages/user/home";
+
+    }
+
+
+    @PostMapping("/deleteAd")
+    public String createAd(@RequestParam(name = "id", required = true) Long idAd, HttpSession session, Model model)
+            throws ParseException {
+                try{
+                    adDao.delete(idAd);
+                }catch (Exception e) {
+                    
+                }
+                return "pages/agency/home";
+
+    }
 }
