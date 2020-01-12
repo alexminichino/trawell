@@ -144,7 +144,7 @@ public class TrawellGroup {
 
     @JsonIgnore
     public Wallet getPublicWallet() {
-        Wallet w = allWallets.stream().filter(x -> x.getIdOwner() == null).findFirst().orElse(null);
+        Wallet w = allWallets.stream().filter(x -> x.getUser() == null).findFirst().orElse(null);
         return w;
     }
 

@@ -21,7 +21,10 @@ public class Wallet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long idOwner;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_owner")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_group", nullable = false)
@@ -37,14 +40,6 @@ public class Wallet {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdOwner() {
-        return idOwner;
-    }
-
-    public void setIdOwner(Long idOwner) {
-        this.idOwner = idOwner;
     }
 
     public List<Document> getDocuments() {
@@ -72,6 +67,14 @@ public class Wallet {
     }
 
     public Wallet() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

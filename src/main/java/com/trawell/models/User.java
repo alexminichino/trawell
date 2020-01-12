@@ -48,6 +48,8 @@ public class User {
     private List<Itinerary> userItineraries;
     @ManyToMany(mappedBy = "participants", cascade = CascadeType.ALL )
     private Set<TrawellGroup> userGroups;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<Wallet> userWallets;
 
     public Set<TrawellGroup> getUserGroups() {
         return this.userGroups;
@@ -198,6 +200,8 @@ public class User {
         super();
     }
 
+
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -257,5 +261,15 @@ public class User {
             ", isBanned='" + isBanned + "'" +
             "}";
     }
+
+    public List<Wallet> getUserWallets() {
+        return userWallets;
+    }
+
+    public void setUserWallets(List<Wallet> userWallets) {
+        this.userWallets = userWallets;
+    }
+
+
 
 }

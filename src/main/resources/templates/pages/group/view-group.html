@@ -56,6 +56,10 @@
                         <button th:id = ${post.id} class="btn btn-primary report">Segnala Post</button>
                       </div>
                 </div>
+                <div>
+                    <p>Click here to view the wallet's group</p>
+                    <a th:text="${group.name}" th:href="${'/Wallet/walletGroup?id=' +group.id}"></a>
+                </div>
                 <div class = "col-3 ">
                     <!-- Modal che chiede di inserire nuovo utente... visualizzabile solo se l'utente è il creatore del gruppo-->
                     <div th:if = "${session.user.id == group.idOwner}"class = "card">

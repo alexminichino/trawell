@@ -80,7 +80,7 @@ public class WalletService implements IWalletService {
         List<Wallet> list = trawellGroup.getAllWallets();
 
         for (Wallet wallet : list) {
-            if (wallet.getIdOwner() == idUser) {
+            if (wallet.getUser().getId() == idUser) {
                 return wallet;
             }
         }
