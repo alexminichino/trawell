@@ -1,0 +1,39 @@
+<!--- @author MarioPaone --->
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>Delete ad</title>
+  <script src="../js/removeMyAd.js"></script>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+</head>
+<body>
+  <section layout:fragment="content">
+    <p>Cancellare inserzioni</p>
+    <div class = "container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col col-10">ID DEL BAN</th>
+          <th scope="col col-10">DATA DI INIZIO</th>
+          <th scope="col col-10">DATA DI FINE</th>
+          <th scope="col col-10">ELIMINA</th>
+        </tr>
+      </thead>
+      <tbody th:if=${listaAds}>
+        <tr th:each="ad : ${listaAds}">
+          <td th:text='${ad.id}'></td>
+          <td th:text='${ad.adStartingDate}'></td>
+          <td th:text='${ad.adDueDate}'></td>
+          <td><button th:id="${ad.id}" class="btn btn-primary remove"> </td>
+        </tr>
+      </tbody>
+      <tbody th:if="not ${listaAds}">
+        <td colspan="2">NESSUN INSERZIONE PRESENTE</td>
+      </tbody>
+    </table> 
+  </section>
+
+</body>
+</html>
