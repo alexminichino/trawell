@@ -7,10 +7,12 @@
   <title>Home agenzia</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/login.js"></script>
+  <link rel="stylesheet" href="../css/adminhome.css">
 </head>
 <body>
   <section layout:fragment="content">
     <p>Home Agenzia</p>
+    <p th:if="${msg}"> <h6 class="msgR" th:text='${msg}'> </h6>
     <div class = "container">
       <div>
        <a href="createadvertisement"> Crea inserzione </a>

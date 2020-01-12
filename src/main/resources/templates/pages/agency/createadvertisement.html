@@ -6,21 +6,25 @@
 <head>
   <title>Create advertisement</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-  <script src = "../js/login.js"></script>
+  <script src = "../js/validator_createad.js"></script>
 </head>
 <body>
   <section layout:fragment="content">
     <p>Scdgli la tua inserzione</p>
     <div class = "container">
       <div>
-        <form action = "/agency/createAd" method = "POST" id = "banning">
-            Metodo di pagamento: <input type = 'text' name = "payment_method" placeholder = "Inserire metodo fi pagamento"><br>
+        <form action = "/agency/createAd" method = "POST" id = "banning" enctype="multipart/form-data">
+            Numero carta: <input type = 'text' name = "payment_method" placeholder = "Numero carta"><br>
             <p>Scegli la durata:</p>
-            <input type="radio" name="ad_time" value="1mesi"> 1 Mesi (90 €)<br>
+            <input type="radio" name="ad_time" value="1mesi" checked> 1 Mesi (90 €)<br>
             <input type="radio" name="ad_time" value="3mesi"> 3 Mesi (250 €)<br>
             <input type="radio" name="ad_time" value="6mesi"> 6 Mesi (460 €)<br>
             <input type="radio" name="ad_time" value="12mesi"> 12 Mesi (860 €)<br>  
             Data iniziale : <input type = "date" name = "starting_time">
+            <!--<div>
+              <p>Upload a photo</p>
+              <input type="file" name="file" >
+            </div> -->
             <input type = "submit">
         </form>
       </div>
