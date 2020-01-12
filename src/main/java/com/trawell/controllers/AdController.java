@@ -53,13 +53,7 @@ public class AdController {
      * @return true if he is an agency, false otherwise
      */
     private boolean isAgency(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        try {
-            Agency agency = agencyDao.findById(user.getId());
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return session.getAttribute("user") instanceof Agency;
     }
 
     @GetMapping("/home")

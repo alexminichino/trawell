@@ -15,5 +15,4 @@ public interface IAgencyService {
     Agency create(Agency agency);
     Agency update(Agency agency);
     void delete(Long id);
-    Agency findById(Long id);
 }

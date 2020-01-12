@@ -2,6 +2,10 @@ package com.trawell.models;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
@@ -11,7 +15,14 @@ import javax.persistence.PrimaryKeyJoinColumn;
  * class models the user agency
  */
 public class Agency extends User {
+    @NotBlank
+    @NotNull
+    @NotEmpty
+    @Size
     private String nameAgency;
+    @NotBlank
+    @NotNull
+    @NotEmpty
     private String url;
     private String vat;
 
