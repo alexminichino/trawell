@@ -86,7 +86,7 @@ public class AdController {
     public String createAd(@RequestParam(name = "payment_method", required = true) String payment_method,
             @RequestParam(name = "ad_time", required = true) String time_choosed,
             @RequestParam(name = "starting_time", required = true) Date starting_time,
-            /*@RequestParam(name = "file", required = true) MultipartFile file,*/ HttpSession session, Model model)
+            @RequestParam(name = "file", required = true) MultipartFile file, HttpSession session, Model model)
             throws ParseException {
 
         //Imposta la durata dell'ad e il costo
@@ -117,7 +117,7 @@ public class AdController {
         Date finaldate = new Date(cal.getTimeInMillis());
 
         //Calcola il path dell'immagine
-        /*Photo photo = new Photo();
+        Photo photo = new Photo();
 
         Encoder encoder = new Encoder();
 
@@ -126,7 +126,7 @@ public class AdController {
         photo.setPath(UploadUtils.uploadPhoto(file,uploadDir,fileName));
         photo.setPost(null);
 
-        Photo savedPhoto = photoDao.create(photo); */
+        Photo savedPhoto = photoDao.create(photo); 
 
         Ad ad = new Ad();
         ad.setAdPaymentMethod(payment_method);
@@ -134,7 +134,7 @@ public class AdController {
         ad.setAdCost(costo);
         ad.setAdStartingDate(starting_time);
         ad.setAdDueDate(finaldate);
-        ad.setIdPhoto("");
+        ad.setIdPhoto(Long.toString(savedPhoto.getId()));
         adDao.create(ad);
         model.addAttribute("msg", "Inserzione aggiunta con successo");
         return "pages/agency/home";

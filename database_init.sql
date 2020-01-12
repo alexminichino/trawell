@@ -303,7 +303,7 @@ DROP TABLE IF EXISTS `trawell`.`photo` ;
 
 CREATE TABLE IF NOT EXISTS `trawell`.`photo` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `id_post` INT NOT NULL,
+  `id_post` INT,
   `path` VARCHAR(268) NOT NULL,
   PRIMARY KEY (`id`),
 
