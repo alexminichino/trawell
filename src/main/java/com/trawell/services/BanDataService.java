@@ -1,6 +1,5 @@
 package com.trawell.services;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
@@ -60,6 +59,20 @@ public class BanDataService implements IBanDataService {
     @Override
     public void delete(Long id) {
          banDataRepository.delete(findOne(id));
+    }
+
+    @Override
+    public Collection<BanData> findAllByIdUser(Long idUser){
+        ArrayList<BanData> banDatas = new ArrayList<>();
+        banDataRepository.findAll().forEach(banDatas::add);
+        ArrayList<BanData> banDatasToReturn = new ArrayList<>();
+        for (BanData bandata : banDatas){
+            if(bandata.getIdUser() == idUser)
+                banDatasToReturn.add(bandata);
+            
+        }
+        return banDatasToReturn;
+
     }
     
 }

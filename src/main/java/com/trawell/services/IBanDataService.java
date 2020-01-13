@@ -15,4 +15,5 @@ public interface IBanDataService {
     BanData create(BanData User);
     BanData update(BanData User);
     void delete(Long id);
+    Collection<BanData> findAllByIdUser(Long idUser);
 }

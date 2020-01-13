@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<head>
+  <title>TraWell</title>
+</head>
+<body>
+  <section layout:fragment="content">
+    <!-- This container wraps up everything in the page -->
+    <div class="container-fluid">
+      <form action="/post/addPost" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="postdescription">Enter your post's description</label>
+          <input type="text" class="form-control" id="postdescription" name="postDescription" aria-describedby="postDescriptionHelp" placeholder="Enter description">
+          <div>
+            <p>Upload a photo</p>
+            <input type="file" name="files" multiple>
+          </div>
+          <div>
+            <p>Do you want to add this post to a group? Enter the group name below</p>
+            <input type="text" class="form-control" id="postgroup" name="postGroup" placeholder="Enter group name">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </section>
+</body>
+</html>

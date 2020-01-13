@@ -1,3 +1,4 @@
+<!--- @author Milione Vincent --->
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
@@ -7,12 +8,13 @@
 </head>
 <body>
   <section layout:fragment="content">
+    
     <p>Create Itinerary</p>
     <table>
         <tr th:each = "ad : ${carsharingAds}">
             <td th:text='${ad.departure +"-" + ad.arrival}'></td>
             <td>
-                <span th:id = ${ad.id} class = "remove"><a>Rimuovi</a></span>
+                <span><a th:id = ${ad.id} class = "remove">Rimuovi</a></span>
                 <span><a th:href="${'/itinerary/view?id=' +ad.id}">View</a></span>
                 <span><a th:href="${'/itinerary/modify?id=' + ad.id}">Modifica</a></span>
             </td>

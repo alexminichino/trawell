@@ -4,6 +4,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 
 <head>
+<<<<<<< HEAD
   <title>Login</title>
   <link rel="stylesheet" href="../css/complaint.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,10 +16,16 @@
   <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src="../js/login.js"></script>
+=======
+  <title>Ban users</title>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src = "../js/bandatavalidator.js"></script>
+>>>>>>> bbbdbbce0811d76c7e416e913bc8feb8595b665b
 </head>
 
 <body style="background-color:rgb(229, 229, 229)">
   <section layout:fragment="content">
+<<<<<<< HEAD
     <img src="../image/3.jpg" id="picInit" class="img-responsive" alt="I Swear this is a beautiful image">
     <div class="container h-100">
 
@@ -34,6 +41,24 @@
       <div class="row">
         Motivazione : <textarea name="motivation" rows="10" cols="30"
           class="form-control">Inserire qui motivazioni del ban..</textarea> <br>
+=======
+    <p>Ban Utente</p>
+    <div class = "container">
+      <div>
+        <form  action = "/admin/banUser" method = "POST" id = "banning">
+            Username utente: 
+            <select name="username" id="username">
+              <option value=""> Seleziona utente </option>
+              <option th:each="user : ${listaUser}"
+                 th:value="${user.username}"
+                 th:utext="${user.username}"/>
+            </select>
+             <br>
+            Motivazione : <textarea name="motivation" rows="10" cols="30" placeholder="Inserire motivazione qui..."></textarea> <br>
+            Data fine ban: <input type = "date" name = "bannedUntil">
+            <input type = "submit">
+        </form>
+>>>>>>> bbbdbbce0811d76c7e416e913bc8feb8595b665b
       </div>
       <div class="row">
         Data fine ban: <input type="date" name="bannedUntil" class="form-control">
@@ -51,6 +76,23 @@
 
 
     </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col col-10">UTENTI BANNATI</th>
+        </tr>
+      </thead>
+      <tbody th:if=${listaUser}>
+        <tr th:each="user : ${listaUser}">
+          <td th:text='${user.username}' th:if= "${user.isBanned}"
+          ></td>
+          
+        </tr>
+      </tbody>
+      <tbody th:if="not ${listaUser}">
+        <td colspan="2">NESSUN UTENTE BANNATO</td>
+      </tbody>
+    </table>
   </section>
 
 </body>
