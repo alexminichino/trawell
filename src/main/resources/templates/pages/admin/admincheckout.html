@@ -1,63 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
-
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
 <head>
   <title>TraWell</title>
-  <link rel="stylesheet" href="../css/complaint.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-  <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 </head>
-
-<body style="background-color:rgb(229, 229, 229)">
-  <section layout:fragment="content">
-    <img src="../image/3.jpg" id="picInit" class="img-responsive" alt="I Swear this is a beautiful image">
+<body>
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
     <div class="container h-100">
-
-      <div class="row"></div>
-
-      <div class="row">
-        <div class="col-2"></div>
-
-        <p>
-          <h3>
-            Please check out your email for your serial number
-          </h3>
-        </p>
-
-      </div>
-      <form action="/admin/checkSerialNumber" method="POST">
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="form-group">
-
-            <label for="serialNumber">Serial Number</label>
-            <input type="text" class="form-control" id="serialNumber" name="serialNumber"
-              aria-describedby="insertserialnumber" placeholder="Enter serial number">
-
-
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-10"></div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-        <div class="row"></div>
-      </form>
-
-      
-    </div>
-
-    <p></p>
-
+      <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">  
+				  	<div class = "container">
+              <p class="text-primary">Input your serial number</p>
+              <form action="/admin/checkSerialNumber" method="POST">
+                <div class = "row">
+                  <div class="col-12">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                        </div>
+                        <input type="text" id="serialNumber" name="serialNumber" aria-describedby="insertserialnumber" placeholder="Enter serial number" class="form-control input_user">
+                    </div><!--Serial Number-->
+                    <div class = "row">
+                        <div class = "col-12">
+                          <div class="d-flex justify-content-center mt-3 login_container">
+                            <input type = "submit" class="btn my_btn">
+                          </div>
+                        </div>
+                    </div><!--fine bottone-->
+                  </div><!--fine col-12-->
+                </div><!--fine row--> 
+              </form>
+            </div><!--fine container-->
+          </div><!--fine card personal-->
+        </div> <!--fine col-->
+      </div><!--fine row-->
+    </div><!--fine container 100h-->
   </section>
   <footer>
-    <p layout:fragment="custom-footer"></p>
-  </footer>
+    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
+  </footer> 
 </body>
-
 </html>

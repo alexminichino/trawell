@@ -30,8 +30,8 @@
                     <td th:text="${itinerary.name}" style="font-weight: bold;"></td> "></td>
                     <td>
                       <span style="font-weight: bold; color: blue;"><a th:id = ${itinerary.id} class = "remove"><u>Rimuovi</u></a></span>
-                      <span><a th:href="${'/itinerary/view?id=' +ad.id}"><u style="font-weight: bold;">View</u></a></span>
-                      <span><a th:href="${'/itinerary/modify?id=' + ad.id}"><u style="font-weight: bold;">Modifica</u></a></span>
+                      <span><a th:href="${'/itinerary/view?id=' +itinerary.id}"><u style="font-weight: bold;">View</u></a></span>
+                      <span><a th:href="${'/itinerary/modify?id=' + itinerary.id}"><u style="font-weight: bold;">Modifica</u></a></span>
                     </td>  
                   </tr>
                 </tbody><!--Fine body-->
