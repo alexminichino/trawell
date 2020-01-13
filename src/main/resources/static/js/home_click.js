@@ -7,5 +7,10 @@ window.onload = function(){
     i.addEventListener('click', function(event){
         alert('Funziona');
     });
+    var a = document.getElementsByClassName('itineraries')[0];
+    a.addEventListener('click', function(event){
+        alert('Funziona');
+    });
 }
+
 

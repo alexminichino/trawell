@@ -62,7 +62,7 @@ public class RestUsersController {
         User u = (User) session.getAttribute("user");
 
         User updatedUser = null;
-        if (user != null && id == u.getId()) {
+        if (user != null && u!=null ? id.equals(u.getId()) : false) {
             
             Encoder encode = new Encoder((u.getUsername()));
             oldPassword = encode.encoding(oldPassword, u.getUsername().length());
@@ -97,7 +97,7 @@ public class RestUsersController {
         Agency u = (Agency) session.getAttribute("user");
 
         User updatedUser = null;
-        if (user != null && id == u.getId()) {
+        if (user != null && u!=null ? id.equals(u.getId()) : false) {
             
             Encoder encode = new Encoder((u.getUsername()));
             oldPassword = new Encoder(u.getUsername()).encoding(oldPassword, u.getUsername().length());

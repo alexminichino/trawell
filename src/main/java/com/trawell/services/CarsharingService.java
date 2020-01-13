@@ -31,7 +31,7 @@ public class CarsharingService implements ICarsharingService {
     @Override
     public Carsharing findOne(Long id) {
         Optional<Carsharing> ad = carsharingRepository.findById(id);
-        return ad.get();
+        return ad.isPresent() ? ad.get() : null;
     }
 
     @Override

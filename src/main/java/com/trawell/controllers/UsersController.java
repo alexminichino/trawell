@@ -91,8 +91,7 @@ public class UsersController {
 	@PostMapping("/login") 
 	public String login(@RequestParam(name="username", required=true) String username,@RequestParam(name="password", required=true) String password, HttpSession session, Model model) {
 	
-		if (isLogged(session)) return "pages/user/home"; 
-
+		if (isLogged(session)) return "redirect:/"; 
 
 		User user = dao.findByUsername(username);
 		password = new Encoder(username).encoding(password, username.length());
@@ -109,6 +108,7 @@ public class UsersController {
 		}
 		
 		session.setAttribute("user", user);
+		session.setAttribute("isAgency", user instanceof Agency);
 		return user.getIsAdmin() ? "redirect:/admin/serialnumber" : "redirect:/";
 	}
 
@@ -164,6 +164,7 @@ public class UsersController {
 			//encript password
 			user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
 			session.setAttribute("user", dao.create(user));
+			session.setAttribute("isAgency", true);
 
 			return "redirect:/";
 		} else {

@@ -3,25 +3,47 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>Itinerary</title>
+  <title>List Itineraries</title>
   <script src = "../js/remove_itinerary.js"></script>
+  <link rel="stylesheet" href="../css/lista.css">
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
 </head>
 <body>
-  <section layout:fragment="content">
-    <table class="list">
-        <tr th:each = "itinerary : ${itineraries}">
-            <td th:text="${itinerary.name}"></td>
-            <td>
-                <span th:id = ${itinerary.id} class = "remove"><a>Rimuovi</a></span>
-                <span><a th:href="${'/itinerary/view?id=' + itinerary.id}">View</a></span>
-                <span><a th:href="${'/itinerary/modify?id=' + itinerary.id}">Modifica</a></span>
-            </td>
-        </tr>
-    </table>
+  <section layout:fragment="content" style = "background-image: url('https://images.unsplash.com/photo-1571942790909-75819ea24170?ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80'); background-repeat: no-repeat;background-size: cover;;">
+    <div class="container h-100" style="overflow-x:auto;">
+		  <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">
+            <div class="table-responsive">
+              <table class="list table-hover table-secondary" style="margin-left:auto;margin-right:auto;">
+                <thead>
+                  <th>Lista degli itinerari</th>
+                  <th></th>
+                  <th></th>
+                  <tr>
+                    <th style="font-weight: bold;">Nomi degli itinerari</th>
+                    <th style="text-align: center; font-weight: bold;">Opzioni</th>
+                  </tr>
+                </thead><!--Prima riga testa-->
+                <tbody>
+                  <tr th:each = "itinerary : ${itineraries}">
+                    <td th:text="${itinerary.name}" style="font-weight: bold;"></td> "></td>
+                    <td>
+                      <span style="font-weight: bold; color: blue;"><a th:id = ${itinerary.id} class = "remove"><u>Rimuovi</u></a></span>
+                      <span><a th:href="${'/itinerary/view?id=' +ad.id}"><u style="font-weight: bold;">View</u></a></span>
+                      <span><a th:href="${'/itinerary/modify?id=' + ad.id}"><u style="font-weight: bold;">Modifica</u></a></span>
+                    </td>  
+                  </tr>
+                </tbody><!--Fine body-->
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
   </footer> 
-
 </body>
 </html>

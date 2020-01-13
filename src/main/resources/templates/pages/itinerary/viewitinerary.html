@@ -3,26 +3,76 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>Change User Data</title>
+  <title>View Itineraries</title>
   <link rel="stylesheet" href="../css/viewitinerary.css">
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
 </head>
 <body>
-  <section layout:fragment="content" id = "view">
-    <h2 style="color : black; text-align: center">View Itinerary</h2>
-        <div class = "container">
-            <p style="color : black; text-align: center" th:text = "${itinerary.name}"></p>
-            <div class = "destinations">
-              <div th:each="destination: ${itinerary.destinations}" class = "destination">
-                <p style="color : black; text-align: center" th:text="${destination.location}"></p>
-                <p style="color : black; text-align: center" th:text="${destination.date}"></p>
-                <p style="color : black; text-align: center" th:text="${destination.description}"></p>
-              </div>
-            </div>
+  <section layout:fragment="content" id = "view" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+    <div class="container h-100">
+		  <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">
+            <div class = "container">
+              <p class="text-primary">View Itineraries</p>
+              <p style="color : black; text-align: center" th:text = "${itinerary.name}"></p>
+              <form action="#" method="POST" id='target'>
+                <div class = "row">
+                  <div class="col-12">
+                    <div class = "destinations">
+                      <div th:each="destination: ${itinerary.destinations}" class = "destination">
+                        <div class="input-group mb-2">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-city"></i></span>
+                          </div>
+                          <input th:value="${destination.location}" type = "text" name = "location" placeholder= "Destinazione" class="form-control input_user" readonly>
+                        </div>
+                        <div class="input-group mb-2">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                          </div>
+                          <input th:value="${destination.date}" type = "datetime-local" name = "date" placeholder= "Data e ora" class="form-control input_user" readonly>
+                        </div>
+                        <div class="input-group mb-2">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                          </div>
+                          <textarea th:text="${destination.description}" name="description" placeholder="Descrizione" class = "form-control input_user" readonly></textarea>
+                        </div>
+                      </div><!--div destination-->
+                    </div><!--div destinations-->
+                  </div>
+                <div>
+              </form>
+            </div><!--Fine container-->     
+          </div>
         </div>
-    
+      </div>
+    </div>
   </section>
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
   </footer> 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+<!--  <p style="color : black; text-align: center" th:text="${destination.location}"></p>
+                <p style="color : black; text-align: center" th:text="${destination.date}"></p>
+                <p style="color : black; text-align: center" th:text="${destination.description}"></p>
+              </div>
+            </div>
+        </div>--->
+
+
+        
+            
+            
+           

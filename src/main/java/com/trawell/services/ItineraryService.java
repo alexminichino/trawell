@@ -30,7 +30,7 @@ public class ItineraryService implements IItineraryService {
     @Override
     public Itinerary findOne(Long id) {
         Optional<Itinerary> ad = itineraryRepository.findById(id);
-        return ad.get();
+        return ad.isPresent() ? ad.get() : null;
     }
 
     @Override

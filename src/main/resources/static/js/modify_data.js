@@ -48,7 +48,7 @@ $(document).ready(function(){
                 url:URL,
                 data: data,
                 success:function(data){
-                    alert("successo");
+                    alert("I tuoi dati sono stati aggiornati");
                 }
             });
         }

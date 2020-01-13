@@ -3,37 +3,118 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>Change User Data</title>
+  <title>Change Data</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <!--<script src = "../js/validation_itinerary.js"></script>-->
   <script src = "../js/modify_itinerary.js"></script>
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
 </head>
 <body>
-  <section layout:fragment="content">
-    <h2 style="color : black; text-align: center">Change Data</h2>
-    <form action = "" method = "POST" id = "target">
-        <div class = "container">
-          <div>
-            <input type = "hidden" name = "idItinerary" th:value="${itinerary.id}" /><br>
-            Name:<input th:value = "${itinerary.name}" type = 'text' name = "name" id="name"><br>
-            <div class = "destinations">
-              <div th:each="destination: ${itinerary.destinations}" class = "destination">
-                <button th:if = ${destinationStat.first} style="background-color:green;" class="add">Aggiungi una destinazione</button>
-                <input type = "hidden" name = "idDestination" th:value="${destination.id}" /><br>
-                <input type = "text" name = "location" placeholder= "location" th:value="${destination.location}" /><br>
-                <input type = "datetime-local" name = "date" th:value="${destination.date}" /><br>
-                <textarea th:text="${destination.description}"></textarea>
-                <button th:if = !${destinationStat.first} style="background-color:red;" class="remove">Rimuovi la destinazione</button>
-              </div>
-            </div>
-            <input type = "submit" id = "clickme" value = "Modifica">
-          </div>
-        </div>
-    </form>
-    
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+    <div class="container h-100">
+		  <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">
+            <form action = "" method = "POST" id = "target">
+              <p>Change Data</p>
+              <div class = "row">
+								<div class="col-12">
+                  <div class = "container">
+                    <div>
+                      <input type = "hidden" name = "idItinerary" th:value="${itinerary.id}" /><br>
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                        </div>
+                        <input th:value = "${itinerary.name}" type = 'text' name = "name" id="name" class="form-control input_user">
+                      </div>
+                      <div class="destinations">
+                        <div th:each="destination: ${itinerary.destinations}" class = "destination">
+                          <div class = "row">
+                            <div class = "col-12">
+                              <div class="d-flex justify-content-center mt-3 login_container">
+                                <input th:if = ${destinationStat.first} type = "button" value = "Aggiungi una destinazione" id="add" class="btn my_btn">
+                              </div>
+                            </div>
+                          </div><br>
+                          <input type = "hidden" name = "idDestination" th:value="${destination.id}" /><br>
+                          <div class="input-group mb-2">
+                            <div class="input-group-append">
+                              <span class="input-group-text"><i class="fas fa-city"></i></span>
+                            </div>
+                            <input th:value="${destination.location}" type = "text" name = "location" placeholder= "Destinazione" class="form-control input_user">
+                          </div>
+                          <div class="input-group mb-2">
+                            <div class="input-group-append">
+                              <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                            </div>
+                            <input th:value="${destination.date}" type = "datetime-local" name = "date" placeholder= "Data e ora" class="form-control input_user">
+                          </div>
+                          <div class="input-group mb-2">
+                            <div class="input-group-append">
+                              <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                            </div>
+                            <textarea th:text="${destination.description}" name="description" placeholder="Descrizione" class = "form-control input_user"></textarea>
+                          </div>
+                          <div class = "row">
+                            <div class = "col-12">
+                              <div class="d-flex justify-content-center mt-3 login_container">
+                                <input th:if = !${destinationStat.first} type = "button" value = "Rimuovi la destinazione" id="remove" class="btn my_btn">
+                              </div>
+                            </div>
+                          </div><br>
+                          <div class = "row">
+                            <div class = "col-12">
+                              <div class="d-flex justify-content-center mt-3 login_container">
+                                <input type = "submit" value = "Modifica" id="clickme" class="btn my_btn">
+                              </div>
+                            </div>
+                          </div>
+                        </div><!--Div destination-->
+                      </div><!--Div destinations-->
+                    </div><!--Div di chiusura-->
+                  </div>
+                </div>
+              </div> 
+            </form>
+          </div> 
+        </div> 
+      </div>
+    </div>  
   </section>
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
   </footer> 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+              
+                
+         

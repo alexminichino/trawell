@@ -4,29 +4,76 @@
   layout:decorate="~{layout}">
 <head>
   <title>Itinerary</title>
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <!--<script src = "../js/validation_itinerary.js"></script>-->
 	<script src = "../js/add&removeDestination.js"></script>
 </head>
 <body>
-  <section layout:fragment="content">
-    <p>Create Itinerary</p>
-      <form action = "#" method = "POST" id = "target">
-        Name: <input type = 'text' name = "name" placeholder = "name"><br>
-        <div class = "destinations">
-          <div  class = "destination">
-            Destinazione:<input type = "text" name = "location" placeholder= "location"><br>
-            Data e ora:<input type = "datetime-local" name = "date"><br>
-            Descrizione:<textarea name = "description" placeholder= "description"></textarea><br> 
-            <button style = "background-color:green;" class = "add">Aggiungi una destinazione</button><br>
-          </div>
-      </div>
-      <input type="submit" id = "clickme" value = "Crea nuovo itinerario">
-      </form>
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">  
+				  	<div class = "container">
+              <p class="text-primary">Create new Itinerary</p>
+              <form action = "#" method = "POST" id = "target">
+                <div class = "row">
+                  <div class="col-12">
+                    <div class="input-group mb-2">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                      </div>
+                      <input type = 'text' name = "name" placeholder = "Nome Itinerario" class="form-control input_user">
+                    </div><!--Nome itinerario-->
+                    <div class="destinations">
+                      <div class="destination">
+                        <div class="input-group mb-2">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-city"></i></span>
+                          </div>
+                          <input type = "text" name = "location" placeholder= "Destinazione" class="form-control input_user">
+                        </div><!--Destinazione-->
+                        <div class="input-group mb-2">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                          </div>
+                          <input type = "datetime-local" name = "date" placeholder= "Data e ora" class="form-control input_user">
+                        </div>
+                        <div class="input-group mb-2">
+                          <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                          </div>
+                          <textarea name="description" placeholder="Descrizione" class = "form-control input_user"></textarea>
+                        </div><!--Descrizione-->
+                        <div class = "row">
+                          <div class = "col-12">
+                            <div class="d-flex justify-content-center mt-3 login_container">
+                              <input type = "submit" value = "Crea un nuovo itinerario" id="clickme" class="btn my_btn">
+                            </div>
+                          </div>
+                        </div><!--crea nuovo itinerario-->
+                        <div class = "row">
+                          <div class = "col-12">
+                            <div class="d-flex justify-content-center mt-3 login_container">
+                              <input type = "button" value = "Aggiungi una destinazione" id="add" class="btn my_btn">
+                            </div>
+                          </div>
+                        </div><br><!--Bottone Add destination-->
+                      </div><!--fine destination-->
+                    </div><!--fine destinations-->  
+                  </div><!--fine col-12-->
+                </div><!--fine row--> 
+              </form>
+            </div><!--fine container-->
+          </div><!--fine card personal-->
+        </div> <!--fine col-->
+      </div><!--fine row-->
+    </div><!--fine container 100h-->
   </section>
   <footer>
     <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
   </footer> 
-
 </body>
 </html>
+
