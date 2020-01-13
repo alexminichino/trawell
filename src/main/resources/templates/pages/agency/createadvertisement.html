@@ -8,22 +8,23 @@
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/login.js"></script>
   <link rel="stylesheet" href="../css/carsharing&itinerary.css">
+  <script src = "../js/validator_createad.js"></script>
 </head>
 <body>
   <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
-    <p>Scegli la tua inserzione</p>
     <div class="container h-100">
       <div class="row h-100 justify-content-center align-items-center">
 			  <div class="col-6 align-self-center">
 				  <div class = "card card-block personal-card">  
 				  	<div class = "container">
+              <p>Scegli la tua inserzione</p>
               <div>
                 <form action = "/agency/createAd" method = "POST" id = "banning">
                   <div class = "row">
                     <div class="col-12">
                       <div class="input-group mb-2">
                         <div class="input-group-append">
-                          <span class="input-group-text"><i class="fas fa-money"></i></span>
+                          <span class="input-group-text"><i class="fas fa-money-check"></i></span>
                         </div>
                         <input type = 'text' name = "payment_method" placeholder = "Inserire metodo di pagamento" class="form-control input_user">
                       </div><!--Metodo pagamento-->
@@ -54,10 +55,18 @@
                       </div><!--Opzioni4-->
                       <div class="input-group mb-2">
                         <div class="input-group-append">
-                          <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                          <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                         </div>
                         <input type = "date" name = "starting_time" class="form-control input_user">
                       </div><!--Data iniziale-->
+                      <p>Upload Photo</p>
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-image"></i></span>
+                        </div>
+                        <input type="file" name="file" class="form-control input_user">
+                        <input type="submit">
+                      </div><!--Foto-->
                       <div class = "row">
                         <div class = "col-12">
                           <div class="d-flex justify-content-center mt-3 login_container">
@@ -74,29 +83,6 @@
         </div><!--fine col-6-->
       </div><!--fine row-->
     </div><!--fine container h-100-->
-  <script src = "../js/validator_createad.js"></script>
-</head>
-<body>
-  <section layout:fragment="content">
-    <p>Scdgli la tua inserzione</p>
-    <div class = "container">
-      <div>
-        <form action = "/agency/createAd" method = "POST" id = "banning" enctype="multipart/form-data">
-            Numero carta: <input type = 'text' name = "payment_method" placeholder = "Numero carta"><br>
-            <p>Scegli la durata:</p>
-            <input type="radio" name="ad_time" value="1mesi" checked> 1 Mesi (90 €)<br>
-            <input type="radio" name="ad_time" value="3mesi"> 3 Mesi (250 €)<br>
-            <input type="radio" name="ad_time" value="6mesi"> 6 Mesi (460 €)<br>
-            <input type="radio" name="ad_time" value="12mesi"> 12 Mesi (860 €)<br>  
-            Data iniziale : <input type = "date" name = "starting_time">
-            <div>
-              <p>Upload a photo</p>
-              <input type="file" name="file" >
-            </div>
-            <input type = "submit">
-        </form>
-      </div>
-    </div>
   </section>
 </body>
 </html>
