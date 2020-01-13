@@ -45,7 +45,7 @@ public class ComplaintController {
 
     @GetMapping("/test")
     public String test() {
-        return "pages/admin/admincheckout";
+        return "pages/admin/banuser";
     }
 
     @GetMapping("/testAdmin")

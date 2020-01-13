@@ -1,4 +1,4 @@
-<!--- @author Milione Vincent --->
+<!--- @author Lamberti Vincenzo--->
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
@@ -32,22 +32,23 @@
                         <td th:text="${itinerary.name}" style="font-weight: bold;"></td> "></td>
                         <td>
                           <span style="font-weight: bold; color: blue;"><a th:id = ${itinerary.id} class = "remove"><u>Rimuovi</u></a></span>
-                          <span><a th:href="${'/itinerary/view?id=' +ad.id}"><u style="font-weight: bold;">View</u></a></span>
-                          <span><a th:href="${'/itinerary/modify?id=' + ad.id}"><u style="font-weight: bold;">Modifica</u></a></span>
+                          <span><a th:href="${'/itinerary/view?id=' +itinerary.id}"><u style="font-weight: bold;">View</u></a></span>
+                          <span><a th:href="${'/itinerary/modify?id=' + itinerary.id}"><u style="font-weight: bold;">Modifica</u></a></span>
                         </td>  
                       </tr>
                     </tbody><!--Fine body-->
                   </table>
-                  <div class = "row">
-                    <div class = "col-12">
-                      <div class="d-flex justify-content-center mt-3 login_container">
-                        <button onclick="window.location.href='https://trawellunisa.herokuapp.com/itinerary/create'" class="btn my_btn"> Crea un nuovo itinerario</button>
-                      </div>
-                    </div>
-                  </div>
               </div>
-            </div>  
             </div>
+          </div>
+          <div class="row">
+                <div class="col-6 align-self-center">
+                  
+                  <a href = "/itinerary/create"><button type="button">Create a new Itinerary</button></a>
+                
+                </div> 
+          </div> 
+            
           </div>
         </div>
       </div>
