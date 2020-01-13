@@ -1,14 +1,15 @@
 <!--- @author MarioPaone --->
 
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
 <head>
   <title>Ban users</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/bandatavalidator.js"></script>
 </head>
-<body>
+
+<body style="background-color:rgb(229, 229, 229)">
   <section layout:fragment="content">
     <p>Ban Utente</p>
     <div class = "container">
@@ -27,6 +28,21 @@
             <input type = "submit">
         </form>
       </div>
+      <div class="row">
+        Data fine ban: <input type="date" name="bannedUntil" class="form-control">
+      </div>
+
+      <div class="row"></div>
+
+      <div class="row">
+        <div class="col-11"></div>
+        <input type="submit" class="btn btn-primary">
+      </div>
+      </form>
+
+    </div>
+
+
     </div>
     <table class="table table-bordered">
       <thead>
@@ -48,4 +64,5 @@
   </section>
 
 </body>
+
 </html>
