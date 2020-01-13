@@ -84,7 +84,8 @@ public class AdTest {
         Date adStartingDate = new Date(0, 0, 0);
         Date adDueDate = new Date(0, 0, 0);
         Ad instance = new Ad(1L, 0L, "adPayment", 100L, adStartingDate, adDueDate, "0");
-        assertEquals(-2018199377, instance.hashCode());
+        int answere = Objects.hash(1L, 0L, "adPayment", 100L, adStartingDate, adDueDate, "0");
+        assertEquals(answere, instance.hashCode());
     }
 
 }
