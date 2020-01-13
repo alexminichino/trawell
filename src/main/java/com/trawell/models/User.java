@@ -92,7 +92,7 @@ public class User implements Serializable{
 
     public void addItinerary(Itinerary itinerary) {
         itinerary.setUser(this);
-        this.userItineraries.add(itinerary);
+        getUserItineraries().add(itinerary);
     }
 
     public void setUserItineraries(List<Itinerary> userItineraries) {
