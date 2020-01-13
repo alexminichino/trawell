@@ -3,6 +3,7 @@ package com.trawell.modelTest;
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Date;
+import java.util.Objects;
 
 import com.trawell.models.Ad;
 
@@ -91,4 +92,10 @@ public class AdTest {
     */
     
 
+<<<<<<< HEAD
+    */
+    
 }
+=======
+}
+>>>>>>> 44b6320c5cabd5fc667e3e0494c880c759f60e67
