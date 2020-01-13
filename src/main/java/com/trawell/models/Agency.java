@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -15,13 +14,12 @@ import javax.validation.constraints.Size;
  * class models the user agency
  */
 public class Agency extends User {
+    private static final long serialVersionUID = 6675266346589634692L;
     @NotBlank
-    @NotNull
     @NotEmpty
     @Size
     private String nameAgency;
     @NotBlank
-    @NotNull
     @NotEmpty
     private String url;
     private String vat;

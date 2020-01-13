@@ -1,27 +1,65 @@
-<!--- @author Alfieri Davide --->
+<!--- @author Vincenzo Lamberti --->
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
-<hecarsharing>
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-  <title>View Carsharings</title>
-</hecarsharing>
-<body>
-  <section layout:fragment="content">
-    <p>View Itinerary</p>
-    <div class = "container">
-        <div>
-          <p th:text=${carsharing.departureDate}></p>
-          <p th:text=${carsharing.departure}></p>
-          <p th:text=${carsharing.description}></p>
-          <p th:text=${carsharing.arrival}></p>
-          <p th:text=${carsharing.carsharingspot}></p>
-        </div>
-    </div>
-  </section>
-  <footer>
-    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
-  </footer> 
-
-</body>
-</html>
+  <html lang="en">
+  <head>
+      <title>Carsharing Ad</title>
+      <link rel="stylesheet" href="../css/carsharing&itinerary.css">
+	  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	  <meta charset="utf-8">
+  </head>
+  <body>
+	  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+		<div class="container h-100">
+		  <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">
+				  	<div class = "container">
+						<p class="text-primary">View Carsharing Ads</p>
+						<form action="#" method="POST" id='target'>
+							<div class = "row">
+								<div class="col-12">
+                                    <div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-clock"></i></span>
+										</div>
+										<input th:value = "${carsharing.departureDate}" type = 'datetime-local' class="form-control input_user" readonly>
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-city"></i></span>
+										</div>
+										<input th:value = "${carsharing.departure}" type = 'text' class="form-control input_user" readonly>
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-city"></i></span>
+										</div>
+										<input th:value = "${carsharing.arrival}" type = 'text' class="form-control input_user" readonly>
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-pen"></i></span>
+										</div>
+										<textarea th:text = "${carsharing.description}" class="form-control input_user" readonly></textarea>
+									</div>
+									<div class="input-group mb-2">
+										<div class="input-group-append">
+											<span class="input-group-text"><i class="fas fa-car"></i></span>
+										</div>
+										<input th:value = "${carsharing.carsharingspot}" class="form-control input_user" type = 'number' readonly>
+									</div>
+								</div>
+							</div>
+							<div class = "row">
+					    </form>
+				    </div>		
+				</div>
+				</div>
+			  </div>
+		  </div>
+	  </div>
+	  </section>
+  </body>
+  </html>
