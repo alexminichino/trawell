@@ -90,6 +90,10 @@ public class AdTest {
         assertEquals(answere, instance.hashCode());
     }
 
+<<<<<<< HEAD
     */
     
 }
+=======
+}
+>>>>>>> 44b6320c5cabd5fc667e3e0494c880c759f60e67
