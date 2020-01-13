@@ -2,6 +2,7 @@ package com.trawell.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import com.trawell.services.AdService;
 import com.trawell.services.CarsharingService;
 import com.trawell.services.PostService;
 import com.trawell.services.ItineraryService;
@@ -26,6 +27,8 @@ public class HomeController {
     private ItineraryService daoitinerary;
     @Autowired
     private PostService daopost;
+    @Autowired
+    private AdService daoad;
     @GetMapping("/")
     public String landing(HttpSession session, Model model) {
         if (session.getAttribute("user") != null) {
@@ -33,6 +36,7 @@ public class HomeController {
             model.addAttribute("carsharingAds", daocarsharing.findAll());
             model.addAttribute("itineraries", daoitinerary.findAll());
             model.addAttribute("posts", daopost.findAll());
+            model.addAttribute("ads",daoad.findAll());
 
             return "pages/home/index";
         }
