@@ -84,6 +84,7 @@ public class RestCarsharingController {
         User user = (User) session.getAttribute("user");
 
         if (user != null) {
+            user.getUserCreatedAdList().remove(new Carsharing(id));
             dao.delete(id);
             return new ResponseEntity<Carsharing>(HttpStatus.OK);
         }

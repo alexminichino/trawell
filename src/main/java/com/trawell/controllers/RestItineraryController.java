@@ -87,6 +87,7 @@ public class RestItineraryController {
         User user = (User) session.getAttribute("user");
 
         if (user != null) {
+            user.getUserItineraries().remove(new Itinerary (id));
             dao.delete(id);
             return new ResponseEntity<Itinerary>(HttpStatus.OK);
         }
