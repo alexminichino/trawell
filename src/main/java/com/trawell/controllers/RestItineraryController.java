@@ -72,8 +72,15 @@ public class RestItineraryController {
             updatedItinerary = dao.update(itinerary);
         }
 
-        return updatedItinerary == null ? new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<Itinerary>(updatedItinerary, HttpStatus.OK);
+        if (updatedItinerary == null) 
+        return new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR);
+    else {
+        user.getUserItineraries().remove(itinerary);
+        user.getUserItineraries().add(updatedItinerary);
+        return new ResponseEntity<Itinerary>(updatedItinerary, HttpStatus.OK);    
     }
+}
+    
 
     /**
      * The method maps "/api/itinerary/eliminate/{id}" post request that allows to delete an itinerary

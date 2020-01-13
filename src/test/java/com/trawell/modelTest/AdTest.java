@@ -89,6 +89,6 @@ public class AdTest {
         int answere = Objects.hash(1L, 0L, "adPayment", 100L, adStartingDate, adDueDate, "0");
         assertEquals(answere, instance.hashCode());
     }
-    */
+*/
 
 }
