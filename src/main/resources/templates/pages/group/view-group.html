@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+<html lang="en">
+
+  <head>
+      <title th:text = "${group.name}"></title>
+      <meta charset="utf-8">
+
+      <script src="../js/removeGroupMemb.js"></script>
+      <script src="../js/addMemb.js"></script>
+      <script src="../js/removePost.js"></script>
+      <script src="../js/reportPost.js"></script>
+  </head>
+
+  <body>
+    <section layout:fragment="content">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class = "col-6">
+                    <!-- Lista utenti dove potrai rimuovere se admin del gruppo (il remove deve essere cambiato con un simboletto)-->
+                    <table class="table table-responsive-md">
+                        <thead>
+                        <tr>
+                            <th th:text = ${group.name}></th>
+                        </tr>
+                     </thead>
+                     <tbody th:id=${group.id} class="groupMembList">
+                         <tr th:each = "u : ${participants}" th:if ="${session.user.id != u.id}" class="groupMemb">
+                            <td><p th:text = ${u.username}></p></td>
+                            <td>
+                                <button th:if = "${session.user.id == group.idOwner}" th:id = ${u.id} class="btn btn-primary remove"><span class="fas fa-user-minus"></span></button>
+                            </td>
+                         </tr>
+                     </tbody>
+                 </table>
+                </div>
+                <div class = "col-12">
+                    <!-- Lista Post (copiata e incollata da bachecapost.html)-->
+                    <div th:if="${#arrays.length(posts)==0}">
+                        <p>No posts found!</p>
+                    </div>
+                    <div>
+                        <p>Create a post</p>
+                        <a class="btn btn-primary" href="/post/landing" role="button">Click here!</a>
+                    </div>
+
+                    <div th:each="post : ${posts}" class = "post">
+                        <div th:each ="photo : ${post.photos}">
+                          <img th:src="@{${photo.path}}" class="rounded float-left" alt="an img">   
+                        </div>
+                        <p th:text = '${post.user.name +" " +post.user.surname}'></p>
+                        <p th:text = ${post.postDescription}></p>
+                        <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
+                        <button th:id = ${post.id} class="btn btn-primary report">Segnala Post</button>
+                      </div>
+                </div>
+                <div>
+                    <p>Click here to view the wallet's group</p>
+                    <a th:text="${group.name}" th:href="${'/Wallet/walletGroup?id=' +group.id}"></a>
+                </div>
+                <div class = "col-3 ">
+                    <!-- Modal che chiede di inserire nuovo utente... visualizzabile solo se l'utente è il creatore del gruppo-->
+                    <div th:if = "${session.user.id == group.idOwner}"class = "card">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add new member</button>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <!--qui chiede lo username della persona che vuole aggiungere-->
+                                <form>
+                                    <div class="modal-body">
+                                        <input id="nametoget" type = "text" name = "username" placeholder="username of user you want to include...">
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary addMemb" th:id = ${group.id}>Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        </div>
+      </section>
+  </body>
+  </html>

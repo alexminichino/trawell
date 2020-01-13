@@ -1,12 +1,10 @@
 package com.trawell.models;
 
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,8 +12,8 @@ import javax.persistence.TemporalType;
 @Entity
 
 /**
- * @author Milione Vincent
- * class models a Carsharing add postable by any user on the platform
+ * @author Milione Vincent class models a Carsharing add postable by any user on
+ *         the platform
  */
 public class Carsharing {
     @Id
@@ -27,10 +25,8 @@ public class Carsharing {
     private String departure;
     private String arrival;
     private int carsharingspot;
-    @ManyToMany(mappedBy = "list")
-    private List<User> user_list;
     @ManyToOne
-    @JoinColumn(name="id_owner")
+    @JoinColumn(name = "id_owner")
     public User user;
 
     public User getUser() {
@@ -41,18 +37,11 @@ public class Carsharing {
         this.user = user;
     }
 
-    public Carsharing(){}
+    public Carsharing() {
+    }
 
     public Carsharing(Long id) {
         this.id = id;
-	}
-
-	public List<User> getUser_list() {
-        return this.user_list;
-    }
-
-    public void setUser_list(List<User> user_list) {
-        this.user_list = user_list;
     }
 
     public String getDescription() {
@@ -102,6 +91,7 @@ public class Carsharing {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -119,7 +109,7 @@ public class Carsharing {
         return true;
     }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 }

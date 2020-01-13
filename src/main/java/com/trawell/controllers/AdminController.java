@@ -7,8 +7,12 @@ import java.util.Collection;
 import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
+import com.trawell.models.Ad;
+import com.trawell.models.Agency;
 import com.trawell.models.BanData;
 import com.trawell.models.User;
+import com.trawell.services.AdService;
+import com.trawell.services.AgencyService;
 import com.trawell.services.BanDataService;
 import com.trawell.services.UserService;
 
@@ -41,6 +45,12 @@ public class AdminController {
     @Autowired
     private EmailSenderService emailService;
 
+    @Autowired
+    private AdService adDao;
+
+    @Autowired
+    private AgencyService agencyDao;
+
     @GetMapping("/home")
     public String home(HttpSession session, Model model) {
         return isAdmin(session) ? "pages/admin/home" : "pages/user/login";
@@ -59,6 +69,22 @@ public class AdminController {
             }
             model.addAttribute("listaUser", listaUser);
             return "pages/admin/banusers";
+        }
+
+        return "pages/user/home";
+
+    }
+
+    @GetMapping("/deleteAdsLand")
+    public String deleteads(HttpSession session, Model model) {
+
+        if (isAdmin(session)) {
+            Collection<Ad> listaAd = adDao.findAll();
+            Collection<Agency> listaAgency = agencyDao.findAll();
+            if(listaAd.size() > 0)
+                model.addAttribute("listaAds", listaAd);
+            model.addAttribute("listaAgency", listaAgency);
+            return "pages/admin/deletead";
         }
 
         return "pages/user/home";

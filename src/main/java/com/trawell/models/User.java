@@ -19,37 +19,36 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 /**
- * @author Milione Vincent 
- * class a user on platform
+ * @author Milione Vincent class a user on platform
  */
 
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Pattern(regexp=".+@.+\\.[a-z]+", message="Invalid email address!")
+    @Pattern(regexp = ".+@.+\\.[a-z]+", message = "Invalid email address!")
     private String mail;
     @NotEmpty(message = "Username can not be empty")
-    @Size(min = 1, max = 20,message = "Username must be between 1 and 20 characters long")
+    @Size(min = 1, max = 20, message = "Username must be between 1 and 20 characters long")
     @NotBlank(message = "Username can not be empty")
-    @Pattern(regexp="^[a-zA-Z0-9]+$", message="Invalid username!")
+    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Invalid username!")
     private String username;
     private String password;
     @NotBlank(message = "Name can not be empty")
     @NotEmpty(message = "Name can not be empty")
-    @Size(min = 1,max = 20,message ="Name must be between 1 and 20 characters long" )
+    @Size(min = 1, max = 20, message = "Name must be between 1 and 20 characters long")
     private String name;
     @NotBlank(message = "Surname can not be empty")
     @NotEmpty(message = "Surname can not be empty")
-    @Size(min = 1,max = 20,message ="Surname must be between 1 and 20 characters long" )
+    @Size(min = 1, max = 20, message = "Surname must be between 1 and 20 characters long")
     private String surname;
     private Date birth;
     private boolean banned;
@@ -61,12 +60,26 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Carsharing> userCreatedAdList;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) // LAZY -> EAGER
-    private List<Itinerary> userItineraries; 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "carspot", joinColumns = {@JoinColumn(name = "id_user")}, inverseJoinColumns = {@JoinColumn(name = "id_carsharing")})
+    private List<Itinerary> userItineraries;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "carspot", joinColumns = { @JoinColumn(name = "id_user") }, inverseJoinColumns = {
+            @JoinColumn(name = "id_carsharing") })
     private Set<Carsharing> list;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Post> posts; 
+    private List<Post> posts;
+
+    @ManyToMany(mappedBy = "participants", cascade = CascadeType.ALL)
+    private Set<TrawellGroup> userGroups;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<Wallet> userWallets;
+
+    public Set<TrawellGroup> getUserGroups() {
+        return this.userGroups;
+    }
+
+    public void setUserGroups(Set<TrawellGroup> userGroups) {
+        this.userGroups = userGroups;
+    }
 
     public List<Itinerary> getUserItineraries() {
         return this.userItineraries;
@@ -79,14 +92,6 @@ public class User {
 
     public void setUserItineraries(List<Itinerary> userItineraries) {
         this.userItineraries = userItineraries;
-    }
-
-    public Set<Carsharing> getList() {
-        return this.list;
-    }
-
-    public void setList(Set<Carsharing> list) {
-        this.list = list;
     }
 
     public List<Carsharing> getUserCreatedAdList() {
@@ -196,11 +201,11 @@ public class User {
     @Transient
     private String transientVar;
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
-    public void setId(final Long id){
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -215,6 +220,7 @@ public class User {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -232,23 +238,38 @@ public class User {
         return true;
     }
 
-
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", mail='" + getMail() + "'" +
-            ", username='" + getUsername() + "'" +
-            ", password='" + getPassword() + "'" +
-            ", name='" + getName() + "'" +
-            ", surname='" + getSurname() + "'" +
-            ", birth='" + getBirth() + "'" +
-            ", bio='" + getBio() + "'" +
-            ", profilePhoto='" + getProfilePhoto() + "'" +
-            ", phone='" + getPhone() + "'" +
-            ", isAdmin='" + isAdmin + "'" +
-            ", isBanned='" + isBanned + "'" +
-            "}";
+        return "{" + " id='" + getId() + "'" + ", mail='" + getMail() + "'" + ", username='" + getUsername() + "'"
+                + ", password='" + getPassword() + "'" + ", name='" + getName() + "'" + ", surname='" + getSurname()
+                + "'" + ", birth='" + getBirth() + "'" + ", bio='" + getBio() + "'" + ", profilePhoto='"
+                + getProfilePhoto() + "'" + ", phone='" + getPhone() + "'" + ", isAdmin='" + isAdmin + "'"
+                + ", isBanned='" + isBanned + "'" + "}";
     }
 
+    public List<Wallet> getUserWallets() {
+        return userWallets;
+    }
+
+    public void setUserWallets(List<Wallet> userWallets) {
+        this.userWallets = userWallets;
+    }
+
+    public Set<Carsharing> getList() {
+        return list;
+    }
+
+    public void setList(Set<Carsharing> list) {
+        this.list = list;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    
 }
