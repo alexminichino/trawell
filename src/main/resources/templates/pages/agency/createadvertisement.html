@@ -7,25 +7,73 @@
   <title>Create advertisement</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/login.js"></script>
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
 </head>
 <body>
-  <section layout:fragment="content">
-    <p>Scdgli la tua inserzione</p>
-    <div class = "container">
-      <div>
-        <form action = "/agency/createAd" method = "POST" id = "banning">
-            Metodo di pagamento: <input type = 'text' name = "payment_method" placeholder = "Inserire metodo fi pagamento"><br>
-            <p>Scegli la durata:</p>
-            <input type="radio" name="ad_time" value="1mesi"> 1 Mesi (90 €)<br>
-            <input type="radio" name="ad_time" value="3mesi"> 3 Mesi (250 €)<br>
-            <input type="radio" name="ad_time" value="6mesi"> 6 Mesi (460 €)<br>
-            <input type="radio" name="ad_time" value="12mesi"> 12 Mesi (860 €)<br>  
-            Data iniziale : <input type = "date" name = "starting_time">
-            <input type = "submit">
-        </form>
-      </div>
-    </div>
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+    <p>Scegli la tua inserzione</p>
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">  
+				  	<div class = "container">
+              <div>
+                <form action = "/agency/createAd" method = "POST" id = "banning">
+                  <div class = "row">
+                    <div class="col-12">
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-money"></i></span>
+                        </div>
+                        <input type = 'text' name = "payment_method" placeholder = "Inserire metodo di pagamento" class="form-control input_user">
+                      </div><!--Metodo pagamento-->
+                      <p>Scegli la durata:</p>
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                        </div>
+                        <input type="radio" name="ad_time" value="1mesi" class="form-control input_user"> 1 Mesi (90 €) 
+                      </div><!--Opzioni1-->
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                        </div>
+                        <input type="radio" name="ad_time" value="3mesi" class="form-control input_user"> 3 Mesi (250 €)  
+                      </div><!--Opzioni2-->
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                        </div>
+                        <input type="radio" name="ad_time" value="6mesi" class="form-control input_user"> 6 Mesi (460 €) 
+                      </div><!--Opzioni3-->
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                        </div>
+                        <input type="radio" name="ad_time" value="12mesi" class="form-control input_user"> 12 Mesi (860 €) 
+                      </div><!--Opzioni4-->
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                        </div>
+                        <input type = "date" name = "starting_time" class="form-control input_user">
+                      </div><!--Data iniziale-->
+                      <div class = "row">
+                        <div class = "col-12">
+                          <div class="d-flex justify-content-center mt-3 login_container">
+                            <input type = "submit" value = "Crea annuncio">
+                          </div>
+                        </div>
+                      </div><br>
+                    </div><!--fine col-12-->
+                  </div><!--fine row-->
+                </form>
+              </div>
+            </div><!--fine container-->
+          </div><!--fine card-->
+        </div><!--fine col-6-->
+      </div><!--fine row-->
+    </div><!--fine container h-100-->
   </section>
-
 </body>
 </html>
