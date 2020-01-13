@@ -2,18 +2,32 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
   <link rel="stylesheet" href="../css/adminhome.css">
   <title>TraWell</title>
 </head>
 <body>
-  <section layout:fragment="content">
-    <p th:if="${msg}"> <h6 class="msgR" th:text='${msg}'> </h6>
-    </p>
-    <p>Benvenuto nella tua area admin.</p>
-    <p> Quale operazione vuoi effettuare? </p>
-    <p> <a href="/admin/banUsersLand"> Bannare un utente </a> </p>
-    <p> <a href="/admin/deleteAdsLand"> Controllare e cancellare inserzioni </a> </p>
-
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">  
+				  	<div class = "container">
+              <div class = "row">
+                <div class="col-12">
+                  <p th:if="${msg}"> <h6 class="msgR" th:text='${msg}'></h6></p>
+              <p class="text-primary">Benvenuto nella tua area admin</p>
+              <img src="https://img.icons8.com/bubbles/2x/admin-settings-male.png" class="center">
+              <p>Quale operazione vuoi effettuare?</p>
+              <p> <a href="/admin/banUsersLand"> Bannare un utente </a> </p>
+              <p> <a href="/admin/deleteAdsLand"> Controllare e cancellare inserzioni </a></p>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
   <footer>
     <p layout:fragment="custom-footer"></p> 

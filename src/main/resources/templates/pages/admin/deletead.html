@@ -7,39 +7,53 @@
   <title>Delete ad</title>
   <script src="../js/removeAd.js"></script>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
 </head>
 <body>
-  <section layout:fragment="content">
-    <p>Cancellare inserzioni</p>
-    <div class = "container">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col col-10">ID DEL BAN</th>
-          <th scope="col col-10">AGENZIA PROPRIETARIA</th>
-          <th scope="col col-10">DATA DI INIZIO</th>
-          <th scope="col col-10">DATA DI FINE</th>
-          <th scope="col col-10">ELIMINA</th>
-        </tr>
-      </thead>
-      <tbody th:if=${listaAds}>
-        <tr th:each="ad : ${listaAds}">
-          <div th:each="agency : ${listaAgency}">
-            <div th:if = '${agency.id} == ${ad.idOwner}' >
-          <td th:text='${ad.id}'></td>
-          <td th:text='${agency.nameAgency}'></td>
-          <td th:text='${ad.adStartingDate}'></td>
-          <td th:text='${ad.adDueDate}'></td>
-          <td><button th:id="${ad.id}" class="btn btn-primary remove"> </td>
-            </div>
-          </div>
-        </tr>
-      </tbody>
-      <tbody th:if="not ${listaAds}">
-        <td colspan="2">NESSUN INSERZIONE PRESENTE</td>
-      </tbody>
-    </table> 
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">  
+				  	<div class = "container">
+              <p class="center" style="font-weight: bold;">Cancellare inserzioni</p>
+              <div class = "row">
+                <div class="col-12">
+                  <table class="list table-bordered table-secondary" style="margin-left:auto;margin-right:auto;">
+                    <thead>
+                      <th scope="col col-10">ID del ban</th>
+                      <th scope="col col-10">Agenzia proprietaria</th>
+                      <th scope="col col-10">Data inizio</th>
+                      <th scope="col col-10">Data fine</th>
+                      <th scope="col col-10">Elimina</th>
+                    </thead>
+                    <tbody th:if=${listaAds}>
+                      <tr th:each="ad : ${listaAds}">
+                        <div th:each="agency : ${listaAgency}">
+                          <div th:if = '${agency.id} == ${ad.idOwner}'>
+                            <td th:text='${ad.id}'></td>
+                            <td th:text='${agency.nameAgency}'></td>
+                            <td th:text='${ad.adStartingDate}'></td>
+                            <td th:text='${ad.adDueDate}'></td>
+                            <td><button th:id="${ad.id}" class="btn btn-primary remove"></td>
+                          </div>
+                        </div>
+                      </tr>   
+                    </tbody>
+                    <tbody th:if="not ${listaAds}">
+                      <td colspan="2">Nessuna inserzione presente</td>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div><!--container-->
+          </div><!--fine card-->
+        </div><!--fine col-6-->
+      </div><!--row-->
+    </div><!--container h-100-->   
   </section>
-
 </body>
 </html>
+
+
+ 

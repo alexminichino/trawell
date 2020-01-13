@@ -3,7 +3,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>List Itineraries</title>
+  <title>List Carsharing Ads</title>
   <script src = "../js/remove_carsharing.js"></script>
   <link rel="stylesheet" href="../css/lista.css">
   <link rel="stylesheet" href="../css/carsharing&itinerary.css">
@@ -36,8 +36,15 @@
                       <span><a th:href="${'/carsharing/modify?id=' + ad.id}"><u style="font-weight: bold;">Modifica</u></a></span>
                     </td>  
                   </tr>
-                </tbody><!--Fine body-->
+                </tbody><!--Fine body-->  
               </table>
+              <div class = "row">
+								<div class = "col-12">
+									<div class="d-flex justify-content-center mt-3 login_container">
+										<button onclick="window.location.href='https://trawellunisa.herokuapp.com/carsharing/create'" class="btn my_btn"> Crea un nuovo annuncio</button>
+								  </div>
+								</div>
+							</div>    
             </div>
           </div>
         </div>
@@ -57,14 +64,7 @@
 
 
 
- <!-- <tr th:each = "ad : ${carsharingAds}">
-            <td th:text=></td>
-            <td>
-                <span><a th:id = ${ad.id} class = "remove">Rimuovi</a></span>
-                <span><a th:href="${'/itinerary/view?id=' +ad.id}">View</a></span>
-                <span><a th:href="${'/itinerary/modify?id=' + ad.id}">Modifica</a></span>
-            </td>
-        </tr>-->   
+  
        
     
     
