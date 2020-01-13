@@ -62,6 +62,10 @@ public class UploadUtils {
         return uploadFile(file, Paths.get("/photos",folder).toString(), fileName);
     }
 
+    public static String uploadDocument(MultipartFile file, String uploadDir, String fileName){
+        String folder = uploadDir.replace("/", "") + "/";
+        return uploadFile(file, Paths.get("/documents",folder).toString(), fileName);
+    }
 
     /**
      * This method returns the extension of the file

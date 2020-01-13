@@ -67,7 +67,6 @@
                 </td>
               </tr>
             </tbody>
-            </tbody>
             <tbody th:if="not ${userWallet}">
               <td class="walletEmpty" colspan="3">WALLLET EMPTY</td>
             </tbody>
@@ -75,9 +74,17 @@
 
         </div>
         <div class="col-md-2">
-          <form action="/file-upload" class="dropzone" id="my-awesome-dropzone"></form>
-          <input type="file" name="file" />
-          Drag and drop
+          <form action="/Wallet/addDocument" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="files">Upload files</label>
+              <input type="file" name="files" multiple>
+            </div>
+            <div class="form-group">
+              <label for="data">Select a due date</label>
+              <input type="date" name="dueDate" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
 
         <div class="col-md-1">

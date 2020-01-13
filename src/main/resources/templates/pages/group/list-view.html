@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+    <link rel="stylesheet" href="../css/list-view-group.css">
+    <script src="../js/removeGroup.js"></script>
+    <script src="../js/addGroup.js"></script>
+    <script src="../js/serializeForm.js"></script>
+    <title>List View Group</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <section layout:fragment="content">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+
+                <div class="col-8">
+                    <h5>Your Groups</h5>
+                    <table id="List" class="table table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th>Group Name</th>
+                                <th>Your role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody th:unless="${#arrays.length(Groups)==0}">
+                            <tr th:each="group : ${Groups}">
+                                <td><a th:text="${group.name}" th:href="${'/group/view?id=' +group.id}"></a></td>
+
+                                <td>
+
+                                    <span th:if="${group.idOwner==session.user.id}">Owner</span>
+                                    <span th:unless="${group.idOwner==session.user.id}">Partecipant</span>
+
+                                </td>
+
+                                <td th:if="${group.idOwner==session.user.id}">
+                                    <button th:id=${group.id} onclick="remove(this)" class="btn btn-primary remove">
+                                        <span class="fas fa-trash-alt"></span></button>
+                                </td>
+                                <td th:unless="${group.idOwner==session.user.id}"></td>
+                            </tr>
+                        </tbody>
+                        <tbody th:if="${#arrays.length(Groups)==0}">
+
+                            <td colspan="2"> You have no groups</td>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-8 text-center">
+                    <!-- Bottone inserisci nuovo gruppo-->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Create new group
+                    </button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">CREATE GROUP</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <!--caselle di input vengono messe qui-->
+                        <form id="addGroup" action="/api/group/newGroup" method="POST">
+                            <div class="modal-body">
+                                Insert Group Name:
+                                <br>
+                                <input class="name" type="text" name="name" placeholder="Group name">
+                                <br>
+                                Insert Group description:
+                                <br>
+                                <textarea class="description" name="description"
+                                    placeholder="Group description..."></textarea>
+                                <br>
+                                Seleziona Itinerario:
+                                <br>
+                                <select name="idItinerary" class="itinerary">
+                                    <option value="">---</option>
+                                    <option th:each="itinerary : ${session.user.userItineraries}"
+                                        th:value="${itinerary.id}" th:text="${itinerary.name}"></option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--Fine ^ Modal-->
+        </div>
+    </section>
+</body>
+
+</html>

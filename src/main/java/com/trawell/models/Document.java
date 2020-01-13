@@ -2,7 +2,9 @@ package com.trawell.models;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,14 +20,15 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinColumn(name = "id_wallet")
     private Wallet wallet;
+
     private Long idUser;
     private String name;
     private String Path;
     private Date dueDate;
-    private String note;
+    //private String note;
 
     public Document() {
     }
@@ -78,6 +81,7 @@ public class Document {
         this.dueDate = dueDate;
     }
 
+    /*
     public String getNote() {
         return note;
     }
@@ -85,5 +89,5 @@ public class Document {
     public void setNote(String note) {
         this.note = note;
     }
-
+    */
 }

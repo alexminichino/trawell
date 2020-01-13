@@ -13,5 +13,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface WalletRepository extends CrudRepository<Wallet, Long> {
     List<Wallet> findByTrawellGroup(TrawellGroup trawellGroup);
 
-    Wallet findByIdOwner(Long idOwner);
+    //Wallet findByIdOwner(Long idOwner);
 }

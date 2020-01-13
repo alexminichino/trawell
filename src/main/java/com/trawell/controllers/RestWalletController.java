@@ -8,6 +8,7 @@ import com.trawell.models.Document;
 import com.trawell.models.User;
 import com.trawell.models.Wallet;
 import com.trawell.services.DocumentService;
+import com.trawell.services.UserService;
 import com.trawell.services.WalletService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class RestWalletController {
 
     @Autowired
     WalletService daoW;
+
+    @Autowired
+    UserService userDao;
 
     /**
      * The method maps "/api/document/changeVisibility" post request that allows to
@@ -60,7 +64,7 @@ public class RestWalletController {
                 updateDocument = daoD.update(d);
             } else {
                 List<Wallet> list = d.getWallet().getGroup().getAllWallets();
-                Wallet w = list.stream().filter(x -> x.getIdOwner().equals(user.getId())).findFirst().orElse(null);
+                Wallet w = list.stream().filter(x -> x.getUser().getId().equals(user.getId())).findFirst().orElse(null);
                 if (w != null) {
                     d.setWallet(w);
                     updateDocument = daoD.update(d);
@@ -91,9 +95,11 @@ public class RestWalletController {
 
         if (user != null) {
             Document d = daoD.findOne(id);
-            if (user.getId() == d.getIdUser() || user.getId() == d.getWallet().getIdOwner()) {
+            if (user.getId() == d.getIdUser() || user.getId() == d.getWallet().getUser().getId()) {
                 d.getPath();// bisogna cancellare anche nella cartella
                 daoD.delete(id);
+                //user.setUserWallets(userWallets);
+                userDao.update(user);
                 return new ResponseEntity<Document>(HttpStatus.OK);
             } else
                 return new ResponseEntity<Document>(HttpStatus.FORBIDDEN);

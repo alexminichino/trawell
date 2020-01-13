@@ -108,6 +108,7 @@ public class UsersController {
 		}
 		
 		session.setAttribute("user", user);
+		session.setAttribute("isAgency", user instanceof Agency);
 		return user.getIsAdmin() ? "redirect:/admin/serialnumber" : "redirect:/";
 	}
 
@@ -163,6 +164,7 @@ public class UsersController {
 			//encript password
 			user.setPassword(new Encoder(user.getUsername()).encoding(user.getPassword(), user.getUsername().length()));
 			session.setAttribute("user", dao.create(user));
+			session.setAttribute("isAgency", true);
 
 			return "redirect:/";
 		} else {
