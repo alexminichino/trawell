@@ -17,8 +17,11 @@
             <input type="file" name="files" multiple>
           </div>
           <div>
-            <p>Do you want to add this post to a group? Enter the group name below</p>
-            <input type="text" class="form-control" id="postgroup" name="postGroup" placeholder="Enter group name">
+            <p>Do you want to add this post to a group? Select the group below</p>
+            <select name="idGroup">
+            <option value="0">---</option>
+            <option th:each="group: ${session.user.userGroups}"th:value="${group.id}" th:text="${group.name}"></option>
+          </select>
           </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
