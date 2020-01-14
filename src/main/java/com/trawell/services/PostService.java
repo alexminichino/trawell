@@ -51,8 +51,8 @@ public class PostService implements IPostService {
             //cannot find Post with specified Id value
             return null;
         }
-        Post updatedPost = postRepository.save(post);
-        return updatedPost;
+        
+        return postRepository.save(post);
     }
 
     @Override

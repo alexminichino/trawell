@@ -32,7 +32,7 @@ public class Test_AgencyService {
     Agency newagency;
     Agency agency;
     @Before public void init(){
-        Date date= new Date(2020, 2, 15);
+        String date = String.format("%d-%02d-%02d", 2020, 2, 15);
         newagency = new Agency();
         agency= new Agency();
         agency.setId(1L);
@@ -42,7 +42,7 @@ public class Test_AgencyService {
         agency.setSurname("Alemanno");
         agency.setPhone("3315155657");
         agency.setUsername("trawellstoler");
-        agency.setBirth(date);
+        agency.setBirth(Date.valueOf(date));
         agency.setPassword("92908C781853A92BE9A963319F18A3C5");
         agency.setUrl("www.tihofregato.it");
         agency.setVat("123456789012");
@@ -53,7 +53,7 @@ public class Test_AgencyService {
         newagency.setSurname("Ruggiero");
         newagency.setPhone("3375754849");
         newagency.setUsername("NotAnAgency");
-        newagency.setBirth(date);
+        newagency.setBirth(Date.valueOf(date));
         newagency.setPassword("92908C781853A92BE9A963319F18A3C5");
         newagency.setUrl("www.inrealtasiamodisoccupati.com");
         newagency.setVat("987654321098");
@@ -77,7 +77,7 @@ public class Test_AgencyService {
     @Test
     public void TC_ag3(){
         Agency saveagency = new Agency();
-        Date date= new Date(2020, 2, 15);
+        String date = String.format("%d-%02d-%02d", 2020, 2, 15);
         saveagency.setId(1L);
         saveagency.setMail("agenziafasulla@gmail.com");
         saveagency.setNameAgency("Vendiamo faggioli");
@@ -85,7 +85,7 @@ public class Test_AgencyService {
         saveagency.setSurname("Siffredi");
         saveagency.setPhone("3315155657");
         saveagency.setUsername("trawellstoler");
-        saveagency.setBirth(date);
+        saveagency.setBirth(Date.valueOf(date));
         saveagency.setPassword("92908C781853A92BE9A963319F18A3C5");
         saveagency.setUrl("www.tihofregato.it");
         saveagency.setVat("123456789012");
