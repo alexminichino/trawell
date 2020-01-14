@@ -29,7 +29,7 @@ public class ComplaintService implements IComplaintService {
     @Override
     public Complaint findOne(Long i) {
         Optional<Complaint> complaint = ComplaintRepository.findById(i);
-        return complaint.get();
+        return complaint.isPresent() ? complaint.get() : null;
     }
 
     @Override

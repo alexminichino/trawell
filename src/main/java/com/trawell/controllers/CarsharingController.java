@@ -43,7 +43,7 @@ public class CarsharingController {
      * @param model 
      * @return url of the page used to modify the content of a carsharing ad
      */
-    @GetMapping("/change")
+    @GetMapping("/modify")
     public String change(HttpSession session, @RequestParam("id") Long id, Model model){
 
         User user = (User) session.getAttribute("user");

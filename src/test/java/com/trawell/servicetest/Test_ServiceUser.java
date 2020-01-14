@@ -1,18 +1,22 @@
-package com.trawell;
+package com.trawell.servicetest;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 import com.trawell.models.User;
 import com.trawell.repositories.UserRepository;
 import com.trawell.services.UserService;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -110,9 +114,44 @@ public class Test_ServiceUser {
         updateUser.setPhone("3664422514");
         updateUser.setPassword("92908C781853A92BE9A963319F18A3C5");
 
-        when(repo.findById(Long.valueOf(1L))).thenReturn(Optional.ofNullable(new User()));
+        when(repo.findById(Long.valueOf(1L))).thenReturn(Optional.empty());
 
         assertEquals(null ,dao.update(updateUser));
 
+    }
+
+    @Test
+    public void TC_5 () {
+        ArrayList<User> list = new ArrayList<User>();
+        User user = new User ();
+        user.setId(1L);
+        user.setName("Giuseppe");
+        user.setSurname("Gesubaldo");
+        user.setUsername("Vince");
+        user.setMail("mariopoane@gmail.com");
+        user.setPhone("3664422514");
+        user.setPassword("92908C781853A92BE9A963319F18A3C5");
+        list.add(user);
+
+        when(repo.findAll()).thenReturn(list);
+        Collection<User> collection = dao.findAll();
+
+        assertEquals(true, collection.size() == 1 && collection.contains(user));   
+    }
+
+    @Test
+    public void TC_6(){
+        User user = new User ();
+        user.setId(1L);
+        user.setName("Giuseppe");
+        user.setSurname("Gesubaldo");
+        user.setUsername("Vince");
+        user.setMail("mariopoane@gmail.com");
+        user.setPhone("3664422514");
+        user.setPassword("92908C781853A92BE9A963319F18A3C5");
+
+        when(repo.findById(1L)).thenReturn(Optional.of(user));
+        dao.delete(1l);
+        Mockito.verify(repo, times(1)).delete(user);
     }
 }
