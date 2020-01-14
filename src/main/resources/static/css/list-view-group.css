@@ -1,12 +1,6 @@
-.name{
-    margin-top: 5%;
-    margin-bottom: 5%;
+.card{
+    border: 0px;
 }
-.description{
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-.itinerary{
-    margin-top: 5%;
-    margin-bottom: 5%;
+i{
+    font-size: 10px;
 }

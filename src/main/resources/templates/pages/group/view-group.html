@@ -7,7 +7,7 @@
   <head>
       <title th:text = "${group.name}"></title>
       <meta charset="utf-8">
-
+      <link rel="stylesheet" href="../css/view-group.css">
       <script src="../js/removeGroupMemb.js"></script>
       <script src="../js/addMemb.js"></script>
       <script src="../js/removePost.js"></script>
@@ -20,10 +20,13 @@
             <div class="row h-100 justify-content-center align-items-center">
                 <div class = "col-6">
                     <!-- Lista utenti dove potrai rimuovere se admin del gruppo (il remove deve essere cambiato con un simboletto)-->
-                    <table class="table table-responsive-md">
-                        <thead>
+                    <table class="table table-responsive-md table-hover table-secondary text-center" style="margin-left:auto;margin-right:auto;">
+                        <thead> 
+                            <th colspan="2" th:text = ${group.name}></th>
+                            
                         <tr>
-                            <th th:text = ${group.name}></th>
+                            <td>Member</td>
+                            <td>Action</td>
                         </tr>
                      </thead>
                      <tbody th:id=${group.id} class="groupMembList">
