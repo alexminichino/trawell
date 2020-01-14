@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 import com.trawell.models.BanData;
-import com.trawell.models.User;
 import com.trawell.repositories.BanDataRepository;
 import com.trawell.services.BanDataService;
 
@@ -34,9 +33,12 @@ public class Test_BanDataService {
     BanData upBData;
 
     @Before public void init () {
-        newBData = new BanData(null, 1L, 1L, new Date(2020,2, 1),"no specific reason");
-        bData = new BanData(1L, 1L, 1L, new Date(2020,2, 1),"no specific reason");
-        upBData = new BanData(1L, 1L, 1L, new Date(2020,3, 1),"no specific reason"); 
+        String dateNewBData = String.format("%d-%02d-%02d", 2020, 2, 1);
+        String dateBData = String.format("%d-%02d-%02d", 2020, 2, 1);
+        String dateUpBData = String.format("%d-%02d-%02d", 2020, 3, 1);
+        newBData = new BanData(null, 1L, 1L, Date.valueOf(dateNewBData),"no specific reason");
+        bData = new BanData(1L, 1L, 1L, Date.valueOf(dateBData),"no specific reason");
+        upBData = new BanData(1L, 1L, 1L, Date.valueOf(dateUpBData),"no specific reason"); 
       }
 
     @Test

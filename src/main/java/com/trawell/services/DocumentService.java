@@ -29,8 +29,8 @@ public class DocumentService implements IDocumentService {
 
     @Override
     public Document findOne(Long id) {
-        Optional<Document> Document = DocumentRepository.findById(id);
-        return Document.get();
+        Optional<Document> document = DocumentRepository.findById(id);
+        return document.isPresent() ? document.get() : null;
     }
 
     @Override
