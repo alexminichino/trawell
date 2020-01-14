@@ -29,15 +29,12 @@ public class Complaint {
     //@ManyToOne
     @NotBlank
     @NotEmpty
-    @NotNull
     private Long idUser;
     @NotBlank
     @NotEmpty
-    @NotNull
     private String complaintObject;
     @NotBlank
     @NotEmpty
-    @NotNull
     private String complaintDescription;
     private String complaintMail;
     private Long idAnswerer;

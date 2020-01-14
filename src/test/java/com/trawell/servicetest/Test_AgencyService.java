@@ -6,17 +6,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 import com.trawell.models.Agency;
-import com.trawell.models.User;
 import com.trawell.repositories.AgencyRepository;
-import com.trawell.repositories.UserRepository;
 import com.trawell.services.AgencyService;
-import com.trawell.services.UserService;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -87,7 +82,7 @@ public class Test_AgencyService {
         saveagency.setMail("agenziafasulla@gmail.com");
         saveagency.setNameAgency("Vendiamo faggioli");
         saveagency.setName("Daniele");
-        saveagency.setSurname("Alemanno");
+        saveagency.setSurname("Siffredi");
         saveagency.setPhone("3315155657");
         saveagency.setUsername("trawellstoler");
         saveagency.setBirth(date);
