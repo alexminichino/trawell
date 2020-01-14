@@ -149,7 +149,7 @@ public class Test_ItineraryService{
 
         assertEquals(true, collection.size() == 1 && collection.contains(itinerary));
     }
-/*
+
     @Test
     public void TC_it6 () {
         User user= new User();
@@ -182,5 +182,5 @@ public class Test_ItineraryService{
 
         dao.delete(1L);
         Mockito.verify(repo, times(1)).delete(itinerary);
-    }*/
+    }
 }
