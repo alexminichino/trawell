@@ -125,7 +125,7 @@ public class AdminController {
         User adminUser = (User) session.getAttribute("user");
 
         User user = userDao.findByUsername(username);
-        String msg = "Ban fallito";
+        String msg = "Ban failed";
         if (user != null) {
             if (user.getBanned()) {
                 bannedUntil = Date.valueOf("2050-01-01");
@@ -142,7 +142,7 @@ public class AdminController {
             String email_text = "Caro " + user.getName() + " sei stato bannato da Trawell per questa motivazione:  "
                     + motivation;
             emailService.sendEmail(email_text, "Ban", user.getMail(), user.getName());
-            msg = "Ban eseguito con successo";
+            msg = "Ban successfully executed";
             model.addAttribute("msg", msg);
             return "pages/admin/home";
 

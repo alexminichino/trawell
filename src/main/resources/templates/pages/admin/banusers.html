@@ -1,67 +1,82 @@
 <!--- @author MarioPaone --->
 
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
-
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
 <head>
   <title>Ban users</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/bandatavalidator.js"></script>
   <link rel="stylesheet" href="../css/carsharing&itinerary.css">
 </head>
-
-<body style="background-color:rgb(229, 229, 229)">
-  <section layout:fragment="content">
-    <p>Ban Utente</p>
-    <div class = "container">
-      <div>
-        <form  action = "/admin/banUser" method = "POST" id = "banning">
-            Username utente: 
-            <select name="username" id="username">
-              <option value=""> Seleziona utente </option>
-              <option th:each="user : ${listaUser}"
-                 th:value="${user.username}"
-                 th:utext="${user.username}"/>
-            </select>
-             <br>
-            Motivazione : <textarea name="motivation" rows="10" cols="30" placeholder="Inserire motivazione qui..."></textarea> <br>
-            Data fine ban: <input type = "date" name = "bannedUntil">
-            <input type = "submit">
-        </form>
-      </div>
-      <div class="row">
-        Data fine ban: <input type="date" name="bannedUntil" class="form-control">
-      </div>
-
-      <div class="row"></div>
-
-      <div class="row">
-        <div class="col-11"></div>
-        <input type="submit" class="btn btn-primary">
-      </div>
-      </form>
-
-    </div>
-
-
-    </div>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col col-10">UTENTI BANNATI</th>
-        </tr>
-      </thead>
-      <tbody th:if=${listaUser}>
-        <tr th:each="user : ${listaUser}">
-          <td th:text='${user.username}' th:if= "${user.isBanned}"
-          ></td>
-          
-        </tr>
-      </tbody>
-      <tbody th:if="not ${listaUser}">
-        <td colspan="2">NESSUN UTENTE BANNATO</td>
-      </tbody>
-    </table>
+<body>
+  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+			  <div class="col-6 align-self-center">
+				  <div class = "card card-block personal-card">  
+				  	<div class = "container">
+              <p style="font-weight: bold;">Ban User</p>
+              <div>
+                <form action = "/admin/banUser" method = "POST" id = "banning">
+                  <div class = "row">
+                    <div class="col-12">
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <select name="username" id="username">
+                          <option value=""> Select User </option>
+                          <option th:each="user : ${listaUser}"
+                             th:value="${user.username}"
+                             th:utext="${user.username}">
+                        </select>
+                      </div><br><!--Selezione-->
+                       <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-pen"></i></span>
+                        </div>
+                        <textarea name="motivation"  placeholder="Insert motivation..." class="form-control input_user"></textarea>
+                      </div><br><!--Motivazione-->
+                      <h6 style="border: 1;">End date for the ban:</h6>
+                      <div class="input-group mb-2">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                        <input type = "date" name = "bannedUntil" class="form-control input_user">
+                      </div><!--Data Ban-->
+                      <div class = "row">
+                        <div class = "col-12">
+                          <div class="d-flex justify-content-center mt-3 login_container">
+                            <input type = "submit" class="btn my_btn" value = "BAN">
+                          </div>
+                        </div>
+                      </div><!--Submit-->
+                    </div>
+                  </div>
+                </form><br>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col col-10">LIST OF BANNED USERS</th>
+                    </tr>
+                  </thead>
+                  <tbody th:if=${listaUser}>
+                    <tr th:each="user : ${listaUser}">
+                      <td th:text='${user.username}' th:if= "${user.isBanned}"></td>
+                    </tr>
+                  </tbody>
+                  <tbody th:if="not ${listaUser}">
+                    <td colspan="2">THE ARE NOT BANNED USERS</td>
+                  </tbody>
+                </table>
+              </div>
+            </div><!--fine container-->
+				  </div><!--fine card-->
+        </div><!--fine col-6-->
+      </div><!--fine row h-100-->
+    </div><!--fine container h-100-->
   </section>
 </body>
 </html>
+

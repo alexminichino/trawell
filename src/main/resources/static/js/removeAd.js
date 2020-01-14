@@ -24,11 +24,11 @@ $(document).ready(function () {
             data: { id: idad },
             async: false,
             success: function (data) {
-                alert("Inserzione rimossa con successo");
+                alert("Ad successfully removed");
                 location.reload();
             },
             error: function (request, textStatus, errorThrown) {
-                alert("Rimozione fallita");
+                alert("Failed");
                 
             }
         });
