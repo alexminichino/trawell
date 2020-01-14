@@ -5,6 +5,9 @@ p{
 
 .card{
     text-align: center;
+    width: 18rem;
+    margin-top: 1em;
+    margin-left: 3em;
 }
 
 #block1,#block2,#block3,#block4{
@@ -20,3 +23,17 @@ h5{
 body{
     background-image: url('../image/home.jpg');
 }
+
+.rotate{
+   transform: rotate(270deg);
+   width: 150%;
+   vertical-align: middle;
+   display: flex;  
+   margin-top: 150px;
+   
+}
+
+#block4{
+    height: 550px;
+}
+  

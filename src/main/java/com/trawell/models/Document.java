@@ -80,14 +80,4 @@ public class Document {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
-
-    /*
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-    */
 }
