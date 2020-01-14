@@ -33,7 +33,7 @@ public class TrawellGroupService implements ITrawellGroupService {
     @Override
     public TrawellGroup findOne(Long id) {
         Optional<TrawellGroup> trawellGroup = groupRepository.findById(id);
-        return trawellGroup.get();
+        return trawellGroup.isPresent() ? trawellGroup.get() : null;
     }
 
     @Override
@@ -47,10 +47,12 @@ public class TrawellGroupService implements ITrawellGroupService {
 
     @Override
     public TrawellGroup update(TrawellGroup trawellGroup) {
-        if (trawellGroup.getId() == null) {
-            // cannot create User with specified Id value
+        TrawellGroup groupPersisted = findOne(trawellGroup.getId());
+        if (groupPersisted == null) {
+            //cannot find Post with specified Id value
             return null;
         }
+
         return groupRepository.save(trawellGroup);
     }
 
@@ -69,8 +71,4 @@ public class TrawellGroupService implements ITrawellGroupService {
         return groupRepository.findByIdOwner(user.getId());
     }
 
-    @Override
-    public TrawellGroup findByName(String name) {
-        return groupRepository.findByName(name);
-    }
 }
