@@ -15,7 +15,6 @@
 </head>
 
 <body>
-  <!--NAVBAR-->
   <nav class="navbar navbar-expand-lg navbar-light extension">
     <a class="navbar-brand"  href="/">Trawell</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -24,44 +23,44 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto my-li">
-        <li th:if="${session.user}" class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>-->
-        <li th:if="${session.user}" class="nav-item"><a class="nav-link" href="#"><span class="fas fa-car"></span>Find ride</a></li>
-        <li th:if="${session.user}" class="nav-item"><a class="nav-link" href="#"><span class="fas fa-suitcase-rolling"></span>Share your
-            experience</a></li>
-        <!--
-        <li th:if="not ${session.user}" class="nav-item"><a class="nav-link" href="/users/sign-up-page"><span
-              class="far fa-user"></span>Sign Up</a></li>
-        <li th:if="not ${session.user}" class="nav-item"><a class="nav-link" href="/users/login-page"><span
-              class="fas fa-sign-in-alt"></span>Log in</a></li>
-        -->
-        <li th:if="${session.user}" class="nav-item"><a class="nav-link" href="/users/logout"><span
-              class="fas fa-sign-out-alt"></span>Log out</a></li>
-        <li th:if="${session.user}" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="Right-aligned menu" aria-expanded="false">
-            My Account
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/users/change-user-data">Update
-              Credentials</a>
-              
-            <div th:if="not ${session.user.isAdmin}" class="dropdown-divider"></div>
-            <a th:if="${session.user.isAdmin}" class="dropdown-item" href="/admin/banusers">Ban a User</a>
-            <a th:if="${session.user.isAdmin}" class="dropdown-item" href="/Complaint/viewComplaint">List of
-              Complaints</a>
-            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/itinerary/list-view">My Itineraries</a>
-            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/carsharing/list-view">My Carsharing
-              Ads</a>
-            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/post/viewPosts">My Posts</a>
-            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/post/landing">Create a post</a>
-            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/group/list-view">My Group</a>
-            
-          </div>
-        </li>
-      </ul>
+      <ul class="navbar-nav ml-auto">
+		  <li th:if="${session.user}" class="nav-item active my-li">
+		          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		        </li>
+		        <li th:if="${session.user}" class="nav-item my-li"><a class="nav-link" href="#"><span class="fas fa-car"></span>Find ride</a></li>
+		        <li th:if="${session.user}" class="nav-item my-li"><a class="nav-link" href="#"><span class="fas fa-suitcase-rolling"></span>Share your
+		            experience</a></li>
+		        <!--
+		        <li th:if="not ${session.user}" class="nav-item"><a class="nav-link" href="/users/sign-up-page"><span
+		              class="far fa-user"></span>Sign Up</a></li>
+		        <li th:if="not ${session.user}" class="nav-item"><a class="nav-link" href="/users/login-page"><span
+		              class="fas fa-sign-in-alt"></span>Log in</a></li>
+		        -->
+		        <li th:if="${session.user}" class="nav-item my-li"><a class="nav-link" href="/users/logout"><span
+		              class="fas fa-sign-out-alt"></span>Log out</a></li>
+		        <li th:if="${session.user}" class="nav-item my-li dropdown ">
+		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+		            aria-haspopup="Right-aligned menu" aria-expanded="false">
+		            My Account
+		          </a>
+		          <div class="dropdown-menu dropdown-menu-right my-li-drop" aria-labelledby="navbarDropdown">
+		            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/users/change-user-data">Update
+		              Credentials</a>
+		              
+		            <div th:if="not ${session.user.isAdmin}" class="dropdown-divider"></div>
+		            <a th:if="${session.user.isAdmin}" class="dropdown-item" href="/admin/banusers">Ban a User</a>
+		            <a th:if="${session.user.isAdmin}" class="dropdown-item" href="/Complaint/viewComplaint">List of
+		              Complaints</a>
+		            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/itinerary/list-view">My Itineraries</a>
+		            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/carsharing/list-view">My Carsharing
+		              Ads</a>
+		            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/post/viewPosts">My Posts</a>
+		            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/post/landing">Create a post</a>
+		            <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/group/list-view">My Group</a>
+		            
+		          </div>
+		        </li>
+		      </ul>
     </div>
   </nav>
 
