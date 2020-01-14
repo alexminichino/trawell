@@ -48,6 +48,7 @@
            type:'POST',
            success:function(data){
                alert("success");
+               window.location.href='/';
            },
           error:function(request,textStatus,errorThrown){
                alert("failed:");
