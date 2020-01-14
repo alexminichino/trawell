@@ -1,0 +1,10 @@
+
+<!-- This container wraps up everything in the page -->
+
+<div class="post-full-height"> 
+  <div th:each="post : ${posts}" class = "post">
+    <div th:include="fragments/post/post"  class="fragment post-full-height">
+    </div>
+  </div>
+</div>      
+

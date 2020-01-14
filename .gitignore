@@ -32,3 +32,6 @@ build/
 
 #local sonarcube server folder
 /sonarqube
+
+#upload data
+/src/main/resources/static/uploads
