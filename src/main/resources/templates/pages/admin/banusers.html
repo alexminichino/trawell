@@ -1,8 +1,8 @@
 <!--- @author MarioPaone --->
 
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
-
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
 <head>
   <title>Ban users</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
@@ -16,7 +16,7 @@
 			  <div class="col-6 align-self-center">
 				  <div class = "card card-block personal-card">  
 				  	<div class = "container">
-              <p style="font-weight: bold;">Ban Utenti</p>
+              <p style="font-weight: bold;">Ban User</p>
               <div>
                 <form action = "/admin/banUser" method = "POST" id = "banning">
                   <div class = "row">
@@ -26,19 +26,19 @@
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
                         <select name="username" id="username">
-                          <option value=""> Seleziona utente </option>
+                          <option value=""> Select User </option>
                           <option th:each="user : ${listaUser}"
                              th:value="${user.username}"
-                             th:utext="${user.username}"/>
+                             th:utext="${user.username}">
                         </select>
                       </div><br><!--Selezione-->
                        <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-pen"></i></span>
                         </div>
-                        <textarea name="motivation"  placeholder="Inserire motivazione qui..." class="form-control input_user"></textarea>
+                        <textarea name="motivation"  placeholder="Insert motivation..." class="form-control input_user"></textarea>
                       </div><br><!--Motivazione-->
-                      <h6 style="border: 1;">Data di fine del ban:</h6>
+                      <h6 style="border: 1;">End date for the ban:</h6>
                       <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -48,7 +48,7 @@
                       <div class = "row">
                         <div class = "col-12">
                           <div class="d-flex justify-content-center mt-3 login_container">
-                            <input type = "submit" class="btn my_btn">
+                            <input type = "submit" class="btn my_btn" value = "BAN">
                           </div>
                         </div>
                       </div><!--Submit-->
@@ -58,7 +58,7 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th scope="col col-10">UTENTI BANNATI</th>
+                      <th scope="col col-10">LIST OF BANNED USERS</th>
                     </tr>
                   </thead>
                   <tbody th:if=${listaUser}>
@@ -67,7 +67,7 @@
                     </tr>
                   </tbody>
                   <tbody th:if="not ${listaUser}">
-                    <td colspan="2">NESSUN UTENTE BANNATO</td>
+                    <td colspan="2">THE ARE NOT BANNED USERS</td>
                   </tbody>
                 </table>
               </div>
