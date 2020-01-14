@@ -31,7 +31,7 @@ public class PostService implements IPostService {
     @Override
     public Post findOne(Long id) {
         Optional<Post> post = postRepository.findById(id);
-        return post.get();
+        return post.isPresent() ? post.get() : null;
     }
 
     @Override
@@ -51,8 +51,8 @@ public class PostService implements IPostService {
             //cannot find Post with specified Id value
             return null;
         }
-        Post updatedPost = postRepository.save(post);
-        return updatedPost;
+        
+        return postRepository.save(post);
     }
 
     @Override

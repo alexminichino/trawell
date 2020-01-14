@@ -33,7 +33,7 @@ public class AdService implements IAdService {
     @Override
     public Ad findOne(Long id) {
         Optional<Ad> adData = adRepository.findById(id);
-        return adData.get();
+        return adData.isPresent() ? adData.get() : null;
     }
 
     @Override
