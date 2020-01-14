@@ -6,6 +6,9 @@ import com.trawell.models.*;
 
 import org.junit.Test;
 
+/**
+ * @author Paolo Fasano
+ */
 public class PhotoTest {
 
     @Test

@@ -6,7 +6,9 @@ import static org.junit.Assert.assertEquals;
 import com.trawell.models.*;
 
 import org.junit.Test;
-
+/**
+ * @author Paolo Fasano
+ */
 public class AgencyTest {
 
     @Test

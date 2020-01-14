@@ -8,7 +8,9 @@ import java.util.Objects;
 import com.trawell.models.Ad;
 
 import org.junit.Test;
-
+/**
+ * @author Paolo Fasano
+ */
 public class AdTest {
 
     @Test
