@@ -98,6 +98,7 @@ public class WalletController {
 
                 String uploadDir = encoder.encoding(user.getUsername(), 3);
                 String fileName = UploadUtils.getCurrentTimeUsingDate()+i;
+                fileName = encoder.encoding(fileName, 1);
 
                 document.setPath(UploadUtils.uploadDocument(file,uploadDir,fileName));
                 Wallet wallet = user.getUserWallets().stream().filter(x -> x.getUser() != null).findFirst().orElse(null);

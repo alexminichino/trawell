@@ -119,6 +119,7 @@ public class AdController {
 
         String uploadDir = encoder.encoding(user.getMail(), 3);
         String fileName = UploadUtils.getCurrentTimeUsingDate();
+        fileName = encoder.encoding(fileName, 1);
         photo.setPath(UploadUtils.uploadPhoto(file, uploadDir, fileName));
         photo.setPost(null);
 
