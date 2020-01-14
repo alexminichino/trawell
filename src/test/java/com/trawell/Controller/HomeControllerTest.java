@@ -25,6 +25,7 @@ import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 /**
@@ -88,18 +89,8 @@ public class HomeControllerTest {
     @Test
     public void TestlistLandingNoUser() {
         session.setAttribute("user", null);
-        assertEquals("pages/home/index", controller.landing(session, model));
+        assertEquals("pages/user/login", controller.landing(session, model));
     }
-
-    /*
-    @Test
-    public void TestlistLanding() {
-        when(dao.findOne(0L)).thenReturn(modello);
-        when(dao.findOne(0L)).thenReturn(modello);
-        when(dao.findOne(0L)).thenReturn(modello);
-        when(dao.findOne(0L)).thenReturn(modello);
-        assertEquals("pages/home/index", controller.landing(session, model));
-    }
-    */
+   
     
 }
