@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 /**
  * @author Mario Paone
  * 
@@ -17,7 +18,9 @@ public class BanData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "User id can not be empty")
     private Long idUser;
+    @NotEmpty(message = "Admin id can not be empty")
     private Long idAdmin;
     private Date banUntil;
     private String motivation;

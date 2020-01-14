@@ -4,6 +4,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
   /**
@@ -24,9 +27,14 @@ public class Complaint {
     private Long id;
 
     //@ManyToOne
+    @NotBlank
+    @NotEmpty
     private Long idUser;
-    
+    @NotBlank
+    @NotEmpty
     private String complaintObject;
+    @NotBlank
+    @NotEmpty
     private String complaintDescription;
     private String complaintMail;
     private Long idAnswerer;
