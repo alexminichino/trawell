@@ -32,7 +32,7 @@ public class BanDataService implements IBanDataService {
     @Override
     public BanData findOne(Long id) {
         Optional<BanData> banData = banDataRepository.findById(id);
-        return banData.get();
+        return banData.isPresent() ? banData.get() : null;
     }
 
     @Override

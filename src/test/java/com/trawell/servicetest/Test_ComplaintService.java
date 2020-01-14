@@ -4,13 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-import com.trawell.models.Carsharing;
 import com.trawell.models.Complaint;
-import com.trawell.models.User;
 import com.trawell.repositories.ComplaintRepository;
 import com.trawell.services.ComplaintService;
 
@@ -94,7 +91,6 @@ public class Test_ComplaintService {
     @Test
     public void tc_4() {
         when(repo.findById(Long.valueOf(1L))).thenReturn(Optional.empty());
-
         assertEquals(null ,dao.update(complaint));
     }
 
