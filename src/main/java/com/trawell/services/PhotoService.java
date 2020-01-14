@@ -30,7 +30,7 @@ public class PhotoService implements IPhotoService {
     @Override
     public Photo findOne(Long id) {
         Optional<Photo> photoData = photoRepository.findById(id);
-        return photoData.get();
+        return photoData.isPresent() ? photoData.get() : null;
     }
 
     @Override

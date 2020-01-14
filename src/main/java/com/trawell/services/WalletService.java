@@ -36,7 +36,7 @@ public class WalletService implements IWalletService {
     @Override
     public Wallet findOne(Long id) {
         Optional<Wallet> wallet = walletRepository.findById(id);
-        return wallet.get();
+        return wallet.isPresent() ? wallet.get() : null;
     }
 
     @Override
