@@ -4,7 +4,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>Delete ad</title>
+  <title>Trawell</title>
   <script src="../js/removeMyAd.js"></script>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <link rel="stylesheet" href="../css/carsharing&itinerary.css">
@@ -21,10 +21,10 @@
                 <div class="col-12">
                   <table class="list table-bordered table-secondary" style="margin-left:auto;margin-right:auto;">
                     <thead>
-                      <th scope="col col-10">ID del ban</th>
-                      <th scope="col col-10">Data inizio</th>
-                      <th scope="col col-10">Data fine</th>
-                      <th scope="col col-10">Elimina</th>
+                      <th scope="col col-10">Ban ID</th>
+                      <th scope="col col-10">Start Date</th>
+                      <th scope="col col-10">End Date</th>
+                      <th scope="col col-10">Delete</th>
                     </thead>
                     <tbody th:if=${listaAds}>
                       <tr th:each="ad : ${listaAds}">
@@ -35,7 +35,7 @@
                       </tr>
                     </tbody>
                     <tbody th:if="not ${listaAds}">
-                      <td colspan="2">NESSUN INSERZIONE PRESENTE</td>
+                      <td colspan="2">No Ads present</td>
                     </tbody>
                   </table>
                 </div>
