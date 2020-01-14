@@ -39,21 +39,10 @@ public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Pattern(regexp = ".+@.+\\.[a-z]+", message = "Invalid email address!")
     private String mail;
-    @NotEmpty(message = "Username can not be empty")
-    @Size(min = 1, max = 20, message = "Username must be between 1 and 20 characters long")
-    @NotBlank(message = "Username can not be empty")
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Invalid username!")
     private String username;
     private String password;
-    @NotBlank(message = "Name can not be empty")
-    @NotEmpty(message = "Name can not be empty")
-    @Size(min = 1, max = 20, message = "Name must be between 1 and 20 characters long")
     private String name;
-    @NotBlank(message = "Surname can not be empty")
-    @NotEmpty(message = "Surname can not be empty")
-    @Size(min = 1, max = 20, message = "Surname must be between 1 and 20 characters long")
     private String surname;
     private Date birth;
     private boolean banned;

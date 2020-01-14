@@ -4,7 +4,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>Home agenzia</title>
+  <title>TraWell</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/login.js"></script>
   <link rel="stylesheet" href="../css/carsharing&itinerary.css">
@@ -19,13 +19,13 @@
 				  	<div class = "container">
               <div class = "row">
                 <div class="col-12">
-                  <p>Home Agency</p>
+                  <p>Agency Ads</p>
                   <p th:if="${msg}"> <h6 class="msgR" th:text='${msg}'> </h6>
                   <div class="d-flex justify-content-center mt-3 login_container">
-                    <a href="createadvertisement"> Crea inserzione </a><br>
+                    <a href="createadvertisement"> Create Ad </a><br>
                   </div>
                   <div class="d-flex justify-content-center mt-3 login_container">
-                    <a href="/agency/deleteAdsLandAg"> Cancella inserzioni </a>
+                    <a href="/agency/deleteAdsLandAg"> Delete Ad </a>
                   </div>
                 </div>
               </div>

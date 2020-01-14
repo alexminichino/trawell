@@ -113,12 +113,13 @@ footer .col-md-3{
     background-color: #00BFFF;
 }
 
-.my-li {
-    color: white;
-}
+nav .navbar-nav li a{
+    color: white !important;
+    }
 
-.my-li-drop a{
-    color: black;
+
+.navbar-brand{
+    color: white !important;
 }
 html, body {
   height: 100%;
@@ -130,4 +131,8 @@ html, body {
 
 #sticky-footer {
   flex-shrink: none;
+}
+
+#plink{
+    color: black!important;
 }
