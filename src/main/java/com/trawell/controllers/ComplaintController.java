@@ -43,16 +43,6 @@ public class ComplaintController {
         return "pages/complaint/userComplaint";
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "pages/admin/banuser";
-    }
-
-    @GetMapping("/testAdmin")
-    public String testAdmin() {
-        return "pages/complaint/adminComplaint";
-    }
-
     /**
      * This method allows a user (non-admin) to create a complaint and to send it to
      * the admins

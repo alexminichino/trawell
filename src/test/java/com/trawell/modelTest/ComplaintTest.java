@@ -6,6 +6,9 @@ import com.trawell.models.Complaint;
 
 import org.junit.Test;
 
+/**
+ * @author Paolo Fasano
+ */
 public class ComplaintTest{
 
     @Test
