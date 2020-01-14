@@ -16,11 +16,7 @@
 			  <div class="col-6 align-self-center">
 				  <div class = "card card-block personal-card">  
 				  	<div class = "container">
-<<<<<<< HEAD
               <p style="font-weight: bold;">Ban User</p>
-=======
-              <p style="font-weight: bold;">Ban Utenti</p>
->>>>>>> upstream/master
               <div>
                 <form action = "/admin/banUser" method = "POST" id = "banning">
                   <div class = "row">
@@ -30,32 +26,19 @@
                           <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
                         <select name="username" id="username">
-<<<<<<< HEAD
                           <option value=""> Select User </option>
                           <option th:each="user : ${listaUser}"
                              th:value="${user.username}"
                              th:utext="${user.username}">
-=======
-                          <option value=""> Seleziona utente </option>
-                          <option th:each="user : ${listaUser}"
-                             th:value="${user.username}"
-                             th:utext="${user.username}"/>
->>>>>>> upstream/master
                         </select>
                       </div><br><!--Selezione-->
                        <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-pen"></i></span>
                         </div>
-<<<<<<< HEAD
                         <textarea name="motivation"  placeholder="Insert motivation..." class="form-control input_user"></textarea>
                       </div><br><!--Motivazione-->
                       <h6 style="border: 1;">End date for the ban:</h6>
-=======
-                        <textarea name="motivation"  placeholder="Inserire motivazione qui..." class="form-control input_user"></textarea>
-                      </div><br><!--Motivazione-->
-                      <h6 style="border: 1;">Data di fine del ban:</h6>
->>>>>>> upstream/master
                       <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
@@ -65,11 +48,7 @@
                       <div class = "row">
                         <div class = "col-12">
                           <div class="d-flex justify-content-center mt-3 login_container">
-<<<<<<< HEAD
                             <input type = "submit" class="btn my_btn" value = "BAN">
-=======
-                            <input type = "submit" class="btn my_btn">
->>>>>>> upstream/master
                           </div>
                         </div>
                       </div><!--Submit-->
@@ -79,11 +58,7 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-<<<<<<< HEAD
                       <th scope="col col-10">LIST OF BANNED USERS</th>
-=======
-                      <th scope="col col-10">UTENTI BANNATI</th>
->>>>>>> upstream/master
                     </tr>
                   </thead>
                   <tbody th:if=${listaUser}>
@@ -92,11 +67,7 @@
                     </tr>
                   </tbody>
                   <tbody th:if="not ${listaUser}">
-<<<<<<< HEAD
                     <td colspan="2">THE ARE NOT BANNED USERS</td>
-=======
-                    <td colspan="2">NESSUN UTENTE BANNATO</td>
->>>>>>> upstream/master
                   </tbody>
                 </table>
               </div>
@@ -109,7 +80,3 @@
 </body>
 </html>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master
