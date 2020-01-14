@@ -65,11 +65,15 @@ public class RestCarsharingController {
 
         if (user != null) {
             carsharing.setUser(user);
-            user.getUserCreatedAdList().add(carsharing);
             updatedCarsharing = dao.update(carsharing);
         }
-
-        return updatedCarsharing == null ? new ResponseEntity<Carsharing>(HttpStatus.INTERNAL_SERVER_ERROR) : new ResponseEntity<Carsharing>(updatedCarsharing, HttpStatus.OK);
+        if (updatedCarsharing == null) 
+            return new ResponseEntity<Carsharing>(HttpStatus.INTERNAL_SERVER_ERROR);
+        else {
+            user.getUserCreatedAdList().remove(carsharing);
+            user.getUserCreatedAdList().add(updatedCarsharing);
+            return new ResponseEntity<Carsharing>(updatedCarsharing, HttpStatus.OK);    
+        }
     }
 
     /**

@@ -8,6 +8,7 @@
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/login.js"></script>
   <link rel="stylesheet" href="../css/carsharing&itinerary.css">
+  <link rel="stylesheet" href="../css/adminhome.css">
 </head>
 <body>
   <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
@@ -19,8 +20,12 @@
               <div class = "row">
                 <div class="col-12">
                   <p>Home Agency</p>
+                  <p th:if="${msg}"> <h6 class="msgR" th:text='${msg}'> </h6>
                   <div class="d-flex justify-content-center mt-3 login_container">
-                    <a href="createadvertisement"> Crea inserzione </a>
+                    <a href="createadvertisement"> Crea inserzione </a><br>
+                  </div>
+                  <div class="d-flex justify-content-center mt-3 login_container">
+                    <a href="/agency/deleteAdsLandAg"> Cancella inserzioni </a>
                   </div>
                 </div>
               </div>
@@ -29,18 +34,6 @@
         </div><!--fine col-6-->
       </div><!--fine row-->
     </div><!--fine container h-100-->
-  <link rel="stylesheet" href="../css/adminhome.css">
-</head>
-<body>
-  <section layout:fragment="content">
-    <p>Home Agenzia</p>
-    <p th:if="${msg}"> <h6 class="msgR" th:text='${msg}'> </h6>
-    <div class = "container">
-      <div>
-       <a href="createadvertisement"> Crea inserzione </a> <br>
-       <a href="/agency/deleteAdsLandAg"> Cancella inserzioni </a>
-      </div>
-    </div>
   </section>
 </body>
 </html>
