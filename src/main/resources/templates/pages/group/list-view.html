@@ -25,7 +25,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody th:unless="${#arrays.length(Groups)==0}">
                             <tr th:each="group : ${Groups}">
                                 <td><a th:text="${group.name}" th:href="${'/group/view?id=' +group.id}"></a></td>
@@ -67,7 +67,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">CREATE GROUP</h5>
+                            <h5 class="modal-title text-center" id="exampleModalLongTitle">CREATE GROUP</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -75,28 +75,39 @@
                         <!--caselle di input vengono messe qui-->
                         <form id="addGroup" action="/api/group/newGroup" method="POST">
                             <div class="modal-body">
-                                Insert Group Name:
-                                <br>
-                                <input class="name" type="text" name="name" placeholder="Group name">
-                                <br>
-                                Insert Group description:
-                                <br>
-                                <textarea class="description" name="description"
-                                    placeholder="Group description..."></textarea>
-                                <br>
-                                Seleziona Itinerario:
-                                <br>
-                                <select name="idItinerary" class="itinerary">
-                                    <option value="">---</option>
-                                    <option th:each="itinerary : ${session.user.userItineraries}"
-                                        th:value="${itinerary.id}" th:text="${itinerary.name}"></option>
-                                </select>
-                            </div>
+                                <div class="container h-100">
+                                    <div class="row h-100 justify-content-center align-items-center">
+                                      <div class="col-12 align-self-center">
+                                        <div class = "card card-block personal-card">
+                                            <div class="input-group mb-3" >
+                                                <input type="text"  name="name" aria-describedby="postDescriptionHelp" placeholder="Group name" class="form-control name">
+                                            </div><!--fine descrizione-->
+                                            <div class="input-group mb-2">
+                                                <textarea name="description" multiple class="form-control description" placeholder="Group description..."></textarea>
+                                            </div><!--fine upload foto-->
+                                            <div th:if="${#arrays.length(session.user.userItineraries)>0}" class="mb-3">
+                                                <p>Select an itinerary for the Group</p>
+                                               
+                                                    <select name="idItinerary" class="itinerary">
+                                                        <option value="">---</option>
+                                                        <option th:each="itinerary : ${session.user.userItineraries}"
+                                                            th:value="${itinerary.id}" th:text="${itinerary.name}"></option>
+                                                    </select>
+                                                
+                                                </div>
+                                            <div th:unless="${#arrays.length(session.user.userItineraries)>0}" class="input-group mb-3">
+                                                    You have no itineraries, <a href="/itinerary/create" target="_blank">click here</a> to create one.
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button th:unless="${#arrays.length(session.user.userItineraries)>0}" type="submit" class="btn btn-primary disabled">Save changes</button>
+                                <button th:if="${#arrays.length(session.user.userItineraries)>0}" type="submit" class="btn btn-primary">Save changes</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
