@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 
@@ -21,8 +22,11 @@ public class Carsharing {
     private Long id;
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Date departureDate;
+    @NotEmpty
     private String description;
+    @NotEmpty
     private String departure;
+    @NotEmpty
     private String arrival;
     private int carsharingspot;
     @ManyToOne
@@ -111,5 +115,9 @@ public class Carsharing {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

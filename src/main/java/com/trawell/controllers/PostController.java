@@ -2,6 +2,7 @@ package com.trawell.controllers;
 
 import com.trawell.services.PostService;
 import com.trawell.services.TrawellGroupService;
+import com.trawell.services.UserService;
 import com.trawell.models.Photo;
 import com.trawell.models.Post;
 import com.trawell.models.User;
@@ -40,6 +41,9 @@ public class PostController{
     @Autowired
     TrawellGroupService daoGroup;
 
+    @Autowired
+    UserService userDao;
+
     /**
      * @author Umberto Russomando
      * Questo metodo permette di raggiungere la pagina per creare i post
@@ -60,7 +64,7 @@ public class PostController{
     @PostMapping("/addPost")
     public String createPost(@RequestParam(name="postDescription", required=true)  String postDescription,
     @RequestParam(name = "files", required = true) MultipartFile[] files,
-            @ModelAttribute  Post post,  HttpSession session,@RequestParam(name="postGroup", required=false)  String postGroup)
+            @ModelAttribute  Post post,  HttpSession session,@RequestParam(name="idGroup", required=false)  Long idGroup)
     {
         User user = (User) session.getAttribute("user");
         ArrayList<Photo> photos = new ArrayList<Photo>();
@@ -93,16 +97,18 @@ public class PostController{
         post.setPostDescription(postDescription);
         post.setPhotos(photos);
         
-        if(postGroup!=null)
+        if(idGroup != 0)
         {
-            post.setGroup(daoGroup.findByName(postGroup));
+            post.setGroup(daoGroup.findOne(idGroup));
             dao.create(post);
-            return "pages/group/list-view";
+            return "redirect:/group/view"+"?id="+idGroup;
         }
         
 
         //Crea il post nel db
         dao.create(post);
+
+        userDao.update(user);
 
         return "redirect:/post/viewPosts";
     }

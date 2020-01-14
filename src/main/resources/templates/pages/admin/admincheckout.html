@@ -1,46 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
 <head>
   <title>TraWell</title>
   <link rel="stylesheet" href="../css/carsharing&itinerary.css">
-  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 </head>
+
 <body>
-  <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
+  <section layout:fragment="content"
+    style="background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
     <div class="container h-100">
       <div class="row h-100 justify-content-center align-items-center">
-			  <div class="col-6 align-self-center">
-				  <div class = "card card-block personal-card">  
-				  	<div class = "container">
+        <div class="col-6 align-self-center">
+          <div class="card card-block personal-card">
+            <div class="container">
               <p class="text-primary">Input your serial number</p>
               <form action="/admin/checkSerialNumber" method="POST">
-                <div class = "row">
+                <div class="row">
                   <div class="col-12">
                     <div class="input-group mb-3">
-                        <div class="input-group-append">
-                          <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-cog"></i></span>
+                      </div>
+                      <input type="text" id="serialNumber" name="serialNumber" aria-describedby="insertserialnumber"
+                        placeholder="Enter serial number" class="form-control input_user">
+                    </div>
+                    <!--Serial Number-->
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                          <input type="submit" class="btn my_btn">
                         </div>
-                        <input type="text" id="serialNumber" name="serialNumber" aria-describedby="insertserialnumber" placeholder="Enter serial number" class="form-control input_user">
-                    </div><!--Serial Number-->
-                    <div class = "row">
-                        <div class = "col-12">
-                          <div class="d-flex justify-content-center mt-3 login_container">
-                            <input type = "submit" class="btn my_btn">
-                          </div>
-                        </div>
-                    </div><!--fine bottone-->
-                  </div><!--fine col-12-->
-                </div><!--fine row--> 
+                      </div>
+                    </div>
+                    <!--fine bottone-->
+                  </div>
+                  <!--fine col-12-->
+                </div>
+                <!--fine row-->
               </form>
-            </div><!--fine container-->
-          </div><!--fine card personal-->
-        </div> <!--fine col-->
-      </div><!--fine row-->
-    </div><!--fine container 100h-->
+            </div>
+            <!--fine container-->
+          </div>
+          <!--fine card personal-->
+        </div>
+        <!--fine col-->
+      </div>
+      <!--fine row-->
+    </div>
+    <!--fine container 100h-->
   </section>
-  <footer>
-    <p layout:fragment="custom-footer">Questo footer è customizzato :) </p> 
-  </footer> 
 </body>
+
 </html>
