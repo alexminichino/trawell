@@ -40,7 +40,7 @@ public class HomeController {
 
             return "pages/home/index";
         }
-        return "pages/home/index";
+        return "pages/user/login";
     }
 
     

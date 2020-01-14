@@ -74,9 +74,6 @@ footer .col-md-3{
     width: 100%;
 }
 
-.nav-item a{
-    color:white;
-}
 
 #logofooter{
     width: 100%;
@@ -107,4 +104,17 @@ footer .col-md-3{
 
 .navbar{
     background-color: #03a1fc;
+}
+
+
+.nav-item a:focus, .nav-item a:hover{
+    background-color: #00BFFF;
+}
+
+.my-li {
+    color: white;
+}
+
+.my-li-drop a{
+    color: black;
 }

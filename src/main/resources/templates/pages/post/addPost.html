@@ -28,6 +28,13 @@
                       </div>
                       <input type="file" name="files" multiple class="form-control input_user" style="text-align: center;">
                     </div><!--fine upload foto-->
+                    <div>
+                      <p>Do you want to add this post to a group? Select the group below</p>
+                      <select name="idGroup">
+                      <option value="0">---</option>
+                      <option th:each="group: ${session.user.userGroups}"th:value="${group.id}" th:text="${group.name}"></option>
+                      </select>
+                    </div>
                     <div class = "row">
                       <div class = "col-12">
                         <div class="d-flex justify-content-center mt-3 login_container">
@@ -37,13 +44,6 @@
                     </div><!--fine button-->
                 </form>
             </div>
-          </div>
-          <div>
-            <p>Do you want to add this post to a group? Select the group below</p>
-            <select name="idGroup">
-            <option value="0">---</option>
-            <option th:each="group: ${session.user.userGroups}"th:value="${group.id}" th:text="${group.name}"></option>
-          </select>
           </div>
         </div>
       </div>
