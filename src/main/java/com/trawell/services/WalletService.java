@@ -74,17 +74,16 @@ public class WalletService implements IWalletService {
     @Override
     public Wallet findUserWalletofGroup(Long idGroup, Long idUser) {
         
-        TrawellGroup trawellGroup = groupRepository.findById(idGroup).get();
-        if (trawellGroup == null)
-            return null;
-        List<Wallet> list = trawellGroup.getAllWallets();
+        Optional<TrawellGroup> trawellGroup = groupRepository.findById(idGroup);
+        if (trawellGroup.isPresent()) {
+            List<Wallet> list = trawellGroup.get().getAllWallets();
 
-        for (Wallet wallet : list) {
-            if (wallet.getUser().getId() == idUser) {
-                return wallet;
+            for (Wallet wallet : list) {
+                if (wallet.getUser().getId() == idUser) {
+                    return wallet;
+                }
             }
         }
-
         return null;
     }
 

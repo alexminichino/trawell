@@ -12,6 +12,8 @@ import com.trawell.services.UserService;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
+
+import org.h2.store.Data;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -154,4 +156,50 @@ public class Test_ServiceUser {
         dao.delete(1l);
         Mockito.verify(repo, times(1)).delete(user);
     }
+    @Test
+    public void TC_7FindByUsername(){
+        User user= new User();
+        user.setId(1L);
+        user.setName("Fabiano");
+        user.setSurname("Russo");
+        user.setUsername("tonino33");
+        user.setMail("asusrock@gmail.com");
+        user.setPhone("3377886669");
+        user.setPassword("92908C781853A92BE9A963319F18A3C5");
+
+        when(repo.findByUsername("tonino33")).thenReturn(user);
+        assertEquals(user ,dao.findByUsername("tonino33"));
+    }
+
+    @Test
+    public void TC_8DoesUsernameExist(){
+        User user= new User();
+        user.setId(1L);
+        user.setName("Fabiano");
+        user.setSurname("Russo");
+        user.setUsername("tonino33");
+        user.setMail("asusrock@gmail.com");
+        user.setPhone("3377886669");
+        user.setPassword("92908C781853A92BE9A963319F18A3C5");
+
+        when(repo.findByUsername("tonino33")).thenReturn(user);
+        assertEquals(true ,dao.doesUsernameExist("tonino33"));
+    }
+
+    @Test
+    public void TC_9DoesEmailExist(){
+        User user= new User();
+        user.setId(1L);
+        user.setName("Fabiano");
+        user.setSurname("Russo");
+        user.setUsername("tonino33");
+        user.setMail("asusrock@gmail.com");
+        user.setPhone("3377886669");
+        user.setPassword("92908C781853A92BE9A963319F18A3C5");
+
+        when(repo.findByMail("asusrock@gmail.com")).thenReturn(user);
+        assertEquals(true ,dao.doesEmailExist("asusrock@gmail.com"));
+    }
+    
+
 }

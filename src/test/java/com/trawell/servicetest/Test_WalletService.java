@@ -47,7 +47,7 @@ public class Test_WalletService{
         wallet= new Wallet();
         newallet= new Wallet();
          gru.setId(1L);
-
+         user.setId(1L);
          wallet.setId(1L);
          wallet.setPrivate(true);
          wallet.setUser(user);
