@@ -48,6 +48,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/users/change-user-data">Update
               Credentials</a>
+              
             <div th:if="not ${session.user.isAdmin}" class="dropdown-divider"></div>
             <a th:if="${session.user.isAdmin}" class="dropdown-item" href="/admin/banusers">Ban a User</a>
             <a th:if="${session.user.isAdmin}" class="dropdown-item" href="/Complaint/viewComplaint">List of
