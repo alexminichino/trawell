@@ -13,7 +13,13 @@
 .extension {
     background-color: #03a1fc;
 }
+.extension a{
+    color: white;
+}
 
+.extension {
+    text-align: center !important;
+}
 footer .row{
     margin-left: 0%;
     margin-right: 0%;
@@ -71,13 +77,9 @@ footer .col-md-3{
 }
 
 #logo{
-    width: 100%;
+    width: 250px;
 }
 
-
-#logofooter{
-    width: 100%;
-}
 
 .personale{
     margin-right: 2%;
@@ -118,6 +120,17 @@ nav .navbar-nav li a{
 
 .navbar-brand{
     color: white !important;
+}
+html, body {
+  height: 100%;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+#sticky-footer {
+  flex-shrink: none;
 }
 
 #plink{
