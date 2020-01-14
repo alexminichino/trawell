@@ -31,7 +31,7 @@ public class PostService implements IPostService {
     @Override
     public Post findOne(Long id) {
         Optional<Post> post = postRepository.findById(id);
-        return post.get();
+        return post.isPresent() ? post.get() : null;
     }
 
     @Override

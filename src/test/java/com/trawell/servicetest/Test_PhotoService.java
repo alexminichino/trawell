@@ -5,21 +5,12 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
-import com.trawell.models.Agency;
 import com.trawell.models.Photo;
-import com.trawell.models.User;
-import com.trawell.repositories.AgencyRepository;
 import com.trawell.repositories.PhotoRepository;
-import com.trawell.repositories.UserRepository;
-import com.trawell.services.AgencyService;
 import com.trawell.services.PhotoService;
-import com.trawell.services.UserService;
-
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -74,14 +65,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 
         assertEquals(photo ,dao.update(photo));
     }
-    /*
+   
     @Test
     public void TC_ph4(){
         when(repo.findById(Long.valueOf(1L))).thenReturn(Optional.empty());
 
         assertEquals(null ,dao.update(photo));
     }
-*/
+
     @Test
     public void TC_ph5(){
         ArrayList<Photo> list = new ArrayList<>();
