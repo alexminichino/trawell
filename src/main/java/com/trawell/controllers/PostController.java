@@ -82,6 +82,7 @@ public class PostController{
 
             String uploadDir = encoder.encoding(user.getMail(), 3);
             String fileName = UploadUtils.getCurrentTimeUsingDate()+i;
+            fileName = encoder.encoding(fileName, 1);
             photo.setPath(UploadUtils.uploadPhoto(file,uploadDir,fileName));
             photo.setPost(post);
             

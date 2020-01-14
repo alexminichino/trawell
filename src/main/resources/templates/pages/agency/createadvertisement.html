@@ -4,7 +4,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layout}">
 <head>
-  <title>Create advertisement</title>
+  <title>Trawell</title>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
   <script src = "../js/login.js"></script>
   <link rel="stylesheet" href="../css/carsharing&itinerary.css">
@@ -17,41 +17,41 @@
 			  <div class="col-6 align-self-center">
 				  <div class = "card card-block personal-card">  
 				  	<div class = "container">
-              <p>Scegli la tua inserzione</p>
+              <p>Create your Ad!</p>
               <div>
-                <form action = "/agency/createAd" method = "POST" id = "banning">
+                <form action = "/agency/createAd" method = "POST" id = "banning" enctype="multipart/form-data">
                   <div class = "row">
                     <div class="col-12">
                       <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-money-check"></i></span>
                         </div>
-                        <input type = 'text' name = "payment_method" placeholder = "Inserire metodo di pagamento" class="form-control input_user">
+                        <input type = 'text' name = "payment_method" placeholder = "Insert credit card number" class="form-control input_user">
                       </div><!--Metodo pagamento-->
-                      <p>Scegli la durata:</p>
+                      <p>Choose the option:</p>
                       <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-cog"></i></span>
                         </div>
-                        <input type="radio" name="ad_time" value="1mesi" class="form-control input_user"> 1 Mesi (90 €) 
+                        <input type="radio" name="ad_time" value="1mesi" class="form-control input_user"> 1 Month (90 €) 
                       </div><!--Opzioni1-->
                       <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-cog"></i></span>
                         </div>
-                        <input type="radio" name="ad_time" value="3mesi" class="form-control input_user"> 3 Mesi (250 €)  
+                        <input type="radio" name="ad_time" value="3mesi" class="form-control input_user"> 3 Month (250 €)  
                       </div><!--Opzioni2-->
                       <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-cog"></i></span>
                         </div>
-                        <input type="radio" name="ad_time" value="6mesi" class="form-control input_user"> 6 Mesi (460 €) 
+                        <input type="radio" name="ad_time" value="6mesi" class="form-control input_user"> 6 Month (460 €) 
                       </div><!--Opzioni3-->
                       <div class="input-group mb-2">
                         <div class="input-group-append">
                           <span class="input-group-text"><i class="fas fa-cog"></i></span>
                         </div>
-                        <input type="radio" name="ad_time" value="12mesi" class="form-control input_user"> 12 Mesi (860 €) 
+                        <input type="radio" name="ad_time" value="12mesi" class="form-control input_user"> 12 Month (860 €) 
                       </div><!--Opzioni4-->
                       <div class="input-group mb-2">
                         <div class="input-group-append">
@@ -70,7 +70,7 @@
                       <div class = "row">
                         <div class = "col-12">
                           <div class="d-flex justify-content-center mt-3 login_container">
-                            <input type = "submit" value = "Crea annuncio">
+                            <input type = "submit" value = "Create Ad">
                           </div>
                         </div>
                       </div><br>
