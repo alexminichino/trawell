@@ -16,6 +16,9 @@
     .login_container {
         padding: 0 2rem;
     }
+    .button{
+        padding: 0 10rem;
+    }
     .input-group-text {
         background: #03a1fc !important;
         color: white !important;

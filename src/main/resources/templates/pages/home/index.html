@@ -4,8 +4,8 @@
 <head>
   <title>Trawell</title>
   <script src = "../js/home_click.js"></script>
-  <link rel="stylesheet" href="../css/home.css"> 
-  <script data-ad-client="ca-pub-9298774212406998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <link rel="stylesheet" href="../css/home.css">
+  <script data-ad-client="ca-pub-9298774212406998" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> 
 </head>
 <body>
   <section layout:fragment="content">
@@ -34,24 +34,22 @@
         </div><br><!--prima colonna-->
         <div class="col-sm-4">
           <div th:include="fragments/post/post"> content here </div>
-          <!--<div class = "card" id = "block3">
+          <div class = "card" id = "block3">
             <h5>Post Available</h5>
             <div class = "posts">
               <div th:each = "post : ${posts}" class = "posts">
-                  <p th:text="${post.name}"/>
-              </div> -->
-        </div><!--fine post-->
-          </div><!--fine card post-->
-        </div><!--fine seconda colonna--> 
-        <div class="col-sm-4">
-          <div class = "card" id = "block4">
-            <h5>Ads Available</h5>
-            <div class = "ads">
-              <div th:each = "ad : ${ads}" class = "ads">
-                  <p th:text="${ad.idPhoto}"/>
+                  <p th:text="${post.photos}"><br>
+                  <p th:text = '${post.user.name +" " +post.user.surname}'></p>
+                  <p th:text="${post.postDescription}"/>
               </div>
             </div><!--fine post-->
           </div><!--fine card post-->
+        </div><!--fine seconda colonna--> 
+        <div class="col-sm-4">
+          <div class = "card" id = "block4"  style="text-align: center;">
+            <h5>Ads Available</h5><br>
+              <img src="https://www.stickpng.com/assets/images/586efaf587dadaa6bf8d2a40.png" class="rotate">
+          </div><!--fine card annunci-->
         </div><!--fine terza colonna-->  
     </div><!--fine row-->
     </div><!--fine container-fluid-->
