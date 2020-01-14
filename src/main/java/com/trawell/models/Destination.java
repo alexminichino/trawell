@@ -23,7 +23,6 @@ public class Destination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
-    @NotNull
     @NotBlank
     private String location;
     private String description;

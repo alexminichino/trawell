@@ -28,7 +28,6 @@ public class Itinerary {
     private Long id;
     @NotBlank
     @NotEmpty
-    @NotNull
     private String name;
     @ManyToOne
     @JoinColumn(name="id_owner")

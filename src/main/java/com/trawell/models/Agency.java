@@ -23,8 +23,10 @@ public class Agency extends User {
     private String nameAgency;
     @NotBlank(message = "URL can not be empty")
     @NotEmpty(message = "URL can not be empty")
-    @NotNull( message = "URL can not be emptt")
     private String url;
+    @NotBlank(message = "VAT can not be empty")
+    @NotEmpty(message = "VAT can not be empty")
+    @Size(max = 12, message = "Vat must be 12 characters")
     private String vat;
 
     public String getNameAgency() {
