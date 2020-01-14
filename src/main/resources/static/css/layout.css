@@ -111,10 +111,15 @@ footer .col-md-3{
     background-color: #00BFFF;
 }
 
-.my-li {
-    color: white;
+nav .navbar-nav li a{
+    color: white !important;
+    }
+
+
+.navbar-brand{
+    color: white !important;
 }
 
-.my-li-drop a{
-    color: black;
+#plink{
+    color: black!important;
 }
