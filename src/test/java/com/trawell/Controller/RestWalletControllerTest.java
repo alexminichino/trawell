@@ -111,7 +111,7 @@ public class RestWalletControllerTest{
     public void tcDeleteIsNotnull(){
         session.setAttribute("user", instance);
         when(daodoc.findOne(1L)).thenReturn(doc);
-        when(daouse.update(instance)).thenReturn(null);
+        //when(daouse.update(instance)).thenReturn(null);
         assertEquals(HttpStatus.OK, controller.delete(session, doc.getId()).getStatusCode());
     }
 

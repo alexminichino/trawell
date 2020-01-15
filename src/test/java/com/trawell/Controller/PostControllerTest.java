@@ -117,7 +117,7 @@ public class PostControllerTest {
     @Test
     public void TestViewPosts() {
         
-        assertEquals("pages/post/bachecapost", controller.viewPosts(session, model));
+        assertEquals("redirect:/", controller.viewPosts(session, model));
     }
     @Test
     public void TestViewPostsNoUser() {
