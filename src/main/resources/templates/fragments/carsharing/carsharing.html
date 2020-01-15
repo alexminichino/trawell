@@ -1,0 +1,15 @@
+<div class="card" style="width: 100%;">
+    <img class="card-img-top" src="/image/carsharing.jpg" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title" th:text="${ad.departure +' '+ ad.arrival}">Card title</h5>
+      <h5 class="card-title" th:text="${ad.departureDate}">Card title</h5>
+      
+      <h6 class="card-title" th:text="${ad.user.name+ ' ' + ad.user.surname}">Card title</h6>
+      <p class="card-text">
+        Descrizione:<p th:text="${ad.description}"></p>
+        <br>
+        n° Posti:<p th:text="${ad.carsharingspot}"></p>
+      </p>
+    
+    </div>
+  </div>

@@ -5,14 +5,14 @@
     <title>Change Data Profile</title>
     <link rel="stylesheet" href="../css/modify_data.css">
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script src = "../js/validation_user"></script>
-    <script src = "../js/modify_data"></script>
+    <script src = "../js/validation_user.js"></script>
+    <script src = "../js/modify_data.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
 <section layout:fragment="content" style = "background-image: url('https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-repeat: no-repeat;background-size: cover;;">
     <div class="container h-100">
-        <form action="" form-horizontal role="form" id="target">
+        <form th:action="${path}" form-horizontal role="form" id="target">
             <h4>Modifica i tuoi data</h4>
             <div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Username</label>

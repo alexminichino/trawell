@@ -11,10 +11,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 @Entity
 
 /**
@@ -67,7 +63,7 @@ public class Destination {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
     public java.util.Date getDate() {
         return this.date;
     }

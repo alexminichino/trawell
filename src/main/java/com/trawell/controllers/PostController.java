@@ -50,7 +50,7 @@ public class PostController{
     */
     @GetMapping("/landing")
     public String landing() {
-        return "Landing";
+        return "pages/post/addPost";
     }
 
     /**

@@ -72,7 +72,7 @@ public class RestCarsharingController {
         else {
             user.getUserCreatedAdList().remove(carsharing);
             user.getUserCreatedAdList().add(updatedCarsharing);
-            return new ResponseEntity<Carsharing>(updatedCarsharing, HttpStatus.OK);    
+            return new ResponseEntity<Carsharing>(HttpStatus.OK);    
         }
     }
 

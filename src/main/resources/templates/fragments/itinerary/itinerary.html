@@ -1,0 +1,20 @@
+
+<div class="card" style="width: 100%;">
+    <img class="card-img-top" src="/image/itinerary.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title" th:text="${itinerary.name}">Card title</h5>
+      <h6 class="card-title" th:text="${itinerary.user.name+ ' ' + itinerary.user.surname}">Card title</h6>
+      
+      <div th:each="d : ${itinerary.destinations}"> 
+        <p class="card-text">
+            Destinazione:<p th:text="${d.location}"></p>
+            <br>
+            Data ed Ora:<p th:text="${d.date}"></p>
+            <br>
+            Descrizione:<p th:text="${d.description}"></p>
+        </p>
+       
+      </div>
+    
+    </div>
+  </div>

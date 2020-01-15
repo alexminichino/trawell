@@ -33,7 +33,7 @@ body{
 }
 
 div.row .blocks{
-    height: 350px;
+    height: 450px;
     display: flex;
     justify-content: right;
     font-family: 'Times New Roman', Times, serif;
