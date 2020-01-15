@@ -58,9 +58,9 @@ public class RestWalletController {
         User user = (User) session.getAttribute("user");
         Document d = daoD.findOne(id);
         Document updateDocument = null;
-        boolean b = d.getWallet().isPrivate();
+
         if (user.getId().equals(d.getIdUser())) {
-            if (b == t) {
+            if (d.getWallet().getUser() != null) {
                 Wallet w = d.getWallet().getGroup().getPublicWallet();
                 d.setWallet(w);
                 updateDocument = daoD.update(d);
@@ -97,11 +97,12 @@ public class RestWalletController {
 
         if (user != null) {
             Document d = daoD.findOne(id);
-            if (user.getId().equals(d.getIdUser()) || user.getId().equals(d.getWallet().getUser().getId())) {
+            Wallet wallet = d.getWallet();
+            if (user.getId().equals(d.getIdUser()) || user.getId().equals(wallet.getUser().getId())) {
+        
                 d.getPath();// bisogna cancellare anche nella cartella
                 daoD.delete(id);
 
-                userDao.update(user);
                 return new ResponseEntity<>(HttpStatus.OK);
             } else
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);

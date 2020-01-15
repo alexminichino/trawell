@@ -48,7 +48,10 @@ $(document).ready(function(){
                 url:URL,
                 data: data,
                 success:function(data){
-                    alert("I tuoi dati sono stati aggiornati");
+                    alert("Your data has been updated!");
+                },
+                error:function(request,textStatus,errorThrown){
+                    alert("failed to update your data!");
                 }
             });
         }
