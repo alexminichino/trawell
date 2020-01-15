@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import com.trawell.controllers.AdController;
 import com.trawell.controllers.AdminController;
@@ -14,15 +15,12 @@ import com.trawell.models.Agency;
 import com.trawell.models.TrawellGroup;
 import com.trawell.models.User;
 import com.trawell.models.Wallet;
-import com.trawell.services.AdService;
 import com.trawell.services.AgencyService;
-import com.trawell.services.BanDataService;
 import com.trawell.services.TrawellGroupService;
 import com.trawell.services.UserService;
 import com.trawell.services.WalletService;
 
-import java.sql.Date;
-import java.text.ParseException;
+
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,10 +57,11 @@ public class WalletControllerTest {
 
     Agency agency;
     User user;
-    MultipartFile[] file;
     Ad ad;
     TrawellGroup trawellgroup;
     Collection<Ad> listaAd;
+    
+    MultipartFile file1;
     
 
     @Before
@@ -84,7 +83,8 @@ public class WalletControllerTest {
         trawellgroup.setAllWallets(new ArrayList<Wallet>());
         
         //setto i file
-        MockMultipartFile file = new MockMultipartFile("data", "filename.txt", "text/plain", "some xml".getBytes());
+        
+        MultipartFile file1 = new MockMultipartFile("file", "test.jpg","image/jpeg", "test image content".getBytes());
         
 
     }
@@ -111,7 +111,7 @@ public class WalletControllerTest {
     @Test
     public void addDocumentWhenUserIsNull() {
         session.setAttribute("user", null);
-        assertEquals("pages/user/login", controller.addDocument(file,java.sql.Date.valueOf("2020-05-05"),session, model));
+        assertEquals("pages/user/login", controller.addDocument(null,java.sql.Date.valueOf("2020-05-05"),session, model));
 
 
     }
@@ -120,7 +120,7 @@ public class WalletControllerTest {
     public void addDocumentWhenUserIsNotNull() {
         session.setAttribute("user", user);
         session.setAttribute("idGroup", 2L);
-        assertEquals("redirect:/Wallet/walletGroup?id=2", controller.addDocument(file,java.sql.Date.valueOf("2020-05-05"),session, model));
+        //assertEquals("redirect:/Wallet/walletGroup?id=2", controller.addDocument(file1,java.sql.Date.valueOf("2020-05-05"),session, model));
 
 
     }*/
