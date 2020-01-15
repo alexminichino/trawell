@@ -163,7 +163,7 @@ public class AdController {
 
 
     @PostMapping("/deleteAd")
-    public String createAd(@RequestParam(name = "id", required = true) Long idAd, HttpSession session, Model model)
+    public String deleteAd(@RequestParam(name = "id", required = true) Long idAd, HttpSession session, Model model)
             throws ParseException {
                 try{
                     adDao.delete(idAd);
