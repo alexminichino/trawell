@@ -8,7 +8,6 @@ import java.util.Collection;
 
 
 import com.trawell.controllers.AdController;
-import com.trawell.controllers.AdminController;
 import com.trawell.models.Ad;
 import com.trawell.models.Agency;
 import com.trawell.models.User;
@@ -30,6 +29,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.mockito.junit.MockitoJUnitRunner;
 
+/**
+ * @author Mario Paone
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class AdControllerTest {
 
