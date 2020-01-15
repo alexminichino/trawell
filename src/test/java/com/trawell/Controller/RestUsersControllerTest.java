@@ -53,6 +53,9 @@ public class RestUsersControllerTest {
     RestUsersController controller = new RestUsersController();
 
     @Mock
+    UserService dao = new UserService();
+
+    @Mock
     Model model;
 
     User instance = new User();
@@ -74,8 +77,8 @@ public class RestUsersControllerTest {
         instance.setIsBanned(false);
         instance.setMail("Mail");
         instance.setSurname("Surname");
-        instance.setUsername("Username");
-        instance.setPassword("Password");
+        instance.setUsername("umbrello");
+        instance.setPassword("A209699C58E09663FF3959CF98B95515");
         instance.setId(0L);
 
         instance1.setName("Name");
@@ -105,6 +108,42 @@ public class RestUsersControllerTest {
     public void testUpdateUserWhenUserIsNotNUllAndPasswordIsNotEqual(){
         session.setAttribute("user", instance);
         assertEquals(HttpStatus.NOT_ACCEPTABLE, controller.updateUser(0L, instance1  ,"Password", session).getStatusCode());
+    }
+
+    @Test
+    public void testUpdateUser(){
+        session.setAttribute("user", instance);
+        when(dao.update(instance)).thenReturn(instance);
+        assertEquals(HttpStatus.OK, controller.updateUser(0L, instance  ,"password1234", session).getStatusCode());
+    }
+
+    @Test
+    public void testUpdateAgencyWhenUserIsNullAndUpdatedUSerIsNull() {
+       Agency instance = new Agency();
+        session.setAttribute("user", null);
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, controller.updateUser(1L,instance,"prova",session).getStatusCode());
+    }
+
+    @Test
+    public void testUpdateAgencyWhenUserIsNotNUllAndPasswordIsNotEqual(){
+        Agency instance = new Agency();
+        instance.setUsername("umbrello");
+        instance.setPassword("A209699C58E09663FF3959CF98B95515");
+        instance.setId(0L);
+        session.setAttribute("user", instance);
+        assertEquals(HttpStatus.NOT_ACCEPTABLE, controller.updateUser(0L, instance  ,"Password", session).getStatusCode());
+    }
+
+    @Test
+    public void testUpdateAgency(){
+        Agency instance = new Agency();
+        instance.setUsername("umbrello");
+        instance.setPassword("A209699C58E09663FF3959CF98B95515");
+        instance.setId(0L);
+        session.setAttribute("user", instance);
+        session.setAttribute("user", instance);
+        when(dao.update(instance)).thenReturn(instance);
+        assertEquals(HttpStatus.OK, controller.updateUser(0L, instance  ,"password1234", session).getStatusCode());
     }
 
 }
