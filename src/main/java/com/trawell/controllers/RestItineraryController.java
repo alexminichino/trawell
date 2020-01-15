@@ -76,7 +76,7 @@ public class RestItineraryController {
         else {
             user.getUserItineraries().remove(itinerary);
             user.getUserItineraries().add(updatedItinerary);
-            return new ResponseEntity<Itinerary>(updatedItinerary, HttpStatus.OK);    
+            return new ResponseEntity<Itinerary>(HttpStatus.OK);    
         }
 }
     
