@@ -8,9 +8,7 @@ import javax.servlet.http.HttpSession;
 import com.trawell.models.Complaint;
 import com.trawell.models.User;
 import com.trawell.services.ComplaintService;
-
 import com.trawell.utilities.email.EmailSenderService;
-import it.ozimov.springboot.mail.configuration.EnableEmailTools;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import it.ozimov.springboot.mail.configuration.EnableEmailTools;
 
 @EnableEmailTools
 @Controller
@@ -29,8 +29,9 @@ public class ComplaintController {
     ComplaintService dao;
     @Autowired
     private EmailSenderService emailService;
-    // GET [method = RequestMethod.GET] is a default method for any request.
-    // So we do not need to mention explicitly
+
+    String homeUserC = "pages/complaint/userComplaint";
+    String homeAdminC = "pages/complaint/adminComplaint";
 
     /**
      * This method allows a user (non-admin) to view the page to create a complaint
@@ -40,7 +41,7 @@ public class ComplaintController {
      */
     @GetMapping("/userViewComplaint")
     public String viewUserComplaint() {
-        return "pages/complaint/userComplaint";
+        return homeUserC;
     }
 
     /**
@@ -57,7 +58,7 @@ public class ComplaintController {
         User user = (User) session.getAttribute("user");
         complaint.setIdUser(user.getId());
         dao.create(complaint);
-        return "pages/complaint/userComplaint";
+        return homeUserC;
 
     }
 
@@ -79,11 +80,11 @@ public class ComplaintController {
 
         User user = (User) session.getAttribute("user");
         if (!(user.getIsAdmin()))
-            return "pages/complaint/userComplaint";
+            return homeUserC;
 
         int i = 0;
         ArrayList<Complaint> allComplaints = (ArrayList<Complaint>) dao.findAll();
-        ArrayList<Complaint> complaints = new ArrayList<Complaint>();
+        ArrayList<Complaint> complaints = new ArrayList<>();
 
         int n = 0;
         for (int x = 0; x < allComplaints.size(); x++) {
@@ -94,7 +95,7 @@ public class ComplaintController {
             }
         }
 
-        if (complaints.size() == 0) {
+        if (complaints.isEmpty()) {
             return "pages/complaint/noComplaint";
         }
 
@@ -102,7 +103,7 @@ public class ComplaintController {
         session.setAttribute("complaintPos", i);
         session.setAttribute("Complaints", complaints);
 
-        return "pages/complaint/adminComplaint";
+        return homeAdminC;
     }
 
     /**
@@ -127,7 +128,7 @@ public class ComplaintController {
         model.addAttribute(complaints.get(i));
         session.setAttribute("complaintPos", i);
         session.setAttribute("Complaints", complaints);
-        return "pages/complaint/adminComplaint";
+        return homeAdminC;
 
     }
 
@@ -153,7 +154,7 @@ public class ComplaintController {
         model.addAttribute(complaints.get(i));
         session.setAttribute("complaintPos", i);
         session.setAttribute("Complaints", complaints);
-        return "pages/complaint/adminComplaint";
+        return homeAdminC;
     }
 
     /**
@@ -167,7 +168,7 @@ public class ComplaintController {
 
     @PostMapping("/answereComplaint")
     public String answereComplaint(@ModelAttribute Complaint complaint, Model model, HttpSession session)
-            throws UnsupportedEncodingException, InterruptedException {
+            throws UnsupportedEncodingException{
 
         int i = (int) session.getAttribute("complaintPos");
         ArrayList<Complaint> complaints = (ArrayList<Complaint>) session.getAttribute("Complaints");
@@ -206,7 +207,7 @@ public class ComplaintController {
         session.setAttribute("complaintPos", i);
         session.setAttribute("Complaints", complaints);
 
-        return "pages/complaint/adminComplaint";
+        return homeAdminC;
     }
 
 }

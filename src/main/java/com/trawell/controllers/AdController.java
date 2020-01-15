@@ -14,10 +14,8 @@ import com.trawell.models.Agency;
 import com.trawell.models.Photo;
 import com.trawell.models.User;
 import com.trawell.services.AdService;
-import com.trawell.services.AgencyService;
 import com.trawell.services.PhotoService;
 import com.trawell.utilities.Encoder;
-
 import com.trawell.utilities.uploader.UploadUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +38,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdController {
     @Autowired
     private AdService adDao;
-
-    @Autowired
-    private AgencyService agencyDao;
 
     @Autowired
     private PhotoService photoDao;
@@ -145,10 +140,10 @@ public class AdController {
 
         if (isAgency(session)) {
             Collection<Ad> listaAd = adDao.findAll();
-            ArrayList<Ad> listaMyAds = new ArrayList<Ad>();
-            if (listaAd.size() > 0) {
+            ArrayList<Ad> listaMyAds = new ArrayList<>();
+            if (!(listaAd.isEmpty())) {
                 for (Ad ad : listaAd) {
-                    if (ad.getIdOwner() == user.getId()) {
+                    if (ad.getIdOwner().equals(user.getId())) {
                         listaMyAds.add(ad);
                     }
                 }
@@ -161,16 +156,15 @@ public class AdController {
 
     }
 
-
     @PostMapping("/deleteAd")
     public String deleteAd(@RequestParam(name = "id", required = true) Long idAd, HttpSession session, Model model)
             throws ParseException {
-                try{
-                    adDao.delete(idAd);
-                }catch (Exception e) {
-                    
-                }
-                return "pages/agency/home";
+        try {
+            adDao.delete(idAd);
+        } catch (Exception e) {
+            System.out.println("Agency not found, delete failed");
+        }
+        return "pages/agency/home";
 
     }
 }
