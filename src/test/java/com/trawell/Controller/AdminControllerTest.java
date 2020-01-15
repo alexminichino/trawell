@@ -3,9 +3,9 @@ package com.trawell.Controller;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import com.trawell.controllers.AdminController;
 import com.trawell.models.Ad;
@@ -15,6 +15,7 @@ import com.trawell.services.AdService;
 import com.trawell.services.AgencyService;
 import com.trawell.services.BanDataService;
 import com.trawell.services.UserService;
+import com.trawell.utilities.email.EmailSenderService;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,12 +25,17 @@ import org.mockito.Mock;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.ui.Model;
 import org.mockito.junit.MockitoJUnitRunner;
-
+/**
+ * @author Mario Paone
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class AdminControllerTest {
 
     @InjectMocks
     private AdminController controller;
+
+    @Mock
+    EmailSenderService emailService;
 
     MockHttpSession session;
     @Mock
@@ -38,7 +44,7 @@ public class AdminControllerTest {
     @Mock
     UserService userDao;
 
-    @Mock 
+    @Mock
     AdService adDao;
 
     @Mock
@@ -55,10 +61,9 @@ public class AdminControllerTest {
     Collection<Ad> adList;
     Collection<Agency> agencyList;
 
-    
-
-    @Before public void init () {
-        user = new User ();
+    @Before
+    public void init() {
+        user = new User();
         user.setId(1L);
         user.setName("Mario");
         user.setSurname("Rossi");
@@ -71,7 +76,7 @@ public class AdminControllerTest {
         session = new MockHttpSession();
         session.setAttribute("user", user);
 
-        user2 = new User ();
+        user2 = new User();
         user2.setId(2L);
         user2.setName("Luca");
         user2.setSurname("Pesce");
@@ -79,15 +84,15 @@ public class AdminControllerTest {
         user2.setMail("lucapesce@gmail.com");
         user2.setPhone("3664422514");
         user2.setPassword("B36912CFDBA2BDB8A055015FB817E79A");
-        
+        user2.setBanned(true);
+
         userList = new ArrayList<User>();
         userList.add(user);
         userList.add(user2);
 
-
         agency = new Agency();
         ad = new Ad();
-        
+
     }
 
     @Test
@@ -101,7 +106,6 @@ public class AdminControllerTest {
         session.setAttribute("user", user2);
         assertEquals("pages/user/home", controller.landing(session, model));
     }
-    
 
     @Test
     public void homeIsAdmin() {
@@ -128,32 +132,24 @@ public class AdminControllerTest {
         session.setAttribute("user", user2);
         assertEquals("pages/user/home", controller.deleteads(session, model));
     }
-    
-    @Test
-    public void banUserIsAdminAndUserIsNotNull() {
-        try{
-        assertEquals("pages/admin/home", controller.banuser("lucapesce","comportamento scorretto", (java.sql.Date) new Date(), session, model));
-        }catch(Exception e){
 
-        }
+    @Test
+    public void banUserIsAdminAndUserIsNotNull() throws UnsupportedEncodingException {
+        when(userDao.findByUsername("lucapesce")).thenReturn(user2);
+        assertEquals("pages/admin/home", controller.banuser("lucapesce","comportamento scorretto", java.sql.Date.valueOf("2020-01-01"), session, model));
+        
     }
 
     @Test
-    public void banUserIsNotAdmin() {
+    public void banUserIsNotAdmin() throws UnsupportedEncodingException {
         session.setAttribute("user", user2);
-        try{
-        assertEquals("pages/user/home", controller.banuser("lucapesce","comportamento scorretto", (java.sql.Date) new Date(), session, model));
-        }catch(Exception e){
-            
-        }
+        assertEquals("pages/user/home", controller.banuser("lucapesce","comportamento scorretto", java.sql.Date.valueOf("2020-01-01"), session, model));
+        
     }
 
     @Test
-    public void banUserIsAdminAndUserIsNull() {
-        try{
-        assertEquals("pages/admin/home", controller.banuser("lucapesce","comportamento scorretto", (java.sql.Date) new Date(), session, model));
-        }catch(Exception e){
-
-        }
+    public void banUserIsAdminAndUserIsNull() throws UnsupportedEncodingException {
+        assertEquals("pages/admin/home", controller.banuser("lucapesce","comportamento scorretto", java.sql.Date.valueOf("2020-01-01"), session, model));
+        
     }
 }
