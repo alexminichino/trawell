@@ -35,10 +35,7 @@ $(document).ready(function () {
                     $( "textarea[name*='description']" ).val("");
                     $( "select[name*='idItinerary']" ).val( "" );
                     $('#exampleModalCenter').modal('hide');
-                    $("#List tbody").append("<tr><td><a href=\"/group/view?id="+savedData.id+"\">"+savedData.name+"</a></td>"+
-                    "<td><span>Owner</span></td>"+
-                    "<td><button id=\""+savedData.id+"\" onclick=\""+"remove(this)\" class=\"btn btn-primary remove\">"+
-                    "<span class=\"fas fa-trash-alt\"></span></button></td></tr>");                           
+                    location.reload();                          
 
                 }
             });
