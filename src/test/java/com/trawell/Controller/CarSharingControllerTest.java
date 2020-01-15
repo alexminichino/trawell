@@ -1,6 +1,7 @@
 package com.trawell.Controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import com.trawell.models.*;
 import com.trawell.services.*;
@@ -21,20 +22,20 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import org.springframework.ui.Model;
 
-import static org.mockito.Mockito.when;
+
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
+
 
 
 /**
  * @author Paolo Fasano
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ItineraryControllerTest {
+public class CarSharingControllerTest {
 
-   
+
     @Mock
     private CarsharingService daocarsharing;
     @Mock
@@ -44,11 +45,11 @@ public class ItineraryControllerTest {
     @Mock
     private AdService daoad;
 
-    ArrayList<Itinerary>  itinerarys = new ArrayList<Itinerary>();
-    Itinerary modello = new Itinerary();
+    ArrayList<Carsharing> amodello = new ArrayList<Carsharing>();
+    Carsharing modello = new Carsharing();
 
     @InjectMocks
-    ItineraryController controller = new ItineraryController();
+    CarsharingController controller = new CarsharingController();
 
     @Mock
     Model model;
@@ -87,53 +88,30 @@ public class ItineraryControllerTest {
     }
 
     @Test
-    public void TestCreateNoUser() {
+    public void TestlistLandingNoUser() {
         session.setAttribute("user", null);
-        assertEquals("error", controller.create(session));
+        assertEquals("pages/error", controller.create(session));
     }
 
     @Test
-    public void TestCreate() {
+    public void TestlistLanding() {
+        assertEquals("pages/carsharing/createcarsharing", controller.create(session));
+    }
+   
+    @Test
+    public void Testchange() {
+        assertEquals("pages/carsharing/modifycarsharing", controller.change(session, 0L, model));
+    }
+
+    @Test
+    public void Testview() {
+        assertEquals("pages/carsharing/viewcarsharing", controller.view(session, 0L, model));
+    }
+
+    @Test
+    public void Testlist() {
+        assertEquals("pages/carsharing/list-view", controller.list(session, model));
+    }
+   
         
-        assertEquals("pages/itinerary/createitinerary", controller.create(session));
-    }
-
-    @Test
-    public void TestModify() {
-        modello.setId(0L);
-        itinerarys.add(modello);
-        instance.setUserItineraries(itinerarys);
-        session.setAttribute("user", instance);
-        assertEquals("pages/itinerary/modifyitinerary", controller.modify(session,0L, model));
-    }
-
-    @Test
-    public void TestModifyNull() {
-        
-        session.setAttribute("user", null);
-        assertEquals("pages/itinerary/modifyitinerary", controller.modify(session,0L, model));
-    }
-        
-    @Test
-    public void TestView() {
-        modello.setId(0L);
-        itinerarys.add(modello);
-        instance.setUserItineraries(itinerarys);
-        session.setAttribute("user", instance);
-        assertEquals("pages/itinerary/viewitinerary", controller.view(session,0L, model));
-    }
-
-    @Test
-    public void TestViewNull() {
-        
-        session.setAttribute("user", null);
-        assertEquals("pages/itinerary/viewitinerary", controller.view(session,0L, model));
-    }
-
-
-    @Test
-    public void TestList() {
-        
-        assertEquals("pages/itinerary/list-view", controller.list(session, model));
-    }
 }

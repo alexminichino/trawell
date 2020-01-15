@@ -44,6 +44,8 @@ public class GroupController {
 
             groups = user.getUserGroups();
 
+            model.addAttribute("itineraries", user.getUserItineraries());
+
             model.addAttribute("Groups", groups);
 
             return "pages/group/list-view";
