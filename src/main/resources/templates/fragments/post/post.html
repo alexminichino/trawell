@@ -1,5 +1,5 @@
 <div th:each ="photo : ${post.photos}">
-    <img th:src="@{${photo.path}}" class="card-img-top" alt="an img">   
+    <img th:src="@{${photo.path}}" class="card-img-top" alt="an img" th:id = "${''+post.id}" onerror='fix_image(this)'>   
 </div>
   <!-- <img th:src="@{/images/test.png}"/>  <img th:src="@{${src}}"/>  "-->
   <p th:text = '${post.user.name +" " +post.user.surname}'></p><br>

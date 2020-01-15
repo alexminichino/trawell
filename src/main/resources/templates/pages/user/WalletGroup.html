@@ -28,7 +28,9 @@
             </thead>
             <tbody th:if=${publicWallet}>
               <tr th:each="d : ${publicWallet.documents}">
-                <td th:text='${d.name}'></td>
+                <td >
+                  <a href="/sample/lorem.pdf" target="_blank"  th:text='${d.name}'></a>
+                </td>
                 <td th:text='${d.dueDate}'></td>
                 <td>
 
@@ -57,7 +59,9 @@
             </thead>
             <tbody th:if=${userWallet}>
               <tr th:each="d : ${userWallet.documents}">
-                <td th:text='${d.name}'></td>
+                <td >
+                  <a href="/sample/lorem.pdf" target="_blank" th:text='${d.name}'></a>
+                </td>
                 <td th:text='${d.dueDate}'></td>
                 <td>
                   <button th:id=${d.id} onclick="remove(this)" class="btn btn-primary remove"> <span

@@ -1,5 +1,15 @@
 
 # Trawell Project
+
+## Documentazione [disponile qui!](https://drive.google.com/drive/folders/1XJY9enjR8BZve7qnEP1GOPHmPSA11GEf?usp=sharing)
+
+## Cos'è TraWell:
+La piattaforma TraWell nasce con l’obbiettivo di fornire all’utente una serie di servizi legati al mondo
+dei viaggi, con lo scopo di rendere più facile la condivisione delle proprie esperienze di viaggio, la
+pianificazione del nuovo viaggio, mettendo a disposizione degli ulteriori servizi che facilitano la
+comunicazione e l’organizzazione del viaggio
+
+## Metriche e risultati 
 [![Build Status](https://travis-ci.com/alexminichino/trawell.svg?branch=master)](https://travis-ci.com/alexminichino/trawell)
 
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=alexminichino_trawell&metric=alert_status)](https://sonarcloud.io/dashboard?id=alexminichino_trawell) 
@@ -35,10 +45,11 @@
 [![commit](https://img.shields.io/github/commit-activity/m/alexminichino/trawell)](https://github.com/alexminichino/trawell/commits)
 
 
+
 [![forks](https://img.shields.io/github/forks/alexminichino/trawell)](https://github.com/alexminichino/trawell/network/members)
 
 
-
+## Deploy:
 
 [![Docker](https://img.shields.io/docker/automated/alexminichino/trawell)](https://hub.docker.com/r/alexminichino/trawell)
 
@@ -52,9 +63,8 @@
 
 
 
+## Manuale installazione:
 
-### todo descrizione progetto 
-@umbertoRussomando 
 
 ### Come prima cosa modificare il file in /src/main/resources/application.properties
 
@@ -70,10 +80,14 @@ Impostare le variabili d'ambiente
 per consentire l'accesso al db.
 
 ### inizialiazzare il database
-Effettuare la connessione al db tramite VScode ed eseguire lo script `database_init.sql`.
+Eseguire lo script `database_init.sql`.
+
+Una volta inizializzato il database eseguire `./mvnw compile -f pom.xml`.
+
+Infine, per lanciare l'applicativo difitare `./mvnw spring-boot:run`.
 
 
-
+### Si consiglia di utilizzare ubuntu 18.04, inoltre è possibile effettuare il deploy tramite Heroku e scaricare l'immagine aggiornata del sistema da Docker hub.
 ## Contributors
 
 

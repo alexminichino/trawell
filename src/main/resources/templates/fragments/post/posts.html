@@ -1,5 +1,12 @@
 
 <!-- This container wraps up everything in the page -->
+<script>
+  function fix_image(img){
+    console.log(img);
+    var num = Math.floor(Math.random() * (4 - 1 + 1) + 1);
+    $(img).attr("src","sample/travel"+num+".jpg");
+  }
+  </script>
 
 <div class="post-full-height"> 
   <div th:each="post : ${posts}" class = "post">
