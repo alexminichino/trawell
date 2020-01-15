@@ -82,6 +82,16 @@ public class AdTest {
         assertEquals(answere, instance.toString());
     }
 
+    @Test
+    public void testEquals() {
+        Date adStartingDate = new Date(0, 0, 0);
+        Date adDueDate = new Date(0, 0, 0);
+        Ad instance = new Ad(1L, 0L, "adPayment", 100L, adStartingDate, adDueDate, "0");
+        
+        assertEquals(true, instance.equals(instance));
+    }
+
+
     /*
     @Test
     public void testHashcode() {

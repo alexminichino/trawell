@@ -27,7 +27,7 @@
 										<div class="input-group-append">
 											<span class="input-group-text"><i class="fas fa-clock"></i></span>
 										</div>
-										<input th:value = "${carsharing.departureDate}" type = 'datetime-local' name = "departureDate" class="form-control input_user" id = "departureDate" placeholder="Date e Ora">
+										<input th:value = "${#dates.format(carsharing.departureDate, 'yyyy-MM-dd''T''HH:mm:ss')}" type = 'datetime-local' name = "departureDate" class="form-control input_user" id = "departureDate" placeholder="Date e Ora">
 									</div>
 									<div class="input-group mb-2">
 										<div class="input-group-append">
