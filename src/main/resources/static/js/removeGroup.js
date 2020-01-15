@@ -8,7 +8,7 @@ function remove(x) {
     var wrapper = $("tr").filter($(x).parents());
     var id = x.id;
     var url = "/api/group/eliminate/" + id;
-    alert("are you sure you want to eliminate this Group?")
+    custom_alert("Message","are you sure you want to eliminate this Group?")
     $.ajax({
         dataType: "text",
         url: url,
@@ -18,11 +18,11 @@ function remove(x) {
         },
         type: 'POST',
         success: function (data) {
-            alert("success");
+            custom_alert("Message","success");
             wrapper.remove();
         },
         error: function (request, textStatus, errorThrown) {
-            alert("failed:");
+            custom_alert("Message","failed:");
         }
     });
 

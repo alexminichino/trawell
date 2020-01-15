@@ -8,7 +8,7 @@ $(document).ready(function(){
     $(".report").click(function () {
         var id = $(this).attr("id");
         var url = "/api/post/report/"+id;
-        alert("are you sure you want to report this post?")
+        custom_alert("Message","are you sure you want to report this post?")
         $.ajax({
             dataType: "text",
             url:url,
@@ -18,10 +18,10 @@ $(document).ready(function(){
             },
             type:'POST',
             success:function(data){
-                alert("Thank you for taking the time to report a post. An email has been sent to our customer service's email. Please wait for an admin to answer you.");
+                custom_alert("Message","Thank you for taking the time to report a post. An email has been sent to our customer service's email. Please wait for an admin to answer you.");
             },
            error:function(request,textStatus,errorThrown){
-                alert("failed:");
+                custom_alert("Message","failed:");
             }
         });
         

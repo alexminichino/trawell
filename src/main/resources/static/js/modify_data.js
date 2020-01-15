@@ -48,10 +48,10 @@ $(document).ready(function(){
                 url:URL,
                 data: data,
                 success:function(data){
-                    alert("Your data has been updated!");
+                    custom_alert("Message","Your data has been updated!");
                 },
                 error:function(request,textStatus,errorThrown){
-                    alert("failed to update your data!");
+                    custom_alert("Message","failed to update your data!");
                 }
             });
         }

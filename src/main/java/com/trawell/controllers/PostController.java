@@ -135,7 +135,7 @@ public class PostController{
             model.addAttribute("posts", posts);
 
 
-            return "pages/post/bachecapost";
+            return "redirect:/";
         }
         else
         {

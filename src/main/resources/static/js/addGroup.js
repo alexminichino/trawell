@@ -30,7 +30,7 @@ $(document).ready(function () {
                 success: function (data) {
                     savedData= JSON.parse(data);
                     console.log(savedData);
-                    alert("Gruppo aggiunto con successo, Complimenti!");
+                    custom_alert("Message","Gruppo aggiunto con successo, Complimenti!");
                     $( "input[name*='name']" ).val( "" );
                     $( "textarea[name*='description']" ).val("");
                     $( "select[name*='idItinerary']" ).val( "" );

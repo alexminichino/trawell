@@ -9,7 +9,7 @@ function remove(x) {
     var id = x.id;
     var url = "/api/document/eliminate/"+id;
 
-    alert("are you sure you want to eliminate this document?")
+    custom_alert("Message","are you sure you want to eliminate this document?")
     $.ajax({
         dataType: "text",
         url:url,
@@ -19,11 +19,11 @@ function remove(x) {
         },
         type: 'POST',
         success: function (data) {
-            alert("success");
+            custom_alert("Message","success");
             wrapper.remove();
         },
         error: function (request, textStatus, errorThrown) {
-            alert("failed");
+            custom_alert("Message","failed");
         }
     });
 

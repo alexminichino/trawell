@@ -51,10 +51,10 @@
            data:JSON.stringify(da),
            type:'POST',
            success:function(data){
-               alert("success");
+               custom_alert("Message","success");
            },
           error:function(jqXHR,textStatus,errorThrown){
-               alert("failed");
+               custom_alert("Message","failed");
            }
        })
        

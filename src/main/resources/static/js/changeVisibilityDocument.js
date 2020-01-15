@@ -9,7 +9,7 @@ function changeVis(x) {
     var id = x.id;
     var url = "/api/document/changeVisibility/"+id;
 
-    alert("are you sure you want to change this visibility of document?")
+    custom_alert("Message","are you sure you want to change this visibility of document?")
     $.ajax({
         dataType: "text",
         url:url,
@@ -19,7 +19,7 @@ function changeVis(x) {
         },
         type: 'POST',
         success: function (data) {
-            alert("success");
+            custom_alert("Message","success");
             if ($("table").filter($(wrapper).parents()).attr("id") == "User") {
 
                 $("#Public tbody").append("<tr>" + wrapper.html() + "</tr>");
@@ -32,7 +32,7 @@ function changeVis(x) {
             wrapper.remove();
         },
         error: function (request, textStatus, errorThrown) {
-            alert("failed");
+            custom_alert("Message","failed");
         }
     });
 
