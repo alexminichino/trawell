@@ -14,30 +14,21 @@
         <div class="col-md-3">
             <div class = "card blocks scrollbar">
               <h5>Carsharings Available</h5>
-              <div class = "carsharingAds">
-                <div th:if="${carsharingAds.size()==0}">
+              <div th:if="${carsharingAds.size()==0}">
                   <img src="../image/sad.png" class="image"><br>
                   <p>Non ci sono annunci carsharing</p>
-                </div>
-                <div th:each = "ad : ${carsharingAds}" class = "carsharing">
-                    <p th:text="${ad.arrival}"/>
-                    <p th:text="${ad.departure}"/>
-                </div>
-              </div>    
+              </div>
+              <div th:include="fragments/carsharing/carsharings" class="post-full-height"></div>      
             </div><!--fine card carsharing-->
         </div><!--prima colonna-->
         <div class="col-md-3">
           <div class = "card blocks scrollbar"> 
             <h5>Itineraries Available</h5>
-            <div class = "itineraries">
-              <div th:if="${itineraries.size()==0}">
+            <div th:if="${itineraries.size()==0}">
                 <img src="../image/sad.png" class="image"><br>
                 <p>Non ci sono annunci itinerari</p>
-              </div>
-              <div th:each = "itinerary : ${itineraries}" class = "itinerary">
-                  <p th:text="${itinerary.name}"/>
-              </div>
             </div>
+              <div th:include="fragments/itinerary/itineraries" class="post-full-height"> </div>  
           </div><!--fine card itinerari-->        
         </div><!--fine seconda colonna-->
         <div class="col-md-5">  

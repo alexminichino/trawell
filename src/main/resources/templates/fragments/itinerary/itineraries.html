@@ -1,0 +1,5 @@
+<div class="post-full-height">
+    <div th:each = "itinerary : ${itineraries}" class = "itinerary">
+        <div th:include="fragments/itinerary/itinerary"  class="fragment post-full-height"></div>
+    </div>
+</div>
