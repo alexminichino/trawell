@@ -79,7 +79,14 @@ public class CarSharingControllerTest {
 
         session.setAttribute("user", instance);
 
-       
+       modello.setId(0L);
+       modello.setArrival("arrival");
+       modello.setCarsharingspot(0);
+       modello.setDepartureDate(new Date(0,0,0));
+       modello.setDescription("description");
+       modello.setUser(instance);
+
+       amodello.add(modello);
     }
 
     @After
@@ -104,7 +111,21 @@ public class CarSharingControllerTest {
     }
 
     @Test
+    public void TestchangeList() {
+        instance.setUserCreatedAdList(amodello);
+        session.setAttribute("user", instance);
+        assertEquals("pages/carsharing/modifycarsharing", controller.change(session, 0L, model));
+    }
+
+    @Test
     public void Testview() {
+        assertEquals("pages/carsharing/viewcarsharing", controller.view(session, 0L, model));
+    }
+
+    @Test
+    public void TestviewList() {
+        instance.setUserCreatedAdList(amodello);
+        session.setAttribute("user", instance);
         assertEquals("pages/carsharing/viewcarsharing", controller.view(session, 0L, model));
     }
 
