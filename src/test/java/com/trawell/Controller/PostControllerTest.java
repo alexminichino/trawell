@@ -111,7 +111,7 @@ public class PostControllerTest {
     @Test
     public void TestLanding() {
         
-        assertEquals("Landing", controller.landing());
+        assertEquals("pages/post/addPost", controller.landing());
     }
 
     @Test
