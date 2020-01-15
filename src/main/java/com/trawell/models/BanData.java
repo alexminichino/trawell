@@ -18,9 +18,9 @@ public class BanData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty(message = "User id can not be empty")
+    //@NotEmpty(message = "User id can not be empty")
     private Long idUser;
-    @NotEmpty(message = "Admin id can not be empty")
+    //@NotEmpty(message = "Admin id can not be empty")
     private Long idAdmin;
     private Date banUntil;
     private String motivation;

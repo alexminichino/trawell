@@ -31,7 +31,7 @@
                         <td th:text='${ad.id}'></td>
                         <td th:text='${ad.adStartingDate}'></td>
                         <td th:text='${ad.adDueDate}'></td>
-                        <td><button th:id="${ad.id}" class="btn btn-primary remove"> </td>
+                        <td class="text-center"><button th:id="${ad.id}" class="btn btn-primary remove"><span class="fas fa-trash-alt"></span> </button> </td>
                       </tr>
                     </tbody>
                     <tbody th:if="not ${listaAds}">

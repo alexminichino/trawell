@@ -33,7 +33,7 @@
                  <a id="plink" th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/itinerary/list-view">My Itineraries</a>
                   <a id="plink" th:if="not ${session.user.isAdmin}" class="dropdown-item" href="/carsharing/list-view">My Carsharing</a>
                 <a id="plink" th:if=" ${session.isAgency}" class="dropdown-item" href="/agency/home">Agency Ads</a> 
-                <a id="plink" th:if="${session.user.isAdmin}" class="dropdown-item" href="/admin/banusers">Ban a User</a>
+                <a id="plink" th:if="${session.user.isAdmin}" class="dropdown-item" href="/admin/banUsersLand">Ban a User</a>
                 <a id="plink" th:if="${session.user.isAdmin}" class="dropdown-item" href="/admin/deleteAdsLand">Check and delete Ads</a>
                 <a id="plink" th:if="${session.user.isAdmin}" class="dropdown-item" href="/Complaint/viewComplaint">List of Complaints</a>
                 <a id="plink" th:if="${session.user.isAdmin}" class="dropdown-item" href="/post/listReportedPosts">Reported Posts</a>       
