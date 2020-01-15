@@ -16,8 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -37,12 +37,14 @@ public class RestWalletController {
     @Autowired
     UserService userDao;
 
+    boolean t = true;
+
     /**
      * The method maps "/api/document/changeVisibility" post request that allows to
      * update the visibility of a document.
      * 
      * @author Ruggiero Gaetano
-     * @param user    
+     * @param user
      * @param session
      * @param id
      * @param wallet
@@ -51,14 +53,14 @@ public class RestWalletController {
      * @return a 200 HttpResponse if deletion was successful, 403 if user doesn't
      *         have the permission and 500 otherwise
      */
-    @RequestMapping(value = "/document/changeVisibility/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/document/changeVisibility/{id}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Document> modify(HttpSession session, @PathVariable("id") Long id) {
         User user = (User) session.getAttribute("user");
         Document d = daoD.findOne(id);
         Document updateDocument = null;
         boolean b = d.getWallet().isPrivate();
-        if (user.getId() == d.getIdUser()) {
-            if (b == true) {
+        if (user.getId().equals(d.getIdUser())) {
+            if (b == t) {
                 Wallet w = d.getWallet().getGroup().getPublicWallet();
                 d.setWallet(w);
                 updateDocument = daoD.update(d);
@@ -69,12 +71,12 @@ public class RestWalletController {
                     d.setWallet(w);
                     updateDocument = daoD.update(d);
                 } else
-                    return new ResponseEntity<Document>(HttpStatus.FORBIDDEN);
+                    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
-            return updateDocument == null ? new ResponseEntity<Document>(HttpStatus.INTERNAL_SERVER_ERROR)
-                    : new ResponseEntity<Document>(HttpStatus.OK);
+            return updateDocument == null ? new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR)
+                    : new ResponseEntity<>(HttpStatus.OK);
         }
-        return new ResponseEntity<Document>(HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
 
     /**
@@ -89,22 +91,22 @@ public class RestWalletController {
      * @return a 200 HttpResponse if deletion was successful, 403 if user doesn't
      *         have the permission and 500 otherwise
      */
-    @RequestMapping(value = "/document/eliminate/{id}", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/document/eliminate/{id}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Document> delete(HttpSession session, @PathVariable("id") Long id) {
         User user = (User) session.getAttribute("user");
 
         if (user != null) {
             Document d = daoD.findOne(id);
-            if (user.getId() == d.getIdUser() || user.getId() == d.getWallet().getUser().getId()) {
+            if (user.getId().equals(d.getIdUser()) || user.getId().equals(d.getWallet().getUser().getId())) {
                 d.getPath();// bisogna cancellare anche nella cartella
                 daoD.delete(id);
-                //user.setUserWallets(userWallets);
+
                 userDao.update(user);
-                return new ResponseEntity<Document>(HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.OK);
             } else
-                return new ResponseEntity<Document>(HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
 
-        return new ResponseEntity<Document>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
