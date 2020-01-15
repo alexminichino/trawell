@@ -189,7 +189,6 @@ public class RestGroupControllerTest {
     @Test
     public void eliminateGroupWhenUserIsNotNull() {
         session.setAttribute("user", user);
-        doNothing().when(walletDao).delete(any(Long.class));
         assertEquals(HttpStatus.OK, controller.eliminateGroup(1L, session).getStatusCode());
 
     }
