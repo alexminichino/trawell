@@ -8,7 +8,7 @@
         var id = $(this).attr("id");
         var url = "/api/carsharing/eliminate/"+id;
 
-        alert("are you sure you want to eliminate this carsharing ad?")
+        custom_alert("Message","are you sure you want to eliminate this carsharing ad?")
         $.ajax({
             dataType: "text",
             url:url,
@@ -18,11 +18,11 @@
             },
             type:'POST',
             success:function(data){
-                alert("success");
+                custom_alert("Message","success");
                 wrapper.remove();
             },
            error:function(request,textStatus,errorThrown){
-                alert("failed:");
+                custom_alert("Message","failed:");
             }
         });
         

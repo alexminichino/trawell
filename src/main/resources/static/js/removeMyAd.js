@@ -7,18 +7,18 @@
    $(document).ready(function () {
     $(".remove").click(function () {
         var idad = $(this).attr("id");
-        alert("Are you sure you want to eliminate this ad?")
+        custom_alert("Message","Are you sure you want to eliminate this ad?")
         $.ajax({
             type: 'POST',
             url: "/agency/deleteAd",
             data: { id: idad },
             async: false,
             success: function (data) {
-                alert("Ad successfully removed");
+                custom_alert("Message","Ad successfully removed");
                 location.reload();
             },
             error: function (request, textStatus, errorThrown) {
-                alert("Failed");
+                custom_alert("Message","Failed");
                 
             }
         });

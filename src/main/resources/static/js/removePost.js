@@ -9,7 +9,7 @@
         var wrapper = $(".post").filter($(this).parents());
         var id = $(this).attr("id");
         var url = "/api/post/delete/"+id;
-        alert("are you sure you want to eliminate this post?")
+        custom_alert("Message","are you sure you want to eliminate this post?")
         $.ajax({
             dataType: "text",
             url:url,
@@ -19,11 +19,11 @@
             },
             type:'POST',
             success:function(data){
-                alert("success");
+                custom_alert("Message","success");
                 wrapper.remove();
             },
            error:function(request,textStatus,errorThrown){
-                alert("failed:");
+                custom_alert("Message","failed:");
             }
         });
         

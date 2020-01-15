@@ -8,7 +8,7 @@ $(document).ready(function(){
         var id = $(this).attr("id");
         var url = "/api/itinerary/eliminate/"+id;
 
-        alert("are you sure you want to eliminate this itinerary?")
+        custom_alert("Message","are you sure you want to eliminate this itinerary?")
         $.ajax({
             dataType: "text",
             url:url,
@@ -18,11 +18,11 @@ $(document).ready(function(){
             },
             type:'POST',
             success:function(data){
-                alert("success");
+                custom_alert("Message","success");
                 wrapper.remove();
             },
            error:function(request,textStatus,errorThrown){
-                alert("failed:");
+                custom_alert("Message","failed:");
             }
         });
         

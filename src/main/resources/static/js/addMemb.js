@@ -10,7 +10,7 @@ $(document).ready(function(){
         var idGroup = $(".addMemb").attr("id");
         var url = "/api/group/addMember/"+username+"/"+idGroup;
 
-        alert("are you sure you want to add this member in this group?");
+        custom_alert("Message","are you sure you want to add this member in this group?");
         $.ajax({
             dataType: "text",
             url:url,

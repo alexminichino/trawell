@@ -66,8 +66,7 @@ public class WalletController {
         TrawellGroup trawellGroup = groupService.findOne(id);
         if (trawellGroup != null) {
             Wallet publicWallet = trawellGroup.getPublicWallet();
-            Wallet userWallet = trawellGroup.getAllWallets().stream()
-                    .filter(x -> x.getUser().getId() == null ? false : x.getUser().getId() == idUser).findFirst().orElse(null);
+            Wallet userWallet = walletDao.findUserWalletofGroup(trawellGroup.getId(), idUser);
 
             model.addAttribute("publicWallet", publicWallet);
 

@@ -76,19 +76,14 @@ public class RestGroupController {
             Long idUser = userToAdd.getId();
             TrawellGroup group = daoGroup.findOne(idGroup);
 
-            if (group != null && userToAdd != null
-                    ? group.getIdOwner().equals(user.getId()) && user.getId() != idUser && !user.getIsAdmin()
-                    : f) {
+            if (group != null && userToAdd != null ? group.getIdOwner().equals(user.getId()) && user.getId() != idUser && !user.getIsAdmin() : false) {
 
-                user.getUserGroups().add(group);
                 group.getParticipants().add(userToAdd);
-
                 Wallet wPriv = new Wallet();
                 wPriv.setUser(userToAdd);
                 wPriv.setGroup(group);
                 daoWallet.create(wPriv);
-
-                daoUser.update(user);
+              
                 updatedGroup = daoGroup.update(group);
             }
         }
@@ -112,9 +107,9 @@ public class RestGroupController {
                     : f) {
 
                 Wallet w = userToRemove.getUserWallets().stream().filter(x -> x.getGroup().equals(group)).findFirst().orElse(null);
-                daoWallet.delete(w.getId());
-                user.getUserGroups().remove(group);
+
                 group.getParticipants().remove(userToRemove);
+                daoWallet.delete(w.getId());
 
                 updatedGroup = daoGroup.update(group);
             }
