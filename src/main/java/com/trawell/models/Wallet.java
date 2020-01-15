@@ -66,9 +66,6 @@ public class Wallet {
         this.trawellGroup = trawellGroup;
     }
 
-    public Wallet() {
-    }
-
     public User getUser() {
         return user;
     }
@@ -77,4 +74,6 @@ public class Wallet {
         this.user = user;
     }
 
+    public Wallet() {
+    }
 }

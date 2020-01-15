@@ -1,11 +1,15 @@
 package com.trawell.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.trawell.models.TrawellGroup;
 import com.trawell.models.User;
+import com.trawell.models.Wallet;
 import com.trawell.services.TrawellGroupService;
 import com.trawell.services.UserService;
+import com.trawell.services.WalletService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +34,9 @@ public class RestGroupController {
     TrawellGroupService daoGroup;
     @Autowired
     UserService daoUser;
+    @Autowired
+    WalletService daoWallet;
+
     boolean f = false;
 
     @PostMapping(value = "/group/newGroup", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,6 +49,16 @@ public class RestGroupController {
 
             createdGroup = daoGroup.create(group);
             createdGroup.getParticipants().add(user);
+
+            Wallet wPriv = new Wallet();
+            wPriv.setUser(user);
+            wPriv.setGroup(createdGroup);
+            daoWallet.create(wPriv);
+
+            Wallet wPublic = new Wallet();
+            wPublic.setGroup(createdGroup);
+            daoWallet.create(wPublic);
+
             daoGroup.update(createdGroup);
             daoUser.update(user);
         }
@@ -64,9 +81,16 @@ public class RestGroupController {
             if (group != null && userToAdd != null
                     ? group.getIdOwner().equals(user.getId()) && user.getId() != idUser && !user.getIsAdmin()
                     : f) {
+
                 user.getUserGroups().add(group);
                 group.getParticipants().add(userToAdd);
 
+                Wallet wPriv = new Wallet();
+                wPriv.setUser(userToAdd);
+                wPriv.setGroup(group);
+                daoWallet.create(wPriv);
+
+                daoUser.update(user);
                 updatedGroup = daoGroup.update(group);
             }
         }
@@ -88,6 +112,9 @@ public class RestGroupController {
             if (group != null && userToRemove != null
                     ? group.getIdOwner().equals(user.getId()) && user.getId() != idUser && !user.getIsAdmin()
                     : f) {
+
+                Wallet w = userToRemove.getUserWallets().stream().filter(x -> x.getGroup().equals(group)).findFirst().orElse(null);
+                daoWallet.delete(w.getId());
                 user.getUserGroups().remove(group);
                 group.getParticipants().remove(userToRemove);
 

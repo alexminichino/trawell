@@ -33,7 +33,7 @@
                          <tr th:each = "u : ${participants}" th:if ="${session.user.id != u.id}" class="groupMemb">
                             <td><p th:text = ${u.username}></p></td>
                             <td>
-                                <button th:if = "${session.user.id == group.idOwner}" th:id = ${u.id} class="btn btn-primary remove"><span class="fas fa-user-minus"></span></button>
+                                <button th:if = "${session.user.id == group.idOwner}" th:id = ${u.id} class="btn btn-primary removeMemb"><span class="fas fa-user-minus"></span></button>
                             </td>
                          </tr>
                      </tbody>
@@ -60,8 +60,7 @@
                       </div>
                 </div>
                 <div>
-                    <p>Click here to view the wallet's group</p>
-                    <a th:text="${group.name}" th:href="${'/Wallet/walletGroup?id=' +group.id}"></a>
+                    Click &nbsp;<a th:href="${'/Wallet/walletGroup?id=' +group.id}">here</a> &nbsp; to view the wallet's group
                 </div>
                 <div class = "col-3 ">
                     <!-- Modal che chiede di inserire nuovo utente... visualizzabile solo se l'utente è il creatore del gruppo-->

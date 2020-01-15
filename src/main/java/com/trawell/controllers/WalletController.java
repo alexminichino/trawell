@@ -12,6 +12,7 @@ import com.trawell.models.Wallet;
 import com.trawell.services.DocumentService;
 import com.trawell.services.TrawellGroupService;
 import com.trawell.services.UserService;
+import com.trawell.services.WalletService;
 import com.trawell.utilities.Encoder;
 import com.trawell.utilities.uploader.UploadUtils;
 
@@ -39,6 +40,9 @@ public class WalletController {
 
     @Autowired
     private DocumentService documentDao;
+
+    @Autowired
+    private WalletService walletDao;
 
     @Autowired
     private UserService userDao;
@@ -85,9 +89,11 @@ public class WalletController {
 
         ArrayList<Document> documents = new  ArrayList<Document>();
 
+
         if(user != null)
         {
             int i = 0;
+            Wallet wallet = user.getUserWallets().stream().filter(x -> x.getUser() != null).findFirst().orElse(null);
 
             for (MultipartFile file : files)
             {
@@ -101,19 +107,17 @@ public class WalletController {
                 fileName = encoder.encoding(fileName, 1);
 
                 document.setPath(UploadUtils.uploadDocument(file,uploadDir,fileName));
-                Wallet wallet = user.getUserWallets().stream().filter(x -> x.getUser() != null).findFirst().orElse(null);
                 document.setWallet(wallet);
                 document.setDueDate(dueDate);
                 document.setIdUser(user.getId());
                 document.setName(fileName);
                 documents.add(document);
-                
-
-                documentDao.create(document);
-                userDao.update(user);
 
                 i++;
             }
+
+            wallet.getDocuments().addAll(documents);
+            walletDao.update(wallet);
 
             Long idGroup = (Long) session.getAttribute("idGroup");
             return "redirect:/Wallet/walletGroup"+"?id="+idGroup;
