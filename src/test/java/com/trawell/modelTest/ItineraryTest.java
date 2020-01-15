@@ -24,4 +24,17 @@ public class ItineraryTest {
         assertEquals(31, instance.hashCode());
     }
 
+    @Test
+    public void testEquals() {
+        Itinerary instance = new Itinerary();
+        assertEquals(true, instance.equals(instance));
+    }
+    @Test
+    public void testEqualsf() {
+        Itinerary instance = new Itinerary();
+        Itinerary instancef = new Itinerary();
+        instancef.setId(0L);
+        assertEquals(false, instance.equals(instancef));
+    }
+
 }

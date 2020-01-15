@@ -11,9 +11,9 @@
 <body>
   <section layout:fragment="content" style = "background-image: url('https://images.unsplash.com/photo-1571942790909-75819ea24170?ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80'); background-repeat: no-repeat;background-size: cover;;">
     <div class="container h-100" style="overflow-x:auto;">
-		<div class="row h-100 justify-content-center align-items-center">
-			<div class="col-6 align-self-center">
-				<div class = "card card-block personal-card">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="col-6 align-self-center">
+        <div class = "card card-block personal-card">
                     <div class="table-responsive">
                         <table class="table  table-hover table-secondary" style="margin-left:auto;margin-right:auto;">
                             <thead>
@@ -30,9 +30,9 @@
                                 <tr th:each = "itinerary : ${itineraries}">
                                     <td th:text="${itinerary.name}" style="font-weight: bold;"></td>
                                     <td>
-                                        <span style="font-weight: bold; color: blue;"><a th:id = ${itinerary.id} class = "remove"><u>Rimuovi</u></a></span>
-                                        <span><a th:href="${'/itinerary/view?id=' +ad.id}"><u style="font-weight: bold;">View</u></a></span>
-                                        <span><a th:href="${'/itinerary/modify?id=' + ad.id}"><u style="font-weight: bold;">Modifica</u></a></span>
+                                        <span style="font-weight: bold; color: blue;"><a th:id = "${itinerary.name}" class = "remove"><u>Rimuovi</u></a></span>
+                                        <span><a th:href="${'/itinerary/view?id=' +itinerary.id}"><u style="font-weight: bold;">View</u></a></span>
+                                        <span><a th:href="${'/itinerary/modify?id=' + itinerary.id}"><u style="font-weight: bold;">Modifica</u></a></span>
                                     </td>
                                 </tr>
                             </tbody><!--Fine body-->  
@@ -40,7 +40,7 @@
                         <div class = "row">
                             <div class = "col-12">
                                 <div class="d-flex justify-content-center mt-3 button">
-                                    <button onclick="window.location.href='https://trawellunisa.herokuapp.com/itinerary/create'" class="btn my_btn"> Crea un nuovo itinerario</button>
+                                    <a href="/itinerary/create" class="btn my_btn"> Crea un nuovo itinerario</a>
                                 </div>
                             </div>
                         </div><!--fine row-->
@@ -55,4 +55,3 @@
   </footer> 
 </body>
 </html>
-

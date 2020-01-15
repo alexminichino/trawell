@@ -59,6 +59,20 @@ public class BanDataTest {
         
     }
     */
+
+    @Test
+    public void testEquals() {
+        Date adStartingDate = new Date(0, 0, 0);
+        BanData instance = new BanData(1L, 0L, 100L, adStartingDate, "0");  
+        assertEquals(true, instance.equals(instance));
+    }
+    @Test
+    public void testEqualsf() {
+        Date adStartingDate = new Date(0, 0, 0);
+        BanData instance = new BanData(1L, 0L, 100L, adStartingDate, "0"); 
+        BanData instancef = new BanData(0L, 0L, 100L, adStartingDate, "0");   
+        assertEquals(false, instance.equals(instancef));
+    }
     
 
 }

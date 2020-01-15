@@ -1,7 +1,6 @@
 package com.trawell.Controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 import com.trawell.models.*;
 import com.trawell.services.*;
@@ -22,20 +21,20 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import org.springframework.ui.Model;
 
-
+import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 import java.util.ArrayList;
-
+import java.util.Collection;
 
 
 /**
  * @author Paolo Fasano
  */
 @RunWith(MockitoJUnitRunner.class)
-public class HomeControllerTest {
+public class ItineraryControllerTest {
 
-
+   
     @Mock
     private CarsharingService daocarsharing;
     @Mock
@@ -45,11 +44,11 @@ public class HomeControllerTest {
     @Mock
     private AdService daoad;
 
-    ArrayList<Carsharing> amodello = new ArrayList<Carsharing>();
-    TrawellGroup modello = new TrawellGroup();
+    ArrayList<Itinerary>  itinerarys = new ArrayList<Itinerary>();
+    Itinerary modello = new Itinerary();
 
     @InjectMocks
-    HomeController controller = new HomeController();
+    ItineraryController controller = new ItineraryController();
 
     @Mock
     Model model;
@@ -88,30 +87,53 @@ public class HomeControllerTest {
     }
 
     @Test
-    public void TestlistLandingNoUser() {
+    public void TestCreateNoUser() {
         session.setAttribute("user", null);
-        assertEquals("pages/user/login", controller.landing(session, model));
+        assertEquals("error", controller.create(session));
     }
-   
+
     @Test
-    public void TestlistLanding() {
-        when(daocarsharing.findAll()).thenReturn(amodello);
-        assertEquals("pages/home/index", controller.landing(session, model));
-    }
-
-    /*
-    public String landing(HttpSession session, Model model) {
-        if (session.getAttribute("user") != null) {
-
-            model.addAttribute("carsharingAds", daocarsharing.findAll());
-            model.addAttribute("itineraries", daoitinerary.findAll());
-            model.addAttribute("posts", daopost.findAll());
-            model.addAttribute("ads",daoad.findAll());
-
-            return "pages/home/index";
-        }
-        return "pages/user/login";
-    }
-    */
+    public void TestCreate() {
         
+        assertEquals("pages/itinerary/createitinerary", controller.create(session));
+    }
+
+    @Test
+    public void TestModify() {
+        modello.setId(0L);
+        itinerarys.add(modello);
+        instance.setUserItineraries(itinerarys);
+        session.setAttribute("user", instance);
+        assertEquals("pages/itinerary/modifyitinerary", controller.modify(session,0L, model));
+    }
+
+    @Test
+    public void TestModifyNull() {
+        
+        session.setAttribute("user", null);
+        assertEquals("pages/itinerary/modifyitinerary", controller.modify(session,0L, model));
+    }
+        
+    @Test
+    public void TestView() {
+        modello.setId(0L);
+        itinerarys.add(modello);
+        instance.setUserItineraries(itinerarys);
+        session.setAttribute("user", instance);
+        assertEquals("pages/itinerary/viewitinerary", controller.view(session,0L, model));
+    }
+
+    @Test
+    public void TestViewNull() {
+        
+        session.setAttribute("user", null);
+        assertEquals("pages/itinerary/viewitinerary", controller.view(session,0L, model));
+    }
+
+
+    @Test
+    public void TestList() {
+        
+        assertEquals("pages/itinerary/list-view", controller.list(session, model));
+    }
 }

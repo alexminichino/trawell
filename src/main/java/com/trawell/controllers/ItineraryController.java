@@ -55,7 +55,8 @@ public class ItineraryController {
 
         if (user == null || id == null ? false : user.getUserItineraries() == null ? false : !user.getUserItineraries().isEmpty()) {
             int index = user.getUserItineraries().indexOf(new Itinerary(id));
-            model.addAttribute("itinerary", user.getUserItineraries().get(index));
+            Itinerary it = user.getUserItineraries().get(index);
+            model.addAttribute("itinerary", it);
         }
 
         return "pages/itinerary/modifyitinerary";

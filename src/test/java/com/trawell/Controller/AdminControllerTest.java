@@ -84,8 +84,6 @@ public class AdminControllerTest {
         userList.add(user);
         userList.add(user2);
 
-        session = new MockHttpSession();
-        session.setAttribute("user", user);
 
         agency = new Agency();
         ad = new Ad();

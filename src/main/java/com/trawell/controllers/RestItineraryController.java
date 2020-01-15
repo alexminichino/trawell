@@ -44,9 +44,8 @@ public class RestItineraryController {
         Itinerary createdItinerary = null;
 
         if (user != null) {
-            user.addItinerary(itinerary);
-            System.out.println(itinerary.getDestinations());
-            itinerary.getDestinations().parallelStream().forEach(d -> {d.setItinerary(itinerary);});
+            itinerary.setUser(user);
+            itinerary.getDestinations().stream().forEach(d -> {d.setItinerary(itinerary);});
             createdItinerary = dao.create(itinerary);
         }
      
@@ -68,17 +67,17 @@ public class RestItineraryController {
 
         if (user != null) {
             itinerary.setUser(user);
-            itinerary.getDestinations().parallelStream().forEach(d -> {d.setItinerary(itinerary);});
+            itinerary.getDestinations().stream().forEach(d -> {d.setItinerary(itinerary);});
             updatedItinerary = dao.update(itinerary);
         }
 
         if (updatedItinerary == null) 
-        return new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR);
-    else {
-        user.getUserItineraries().remove(itinerary);
-        user.getUserItineraries().add(updatedItinerary);
-        return new ResponseEntity<Itinerary>(updatedItinerary, HttpStatus.OK);    
-    }
+            return new ResponseEntity<Itinerary>(HttpStatus.INTERNAL_SERVER_ERROR);
+        else {
+            user.getUserItineraries().remove(itinerary);
+            user.getUserItineraries().add(updatedItinerary);
+            return new ResponseEntity<Itinerary>(updatedItinerary, HttpStatus.OK);    
+        }
 }
     
 

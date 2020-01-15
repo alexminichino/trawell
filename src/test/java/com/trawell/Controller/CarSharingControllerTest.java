@@ -33,7 +33,7 @@ import java.util.ArrayList;
  * @author Paolo Fasano
  */
 @RunWith(MockitoJUnitRunner.class)
-public class HomeControllerTest {
+public class CarSharingControllerTest {
 
 
     @Mock
@@ -46,10 +46,10 @@ public class HomeControllerTest {
     private AdService daoad;
 
     ArrayList<Carsharing> amodello = new ArrayList<Carsharing>();
-    TrawellGroup modello = new TrawellGroup();
+    Carsharing modello = new Carsharing();
 
     @InjectMocks
-    HomeController controller = new HomeController();
+    CarsharingController controller = new CarsharingController();
 
     @Mock
     Model model;
@@ -90,28 +90,28 @@ public class HomeControllerTest {
     @Test
     public void TestlistLandingNoUser() {
         session.setAttribute("user", null);
-        assertEquals("pages/user/login", controller.landing(session, model));
+        assertEquals("pages/error", controller.create(session));
+    }
+
+    @Test
+    public void TestlistLanding() {
+        assertEquals("pages/carsharing/createcarsharing", controller.create(session));
     }
    
     @Test
-    public void TestlistLanding() {
-        when(daocarsharing.findAll()).thenReturn(amodello);
-        assertEquals("pages/home/index", controller.landing(session, model));
+    public void Testchange() {
+        assertEquals("pages/carsharing/modifycarsharing", controller.change(session, 0L, model));
     }
 
-    /*
-    public String landing(HttpSession session, Model model) {
-        if (session.getAttribute("user") != null) {
-
-            model.addAttribute("carsharingAds", daocarsharing.findAll());
-            model.addAttribute("itineraries", daoitinerary.findAll());
-            model.addAttribute("posts", daopost.findAll());
-            model.addAttribute("ads",daoad.findAll());
-
-            return "pages/home/index";
-        }
-        return "pages/user/login";
+    @Test
+    public void Testview() {
+        assertEquals("pages/carsharing/viewcarsharing", controller.view(session, 0L, model));
     }
-    */
+
+    @Test
+    public void Testlist() {
+        assertEquals("pages/carsharing/list-view", controller.list(session, model));
+    }
+   
         
 }
