@@ -49,22 +49,22 @@ $("#target").validate({
     },
      messages:{
         username:{
-            regex: "Username entered is not correct: special characters not allowed. Retry!" 
+            regex: "special characters not allowed and must not exceed 45 characters. Retry!" 
         },    
         name:{
-            regex:"Name entered is not correct: special characters and numbers are not allowed. Retry!"
+            regex:"Name entered is not correct: special characters not allowed and must not exceed 45 characters. Retry!"
         },
         surname:{
-            regex:"Surname entered is not correct: special characters and numbers are not allowed. Retry!"
+            regex:"Surname entered is not correct: special characters not allowed and must not exceed 45 characters. Retry!"
         },
         mail:{
             regex: "Mail entered is not correct: special characters not allowed. Retry!"
         },
         password:{
-            regex: "Password entered is not correct: minimum number of characters 8. Retry!"
+            regex: "Password entered is not correct: minimum number of characters 8 and accept only these special characters: . ! # $ % & ' * + / = ? ^ _ ` { | } ~ - . Retry!"
         }, 
         nameAgency:{
-            regex:"Agency's name entered is not correct: special characters and numbers are not allowed. Retry!"
+            regex:"Agency's name entered is not correct: special characters not allowed and must not exceed 45 characters. Retry!"
         },
         url:{
             regex:"Agency's url entered is malformed. Retry!"
