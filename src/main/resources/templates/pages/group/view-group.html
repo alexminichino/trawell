@@ -12,13 +12,14 @@
       <script src="../js/addMemb.js"></script>
       <script src="../js/removePost.js"></script>
       <script src="../js/reportPost.js"></script>
+      <link rel="stylesheet" href="../css/home.css">    
   </head>
 
   <body>
     <section layout:fragment="content">
         <div class="container h-100">
             <div class="row h-100 justify-content-center align-items-center">
-                <div class = "col-6">
+                <div class = "col-md-6">
                     <!-- Lista utenti dove potrai rimuovere se admin del gruppo (il remove deve essere cambiato con un simboletto)-->
                     <table class="table table-responsive-md table-hover table-secondary text-center" style="margin-left:auto;margin-right:auto;">
                         <thead> 
@@ -38,33 +39,9 @@
                          </tr>
                      </tbody>
                  </table>
-                </div>
-                <div class = "col-12">
-                    <!-- Lista Post (copiata e incollata da bachecapost.html)-->
-                    <div th:if="${#arrays.length(posts)==0}">
-                        <p>No posts found!</p>
-                    </div>
-                    <div>
-                        <p>Create a post</p>
-                        <a class="btn btn-primary" href="/post/landing" role="button">Click here!</a>
-                    </div>
-
-                    <div th:each="post : ${posts}" class = "post">
-                        <div th:each ="photo : ${post.photos}">
-                          <img th:src="@{${photo.path}}" class="rounded float-left" alt="an img">   
-                        </div>
-                        <p th:text = '${post.user.name +" " +post.user.surname}'></p>
-                        <p th:text = ${post.postDescription}></p>
-                        <button th:id = ${post.id} class="btn btn-primary remove"> <span class="fas fa-trash-alt"></span></button>
-                        <button th:id = ${post.id} class="btn btn-primary report">Segnala Post</button>
-                      </div>
-                </div>
-                <div>
-                    Click &nbsp;<a th:href="${'/Wallet/walletGroup?id=' +group.id}">here</a> &nbsp; to view the wallet's group
-                </div>
-                <div class = "col-3 ">
+                 <div class = "row text-center" style="background:white">
                     <!-- Modal che chiede di inserire nuovo utente... visualizzabile solo se l'utente è il creatore del gruppo-->
-                    <div th:if = "${session.user.id == group.idOwner}"class = "card">
+                    <div th:if = "${session.user.id == group.idOwner}"class = "card" style="width: 100%;">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add new member</button>
                         
@@ -93,8 +70,39 @@
                         </div>
                     </div>
                 </div>
+                </div>
+
+                <div class="col-md-6">  
+                    <div class = "card blocks scrollbar">
+                      <h5>Post Available</h5>
+                      <div th:if="${posts.size()==0}">
+                        <img src="../image/sad.png" class="image"><br>
+                        <p>Non ci sono posts</p>
+                      </div>
+                          <div th:include="fragments/post/posts" class="post-full-height"> </div>
+                          <!--fine post-->
+                      </div><!--fine card post-->
+                  </div><!--fine terza colonna-->
+
+            </div>
+                <div class="row" style="background:white">
+                    <div class = "col-md-6">
+                    
+                    
+                            <p>Create a post</p>
+                            <a class="btn btn-primary" href="/post/landing" role="button">Click here!</a>
+                        
+
+                    </div>
+                <div class = "col-md-6">  
+                
+               
+                    Click &nbsp;<a th:href="${'/Wallet/walletGroup?id=' +group.id}">here</a> &nbsp; to view the wallet's group
+                </div>
+            </div>
+                
           </div>
-        </div>
+        
       </section>
   </body>
   </html>

@@ -111,7 +111,7 @@ public class WalletControllerTest {
     @Test
     public void addDocumentWhenUserIsNull() {
         session.setAttribute("user", null);
-        assertEquals("pages/user/login", controller.addDocument(null,java.sql.Date.valueOf("2020-05-05"),session, model));
+        assertEquals("pages/user/login", controller.addDocument(null,java.sql.Date.valueOf("2020-05-05"), 4L, session, model));
 
 
     }

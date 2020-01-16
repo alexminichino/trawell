@@ -23,7 +23,7 @@ function remove(x) {
             wrapper.remove();
         },
         error: function (request, textStatus, errorThrown) {
-            custom_alert("Message","failed");
+            custom_alert("Message","You're not authorized");
         }
     });
 

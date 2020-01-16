@@ -8,7 +8,7 @@
         var id = $(this).attr("id");
         var url = "/api/carsharing/eliminate/"+id;
 
-        custom_alert("Message","are you sure you want to eliminate this carsharing ad?")
+        
         $.ajax({
             dataType: "text",
             url:url,

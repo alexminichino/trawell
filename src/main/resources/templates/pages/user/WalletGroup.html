@@ -81,11 +81,12 @@
           <form action="/Wallet/addDocument" method="POST" enctype="multipart/form-data">
             <div class="form-group">
               <label for="files">Upload files</label>
-              <input type="file" name="files" multiple>
+              <input type="file" required name="files" multiple>
+              <input type = "hidden" name = "idWallet" th:value="${userWallet.id}">
             </div>
             <div class="form-group">
               <label for="data">Select a due date</label>
-              <input type="date" name="dueDate" class="form-control">
+              <input type="date" required name="dueDate" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

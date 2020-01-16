@@ -8,7 +8,8 @@
 	  <link rel="stylesheet" href="../css/carsharing&itinerary.css">
 	  <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 	  <!--<script src = "../js/validation_carsharing.js"></script>-->
-      <script src = "../js/send_carsharing.js"></script>
+	  <script src = "../js/send_carsharing.js"></script>
+	  <script src = "../js/validation_carsharing.js"></script>
 	  <meta charset="utf-8">
   </head>
   <body>
@@ -26,19 +27,19 @@
 										<div class="input-group-append">
 											<span class="input-group-text"><i class="fas fa-clock"></i></span>
 										</div>
-										<input type = "datetime-local" name = "departureDate" class="form-control input_user" id = "departureDate" placeholder="Date e Ora">
+										<input required type = "datetime-local" name = "departureDate" class="form-control input_user" id = "departureDate" placeholder="Date e Ora">
 									</div>
 									<div class="input-group mb-2">
 										<div class="input-group-append">
 											<span class="input-group-text"><i class="fas fa-city"></i></span>
 										</div>
-										<input type = "text" name = "departure" class="form-control input_user" id = "departure" placeholder="Departure">
+										<input required type = "text" name = "departure" class="form-control input_user" id = "departure" placeholder="Departure">
 									</div>
 									<div class="input-group mb-2">
 										<div class="input-group-append">
 											<span class="input-group-text"><i class="fas fa-city"></i></span>
 										</div>
-										<input type = 'text' name = "arrival" class="form-control input_user" id = "arrival" placeholder="Arrival">
+										<input  required type = 'text' name = "arrival" class="form-control input_user" id = "arrival" placeholder="Arrival">
 									</div>
 									<div class="input-group mb-2">
 										<div class="input-group-append">
@@ -50,7 +51,7 @@
 										<div class="input-group-append">
 											<span class="input-group-text"><i class="fas fa-car"></i></span>
 										</div>
-										<input type = 'number' name = "carsharingspot" class="form-control input_user" id = "carsharingspot" min="1" placeholder="0">
+										<input required type = 'number' name = "carsharingspot" class="form-control input_user" id = "carsharingspot" min="1" placeholder="0">
 									</div>
 								</div>
 							</div>

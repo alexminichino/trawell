@@ -10,7 +10,6 @@ $(document).ready(function(){
         var idGroup = $(".addMemb").attr("id");
         var url = "/api/group/addMember/"+username+"/"+idGroup;
 
-        custom_alert("Message","are you sure you want to add this member in this group?");
         $.ajax({
             dataType: "text",
             url:url,
@@ -21,10 +20,14 @@ $(document).ready(function(){
             type:'POST',
             success:function(data){
                 $('#exampleModalCenter').modal('hide');
+                custom_alert("Message","User inserted correctly!");
+                    
                 location.reload()
                 //$(".groupMembList").load( "/group/view?id="+idGroup+" .groupMembL");
             },
            error:function(request,textStatus,errorThrown){
+            custom_alert("Message","Error, doesn't exist! ");
+            
             }
         });
         

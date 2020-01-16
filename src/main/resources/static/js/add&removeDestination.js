@@ -47,11 +47,11 @@
            data:JSON.stringify(da),
            type:'POST',
            success:function(data){
-               custom_alert("Message","success");
-               window.location.href='/';
+               custom_alert("Message","Itinerary created");
+               setTimeout(function(){ window.location.href='/'; }, 3000);
            },
           error:function(request,textStatus,errorThrown){
-               custom_alert("Message","failed:");
+               custom_alert("Message","Error, contact administrators");
            }
        })
        
