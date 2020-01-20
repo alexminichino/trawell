@@ -1,7 +1,7 @@
 
 # Trawell Project
 
-## Documentazione [disponile qui!](https://drive.google.com/drive/folders/1XJY9enjR8BZve7qnEP1GOPHmPSA11GEf?usp=sharing)
+## Documentazione [disponibile qui!](https://drive.google.com/drive/folders/1XJY9enjR8BZve7qnEP1GOPHmPSA11GEf?usp=sharing)
 
 ## Cos'è TraWell:
 La piattaforma TraWell nasce con l’obbiettivo di fornire all’utente una serie di servizi legati al mondo

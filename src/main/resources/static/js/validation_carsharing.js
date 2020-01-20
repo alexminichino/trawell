@@ -1,34 +1,39 @@
 /**
  * @author Alfieri Davide
  */
-
-$.validator.addMethod(
-    "regex",
-    function(value, element, regexp) {
-        var re = new RegExp(regexp);
-        return this.optional(element) || re.test(value);
-    },
-    "Please check your input."
-);
-
-$(document).ready(function(){
+    // Wait for the DOM to be ready
+$(function() {
+    // Initialize form validation on the registration form.
+    // It has the name attribute "registration"
     $("#target").validate({
-        rules:{
-            departureDate:{required:true},
-            departure:{required:true, regex:/^[A-Z a-z]$/},
-            description:{required:true},
-            arrival:{required:true, regex:/^[A-Z a-z]$/},
-            carsharingspot:{required:true}
-         
-        },
-         messages:{
-            departure:{
-                regex:"Departure entered doesn't respect the format: numbers and special characters not allowed. Retry!" 
-            },    
-            arrival:{
-                regex:"Departure entered doesn't respect the format: numbers and special characters not allowed. Retry!"
-            }
-        } 
-    }); 
+      // Specify validation rules
+      rules: {
+        // The key name on the left side is the name attribute
+        // of an input field. Validation rules are defined
+        // on the right side
+
+       
+           
+
+        departureDate: "required",
+        description: "required",
+        carsharingspot: "required",
+        departure: "required"
+        
+       
+      },
+      // Specify validation error messages
+      messages: {
+        departureDate: "Please enter departure date",
+        carsharingspot: "Please enter spot number",
+        description: "Please enter description",
+        departure: "Please enter departure"
+      },
+      // Make sure the form is submitted to the destination defined
+      // in the "action" attribute of the form when valid
+      submitHandler: function(form) {
+        form.submit();
+      }
     });
+  });
     

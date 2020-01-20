@@ -12,7 +12,7 @@ $(document).ready(function(){
 
         var url = "/api/group/removeMember/"+idGroup+"/"+idUser;
 
-        custom_alert("Message","are you sure you want to eliminate this member from this group?");
+        
         $.ajax({
             dataType: "text",
             url:url,

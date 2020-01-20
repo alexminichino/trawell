@@ -39,6 +39,7 @@
          *  */
         $("#target").submit(function (e) {
             e.preventDefault();
+            if(! $("#target").valid()) return false;
             var da = $("#target").serializeFormJSON();
             $.ajax({
                 dataType: "text",
@@ -50,10 +51,11 @@
                 data:JSON.stringify(da),
                 type:'POST',
                 success:function(data){
-                    custom_alert("Message","successo");
+                    custom_alert("Message","Car sharing post inserted correctly!");
+                    setTimeout(function(){ window.location.href='/carsharing/list-view'; }, 3000);
                 },
                 error:function(jqXHR,textStatus,errorThrown){
-                    custom_alert("Message","failed");
+                    custom_alert("Message","Error, conctact administrators!");
                 }
             })
         });

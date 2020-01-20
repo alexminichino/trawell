@@ -82,17 +82,16 @@ public class WalletController {
 
 
     @PostMapping("/addDocument")
-    public String addDocument(@RequestParam(name = "files", required = true) MultipartFile[] files,@RequestParam(name = "dueDate", required = true) Date dueDate, HttpSession session, Model model)
+    public String addDocument(@RequestParam(name = "files", required = true) MultipartFile[] files,@RequestParam(name = "dueDate", required = true) Date dueDate, @RequestParam(name = "idWallet", required = true) Long idWallet, HttpSession session, Model model)
     {
         User user = (User) session.getAttribute("user");        
-
+        
         ArrayList<Document> documents = new  ArrayList<Document>();
+        Wallet wallet= walletDao.findOne(idWallet);
 
-
-        if(user != null)
+        if(user != null && wallet!= null)
         {
             int i = 0;
-            Wallet wallet = user.getUserWallets().stream().filter(x -> x.getUser() != null).findFirst().orElse(null);
 
             for (MultipartFile file : files)
             {
@@ -109,7 +108,7 @@ public class WalletController {
                 document.setWallet(wallet);
                 document.setDueDate(dueDate);
                 document.setIdUser(user.getId());
-                document.setName(fileName);
+                document.setName(file.getOriginalFilename());
                 documents.add(document);
 
                 i++;
